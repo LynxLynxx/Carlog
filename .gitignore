@@ -1,5 +1,6 @@
 
 macos/Runner/GoogleService-Info.plist
+ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 
 # Miscellaneous
