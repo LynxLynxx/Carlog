@@ -1,5 +1,7 @@
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginByMailFormWidget extends StatelessWidget {
   const LoginByMailFormWidget({
@@ -44,7 +46,7 @@ class LoginByMailFormWidget extends StatelessWidget {
         Column(
           children: [
             FilledButton(
-              onPressed: () {},
+              onPressed: () => context.go(RoutesK.home),
               child: const Text("Zaloguj"),
             ),
             TextButton(

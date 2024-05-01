@@ -1,5 +1,4 @@
-import 'package:carlog/core/theme/theme.dart';
-import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
+import 'package:carlog/core/router/router.dart';
 import 'package:carlog/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,11 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Carlog',
-      theme: const MaterialTheme(TextTheme()).light(),
-      darkTheme: const MaterialTheme(TextTheme()).dark(),
-      home: const LoginPage(),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue[900]!),
+      ),
+      darkTheme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue[900]!, brightness: Brightness.dark),
+      ),
+      routerConfig: router,
     );
   }
 }
