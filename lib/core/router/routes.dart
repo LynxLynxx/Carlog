@@ -1,11 +1,14 @@
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/entities/animation_go_route.dart';
 import 'package:carlog/core/router/entities/branch_go_route.dart';
 import 'package:carlog/core/router/router.dart';
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
 import 'package:carlog/root_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +21,7 @@ final List<RouteBase> routes = [
 
   //SECTION -UNAUTHORIZE
   //ANCHOR - REGISTER
-  GoRoute(
+  AnimationGoRoute(
     path: RoutesK.register,
     builder: (context, state) => const RegisterPage(),
   ),
@@ -58,14 +61,23 @@ final List<StatefulShellBranch> shellBranches = [
                   ),
                   actions: [
                     TextButton(
-                        onPressed: () => context.go(RoutesK.login),
+                        onPressed: () => locator<AuthBloc>()
+                            .add(const AuthEvent.appLogoutRequested()),
                         child: const Text("LOGOUT"))
                   ],
                 ),
                 SliverFillRemaining(
                   child: Center(
                     child: TextButton(
-                      child: const Text("ASD"),
+                      child: Column(
+                        children: [
+                          const Text("ASD"),
+                          Text(FirebaseAuth.instance.currentUser?.displayName ??
+                              "NO NAME"),
+                          Text(FirebaseAuth.instance.currentUser?.uid ??
+                              "NO UID")
+                        ],
+                      ),
                       onPressed: () => context.push("/add"),
                     ),
                   ),
