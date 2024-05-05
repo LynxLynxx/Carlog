@@ -1,9 +1,11 @@
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
 import 'package:carlog/features/auth_features/shared/widgets/connect_by_services_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -20,7 +22,7 @@ class LoginPage extends StatelessWidget {
               // crossAxisAlignment: CrossAxisAlignment.center,/
               children: [
                 ChangeAuthScreen(
-                  onPressed: () {},
+                  onPressed: () => context.go(RoutesK.register),
                   title: 'Zarejestruj',
                 ),
                 const CarlogLogoWidget(),
@@ -53,13 +55,13 @@ class LoginPage extends StatelessWidget {
                         onTap: () {},
                         title: "Google",
                         asset: "assets/GoogleLogo1.png"),
-                    ConnectByService(
-                        isLoading: false,
-                        onTap: () {},
-                        title: "Apple",
-                        asset: Theme.of(context).brightness == Brightness.dark
-                            ? "assets/appleLogo3.png"
-                            : "assets/appleLogo1.png"),
+                    // ConnectByService(
+                    //     isLoading: false,
+                    //     onTap: () {},
+                    //     title: "Apple",
+                    //     asset: Theme.of(context).brightness == Brightness.dark
+                    //         ? "assets/appleLogo3.png"
+                    //         : "assets/appleLogo1.png"),
                   ],
                 ),
               ],

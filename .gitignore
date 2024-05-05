@@ -2,6 +2,10 @@
 macos/Runner/GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
+lib/core/di/injectable_config.config.dart
+
+*.freezed.dart
+*.g.dart
 
 # Miscellaneous
 *.class
