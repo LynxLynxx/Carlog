@@ -69,4 +69,22 @@ void main() {
       ],
     );
   });
+
+  group("Logout", () {
+    blocTest<AuthBloc, AuthState>(
+      'invokes logOut',
+      setUp: () {
+        when(
+          () => mockAuthRepository.logOut(),
+        ).thenAnswer((_) async {});
+      },
+      build: () => AuthBloc(
+        mockAuthRepository,
+      ),
+      act: (bloc) => bloc.add(const AuthEvent.appLogoutRequested()),
+      verify: (_) {
+        verify(() => mockAuthRepository.logOut()).called(1);
+      },
+    );
+  });
 }
