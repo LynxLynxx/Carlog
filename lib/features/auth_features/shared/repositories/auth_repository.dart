@@ -53,6 +53,28 @@ class AuthRepository {
     );
   }
 
+  Future<Option<Failure>> signInWithGoogle() {
+    return handleVoidResponse(() async {
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().disconnect();
+        await GoogleSignIn().signOut();
+      }
+      final GoogleSignInAccount? gUser = await GoogleSignIn(
+        scopes: ['profile', 'https://www.googleapis.com/auth/plus.me'],
+      ).signIn();
+
+      if (gUser == null) {
+        return null;
+      }
+
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+
+      final googleCredential = GoogleAuthProvider.credential(
+          accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+      await FirebaseAuth.instance.signInWithCredential(googleCredential);
+    });
+  }
+
   Future<Option<Failure>> createUserDocument() async {
     return handleVoidResponse(() async {
       // final User? user = FirebaseAuth.instance.currentUser;

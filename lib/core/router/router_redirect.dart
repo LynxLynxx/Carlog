@@ -29,7 +29,9 @@ Future<String?> routerRedirect(
 }
 
 bool authAccess(String? fullPath) {
-  if (fullPath == RoutesK.login || fullPath == RoutesK.loading) {
+  if (fullPath == RoutesK.login ||
+      fullPath == RoutesK.register ||
+      fullPath == RoutesK.loading) {
     return true;
   }
 
