@@ -18,6 +18,7 @@ final List<RouteBase> routes = [
   //ANCHOR - LOADING
   AnimationGoRoute(
     path: RoutesK.loading,
+    transitionDuration: 1000,
     builder: (context, state) => const LoadingPage(),
   ),
 
@@ -50,11 +51,13 @@ final List<RouteBase> routes = [
   //ANCHOR - UNKNOWN ERROR
   AnimationGoRoute(
     path: RoutesK.unknownError,
+    transitionDuration: 500,
     builder: (context, state) => const UnknownErrorPage(),
   ),
   //ANCHOR - CONNECTION LOST
   AnimationGoRoute(
     path: RoutesK.connectionLostError,
+    transitionDuration: 500,
     builder: (context, state) => const ConnectionLostPage(),
   ),
 
