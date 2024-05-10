@@ -1,14 +1,31 @@
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
 import 'package:carlog/features/auth_features/shared/widgets/connect_by_services_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => MailLoginBloc(
+        locator(),
+      ),
+      child: const LoginPageView(),
+    );
+  }
+}
+
+class LoginPageView extends StatelessWidget {
+  const LoginPageView({super.key});
 
   @override
   Widget build(BuildContext context) {

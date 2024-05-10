@@ -13,7 +13,7 @@ Future<void> main() async {
   );
   configureDependencies();
   runApp(BlocProvider.value(
-    value: locator<AuthBloc>(),
+    value: locator<AuthBloc>()..add(const AuthEvent.getUserSession()),
     child: const MyApp(),
   ));
 }

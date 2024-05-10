@@ -6,34 +6,33 @@ import 'package:carlog/features/auth_features/shared/repositories/auth_repositor
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'mail_register_bloc.freezed.dart';
-part 'mail_register_event.dart';
-part 'mail_register_state.dart';
+part 'mail_login_bloc.freezed.dart';
+part 'mail_login_event.dart';
+part 'mail_login_state.dart';
 
-class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
+class MailLoginBloc extends Bloc<MailLoginEvent, MailLoginState> {
   final AuthRepository _authRepository;
-  MailRegisterBloc(this._authRepository) : super(const _MailRegisterState()) {
+  MailLoginBloc(this._authRepository) : super(const _MailLoginState()) {
     on<_EmailChange>(_onEmailChange);
     on<_PasswordChange>(_onPasswordChange);
     on<_Submit>(_onSubmit);
   }
 
-  void _onEmailChange(_EmailChange event, Emitter<MailRegisterState> emit) {
+  void _onEmailChange(_EmailChange event, Emitter<MailLoginState> emit) {
     final mail = MailFormz.pure(event.value);
     emit(
       state.copyWith(mail: mail),
     );
   }
 
-  void _onPasswordChange(
-      _PasswordChange event, Emitter<MailRegisterState> emit) {
+  void _onPasswordChange(_PasswordChange event, Emitter<MailLoginState> emit) {
     final password = PasswordMailEntity.pure(event.value);
     emit(
       state.copyWith(password: password),
     );
   }
 
-  Future<void> _onSubmit(_Submit event, Emitter<MailRegisterState> emit) async {
+  Future<void> _onSubmit(_Submit event, Emitter<MailLoginState> emit) async {
     final mail = MailFormz.dirty(value: state.mail.value);
     final password = PasswordMailEntity.dirty(state.password.value);
     if (!Formz.validate([mail, password])) {
@@ -42,7 +41,7 @@ class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
 
     emit(state.copyWith(
         status: FormzSubmissionStatus.inProgress, errorMessage: null));
-    final result = await _authRepository.signUp(
+    final result = await _authRepository.signIn(
         email: state.mail.value, password: state.password.value);
 
     if (result.isSome()) {
@@ -50,15 +49,5 @@ class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
           status: FormzSubmissionStatus.failure,
           errorMessage: result.asOption().message));
     }
-    final createUserDoc = await _authRepository.createUserDocument();
-
-    createUserDoc.fold(
-      () => emit(state.copyWith(status: FormzSubmissionStatus.success)),
-      (a) {
-        emit(state.copyWith(
-            status: FormzSubmissionStatus.failure,
-            errorMessage: createUserDoc.asOption().message));
-      },
-    );
   }
 }

@@ -94,7 +94,7 @@ final List<StatefulShellBranch> shellBranches = [
                           Text(FirebaseAuth.instance.currentUser?.displayName ??
                               "NO NAME"),
                           Text(FirebaseAuth.instance.currentUser?.uid ??
-                              "NO UID")
+                              "NO UID"),
                         ],
                       ),
                       onPressed: () => context.push("/add"),
