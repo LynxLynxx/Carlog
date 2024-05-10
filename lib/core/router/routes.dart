@@ -6,6 +6,8 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
+import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
+import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
 import 'package:carlog/root_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,6 +44,20 @@ final List<RouteBase> routes = [
     builder: (context, state, navigationShell) =>
         RootPage(navigationShell: navigationShell),
   ),
+  //!SECTION
+
+  //SECTION - ERRORS
+  //ANCHOR - UNKNOWN ERROR
+  AnimationGoRoute(
+    path: RoutesK.unknownError,
+    builder: (context, state) => const UnknownErrorPage(),
+  ),
+  //ANCHOR - CONNECTION LOST
+  AnimationGoRoute(
+    path: RoutesK.connectionLostError,
+    builder: (context, state) => const ConnectionLostPage(),
+  ),
+
   //!SECTION
 ];
 

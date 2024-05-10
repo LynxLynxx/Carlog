@@ -87,6 +87,10 @@ class RegisterPageView extends StatelessWidget {
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.error),
+          onPressed: () => context.push(RoutesK.unknownError),
+        ),
       ),
     );
   }
