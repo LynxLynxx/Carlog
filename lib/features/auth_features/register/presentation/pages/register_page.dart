@@ -87,9 +87,25 @@ class RegisterPageView extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.error),
-          onPressed: () => context.push(RoutesK.unknownError),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              heroTag: "1",
+              child: const Icon(Icons.error),
+              onPressed: () => context.go(RoutesK.unknownError),
+            ),
+            FloatingActionButton(
+              heroTag: "2",
+              child: const Icon(Icons.wifi),
+              onPressed: () => context.go(RoutesK.connectionLostError),
+            ),
+            FloatingActionButton(
+              heroTag: "3",
+              child: const Icon(Icons.next_plan),
+              onPressed: () => context.go(RoutesK.loading),
+            ),
+          ],
         ),
       ),
     );

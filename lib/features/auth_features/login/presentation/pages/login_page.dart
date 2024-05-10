@@ -69,10 +69,6 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push(RoutesK.loading),
-        child: const Icon(Icons.next_plan),
-      ),
     );
   }
 }
