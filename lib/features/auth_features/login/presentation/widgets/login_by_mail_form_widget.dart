@@ -23,7 +23,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<MailLoginBloc, MailLoginState>(
       listener: (context, state) {
-        if(state.status == FormzSubmissionStatus.inProgress) {
+        if (state.status == FormzSubmissionStatus.inProgress) {
           context.go(RoutesK.loading);
         }
       },

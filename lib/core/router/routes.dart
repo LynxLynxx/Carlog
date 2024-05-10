@@ -18,7 +18,7 @@ final List<RouteBase> routes = [
   //ANCHOR - LOADING
   AnimationGoRoute(
     path: RoutesK.loading,
-    transitionDuration: 1000,
+    transitionDuration: 900,
     builder: (context, state) => const LoadingPage(),
   ),
 
