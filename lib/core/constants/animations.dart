@@ -10,5 +10,8 @@ class AnimationsK extends Constants {
   static const connectionLost = "assets/connection_lost.json";
   static const unknownError = "assets/unknown_error.json";
 
+  //ANCHOR mail
+  static const mail = "assets/mail.json";
+
   //!SECTION
 }

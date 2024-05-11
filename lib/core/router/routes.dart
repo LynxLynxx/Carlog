@@ -7,6 +7,7 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
+import 'package:carlog/features/auth_features/reset_password/presentation/pages/link_sent_page.dart';
 import 'package:carlog/features/auth_features/reset_password/presentation/pages/reset_password_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
@@ -40,6 +41,12 @@ final List<RouteBase> routes = [
     path: RoutesK.recoveryPassword,
     pageBuilder: (BuildContext context, GoRouterState state) {
       return DialogPage(builder: (_) => const ResetPasswordPage());
+    },
+  ),
+  GoRoute(
+    path: RoutesK.linkSent,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return DialogPage(builder: (_) => const LinkSentPage());
     },
   ),
   //!SECTION

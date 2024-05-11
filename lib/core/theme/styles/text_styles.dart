@@ -14,3 +14,4 @@ const TextStyle text22W700LS3 = TextStyle(
   fontWeight: FontWeight.w700,
   letterSpacing: 3,
 );
+

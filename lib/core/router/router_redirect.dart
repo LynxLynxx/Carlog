@@ -42,6 +42,7 @@ bool unauthAccess(String? fullPath) {
   if (fullPath == RoutesK.login ||
       fullPath == RoutesK.register ||
       fullPath == RoutesK.recoveryPassword ||
+      fullPath == RoutesK.linkSent ||
       fullPath == RoutesK.connectionLostError ||
       fullPath == RoutesK.unknownError ||
       fullPath == RoutesK.loading) {

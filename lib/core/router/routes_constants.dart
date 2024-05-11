@@ -7,6 +7,7 @@ class RoutesK {
   static const login = "/login";
   static const register = "/register";
   static const recoveryPassword = "/recoveryPassword";
+  static const linkSent = "/linkSent";
   //!SECTION
 
   static const home = "/";

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
@@ -37,10 +38,14 @@ class ResetPasswordView extends StatelessWidget {
         child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            AutoSizeText(
               "Zresetuj swoje hasło",
               style: text22W700LS3,
+              maxLines: 1,
               textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 30,
             ),
             ResetPasswordFormWidget(),
           ],
