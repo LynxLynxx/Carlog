@@ -6,6 +6,7 @@ import 'package:carlog/features/auth_features/reset_password/presentation/bloc/r
 import 'package:carlog/features/auth_features/reset_password/presentation/widgets/reset_password_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   const ResetPasswordPage({super.key});
@@ -35,19 +36,37 @@ class ResetPasswordView extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             borderRadius: PaddingsK.circular10),
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AutoSizeText(
-              "Zresetuj swoje hasło",
-              style: text22W700LS3,
-              maxLines: 1,
-              textAlign: TextAlign.center,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(
+                  width: 50,
+                ),
+                const AutoSizeText(
+                  "Zresetuj hasło",
+                  style: text22W700LS3,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () => context.pop(),
+                    icon: Icon(
+                      Icons.close,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            ResetPasswordFormWidget(),
+            const ResetPasswordFormWidget(),
           ],
         ),
       ),

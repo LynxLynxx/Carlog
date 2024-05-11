@@ -39,7 +39,7 @@ class _LoginByMailFormWidgetState extends State<ResetPasswordFormWidget> {
               autofillHints: const [AutofillHints.email],
               decoration: authTextFormFieldInputDecoration(
                 context,
-                bloc.state.mail.displayError,
+                bloc.state.mail.displayError ?? bloc.state.errorMessage,
                 "Email",
               ),
               keyboardType: TextInputType.emailAddress,

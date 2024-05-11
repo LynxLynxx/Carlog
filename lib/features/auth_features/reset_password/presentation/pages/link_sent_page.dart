@@ -48,14 +48,20 @@ class LinkSentView extends StatelessWidget {
                   width: 50,
                 ),
                 SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: LottieBuilder.asset(AnimationsK.mail)),
+                  height: 150,
+                  width: 150,
+                  child: LottieBuilder.asset(AnimationsK.mail),
+                ),
                 SizedBox(
-                    width: 50,
-                    child: IconButton(
-                        onPressed: () => context.pop(),
-                        icon: const Icon(Icons.close))),
+                  width: 50,
+                  child: IconButton(
+                    onPressed: () => context.pop(),
+                    icon: Icon(
+                      Icons.close,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
               ],
             ),
             const AutoSizeText(
