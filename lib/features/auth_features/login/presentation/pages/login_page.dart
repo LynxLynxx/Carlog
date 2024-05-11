@@ -62,7 +62,7 @@ class LoginPageView extends StatelessWidget {
                 ),
                 SizedBox(
                   width: width * .9,
-                  height: 280,
+                  height: 300,
                   child: const Card(
                     child: Padding(
                       padding: EdgeInsets.symmetric(

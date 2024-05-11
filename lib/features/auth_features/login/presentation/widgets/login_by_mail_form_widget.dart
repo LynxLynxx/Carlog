@@ -59,7 +59,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
               autofillHints: const [AutofillHints.password],
               decoration: authTextFormFieldInputDecoration(
                 context,
-                bloc.state.password.displayError,
+                bloc.state.password.displayError ?? bloc.state.errorMessage,
                 "Hasło",
                 errorMaxLine: 3,
               ),

@@ -32,6 +32,5 @@ class GoogleAuthBloc extends Bloc<GoogleAuthEvent, GoogleAuthState> {
             errorMessage: createUserDoc.asOption().message));
       },
     );
-    emit(state.copyWith(status: FormzSubmissionStatus.success));
   }
 }

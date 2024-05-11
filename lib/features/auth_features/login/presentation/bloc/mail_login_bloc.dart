@@ -36,11 +36,10 @@ class MailLoginBloc extends Bloc<MailLoginEvent, MailLoginState> {
     final mail = MailFormz.dirty(value: state.mail.value);
     final password = PasswordMailEntity.dirty(state.password.value);
     if (!Formz.validate([mail, password])) {
-      return emit(state.copyWith(mail: mail, password: password));
+      return emit(
+          state.copyWith(mail: mail, password: password, errorMessage: null));
     }
 
-    emit(state.copyWith(
-        status: FormzSubmissionStatus.inProgress, errorMessage: null));
     final result = await _authRepository.signIn(
         email: state.mail.value, password: state.password.value);
 
@@ -49,6 +48,8 @@ class MailLoginBloc extends Bloc<MailLoginEvent, MailLoginState> {
           status: FormzSubmissionStatus.failure,
           errorMessage: result.asOption().message));
     }
+    emit(state.copyWith(
+        status: FormzSubmissionStatus.inProgress, errorMessage: null));
     emit(state.copyWith(status: FormzSubmissionStatus.success));
   }
 }

@@ -37,7 +37,8 @@ class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
     final mail = MailFormz.dirty(value: state.mail.value);
     final password = PasswordMailEntity.dirty(state.password.value);
     if (!Formz.validate([mail, password])) {
-      return emit(state.copyWith(mail: mail, password: password));
+      return emit(
+          state.copyWith(mail: mail, password: password, errorMessage: null));
     }
 
     emit(state.copyWith(
