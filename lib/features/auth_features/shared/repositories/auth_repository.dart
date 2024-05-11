@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/core/services/secure_storage_service.dart';
@@ -5,6 +7,7 @@ import 'package:carlog/features/auth_features/shared/entities/user_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
@@ -41,6 +44,49 @@ class AuthRepository {
         password: password,
       ),
     );
+  }
+
+  Future<Option<Failure>> signInWithGoogle() {
+    return handleVoidResponse(() async {
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().disconnect();
+        await GoogleSignIn().signOut();
+      }
+      final GoogleSignInAccount? gUser = await GoogleSignIn(
+        scopes: ['profile', 'https://www.googleapis.com/auth/plus.me'],
+      ).signIn();
+
+      if (gUser == null) {
+        return null;
+      }
+
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+
+      final googleCredential = GoogleAuthProvider.credential(
+          accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+      await FirebaseAuth.instance.signInWithCredential(googleCredential);
+    });
+  }
+
+  Future<Option<Failure>> signInWithFacebook() {
+    return handleVoidResponse(() async {
+      // Trigger the sign-in flow
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ['email', 'public_profile']);
+
+      log(loginResult.accessToken!.token.toString());
+
+      if (loginResult.accessToken == null) {
+        return null;
+      }
+
+      // Create a credential from the access token
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      log(facebookAuthCredential.toString());
+      // Once signed in, return the UserCredential
+      await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    });
   }
 
   Future<Option<Failure>> createUserDocument() async {

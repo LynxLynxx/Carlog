@@ -1,6 +1,8 @@
+import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/firebase_auth_bloc.dart';
 import 'package:carlog/features/auth_features/register/presentation/bloc/mail_register/mail_register_bloc.dart';
 import 'package:carlog/features/auth_features/register/presentation/widgets/register_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
@@ -15,10 +17,19 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MailRegisterBloc(
-        locator(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MailRegisterBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => FirebaseAuthBloc(
+            locator(),
+          ),
+        ),
+      ],
       child: const RegisterPageView(),
     );
   }
@@ -65,23 +76,35 @@ class RegisterPageView extends StatelessWidget {
                     ),
                   ),
                   const Text("LUB"),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ConnectByService(
+                  BlocBuilder<FirebaseAuthBloc, FirebaseAuthState>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ConnectByService(
                           isLoading: false,
-                          onTap: () {},
+                          onTap: () {
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(const FirebaseAuthEvent.facebookSignIn());
+                          },
+                          title: "Facebook",
+                          asset: ImagesK.facebooklogo,
+                        ),
+                        ConnectByService(
+                          isLoading: false,
+                          onTap: () {
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(const FirebaseAuthEvent.googleSignIn());
+                          },
                           title: "Google",
-                          asset: "assets/GoogleLogo1.png"),
-                      // ConnectByService(
-                      //     isLoading: false,
-                      //     onTap: () {},
-                      //     title: "Apple",
-                      //     asset: Theme.of(context).brightness == Brightness.dark
-                      //         ? "assets/appleLogo3.png"
-                      //         : "assets/appleLogo1.png"),
-                    ],
-                  ),
+                          asset: ImagesK.googleLogo,
+                        ),
+                      ],
+                    );
+                  },
+                ),
                 ],
               ),
             ),
