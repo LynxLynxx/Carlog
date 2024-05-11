@@ -1,5 +1,7 @@
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RootPage extends StatelessWidget {
@@ -15,8 +17,28 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final connectionStatus =
+        context.watch<NetworkConnectionCubit>().state.connectionStatus;
     return Scaffold(
-      body: navigationShell,
+      body: Stack(
+        children: [
+          navigationShell,
+          connectionStatus == ConnectionStatus.disconnected
+              ? Positioned(
+                  top: 50,
+                  left: 20,
+                  child: GestureDetector(
+                    onTap: () => context.push(RoutesK.connectionLostError),
+                    child: CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.errorContainer,
+                      child: const Icon(Icons.wifi_off),
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink()
+        ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),

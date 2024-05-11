@@ -42,12 +42,10 @@ class LoginPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,/
               children: [
                 ChangeAuthScreen(
                   onPressed: () => context.go(RoutesK.register),

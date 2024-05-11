@@ -12,6 +12,7 @@ class CarlogLogoWidget extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
       child: SizedBox(
+        height: 150,
         width: double.infinity,
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
