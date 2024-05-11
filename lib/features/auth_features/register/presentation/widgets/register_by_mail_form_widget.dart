@@ -20,6 +20,8 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
   FocusNode f1 = FocusNode();
   FocusNode f2 = FocusNode();
 
+  bool isPasswordObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MailRegisterBloc, MailRegisterState>(
@@ -56,13 +58,24 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
             TextFormField(
               key: const Key("register_password_field"),
               focusNode: f2,
-              obscureText: true,
+              obscureText: isPasswordObscure,
               autofillHints: const [AutofillHints.password],
               decoration: authTextFormFieldInputDecoration(
                 context,
                 bloc.state.password.displayError ?? bloc.state.errorMessage,
                 "Hasło",
                 errorMaxLine: 3,
+                changeObscure: IconButton(
+                  onPressed: () => setState(
+                    () {
+                      isPasswordObscure = !isPasswordObscure;
+                    },
+                  ),
+                  icon: Icon(
+                    isPasswordObscure ? Icons.lock : Icons.lock_open,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
               ),
               onChanged: (value) => context
                   .read<MailRegisterBloc>()

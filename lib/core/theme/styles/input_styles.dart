@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 InputDecoration authTextFormFieldInputDecoration(
         BuildContext context, String? errorText, String labelText,
         // ignore: avoid_init_to_null
-        {int? errorMaxLine = null}) =>
+        {int? errorMaxLine = null,
+        Widget? changeObscure}) =>
     InputDecoration(
       labelText: labelText,
       errorText: errorText,
       errorMaxLines: errorMaxLine,
       border: InputBorder.none,
+      suffixIcon: changeObscure,
       contentPadding: const EdgeInsets.all(12),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
