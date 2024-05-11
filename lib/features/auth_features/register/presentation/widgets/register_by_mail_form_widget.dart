@@ -93,26 +93,6 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
                         : const Text("Zarejestruj"),
                   ),
                 ),
-                AnimatedSwitcher(
-                  duration: Durations.long2,
-                  child: bloc.state.errorMessage == null
-                      ? const SizedBox(height: 10)
-                      : Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.error,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              bloc.state.errorMessage!,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onError,
-                              ),
-                            ),
-                          ),
-                        ),
-                ),
               ],
             ),
           ],

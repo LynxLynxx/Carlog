@@ -53,6 +53,14 @@ class AuthRepository {
     );
   }
 
+  Future<Option<Failure>> resetPassword({required String email}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.sendPasswordResetEmail(
+        email: email,
+      ),
+    );
+  }
+
   Future<Option<Failure>> signInWithGoogle() {
     return handleVoidResponse(() async {
       if (await GoogleSignIn().isSignedIn()) {

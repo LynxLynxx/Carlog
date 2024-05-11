@@ -5,13 +5,23 @@ class PaddingsK extends Constants {
   //SECTION - [PADDINGS]
 
   //ANCHOR - [ALL]
-  static const all10 = EdgeInsets.all(20.0);
+  static const all16 = EdgeInsets.all(16.0);
 
   //ANCHOR - [HORIZONTAL]
+  static const h10 = EdgeInsets.symmetric(horizontal: 10.0);
   static const h30 = EdgeInsets.symmetric(horizontal: 30.0);
 
   //ANCHOR - [VERTICAL]
   static const v10 = EdgeInsets.symmetric(vertical: 10.0);
+
+  //ANCHOR - [HORIZONTAL/VERTICAL]
+  static const h30v10 = EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0);
+
+  //!SECTION
+
+  //SECTION - [BORDER RADIUS]
+
+  static BorderRadius circular10 = BorderRadius.circular(10.0);
 
   //!SECTION
 }

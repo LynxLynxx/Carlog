@@ -48,8 +48,8 @@ class MailLoginBloc extends Bloc<MailLoginEvent, MailLoginState> {
           status: FormzSubmissionStatus.failure,
           errorMessage: result.asOption().message));
     }
-    emit(state.copyWith(
-        status: FormzSubmissionStatus.inProgress, errorMessage: null));
+    // emit(state.copyWith(
+    //     status: FormzSubmissionStatus.inProgress, errorMessage: null));
     emit(state.copyWith(status: FormzSubmissionStatus.success));
   }
 }

@@ -1,11 +1,13 @@
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/entities/animation_go_route.dart';
 import 'package:carlog/core/router/entities/branch_go_route.dart';
+import 'package:carlog/core/router/entities/dialog_route.dart';
 import 'package:carlog/core/router/router.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
+import 'package:carlog/features/auth_features/reset_password/presentation/pages/reset_password_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
@@ -34,7 +36,12 @@ final List<RouteBase> routes = [
     builder: (context, state) => const LoginPage(),
   ),
   //ANCHOR - RECOVERY PASSWORD
-
+  GoRoute(
+    path: RoutesK.recoveryPassword,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return DialogPage(builder: (_) => const ResetPasswordPage());
+    },
+  ),
   //!SECTION
 
   //SECTION - AUTH

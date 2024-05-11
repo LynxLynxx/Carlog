@@ -40,9 +40,6 @@ class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
       return emit(
           state.copyWith(mail: mail, password: password, errorMessage: null));
     }
-
-    emit(state.copyWith(
-        status: FormzSubmissionStatus.inProgress, errorMessage: null));
     final result = await _authRepository.signUp(
         email: state.mail.value, password: state.password.value);
 

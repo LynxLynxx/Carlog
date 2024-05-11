@@ -82,7 +82,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
                   child: const Text("Zaloguj"),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => context.push(RoutesK.recoveryPassword),
                   style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(50, 30),
