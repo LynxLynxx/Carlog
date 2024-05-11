@@ -2,8 +2,7 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/firebase_auth_bloc.dart';
-import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/firebase_auth/firebase_auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
@@ -26,7 +25,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => GoogleAuthBloc(
+          create: (context) => FirebaseAuthBloc(
             locator(),
           ),
         ),
