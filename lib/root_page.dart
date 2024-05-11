@@ -23,7 +23,7 @@ class RootPage extends StatelessWidget {
       body: Stack(
         children: [
           navigationShell,
-          connectionStatus == ConnectionStatus.disconnected
+          connectionStatus == ConnectionStatus.connected
               ? Positioned(
                   top: 50,
                   left: 20,
