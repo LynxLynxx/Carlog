@@ -1,3 +1,4 @@
+import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
@@ -73,7 +74,10 @@ class LoginPageView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text("LUB"),
+                const Padding(
+                  padding: PaddingsK.v10,
+                  child: Text("LUB"),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
