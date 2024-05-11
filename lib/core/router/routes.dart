@@ -69,10 +69,11 @@ final List<RouteBase> routes = [
     builder: (context, state) => const UnknownErrorPage(),
   ),
   //ANCHOR - CONNECTION LOST
-  AnimationGoRoute(
+  GoRoute(
     path: RoutesK.connectionLostError,
-    transitionDuration: 500,
-    builder: (context, state) => const ConnectionLostPage(),
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      return DialogPage(builder: (_) => const ConnectionLostPage());
+    },
   ),
 
   //!SECTION
