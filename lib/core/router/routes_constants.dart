@@ -11,4 +11,8 @@ class RoutesK {
 
   static const home = "/";
   static const settings = "/settings";
+
+  //SECTION - [ERRORS]
+  static const unknownError = "/unknownError";
+  static const connectionLostError = "/connectionLost";
 }

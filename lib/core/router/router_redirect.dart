@@ -29,7 +29,9 @@ Future<String?> routerRedirect(
 }
 
 bool authAccess(String? fullPath) {
-  if (fullPath == RoutesK.login || fullPath == RoutesK.loading) {
+  if (fullPath == RoutesK.login ||
+      fullPath == RoutesK.register ||
+      fullPath == RoutesK.loading) {
     return true;
   }
 
@@ -39,7 +41,10 @@ bool authAccess(String? fullPath) {
 bool unauthAccess(String? fullPath) {
   if (fullPath == RoutesK.login ||
       fullPath == RoutesK.register ||
-      fullPath == RoutesK.recoveryPassword) {
+      fullPath == RoutesK.recoveryPassword ||
+      fullPath == RoutesK.connectionLostError ||
+      fullPath == RoutesK.unknownError ||
+      fullPath == RoutesK.loading) {
     return true;
   }
   return false;

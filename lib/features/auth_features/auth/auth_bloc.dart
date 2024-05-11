@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:carlog/features/auth_features/shared/entities/user_entity.dart';
@@ -28,6 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _onGetUserSession(_GetUserSession event, Emitter<AuthState> emit) async {
     emit(const _Loading());
     final user = await _authRepository.currentUser;
+    log("User: ${user.toString()}");
     if (user.isUnAuth) {
       return emit(const _Unauthenticated());
     } else {

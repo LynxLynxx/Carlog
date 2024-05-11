@@ -6,6 +6,8 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
+import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
+import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
 import 'package:carlog/root_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,6 +18,7 @@ final List<RouteBase> routes = [
   //ANCHOR - LOADING
   AnimationGoRoute(
     path: RoutesK.loading,
+    transitionDuration: 800,
     builder: (context, state) => const LoadingPage(),
   ),
 
@@ -42,6 +45,22 @@ final List<RouteBase> routes = [
     builder: (context, state, navigationShell) =>
         RootPage(navigationShell: navigationShell),
   ),
+  //!SECTION
+
+  //SECTION - ERRORS
+  //ANCHOR - UNKNOWN ERROR
+  AnimationGoRoute(
+    path: RoutesK.unknownError,
+    transitionDuration: 500,
+    builder: (context, state) => const UnknownErrorPage(),
+  ),
+  //ANCHOR - CONNECTION LOST
+  AnimationGoRoute(
+    path: RoutesK.connectionLostError,
+    transitionDuration: 500,
+    builder: (context, state) => const ConnectionLostPage(),
+  ),
+
   //!SECTION
 ];
 
@@ -75,7 +94,7 @@ final List<StatefulShellBranch> shellBranches = [
                           Text(FirebaseAuth.instance.currentUser?.displayName ??
                               "NO NAME"),
                           Text(FirebaseAuth.instance.currentUser?.uid ??
-                              "NO UID")
+                              "NO UID"),
                         ],
                       ),
                       onPressed: () => context.push("/add"),

@@ -3,6 +3,8 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/firebase_auth_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
@@ -18,13 +20,13 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(
-        //   create: (context) => MailLoginBloc(
-        //     locator(),
-        //   ),
-        // ),
         BlocProvider(
-          create: (context) => FirebaseAuthBloc(
+          create: (context) => MailLoginBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => GoogleAuthBloc(
             locator(),
           ),
         ),

@@ -9,7 +9,7 @@ InputDecoration authTextFormFieldInputDecoration(
       errorText: errorText,
       errorMaxLines: errorMaxLine,
       border: InputBorder.none,
-      contentPadding: const EdgeInsets.all(6),
+      contentPadding: const EdgeInsets.all(12),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
