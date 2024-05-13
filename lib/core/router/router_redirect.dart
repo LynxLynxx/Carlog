@@ -23,9 +23,6 @@ Future<String?> routerRedirect(
       return null;
     },
     unauthenticated: () {
-      // if (tutorialState.tutorialStatus == TutorialStatus.loading) {
-      //   return RoutesK.loading;
-      // }
       if (tutorialState.tutorialStatus == TutorialStatus.firstEntry) {
         return RoutesK.tutorial;
       }
