@@ -1,4 +1,7 @@
 import 'package:carlog/core/constants/durations.dart';
+import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/theme/styles/dot_styles.dart';
+import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial_index/tutorial_index_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/widgets/tutorial_column_widget.dart';
@@ -31,6 +34,9 @@ class TutorialView extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
                 SizedBox(
                   height: 550,
                   child: PageView(
@@ -50,35 +56,33 @@ class TutorialView extends StatelessWidget {
                 const Spacer(),
                 DotsIndicator(
                   dotsCount: 3,
+                  decorator: dotsDecorator(context),
                   position: state.index,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  height: 50,
-                  width: 250,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (state.index < 2) {
-                        pageController.animateToPage(state.index + 1,
-                            duration: DurationsK.d500,
-                            curve: Curves.decelerate);
-                      } else {
-                        context
-                            .read<TutorialBloc>()
-                            .add(const TutorialEvent.writeFirstEntryToApp());
-                      }
-                    },
-                    // style: startAuthButton,
+                FilledButton(
+                  onPressed: () {
+                    if (state.index < 2) {
+                      pageController.animateToPage(state.index + 1,
+                          duration: DurationsK.d500, curve: Curves.decelerate);
+                    } else {
+                      context
+                          .read<TutorialBloc>()
+                          .add(const TutorialEvent.writeFirstEntryToApp());
+                    }
+                  },
+                  child: Padding(
+                    padding: PaddingsK.h10,
                     child: Text(
                       state.index < 2 ? "Next" : "Get started",
-                      // style: mediumPoppins20Light,
+                      style: text16W500LS1,
                     ),
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 50,
                 ),
               ],
             );
