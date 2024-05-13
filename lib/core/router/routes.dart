@@ -156,7 +156,27 @@ final List<StatefulShellBranch> shellBranches = [
         ),
       ]),
   BranchGoRoute(
-    path: RoutesK.settings,
-    builder: (context, state) => const Scaffold(),
-  )
+    path: RoutesK.cars,
+    builder: (context, state) => const Scaffold(
+      body: Center(
+        child: Text("Cars"),
+      ),
+    ),
+  ),
+  BranchGoRoute(
+    path: RoutesK.statistics,
+    builder: (context, state) => const Scaffold(
+      body: Center(
+        child: Text("Charts"),
+      ),
+    ),
+  ),
+  BranchGoRoute(
+    path: RoutesK.profile,
+    builder: (context, state) => const Scaffold(
+      body: Center(
+        child: Text("Profile"),
+      ),
+    ),
+  ),
 ];

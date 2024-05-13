@@ -12,7 +12,9 @@ class RoutesK {
   //!SECTION
 
   static const home = "/";
-  static const settings = "/settings";
+  static const cars = "/cars";
+  static const statistics = "/statistics";
+  static const profile = "/profile";
 
   //SECTION - [ERRORS]
   static const unknownError = "/unknownError";
