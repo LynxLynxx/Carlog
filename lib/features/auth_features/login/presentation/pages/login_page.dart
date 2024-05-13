@@ -1,4 +1,3 @@
-import 'package:carlog/core/addons/localizations.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
@@ -65,7 +64,6 @@ class LoginPage extends StatelessWidget {
                     //         : "assets/appleLogo1.png"),
                   ],
                 ),
-                Text(AppLocalizations.of(context)!.helloWorld),
               ],
             ),
           ),

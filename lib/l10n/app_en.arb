@@ -1,3 +1,10 @@
 {
-    "helloWorld": "Hello World!"
+    "@@locale": "en",
+    "login": "Login",
+    "or": "OR",
+    "register": "Register",
+    "remindPassword": "Remind password",
+    "email": "Email",
+    "password": "Password",
+    "passwordRecovery": "Password recovery"
 }

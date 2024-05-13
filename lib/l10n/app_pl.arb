@@ -1,3 +1,9 @@
 {
-  "helloWorld": "Witaj, świecie!"
+  "login": "Zaloguj",
+  "or": "LUB",
+  "register": "Zarejestruj",
+  "remindPassword": "Przypomnij hasło",
+  "email": "Adres e-mail",
+  "password": "Hasło",
+  "passwordRecovery": "Odzyskiwanie hasła"
 }

@@ -1,3 +1,4 @@
+import 'package:carlog/core/addons/localizations.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class LoginByMailFormWidget extends StatelessWidget {
           decoration: authTextFormFieldInputDecoration(
             context,
             null,
-            "Email",
+            AppLocalizations.of(context)!.email,
           ),
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.go,
@@ -34,7 +35,7 @@ class LoginByMailFormWidget extends StatelessWidget {
           decoration: authTextFormFieldInputDecoration(
             context,
             null,
-            "Hasło",
+            AppLocalizations.of(context)!.password,
           ),
           // onChanged: (value) => context
           //     .read<MailLoginBloc>()
@@ -47,7 +48,7 @@ class LoginByMailFormWidget extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () => context.go(RoutesK.home),
-              child: const Text("Zaloguj"),
+              child: Text(AppLocalizations.of(context)!.login),
             ),
             TextButton(
               onPressed: () {},
@@ -56,7 +57,7 @@ class LoginByMailFormWidget extends StatelessWidget {
                   minimumSize: const Size(50, 30),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   alignment: Alignment.centerLeft),
-              child: const Text("Przypomnij hasło"),
+              child: Text(AppLocalizations.of(context)!.remindPassword),
             ),
           ],
         ),
