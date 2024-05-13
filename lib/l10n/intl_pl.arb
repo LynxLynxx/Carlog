@@ -1,9 +1,10 @@
 {
-  "login": "Zaloguj",
+  "@@locale": "pl",
+  "login": "Logowanie",
   "or": "LUB",
-  "register": "Zarejestruj",
+  "register": "Rejestracja",
   "remindPassword": "Przypomnij hasło",
-  "email": "Adres e-mail",
+  "email": "E-mail",
   "password": "Hasło",
   "passwordRecovery": "Odzyskiwanie hasła"
 }
