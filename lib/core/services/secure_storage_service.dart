@@ -54,4 +54,20 @@ class SecureStorageService {
     final currentUser = json.decode(currentUserString);
     return UserEntity.fromJson(currentUser);
   }
+
+  writeFirstEntryToApp() async {
+    await _secureStorage.write(key: "firstEntry", value: "false");
+  }
+
+  Future<bool> readFirstEntryToApp() async {
+    final result = await _secureStorage.read(key: "firstEntry");
+    if (result == 'false') {
+      return false;
+    }
+    return true;
+  }
+
+  resetFirstEntryToApp() async {
+    await _secureStorage.write(key: "firstEntry", value: "true");
+  }
 }

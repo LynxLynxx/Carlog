@@ -2,6 +2,7 @@ import 'package:carlog/core/addons/bloc_observer.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/router.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
+import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,10 @@ Future<void> main() async {
     providers: [
       BlocProvider.value(
         value: locator<AuthBloc>()..add(const AuthEvent.getUserSession()),
+      ),
+      BlocProvider(
+        create: (context) => TutorialBloc(locator())
+          ..add(const TutorialEvent.readFirstEntryToApp()),
       ),
       BlocProvider(
         create: (context) => NetworkConnectionCubit(),
@@ -44,6 +49,11 @@ class MyApp extends StatelessWidget {
             // if (state.connectionStatus == ConnectionStatus.disconnected) {
             //   router.push(RoutesK.connectionLostError);
             // }
+          },
+        ),
+        BlocListener<TutorialBloc, TutorialState>(
+          listener: (context, state) {
+            router.refresh();
           },
         ),
       ],
