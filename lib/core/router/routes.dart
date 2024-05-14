@@ -1,20 +1,22 @@
-import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/entities/animation_go_route.dart';
 import 'package:carlog/core/router/entities/branch_go_route.dart';
 import 'package:carlog/core/router/entities/dialog_route.dart';
 import 'package:carlog/core/router/router.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
 import 'package:carlog/features/auth_features/register/presentation/pages/register_page.dart';
 import 'package:carlog/features/auth_features/reset_password/presentation/pages/link_sent_page.dart';
 import 'package:carlog/features/auth_features/reset_password/presentation/pages/reset_password_page.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/pages/tutorial_page.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/pages/analytics_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
+import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';
+import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
 import 'package:carlog/features/other_features/root/presentation/pages/root_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -86,97 +88,36 @@ final List<RouteBase> routes = [
   //!SECTION
 ];
 
+//SECTION - DASHBOARD PAGES
 final List<StatefulShellBranch> shellBranches = [
   BranchGoRoute(
       path: RoutesK.home,
-      builder: (context, state) => Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverAppBar.medium(
-                  title: const Text(
-                    "HOME",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      // fontSize: 30,
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () => locator<AuthBloc>()
-                            .add(const AuthEvent.appLogoutRequested()),
-                        child: const Text("LOGOUT"))
-                  ],
-                ),
-                SliverFillRemaining(
-                  child: Center(
-                    child: TextButton(
-                      child: Column(
-                        children: [
-                          const Text("ASD"),
-                          Text(FirebaseAuth.instance.currentUser?.displayName ??
-                              "NO NAME"),
-                          Text(FirebaseAuth.instance.currentUser?.uid ??
-                              "NO UID"),
-                        ],
-                      ),
-                      onPressed: () => context.push("/add"),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+      builder: (context, state) => const HomePage(),
       routes: [
         GoRoute(
           // fullScreen: true,
           path: "add",
-          builder: (context, state) => const Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverAppBar.medium(
-                  title: Text(
-                    "ADD",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      // fontSize: 30,
-                    ),
-                  ),
-                  actions: [
-                    Text("  ADD "),
-                  ],
-                ),
-                SliverFillRemaining(
-                  child: Center(
-                    child: Text("ADD"),
-                  ),
-                )
+          builder: (context, state) => Scaffold(
+            body: DashboardAppbar.title(
+              title: "TEST",
+              actions: [
+                IconButton.filled(onPressed: () {}, icon: const Icon(Icons.abc))
               ],
+              body: const Center(),
             ),
           ),
         ),
       ]),
   BranchGoRoute(
     path: RoutesK.cars,
-    builder: (context, state) => const Scaffold(
-      body: Center(
-        child: Text("Cars"),
-      ),
-    ),
+    builder: (context, state) => const CarsPage(),
   ),
   BranchGoRoute(
-    path: RoutesK.statistics,
-    builder: (context, state) => const Scaffold(
-      body: Center(
-        child: Text("Charts"),
-      ),
-    ),
-  ),
+      path: RoutesK.statistics,
+      builder: (context, state) => const AnalyticsPage()),
   BranchGoRoute(
     path: RoutesK.profile,
-    builder: (context, state) => const Scaffold(
-      body: Center(
-        child: Text("Profile"),
-      ),
-    ),
+    builder: (context, state) => const SettingsPage(),
   ),
 ];
+//!SECTION
