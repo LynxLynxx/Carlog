@@ -7,6 +7,10 @@ import 'package:carlog/features/other_features/error/presentation/cubit/network_
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +71,13 @@ class MyApp extends StatelessWidget {
               seedColor: Colors.blue[900]!, brightness: Brightness.dark),
         ),
         routerConfig: router,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
       ),
     );
   }
