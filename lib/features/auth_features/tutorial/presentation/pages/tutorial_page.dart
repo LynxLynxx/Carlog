@@ -5,6 +5,7 @@ import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial_index/tutorial_index_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/widgets/tutorial_column_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,7 +77,7 @@ class TutorialView extends StatelessWidget {
                   child: Padding(
                     padding: PaddingsK.h10,
                     child: Text(
-                      state.index < 2 ? "Next" : "Get started",
+                      state.index < 2 ? S.current.next : S.current.getStarted,
                       style: text16W500LS1,
                     ),
                   ),

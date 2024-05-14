@@ -9,6 +9,7 @@ import 'package:carlog/features/auth_features/login/presentation/widgets/login_b
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
 import 'package:carlog/features/auth_features/shared/widgets/connect_by_services_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -50,13 +51,13 @@ class LoginPageView extends StatelessWidget {
               children: [
                 ChangeAuthScreen(
                   onPressed: () => context.go(RoutesK.register),
-                  title: 'Zarejestruj',
+                  title: S.of(context).register,
                 ),
                 const CarlogLogoWidget(),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 12),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
                   child: Text(
-                    "Witaj Ponownie!",
+                    S.of(context).welocomeBack,
                     style: text22W700LS8Black87,
                   ),
                 ),
@@ -73,9 +74,9 @@ class LoginPageView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: PaddingsK.v10,
-                  child: Text("LUB"),
+                  child: Text(S.of(context).or),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -22,6 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
+        "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
+            "Have access to preview statistics on car expenses!"),
+        "bodyElectricCarsTutorial": MessageLookupByLibrary.simpleMessage(
+            "Are you getting an electric car? We support them too!"),
+        "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
+            "Receive notifications about upcoming services and planned repairs!"),
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("Create Account!"),
+        "electricCars": MessageLookupByLibrary.simpleMessage("Electric cars"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "errorAborted":
             MessageLookupByLibrary.simpleMessage("The operation was aborted"),
@@ -73,13 +83,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "User with this credentials does not exists"),
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
+        "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
-            MessageLookupByLibrary.simpleMessage("Remind password")
+            MessageLookupByLibrary.simpleMessage("Remind password"),
+        "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!")
       };
 }

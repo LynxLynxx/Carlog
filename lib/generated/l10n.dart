@@ -120,6 +120,106 @@ class S {
     );
   }
 
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Analytics`
+  String get analytics {
+    return Intl.message(
+      'Analytics',
+      name: 'analytics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Electric cars`
+  String get electricCars {
+    return Intl.message(
+      'Electric cars',
+      name: 'electricCars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive notifications about upcoming services and planned repairs!`
+  String get bodyReciveNotifications {
+    return Intl.message(
+      'Receive notifications about upcoming services and planned repairs!',
+      name: 'bodyReciveNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have access to preview statistics on car expenses!`
+  String get bodyAnalyticsTutorial {
+    return Intl.message(
+      'Have access to preview statistics on car expenses!',
+      name: 'bodyAnalyticsTutorial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you getting an electric car? We support them too!`
+  String get bodyElectricCarsTutorial {
+    return Intl.message(
+      'Are you getting an electric car? We support them too!',
+      name: 'bodyElectricCarsTutorial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get getStarted {
+    return Intl.message(
+      'Get Started',
+      name: 'getStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Back!`
+  String get welocomeBack {
+    return Intl.message(
+      'Welcome Back!',
+      name: 'welocomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Account!`
+  String get createAccount {
+    return Intl.message(
+      'Create Account!',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Account exists with different credentials`
   String get errorAccountExists {
     return Intl.message(

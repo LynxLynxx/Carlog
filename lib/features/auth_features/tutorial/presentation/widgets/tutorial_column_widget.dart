@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -26,22 +27,22 @@ class TutorialColumnWidget extends StatelessWidget {
   ) {
     switch (id) {
       case 0:
-        return "Powiadomienia";
+        return S.current.notifications;
       case 1:
-        return "Statystyki";
+        return S.current.analytics;
       case 2:
-        return "Auto elektryczne";
+        return S.current.electricCars;
     }
   }
 
   getSubtitle(id) {
     switch (id) {
       case 0:
-        return "Otrzymuj powiadomienia o nadchodzących serwisach i planowanych naprawach!";
+        return S.current.bodyReciveNotifications;
       case 1:
-        return "Miej dostęp do podglądu statystyk dotyczących wydatków o aucie!";
+        return S.current.bodyAnalyticsTutorial;
       case 2:
-        return "Posiadasz auto elektryczne? Je także wspieramy!";
+        return S.current.bodyElectricCarsTutorial;
     }
   }
 
