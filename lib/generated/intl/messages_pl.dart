@@ -23,6 +23,56 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "errorAborted":
+            MessageLookupByLibrary.simpleMessage("Operacja została przerwana"),
+        "errorAccountExists": MessageLookupByLibrary.simpleMessage(
+            "Konto istnieje z innymi poświadczeniami"),
+        "errorAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("Te dane już istnieją"),
+        "errorCancled":
+            MessageLookupByLibrary.simpleMessage("Operacja została anulowana"),
+        "errorDataLoss": MessageLookupByLibrary.simpleMessage(
+            "Twoje dane zostały utracone lub uszkodzone"),
+        "errorDeadlineExceeded":
+            MessageLookupByLibrary.simpleMessage("Operacji nie można ukończyć"),
+        "errorEmailInUse":
+            MessageLookupByLibrary.simpleMessage("Konto już istnieje"),
+        "errorFailedPrecondition": MessageLookupByLibrary.simpleMessage(
+            "Operacja została odrzucona, ponieważ system nie mógł kontynuować wykonania"),
+        "errorInternal": MessageLookupByLibrary.simpleMessage(
+            "Wystąpił błąd wewnętrzny. Spróbuj ponownie później"),
+        "errorInvalidArgument": MessageLookupByLibrary.simpleMessage(
+            "Podano nieprawidłowy argument"),
+        "errorInvalidCerificationId": MessageLookupByLibrary.simpleMessage(
+            "Identyfikator weryfikacji jest nieprawidłowy"),
+        "errorInvalidCredential": MessageLookupByLibrary.simpleMessage(
+            "Otrzymane poświadczenia są nieprawidłowe"),
+        "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
+            "Email jest nieprawidłowy lub ma zły format"),
+        "errorInvalidVerificationCode": MessageLookupByLibrary.simpleMessage(
+            "Kod weryfikacyjny jest nieprawidłowy"),
+        "errorNotFound": MessageLookupByLibrary.simpleMessage(
+            "Żądany dokument nie został znaleziony"),
+        "errorOperationNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "Operacja jest niedozwolona. Skontaktuj się z pomocą techniczną"),
+        "errorOutOfRange": MessageLookupByLibrary.simpleMessage(
+            "Próba operacji poza prawidłowym zakresem"),
+        "errorResourceExhausted": MessageLookupByLibrary.simpleMessage(
+            "Zasoby nie są obecnie dostępne. Spróbuj ponownie później"),
+        "errorUnauthenticated": MessageLookupByLibrary.simpleMessage(
+            "Nie masz uprawnień do wykonania tej operacji"),
+        "errorUnavailable": MessageLookupByLibrary.simpleMessage(
+            "Usługa jest obecnie niedostępna"),
+        "errorUnimplemented": MessageLookupByLibrary.simpleMessage(
+            "Operacja nie jest zrealizowana lub nie jest obsługiwana"),
+        "errorUnknown":
+            MessageLookupByLibrary.simpleMessage("Wystąpił nieznany błąd"),
+        "errorUserDisabled": MessageLookupByLibrary.simpleMessage(
+            "Użytkownik został wyłączony. Skontaktuj się z pomocą techniczną w celu uzyskania pomocy"),
+        "errorUserNotFound": MessageLookupByLibrary.simpleMessage(
+            "Użytkownik z tymi poświadczeniami nie istnieje"),
+        "errorWeakPassword":
+            MessageLookupByLibrary.simpleMessage("Podaj silniejsze hasło"),
         "login": MessageLookupByLibrary.simpleMessage("Logowanie"),
         "or": MessageLookupByLibrary.simpleMessage("LUB"),
         "password": MessageLookupByLibrary.simpleMessage("Hasło"),

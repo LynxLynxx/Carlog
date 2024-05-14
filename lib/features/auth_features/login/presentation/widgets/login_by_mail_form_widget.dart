@@ -1,8 +1,7 @@
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
-import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
-
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -43,7 +42,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
               decoration: authTextFormFieldInputDecoration(
                 context,
                 bloc.state.mail.displayError,
-                 S.of(context).email,
+                S.of(context).email,
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.go,
@@ -94,7 +93,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
                   onPressed: () => context
                       .read<MailLoginBloc>()
                       .add(const MailLoginEvent.submit()),
-                  child: const Text(S.of(context).login),
+                  child: Text(S.of(context).login),
                 ),
                 TextButton(
                   onPressed: () => context.push(RoutesK.recoveryPassword),
@@ -103,10 +102,9 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
                       minimumSize: const Size(50, 30),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       alignment: Alignment.centerLeft),
-                  child: const Text(S.of(context).remindPassword),
+                  child: Text(S.of(context).remindPassword),
                 ),
               ],
-
             ),
           ],
         );

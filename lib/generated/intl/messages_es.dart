@@ -21,5 +21,65 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
+        "errorAborted": MessageLookupByLibrary.simpleMessage(
+            "La operación se ha cancelado."),
+        "errorAccountExists": MessageLookupByLibrary.simpleMessage(
+            "Ya existe una cuenta con diferentes credenciales."),
+        "errorAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("Estos datos ya existen."),
+        "errorCancled": MessageLookupByLibrary.simpleMessage(
+            "La operación se ha cancelado."),
+        "errorDataLoss": MessageLookupByLibrary.simpleMessage(
+            "Tus datos se han perdido o corrompido."),
+        "errorDeadlineExceeded": MessageLookupByLibrary.simpleMessage(
+            "No se ha podido completar la operación."),
+        "errorEmailInUse":
+            MessageLookupByLibrary.simpleMessage("La cuenta ya existe."),
+        "errorFailedPrecondition": MessageLookupByLibrary.simpleMessage(
+            "La operación se ha rechazado porque el sistema no ha podido continuar con la ejecución."),
+        "errorInternal": MessageLookupByLibrary.simpleMessage(
+            "Se ha producido un error interno. Por favor, inténtalo de nuevo más tarde."),
+        "errorInvalidArgument": MessageLookupByLibrary.simpleMessage(
+            "Se ha especificado un argumento no válido."),
+        "errorInvalidCerificationId": MessageLookupByLibrary.simpleMessage(
+            "El ID de verificación no es válido."),
+        "errorInvalidCredential": MessageLookupByLibrary.simpleMessage(
+            "Las credenciales recibidas no son válidas."),
+        "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
+            "El correo electrónico no es válido o está mal formateado."),
+        "errorInvalidVerificationCode": MessageLookupByLibrary.simpleMessage(
+            "El código de verificación no es válido."),
+        "errorNotFound": MessageLookupByLibrary.simpleMessage(
+            "El documento solicitado no se ha encontrado."),
+        "errorOperationNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "La operación no está permitida. Por favor, contacta con el soporte técnico."),
+        "errorOutOfRange": MessageLookupByLibrary.simpleMessage(
+            "Se ha intentado realizar una operación fuera del rango válido."),
+        "errorResourceExhausted": MessageLookupByLibrary.simpleMessage(
+            "Los recursos no están disponibles en este momento. Inténtalo de nuevo más tarde."),
+        "errorUnauthenticated": MessageLookupByLibrary.simpleMessage(
+            "No tienes permiso para realizar esta operación."),
+        "errorUnavailable": MessageLookupByLibrary.simpleMessage(
+            "El servicio no está disponible actualmente."),
+        "errorUnimplemented": MessageLookupByLibrary.simpleMessage(
+            "La operación no está implementada o no es compatible."),
+        "errorUnknown": MessageLookupByLibrary.simpleMessage(
+            "Se ha producido un error desconocido."),
+        "errorUserDisabled": MessageLookupByLibrary.simpleMessage(
+            "El usuario se ha desactivado. Por favor, contacta con el soporte técnico para obtener ayuda."),
+        "errorUserNotFound": MessageLookupByLibrary.simpleMessage(
+            "No existe un usuario con estas credenciales."),
+        "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
+            "Por favor, introduce una contraseña más segura."),
+        "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "or": MessageLookupByLibrary.simpleMessage("O"),
+        "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
+        "passwordRecovery":
+            MessageLookupByLibrary.simpleMessage("Recuperación de contraseña"),
+        "register": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "remindPassword":
+            MessageLookupByLibrary.simpleMessage("Recordar contraseña")
+      };
 }
