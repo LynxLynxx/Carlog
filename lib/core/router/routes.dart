@@ -13,7 +13,7 @@ import 'package:carlog/features/auth_features/tutorial/presentation/pages/tutori
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
-import 'package:carlog/root_page.dart';
+import 'package:carlog/features/other_features/root/presentation/pages/root_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

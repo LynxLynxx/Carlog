@@ -5,6 +5,7 @@ class PaddingsK extends Constants {
   //SECTION - [PADDINGS]
 
   //ANCHOR - [ALL]
+  static const all8 = EdgeInsets.all(8.0);
   static const all16 = EdgeInsets.all(16.0);
 
   //ANCHOR - [HORIZONTAL]
@@ -19,6 +20,7 @@ class PaddingsK extends Constants {
   static const h30v10 = EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0);
 
   //ANCHOR - [ONLY]
+  static const b25 = EdgeInsets.only(bottom: 25);
   static const l30r30top10b30 =
       EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0, bottom: 30.0);
 

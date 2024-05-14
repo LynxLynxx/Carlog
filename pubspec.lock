@@ -169,6 +169,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  circular_menu:
+    dependency: "direct main"
+    description:
+      name: circular_menu
+      sha256: b23b2808787f69a7974f25020426fd2fe4e4b929db7a3ade6a78bcadb5a51634
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   clock:
     dependency: transitive
     description:
@@ -1061,6 +1069,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  star_menu:
+    dependency: "direct main"
+    description:
+      name: star_menu
+      sha256: f29c7d255677c49ec2412ec2d17220d967f54b72b9e6afc5688fe122ea4d1d78
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   stream_channel:
     dependency: transitive
     description:
@@ -1246,5 +1262,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.3.2 <4.0.0"
+  dart: ">=3.3.3 <4.0.0"
   flutter: ">=3.19.0"
