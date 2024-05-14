@@ -7,8 +7,16 @@ class RoutesK {
   static const login = "/login";
   static const register = "/register";
   static const recoveryPassword = "/recoveryPassword";
+  static const linkSent = "/linkSent";
+  static const tutorial = "/tutorial";
   //!SECTION
 
   static const home = "/";
-  static const settings = "/settings";
+  static const cars = "/cars";
+  static const statistics = "/statistics";
+  static const profile = "/profile";
+
+  //SECTION - [ERRORS]
+  static const unknownError = "/unknownError";
+  static const connectionLostError = "/connectionLost";
 }
