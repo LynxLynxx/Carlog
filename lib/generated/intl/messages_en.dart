@@ -23,6 +23,56 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "errorAborted":
+            MessageLookupByLibrary.simpleMessage("The operation was aborted"),
+        "errorAccountExists": MessageLookupByLibrary.simpleMessage(
+            "Account exists with different credentials"),
+        "errorAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("This data already exists"),
+        "errorCancled":
+            MessageLookupByLibrary.simpleMessage("The operation was cancelled"),
+        "errorDataLoss": MessageLookupByLibrary.simpleMessage(
+            "Your data was lost or corrupted"),
+        "errorDeadlineExceeded": MessageLookupByLibrary.simpleMessage(
+            "Operation couldn\'t be completed"),
+        "errorEmailInUse":
+            MessageLookupByLibrary.simpleMessage("Account already exists"),
+        "errorFailedPrecondition": MessageLookupByLibrary.simpleMessage(
+            "Operation was rejected, because system could\'nt procced with execution"),
+        "errorInternal": MessageLookupByLibrary.simpleMessage(
+            "Internal error occoured. Please try again later"),
+        "errorInvalidArgument": MessageLookupByLibrary.simpleMessage(
+            "Invalid arguemnt was specified"),
+        "errorInvalidCerificationId": MessageLookupByLibrary.simpleMessage(
+            "The verification id is invalid"),
+        "errorInvalidCredential": MessageLookupByLibrary.simpleMessage(
+            "The credential received are invalid"),
+        "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
+            "Email is not valid or badly formatted"),
+        "errorInvalidVerificationCode": MessageLookupByLibrary.simpleMessage(
+            "The verification code is invalid"),
+        "errorNotFound": MessageLookupByLibrary.simpleMessage(
+            "Requested document was not found"),
+        "errorOperationNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "Operation is not allowed. Please contact support"),
+        "errorOutOfRange": MessageLookupByLibrary.simpleMessage(
+            "Operation was attempted past the valid range"),
+        "errorResourceExhausted": MessageLookupByLibrary.simpleMessage(
+            "Resources are not available at this time. Try again later"),
+        "errorUnauthenticated": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have permission to perform this operation"),
+        "errorUnavailable": MessageLookupByLibrary.simpleMessage(
+            "The service is currently unavailable"),
+        "errorUnimplemented": MessageLookupByLibrary.simpleMessage(
+            "Operation is not implemented or not supported"),
+        "errorUnknown":
+            MessageLookupByLibrary.simpleMessage("Unkown error occurred"),
+        "errorUserDisabled": MessageLookupByLibrary.simpleMessage(
+            "The user as beddn disabled. Please contact support for help"),
+        "errorUserNotFound": MessageLookupByLibrary.simpleMessage(
+            "User with this credentials does not exists"),
+        "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
+            "Please eneter a stronger password"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),

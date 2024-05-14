@@ -119,6 +119,256 @@ class S {
       args: [],
     );
   }
+
+  /// `Account exists with different credentials`
+  String get errorAccountExists {
+    return Intl.message(
+      'Account exists with different credentials',
+      name: 'errorAccountExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The credential received are invalid`
+  String get errorInvalidCredential {
+    return Intl.message(
+      'The credential received are invalid',
+      name: 'errorInvalidCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation is not allowed. Please contact support`
+  String get errorOperationNotAllowed {
+    return Intl.message(
+      'Operation is not allowed. Please contact support',
+      name: 'errorOperationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The user as beddn disabled. Please contact support for help`
+  String get errorUserDisabled {
+    return Intl.message(
+      'The user as beddn disabled. Please contact support for help',
+      name: 'errorUserDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User with this credentials does not exists`
+  String get errorUserNotFound {
+    return Intl.message(
+      'User with this credentials does not exists',
+      name: 'errorUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The verification code is invalid`
+  String get errorInvalidVerificationCode {
+    return Intl.message(
+      'The verification code is invalid',
+      name: 'errorInvalidVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The verification id is invalid`
+  String get errorInvalidCerificationId {
+    return Intl.message(
+      'The verification id is invalid',
+      name: 'errorInvalidCerificationId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is not valid or badly formatted`
+  String get errorInvalidEmail {
+    return Intl.message(
+      'Email is not valid or badly formatted',
+      name: 'errorInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account already exists`
+  String get errorEmailInUse {
+    return Intl.message(
+      'Account already exists',
+      name: 'errorEmailInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please eneter a stronger password`
+  String get errorWeakPassword {
+    return Intl.message(
+      'Please eneter a stronger password',
+      name: 'errorWeakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The operation was aborted`
+  String get errorAborted {
+    return Intl.message(
+      'The operation was aborted',
+      name: 'errorAborted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This data already exists`
+  String get errorAlreadyExists {
+    return Intl.message(
+      'This data already exists',
+      name: 'errorAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The operation was cancelled`
+  String get errorCancled {
+    return Intl.message(
+      'The operation was cancelled',
+      name: 'errorCancled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your data was lost or corrupted`
+  String get errorDataLoss {
+    return Intl.message(
+      'Your data was lost or corrupted',
+      name: 'errorDataLoss',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation couldn't be completed`
+  String get errorDeadlineExceeded {
+    return Intl.message(
+      'Operation couldn\'t be completed',
+      name: 'errorDeadlineExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation was rejected, because system could'nt procced with execution`
+  String get errorFailedPrecondition {
+    return Intl.message(
+      'Operation was rejected, because system could\'nt procced with execution',
+      name: 'errorFailedPrecondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internal error occoured. Please try again later`
+  String get errorInternal {
+    return Intl.message(
+      'Internal error occoured. Please try again later',
+      name: 'errorInternal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid arguemnt was specified`
+  String get errorInvalidArgument {
+    return Intl.message(
+      'Invalid arguemnt was specified',
+      name: 'errorInvalidArgument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requested document was not found`
+  String get errorNotFound {
+    return Intl.message(
+      'Requested document was not found',
+      name: 'errorNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation was attempted past the valid range`
+  String get errorOutOfRange {
+    return Intl.message(
+      'Operation was attempted past the valid range',
+      name: 'errorOutOfRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resources are not available at this time. Try again later`
+  String get errorResourceExhausted {
+    return Intl.message(
+      'Resources are not available at this time. Try again later',
+      name: 'errorResourceExhausted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to perform this operation`
+  String get errorUnauthenticated {
+    return Intl.message(
+      'You don\'t have permission to perform this operation',
+      name: 'errorUnauthenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The service is currently unavailable`
+  String get errorUnavailable {
+    return Intl.message(
+      'The service is currently unavailable',
+      name: 'errorUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation is not implemented or not supported`
+  String get errorUnimplemented {
+    return Intl.message(
+      'Operation is not implemented or not supported',
+      name: 'errorUnimplemented',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unkown error occurred`
+  String get errorUnknown {
+    return Intl.message(
+      'Unkown error occurred',
+      name: 'errorUnknown',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -127,6 +377,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'es'),
       Locale.fromSubtags(languageCode: 'pl'),
     ];
   }
