@@ -9,6 +9,7 @@ import 'package:carlog/features/auth_features/reset_password/presentation/pages/
 import 'package:carlog/features/auth_features/reset_password/presentation/pages/reset_password_page.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/pages/tutorial_page.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/pages/analytics_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';
@@ -109,9 +110,14 @@ final List<StatefulShellBranch> shellBranches = [
         ),
       ]),
   BranchGoRoute(
-    path: RoutesK.cars,
-    builder: (context, state) => const CarsPage(),
-  ),
+      path: RoutesK.cars,
+      builder: (context, state) => const CarsPage(),
+      routes: [
+        AnimationGoRoute(
+          path: "addCar",
+          builder: (context, state) => const AddCarPage(),
+        ),
+      ]),
   BranchGoRoute(
       path: RoutesK.statistics,
       builder: (context, state) => const AnalyticsPage()),

@@ -13,6 +13,7 @@ class RoutesK {
 
   static const home = "/";
   static const cars = "/cars";
+  static const addCar = "$cars/addCar";
   static const statistics = "/statistics";
   static const profile = "/profile";
 

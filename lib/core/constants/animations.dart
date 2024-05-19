@@ -5,6 +5,7 @@ class AnimationsK extends Constants {
 
   //ANCHOR - CAR
   static const drivingCar = "assets/car_drive.json";
+  static const addCar = "assets/add_car.json";
 
   //ANCHOR - ERRORS
   static const connectionLost = "assets/connection_lost.json";
