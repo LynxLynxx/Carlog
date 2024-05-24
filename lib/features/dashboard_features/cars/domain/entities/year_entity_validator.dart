@@ -7,7 +7,7 @@ class YearEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if (value.isEmpty || value.length <= 15) {
+    if (value.length != 4) {
       return S.current.carYearValidator;
     }
     return null;

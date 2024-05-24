@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
@@ -12,8 +14,67 @@ part 'add_car_state.dart';
 
 class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
   AddCarBloc() : super(const _AddCarState()) {
-    on<AddCarEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<_BrandChanged>(_onBrandChanged);
+    on<_ModelChanged>(_onModelChanged);
+    on<_YearChanged>(_onYearChanged);
+    on<_PlateChanged>(_onPlateChanged);
+    on<_AddCarSubmitted>(_onAddCarSubmitted);
+  }
+
+  _onBrandChanged(_BrandChanged event, Emitter<AddCarState> emit) {
+    final brand = BrandEntityValidator.dirty(event.brand);
+    String brandError = "";
+    if (brand.displayError != null) {
+      brandError = brand.displayError!;
+    }
+    emit(
+      state.copyWith(brandEntity: brand, brandErrorMessage: brandError),
+    );
+  }
+
+  _onModelChanged(_ModelChanged event, Emitter<AddCarState> emit) {
+    final model = ModelEntityValidator.dirty(event.model);
+    String modelError = "";
+    if (model.displayError != null) {
+      modelError = model.displayError!;
+    }
+    emit(
+      state.copyWith(modelEntity: model, brandErrorMessage: modelError),
+    );
+  }
+
+  _onYearChanged(_YearChanged event, Emitter<AddCarState> emit) {
+    final year = YearEntityValidator.dirty(event.year);
+    String yearError = "";
+    if (year.displayError != null) {
+      yearError = year.displayError!;
+    }
+    emit(
+      state.copyWith(yearEntity: year, yearErrorMessage: yearError),
+    );
+  }
+
+  _onPlateChanged(_PlateChanged event, Emitter<AddCarState> emit) {
+    final plate = PlateEntityValidator.dirty(event.plate);
+    String plateError = "";
+    if (plate.displayError != null) {
+      plateError = plate.displayError!;
+    }
+    emit(
+      state.copyWith(plateEntity: plate, plateErrorMessage: plateError),
+    );
+  }
+
+  _onAddCarSubmitted(_AddCarSubmitted event, Emitter<AddCarState> emit) {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+
+    if (state.brandErrorMessage.isEmpty &&
+        state.modelErrorMessage.isEmpty &&
+        state.yearErrorMessage.isEmpty &&
+        state.plateErrorMessage.isEmpty) {
+      log("create car");
+      return;
+    }
+    log("error has occured");
   }
 }

@@ -29,9 +29,17 @@ class _CarsViewState extends State<CarsView> {
     return DashboardAppbar.title(
         title: "Cars",
         body: Center(
-          child: IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => context.push(RoutesK.addCar),
+          child: Column(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => context.push(RoutesK.addCar),
+              ),
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => context.push(RoutesK.complexAddCar),
+              ),
+            ],
           ),
         ));
   }
