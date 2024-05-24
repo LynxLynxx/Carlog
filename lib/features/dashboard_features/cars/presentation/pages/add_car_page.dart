@@ -2,8 +2,8 @@ import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/dashboard_features/add_car/presentation/bloc/add_car_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/car_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/bloc/basic_add_car/basic_add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +15,7 @@ class AddCarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCarBloc(),
+      create: (context) => BasicAddCarBloc(),
       child: const AddCarView(),
     );
   }
@@ -59,7 +59,7 @@ class _CarsViewState extends State<AddCarView> {
                 "Car Brand",
                 style: text22W700LS3,
               ),
-              BlocBuilder<AddCarBloc, AddCarState>(
+              BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
                 builder: (context, state) {
                   return SizedBox(
                     height: 70,
@@ -70,9 +70,8 @@ class _CarsViewState extends State<AddCarView> {
                           // onTap: () => setState(() {
                           //       selectedBrand = index;
                           //     }),
-                          onTap: () => context
-                              .read<AddCarBloc>()
-                              .add(AddCarEvent.changeBrand(brandId: index)),
+                          onTap: () => context.read<BasicAddCarBloc>().add(
+                              BasicAddCarEvent.changeBrand(brandId: index)),
                           child: CarListElement(
                               isSelected: index == state.brandId,
                               text: carList[index].brand)),
@@ -85,7 +84,7 @@ class _CarsViewState extends State<AddCarView> {
                 "Model",
                 style: text22W700LS3,
               ),
-              BlocBuilder<AddCarBloc, AddCarState>(
+              BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
                 builder: (context, state) {
                   return SizedBox(
                     height: 70,
@@ -93,9 +92,8 @@ class _CarsViewState extends State<AddCarView> {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => GestureDetector(
-                          onTap: () => context
-                              .read<AddCarBloc>()
-                              .add(AddCarEvent.changeModel(modelId: index)),
+                          onTap: () => context.read<BasicAddCarBloc>().add(
+                              BasicAddCarEvent.changeModel(modelId: index)),
                           child: CarListElement(
                               isSelected: index == state.modelId,
                               text: carList[state.brandId].models[index])),

@@ -469,6 +469,46 @@ class S {
       args: [],
     );
   }
+
+  /// `The vehicle brand name should be between 2 and 20 characters`
+  String get carBrandValidator {
+    return Intl.message(
+      'The vehicle brand name should be between 2 and 20 characters',
+      name: 'carBrandValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The vehicle model name should be between 2 and 30 characters`
+  String get carModelValidator {
+    return Intl.message(
+      'The vehicle model name should be between 2 and 30 characters',
+      name: 'carModelValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The vehicle year of manufacture should be 4 characters`
+  String get carYearValidator {
+    return Intl.message(
+      'The vehicle year of manufacture should be 4 characters',
+      name: 'carYearValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The vehicle plate should be between 1 and 15 characters`
+  String get carPlateValidator {
+    return Intl.message(
+      'The vehicle plate should be between 1 and 15 characters',
+      name: 'carPlateValidator',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

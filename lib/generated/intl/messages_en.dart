@@ -29,6 +29,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you getting an electric car? We support them too!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "Receive notifications about upcoming services and planned repairs!"),
+        "carBrandValidator": MessageLookupByLibrary.simpleMessage(
+            "The vehicle brand name should be between 2 and 20 characters"),
+        "carModelValidator": MessageLookupByLibrary.simpleMessage(
+            "The vehicle model name should be between 2 and 30 characters"),
+        "carPlateValidator": MessageLookupByLibrary.simpleMessage(
+            "The vehicle plate should be between 1 and 15 characters"),
+        "carYearValidator": MessageLookupByLibrary.simpleMessage(
+            "The vehicle year of manufacture should be 4 characters"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
         "electricCars": MessageLookupByLibrary.simpleMessage("Electric cars"),
