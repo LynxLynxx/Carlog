@@ -1,45 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: must_be_immutable
 
 import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
-class ComplexAddCarFormWidget extends StatelessWidget {
+class ManageCarFormWidget extends StatelessWidget {
   final ManageCarStatus manageCarStatus;
   final AddCarBloc addCarBloc;
-  ComplexAddCarFormWidget({
+  final List<TextEditingController> textEditingControllerList;
+  ManageCarFormWidget({
     super.key,
     required this.manageCarStatus,
     required this.addCarBloc,
+    required this.textEditingControllerList,
   });
 
   FocusNode f1 = FocusNode();
-  final tec1 = TextEditingController();
-
   FocusNode f2 = FocusNode();
-  final tec2 = TextEditingController();
-
   FocusNode f3 = FocusNode();
-  final tec3 = TextEditingController();
-
   FocusNode f4 = FocusNode();
-  final tec4 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddCarBloc, AddCarState>(
       bloc: addCarBloc,
       listener: (context, state) {
-        tec1.text = addCarBloc.state.brandEntity.value;
-        tec2.text = addCarBloc.state.modelEntity.value;
-        tec3.text = addCarBloc.state.yearEntity.value;
-        tec4.text = addCarBloc.state.plateEntity.value;
+        textEditingControllerList[0].text = addCarBloc.state.brandEntity.value;
+        textEditingControllerList[1].text = addCarBloc.state.modelEntity.value;
+        textEditingControllerList[2].text = addCarBloc.state.yearEntity.value;
+        textEditingControllerList[3].text = addCarBloc.state.plateEntity.value;
         if (state.status.isFailure) {
           SnackbarsK.errorSnackbar(state.message!).show(context);
         }
@@ -55,7 +51,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
           children: [
             TextFormField(
               key: const Key("brand_field"),
-              controller: tec1,
+              controller: textEditingControllerList[0],
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                   context, bloc.state.brandEntity.displayError, "Brand",
@@ -75,7 +71,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("model_field"),
-              controller: tec2,
+              controller: textEditingControllerList[1],
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                 context,
@@ -98,7 +94,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("year_field"),
-              controller: tec3,
+              controller: textEditingControllerList[2],
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                 context,
@@ -123,7 +119,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("plate_field"),
-              controller: tec4,
+              controller: textEditingControllerList[3],
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                   context, bloc.state.plateEntity.displayError, "Plate",

@@ -11,7 +11,7 @@ import 'package:carlog/features/auth_features/tutorial/presentation/pages/tutori
 import 'package:carlog/features/dashboard_features/analytics/presentation/pages/analytics_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';

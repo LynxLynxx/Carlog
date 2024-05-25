@@ -6,7 +6,7 @@ import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/complex_add_car_form_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/manage_car_form_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +47,7 @@ class ManageCarPage extends StatelessWidget {
   }
 }
 
-class ManageCarView extends StatelessWidget {
+class ManageCarView extends StatefulWidget {
   final ManageCarStatus manageCarStatus;
   final CarFirebaseEntity? carFirebaseEntity;
   final BuildContext appContext;
@@ -57,6 +57,19 @@ class ManageCarView extends StatelessWidget {
       required this.manageCarStatus,
       this.carFirebaseEntity,
       required this.appContext});
+
+  @override
+  State<ManageCarView> createState() => _ManageCarViewState();
+}
+
+class _ManageCarViewState extends State<ManageCarView> {
+  final tec1 = TextEditingController();
+
+  final tec2 = TextEditingController();
+
+  final tec3 = TextEditingController();
+
+  final tec4 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,13 +84,13 @@ class ManageCarView extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back_ios)),
                 Expanded(
                   child: Text(
-                    manageCarStatus == ManageCarStatus.add
+                    widget.manageCarStatus == ManageCarStatus.add
                         ? S.of(context).addCar
                         : S.of(context).updateCar,
                     style: text22W700LS3,
                   ),
                 ),
-                manageCarStatus == ManageCarStatus.edit
+                widget.manageCarStatus == ManageCarStatus.edit
                     ? IconButton(
                         onPressed: () => context.push(
                             RoutesK.deleteCarConfirmation,
@@ -93,9 +106,11 @@ class ManageCarView extends StatelessWidget {
             ),
             Padding(
               padding: PaddingsK.all16,
-              child: ComplexAddCarFormWidget(
-                  manageCarStatus: manageCarStatus,
-                  addCarBloc: context.read<AddCarBloc>()),
+              child: ManageCarFormWidget(
+                manageCarStatus: widget.manageCarStatus,
+                addCarBloc: context.read<AddCarBloc>(),
+                textEditingControllerList: [tec1, tec2, tec3, tec4],
+              ),
             )
           ],
         ),
