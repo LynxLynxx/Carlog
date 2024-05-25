@@ -1,10 +1,13 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 
 class CarListWidget extends StatelessWidget {
   const CarListWidget({super.key});
@@ -39,33 +42,40 @@ class CarListWidgetView extends StatelessWidget {
           }
           if (state.status.isSuccess) {
             return ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: state.carList.length,
-                itemBuilder: (context, index) => Container(
-                      width: 200,
-                      height: 50,
-                      color: Colors.blue,
-                      margin: PaddingsK.all8,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.carList.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => context.push(RoutesK.complexManageCar, extra: {
+                  "manageCarStatus": ManageCarStatus.edit,
+                  "carFirebaseEntity": state.carList[index],
+                }),
+                child: Container(
+                  width: 200,
+                  height: 50,
+                  color: Colors.blue,
+                  margin: PaddingsK.all8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(state.carList[index].brand ?? ""),
-                              Text(state.carList[index].model ?? ""),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(state.carList[index].year.toString()),
-                              Text(state.carList[index].plate ?? ""),
-                            ],
-                          )
+                          Text(state.carList[index].brand ?? ""),
+                          Text(state.carList[index].model ?? ""),
                         ],
                       ),
-                    ));
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(state.carList[index].year.toString()),
+                          Text(state.carList[index].plate ?? ""),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
           }
           return const SizedBox.shrink();
         },

@@ -1,31 +1,36 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
-class ComplexAddCarFormWidget extends StatefulWidget {
-  const ComplexAddCarFormWidget({
+class ComplexAddCarFormWidget extends StatelessWidget {
+  final ManageCarStatus manageCarStatus;
+  final AddCarBloc addCarBloc;
+  ComplexAddCarFormWidget({
     super.key,
+    required this.manageCarStatus,
+    required this.addCarBloc,
   });
 
-  @override
-  State<ComplexAddCarFormWidget> createState() =>
-      _ComplexAddCarFormWidgetState();
-}
-
-class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
   FocusNode f1 = FocusNode();
+
   FocusNode f2 = FocusNode();
+
   FocusNode f3 = FocusNode();
+
   FocusNode f4 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddCarBloc, AddCarState>(
+      bloc: addCarBloc,
       listener: (context, state) {
         if (state.status.isFailure) {
           SnackbarsK.errorSnackbar(state.message!).show(context);
@@ -140,7 +145,9 @@ class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
                           .read<AddCarBloc>()
                           .add(const AddCarEvent.addCarSubmitted())
                       : null,
-                  child: const Text("Create"),
+                  child: Text(manageCarStatus == ManageCarStatus.add
+                      ? "Create"
+                      : "Update"),
                 );
               },
             ),

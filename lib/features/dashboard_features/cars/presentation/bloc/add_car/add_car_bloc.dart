@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/year_entity_validator.dart';
@@ -20,6 +21,7 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
     on<_ModelChanged>(_onModelChanged);
     on<_YearChanged>(_onYearChanged);
     on<_PlateChanged>(_onPlateChanged);
+    on<_SetInitialCar>(_onSetInitialCar);
     on<_AddCarSubmitted>(_onAddCarSubmitted);
   }
 
@@ -49,6 +51,22 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
     emit(
       state.copyWith(plateEntity: plate),
     );
+  }
+
+  _onSetInitialCar(_SetInitialCar event, Emitter<AddCarState> emit) {
+    final brand =
+        BrandEntityValidator.dirty(value: event.carFirebaseEntity.brand ?? "");
+    final model =
+        ModelEntityValidator.dirty(value: event.carFirebaseEntity.model ?? "");
+    final year = YearEntityValidator.dirty(
+        value: event.carFirebaseEntity.year.toString());
+    final plate =
+        PlateEntityValidator.dirty(value: event.carFirebaseEntity.plate ?? "");
+    emit(state.copyWith(
+        brandEntity: brand,
+        modelEntity: model,
+        yearEntity: year,
+        plateEntity: plate));
   }
 
   _onAddCarSubmitted(_AddCarSubmitted event, Emitter<AddCarState> emit) async {

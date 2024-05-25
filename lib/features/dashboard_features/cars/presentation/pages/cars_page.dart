@@ -1,4 +1,5 @@
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/car_list_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,8 @@ class _CarsViewState extends State<CarsView> {
               ),
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () => context.push(RoutesK.complexAddCar),
+                onPressed: () => context.push(RoutesK.complexManageCar,
+                    extra: {"manageCarStatus": ManageCarStatus.add}),
               ),
               const CarListWidget(),
             ],

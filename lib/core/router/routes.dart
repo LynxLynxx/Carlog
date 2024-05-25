@@ -119,8 +119,14 @@ final List<StatefulShellBranch> shellBranches = [
           builder: (context, state) => const AddCarPage(),
         ),
         AnimationGoRoute(
-          path: "complexAddCar",
-          builder: (context, state) => const ComplexAddCarPage(),
+          path: "complexManageCar",
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
+            return ComplexManageCarPage(
+              manageCarStatus: extra['manageCarStatus'],
+              carFirebaseEntity: extra['carFirebaseEntity'],
+            );
+          },
         ),
       ]),
   BranchGoRoute(

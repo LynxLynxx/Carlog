@@ -105,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remind password"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully added the vehicle"),
+        "updateCar": MessageLookupByLibrary.simpleMessage("Update Car"),
         "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!")
       };
 }
