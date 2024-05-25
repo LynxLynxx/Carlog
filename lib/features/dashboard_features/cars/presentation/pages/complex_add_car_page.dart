@@ -1,6 +1,6 @@
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/bloc/add_car/add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/complex_add_car_form_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ComplexAddCarPage extends StatelessWidget {
@@ -20,39 +20,10 @@ class ComplexAddCarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            decoration: const InputDecoration(hintText: "Brand"),
-            onChanged: (value) =>
-                context.read<AddCarBloc>().add(AddCarEvent.brandChanged(value)),
-          ),
-          TextField(
-            decoration: const InputDecoration(hintText: "Model"),
-            onChanged: (value) =>
-                context.read<AddCarBloc>().add(AddCarEvent.modelChanged(value)),
-          ),
-          TextFormField(
-            decoration: const InputDecoration(hintText: "Year"),
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            keyboardType: TextInputType.number,
-            onChanged: (value) =>
-                context.read<AddCarBloc>().add(AddCarEvent.yearChanged(value)),
-          ),
-          TextField(
-            decoration: const InputDecoration(hintText: "Plate"),
-            onChanged: (value) =>
-                context.read<AddCarBloc>().add(AddCarEvent.plateChanged(value)),
-          ),
-          FloatingActionButton(
-              onPressed: () => context
-                  .read<AddCarBloc>()
-                  .add(const AddCarEvent.addCarSubmitted())),
-        ],
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: ComplexAddCarFormWidget(),
       ),
     );
   }

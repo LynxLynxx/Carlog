@@ -2,7 +2,7 @@ import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/bloc/basic_add_car/basic_add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
