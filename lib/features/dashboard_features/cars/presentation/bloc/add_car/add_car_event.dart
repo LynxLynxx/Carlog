@@ -10,4 +10,5 @@ class AddCarEvent with _$AddCarEvent {
       _SetInitialCar;
   const factory AddCarEvent.addCarSubmitted() = _AddCarSubmitted;
   const factory AddCarEvent.editCarSubmitted() = _EditCarSubmitted;
+  const factory AddCarEvent.deleteCarSubmitted() = _DeleteCarSubmitted;
 }

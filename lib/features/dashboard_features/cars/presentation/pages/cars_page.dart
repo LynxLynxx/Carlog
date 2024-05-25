@@ -35,9 +35,10 @@ class _CarsViewState extends State<CarsView> {
   Widget build(BuildContext context) {
     return DashboardAppbar.title(
       title: "Cars",
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
                 icon: const Icon(Icons.add),
@@ -45,15 +46,18 @@ class _CarsViewState extends State<CarsView> {
               ),
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () => context.push(RoutesK.complexManageCar, extra: {
-                  "manageCarStatus": ManageCarStatus.add,
-                  "appContext": context,
-                }),
+                onPressed: () => context.push(
+                  RoutesK.manageCar,
+                  extra: {
+                    "manageCarStatus": ManageCarStatus.add,
+                    "appContext": context,
+                  },
+                ),
               ),
-              const CarListWidget(),
             ],
           ),
-        ),
+          const CarListWidget(),
+        ],
       ),
     );
   }

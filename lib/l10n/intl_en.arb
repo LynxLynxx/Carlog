@@ -48,6 +48,8 @@
   "carPlateValidator": "The vehicle plate should be between 1 and 15 characters",
   "successfullyAddedTheVehicle": "Successfully added the vehicle",
   "successfullyEditedTheVehicle": "Successfully edited the vehicle",
+  "successfullyDeletedTheVehicle": "Successfully deleted the vehicle",
   "addCar": "Add Car",
-  "updateCar": "Update Car"
+  "updateCar": "Update Car",
+  "deleteVehicleConfirmation": "Are you sure you want to delete this vehicle?"
 }

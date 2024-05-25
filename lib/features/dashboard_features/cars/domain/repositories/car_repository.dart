@@ -54,6 +54,41 @@ class CarRepository {
     });
   }
 
+  Future<Option<Failure>> deleteCarByUser(String carId) async {
+    return handleVoidResponse(() async {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        return;
+      }
+
+      final CollectionReference carRef =
+          FirebaseFirestore.instance.collection('cars');
+      final CollectionReference deletedCarRef =
+          FirebaseFirestore.instance.collection('carsDeleted');
+
+      final car = await carRef.where('carId', isEqualTo: carId).get().then(
+        (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            return CarFirebaseEntity.fromJson(
+                docSnapshot.data() as Map<String, dynamic>);
+          }
+        },
+      );
+
+      final copiedCar = await deletedCarRef.add({
+        "userId": user.uid,
+        "brand": car?.brand ?? "",
+        "model": car?.model ?? "",
+        "year": (car?.year ?? "").toString().isNotEmpty ? car?.year : 0,
+        "plate": car?.plate ?? "",
+        "carId": "",
+      });
+
+      await deletedCarRef.doc(copiedCar.id).update({"carId": copiedCar.id});
+      await carRef.doc(car!.carId).delete();
+    });
+  }
+
   Future<Either<Failure, List<CarFirebaseEntity>>> getListOfCarsByUser() async {
     return handleResponse(() async {
       final User? user = FirebaseAuth.instance.currentUser;

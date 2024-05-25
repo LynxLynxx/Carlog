@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The vehicle year of manufacture should be 4 characters"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
+        "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this vehicle?"),
         "electricCars": MessageLookupByLibrary.simpleMessage("Electric cars"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "errorAborted":
@@ -105,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remind password"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully added the vehicle"),
+        "successfullyDeletedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Successfully deleted the vehicle"),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully edited the vehicle"),
         "updateCar": MessageLookupByLibrary.simpleMessage("Update Car"),

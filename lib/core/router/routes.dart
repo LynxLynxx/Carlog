@@ -12,6 +12,7 @@ import 'package:carlog/features/dashboard_features/analytics/presentation/pages/
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
@@ -119,16 +120,28 @@ final List<StatefulShellBranch> shellBranches = [
           builder: (context, state) => const AddCarPage(),
         ),
         AnimationGoRoute(
-          path: "complexManageCar",
-          builder: (context, state) {
-            final extra = state.extra as Map<String, dynamic>;
-            return ComplexManageCarPage(
-              manageCarStatus: extra['manageCarStatus'],
-              carFirebaseEntity: extra['carFirebaseEntity'],
-              appContext: extra['appContext'],
-            );
-          },
-        ),
+            path: "manageCar",
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>;
+              return ManageCarPage(
+                manageCarStatus: extra['manageCarStatus'],
+                carFirebaseEntity: extra['carFirebaseEntity'],
+                appContext: extra['appContext'],
+              );
+            },
+            routes: [
+              GoRoute(
+                path: 'deleteCarConfirmation',
+                pageBuilder: (BuildContext context, GoRouterState state) {
+                  final extra = state.extra as BuildContext;
+                  return DialogPage(
+                    builder: (_) => DeleteCarPage(
+                      appContext: extra,
+                    ),
+                  );
+                },
+              ),
+            ]),
       ]),
   BranchGoRoute(
       path: RoutesK.statistics,

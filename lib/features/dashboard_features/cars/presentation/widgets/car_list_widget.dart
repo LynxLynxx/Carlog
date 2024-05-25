@@ -22,33 +22,29 @@ class CarListWidgetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 300,
-      alignment: Alignment.center,
-      child: BlocConsumer<CarsBloc, CarsState>(
-        listener: (context, state) {
-          if (state.status.isFailure) {
-            SnackbarsK.errorSnackbar(state.message!).show(context);
-          }
-        },
-        builder: (context, state) {
-          if (state.status.isInProgress) {
-            return const CircularProgressIndicator();
-          }
-          if (state.status.isSuccess) {
-            return ListView.builder(
+    return BlocConsumer<CarsBloc, CarsState>(
+      listener: (context, state) {
+        if (state.status.isFailure) {
+          SnackbarsK.errorSnackbar(state.message!).show(context);
+        }
+      },
+      builder: (context, state) {
+        if (state.status.isInProgress) {
+          return const CircularProgressIndicator();
+        }
+        if (state.status.isSuccess) {
+          return Expanded(
+            child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: state.carList.length,
               itemBuilder: (context, index) => GestureDetector(
-                onTap: () => context.push(RoutesK.complexManageCar, extra: {
+                onTap: () => context.push(RoutesK.manageCar, extra: {
                   "manageCarStatus": ManageCarStatus.edit,
                   "carFirebaseEntity": state.carList[index],
                   "appContext": context,
                 }),
                 child: Container(
-                  width: 200,
-                  height: 50,
+                  height: 75,
                   color: Colors.blue,
                   margin: PaddingsK.all8,
                   child: Column(
@@ -72,11 +68,11 @@ class CarListWidgetView extends StatelessWidget {
                   ),
                 ),
               ),
-            );
-          }
-          return const SizedBox.shrink();
-        },
-      ),
+            ),
+          );
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }

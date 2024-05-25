@@ -530,6 +530,16 @@ class S {
     );
   }
 
+  /// `Successfully deleted the vehicle`
+  String get successfullyDeletedTheVehicle {
+    return Intl.message(
+      'Successfully deleted the vehicle',
+      name: 'successfullyDeletedTheVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add Car`
   String get addCar {
     return Intl.message(
@@ -545,6 +555,16 @@ class S {
     return Intl.message(
       'Update Car',
       name: 'updateCar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this vehicle?`
+  String get deleteVehicleConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this vehicle?',
+      name: 'deleteVehicleConfirmation',
       desc: '',
       args: [],
     );

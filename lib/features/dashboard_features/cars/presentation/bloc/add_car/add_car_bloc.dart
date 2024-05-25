@@ -27,6 +27,7 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
     on<_SetInitialCar>(_onSetInitialCar);
     on<_AddCarSubmitted>(_onAddCarSubmitted);
     on<_EditCarSubmitted>(_onEditCarSubmitted);
+    on<_DeleteCarSubmitted>(_onDeleteCarSubmitted);
   }
 
   _onBrandChanged(_BrandChanged event, Emitter<AddCarState> emit) {
@@ -139,6 +140,24 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyEditedTheVehicle));
+    carsBloc.add(const CarsEvent.getCars());
+  }
+
+  _onDeleteCarSubmitted(
+      _DeleteCarSubmitted event, Emitter<AddCarState> emit) async {
+    final result = await _carRepository.deleteCarByUser(
+      carId,
+    );
+
+    if (result.isSome()) {
+      return emit(state.copyWith(
+          status: FormzSubmissionStatus.failure,
+          message: result.asOption().message!));
+    }
+
+    emit(state.copyWith(
+        status: FormzSubmissionStatus.success,
+        message: S.current.successfullyDeletedTheVehicle));
     carsBloc.add(const CarsEvent.getCars());
   }
 }

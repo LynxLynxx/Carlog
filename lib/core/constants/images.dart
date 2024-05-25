@@ -6,7 +6,7 @@ class ImagesK extends Constants {
   static const assets = "assets";
   static const icons = "$assets/icons";
 
-  //ANCHOR - CAR
+  //ANCHOR - HOME
   static const home = "$icons/home_icon.svg";
   static const homeFill = "$icons/home_icon_fill.svg";
 
@@ -21,6 +21,11 @@ class ImagesK extends Constants {
   //ANCHOR - PROFILE
   static const profile = "$icons/profile_icon.svg";
   static const profileFill = "$icons/profile_icon_fill.svg";
+
+  //ANCHOR - OTHER
+  static const delete = "$icons/circle_trash.svg";
+  static const yes = "$icons/circle_yes.svg";
+  static const no = "$icons/circle_no.svg";
 
   //!SECTION
 }

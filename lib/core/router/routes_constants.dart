@@ -14,11 +14,14 @@ class RoutesK {
   static const home = "/";
   static const cars = "/cars";
   static const addCar = "$cars/addCar";
-  static const complexManageCar = "$cars/complexManageCar";
+  static const manageCar = "$cars/manageCar";
+  static const deleteCarConfirmation = "$manageCar/deleteCarConfirmation";
   static const statistics = "/statistics";
   static const profile = "/profile";
 
   //SECTION - [ERRORS]
   static const unknownError = "/unknownError";
   static const connectionLostError = "/connectionLost";
+
+  //SECTION -
 }

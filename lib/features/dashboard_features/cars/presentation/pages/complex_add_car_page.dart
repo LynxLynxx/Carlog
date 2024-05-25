@@ -1,5 +1,7 @@
+import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
@@ -8,16 +10,17 @@ import 'package:carlog/features/dashboard_features/cars/presentation/widgets/com
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 enum ManageCarStatus { add, edit }
 
-class ComplexManageCarPage extends StatelessWidget {
+class ManageCarPage extends StatelessWidget {
   final ManageCarStatus manageCarStatus;
   final CarFirebaseEntity? carFirebaseEntity;
   final BuildContext appContext;
 
-  const ComplexManageCarPage(
+  const ManageCarPage(
       {super.key,
       this.manageCarStatus = ManageCarStatus.add,
       this.carFirebaseEntity,
@@ -36,19 +39,24 @@ class ComplexManageCarPage extends StatelessWidget {
         }
         return bloc;
       },
-      child: ComplexManageCarView(
+      child: ManageCarView(
         manageCarStatus: manageCarStatus,
+        appContext: appContext,
       ),
     );
   }
 }
 
-class ComplexManageCarView extends StatelessWidget {
+class ManageCarView extends StatelessWidget {
   final ManageCarStatus manageCarStatus;
   final CarFirebaseEntity? carFirebaseEntity;
+  final BuildContext appContext;
 
-  const ComplexManageCarView(
-      {super.key, required this.manageCarStatus, this.carFirebaseEntity});
+  const ManageCarView(
+      {super.key,
+      required this.manageCarStatus,
+      this.carFirebaseEntity,
+      required this.appContext});
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +69,26 @@ class ComplexManageCarView extends StatelessWidget {
                 IconButton(
                     onPressed: () => context.pop(),
                     icon: const Icon(Icons.arrow_back_ios)),
-                Text(
-                  manageCarStatus == ManageCarStatus.add
-                      ? S.of(context).addCar
-                      : S.of(context).updateCar,
-                  style: text22W700LS3,
+                Expanded(
+                  child: Text(
+                    manageCarStatus == ManageCarStatus.add
+                        ? S.of(context).addCar
+                        : S.of(context).updateCar,
+                    style: text22W700LS3,
+                  ),
                 ),
+                manageCarStatus == ManageCarStatus.edit
+                    ? IconButton(
+                        onPressed: () => context.push(
+                            RoutesK.deleteCarConfirmation,
+                            extra: context),
+                        icon: SvgPicture.asset(
+                          ImagesK.delete,
+                          width: 30,
+                          height: 30,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
             Padding(
