@@ -1,6 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/constants/snackbars.dart';
-import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/complex_add_car_page.dart';
@@ -14,10 +13,7 @@ class CarListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CarsBloc(locator())..add(const CarsEvent.getCars()),
-      child: const CarListWidgetView(),
-    );
+    return const CarListWidgetView();
   }
 }
 
@@ -48,6 +44,7 @@ class CarListWidgetView extends StatelessWidget {
                 onTap: () => context.push(RoutesK.complexManageCar, extra: {
                   "manageCarStatus": ManageCarStatus.edit,
                   "carFirebaseEntity": state.carList[index],
+                  "appContext": context,
                 }),
                 child: Container(
                   width: 200,

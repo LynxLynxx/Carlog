@@ -520,6 +520,16 @@ class S {
     );
   }
 
+  /// `Successfully edited the vehicle`
+  String get successfullyEditedTheVehicle {
+    return Intl.message(
+      'Successfully edited the vehicle',
+      name: 'successfullyEditedTheVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add Car`
   String get addCar {
     return Intl.message(

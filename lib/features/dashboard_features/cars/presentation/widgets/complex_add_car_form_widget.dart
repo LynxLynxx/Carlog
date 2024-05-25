@@ -20,18 +20,26 @@ class ComplexAddCarFormWidget extends StatelessWidget {
   });
 
   FocusNode f1 = FocusNode();
+  final tec1 = TextEditingController();
 
   FocusNode f2 = FocusNode();
+  final tec2 = TextEditingController();
 
   FocusNode f3 = FocusNode();
+  final tec3 = TextEditingController();
 
   FocusNode f4 = FocusNode();
+  final tec4 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddCarBloc, AddCarState>(
       bloc: addCarBloc,
       listener: (context, state) {
+        tec1.text = addCarBloc.state.brandEntity.value;
+        tec2.text = addCarBloc.state.modelEntity.value;
+        tec3.text = addCarBloc.state.yearEntity.value;
+        tec4.text = addCarBloc.state.plateEntity.value;
         if (state.status.isFailure) {
           SnackbarsK.errorSnackbar(state.message!).show(context);
         }
@@ -47,6 +55,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
           children: [
             TextFormField(
               key: const Key("brand_field"),
+              controller: tec1,
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                   context, bloc.state.brandEntity.displayError, "Brand",
@@ -66,6 +75,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("model_field"),
+              controller: tec2,
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                 context,
@@ -88,6 +98,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("year_field"),
+              controller: tec3,
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                 context,
@@ -112,6 +123,7 @@ class ComplexAddCarFormWidget extends StatelessWidget {
             ),
             TextFormField(
               key: const Key("plate_field"),
+              controller: tec4,
               autocorrect: false,
               decoration: authTextFormFieldInputDecoration(
                   context, bloc.state.plateEntity.displayError, "Plate",
@@ -141,9 +153,13 @@ class ComplexAddCarFormWidget extends StatelessWidget {
               builder: (context, state) {
                 return FilledButton(
                   onPressed: state
-                      ? () => context
-                          .read<AddCarBloc>()
-                          .add(const AddCarEvent.addCarSubmitted())
+                      ? () => manageCarStatus == ManageCarStatus.add
+                          ? context
+                              .read<AddCarBloc>()
+                              .add(const AddCarEvent.addCarSubmitted())
+                          : context
+                              .read<AddCarBloc>()
+                              .add(const AddCarEvent.editCarSubmitted())
                       : null,
                   child: Text(manageCarStatus == ManageCarStatus.add
                       ? "Create"

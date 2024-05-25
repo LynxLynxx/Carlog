@@ -47,6 +47,7 @@
   "carYearValidator": "The vehicle year of manufacture should be 4 characters",
   "carPlateValidator": "The vehicle plate should be between 1 and 15 characters",
   "successfullyAddedTheVehicle": "Successfully added the vehicle",
+  "successfullyEditedTheVehicle": "Successfully edited the vehicle",
   "addCar": "Add Car",
   "updateCar": "Update Car"
 }

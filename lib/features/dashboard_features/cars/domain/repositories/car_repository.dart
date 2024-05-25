@@ -21,8 +21,31 @@ class CarRepository {
       final CollectionReference carRef =
           FirebaseFirestore.instance.collection('cars');
 
-      await carRef.add({
+      final addCar = await carRef.add({
         "userId": user.uid,
+        "brand": carBrand,
+        "model": carModel,
+        "year": carYear.isNotEmpty ? int.parse(carYear) : 0,
+        "plate": carPlate,
+        "carId": "",
+      });
+
+      await carRef.doc(addCar.id).update({"carId": addCar.id});
+    });
+  }
+
+  Future<Option<Failure>> updateCarByUser(String carId, String carBrand,
+      String carModel, String carYear, String carPlate) async {
+    return handleVoidResponse(() async {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        return;
+      }
+
+      final CollectionReference carRef =
+          FirebaseFirestore.instance.collection('cars');
+
+      await carRef.doc(carId).update({
         "brand": carBrand,
         "model": carModel,
         "year": carYear.isNotEmpty ? int.parse(carYear) : 0,

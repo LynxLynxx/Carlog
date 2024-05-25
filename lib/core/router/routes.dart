@@ -125,6 +125,7 @@ final List<StatefulShellBranch> shellBranches = [
             return ComplexManageCarPage(
               manageCarStatus: extra['manageCarStatus'],
               carFirebaseEntity: extra['carFirebaseEntity'],
+              appContext: extra['appContext'],
             );
           },
         ),
