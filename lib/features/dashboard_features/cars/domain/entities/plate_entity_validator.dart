@@ -2,8 +2,8 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 
 class PlateEntityValidator extends FormzInput<String, String> {
-  const PlateEntityValidator.pure() : super.pure('');
-  const PlateEntityValidator.dirty([super.value = '']) : super.dirty();
+  const PlateEntityValidator.pure([super.value = '']) : super.pure();
+  const PlateEntityValidator.dirty({String value = ''}) : super.dirty(value);
 
   @override
   String? validator(String value) {

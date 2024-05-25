@@ -4,6 +4,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -45,8 +46,8 @@ class _CarsViewState extends State<AddCarView> {
                   IconButton(
                       onPressed: () => context.pop(),
                       icon: const Icon(Icons.arrow_back_ios)),
-                  const Text(
-                    "Add car",
+                  Text(
+                    S.of(context).addCar,
                     style: text22W700LS3,
                   ),
                 ],

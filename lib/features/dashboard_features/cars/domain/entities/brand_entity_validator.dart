@@ -2,8 +2,8 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 
 class BrandEntityValidator extends FormzInput<String, String> {
-  const BrandEntityValidator.pure() : super.pure('');
-  const BrandEntityValidator.dirty([super.value = '']) : super.dirty();
+  const BrandEntityValidator.pure([super.value = '']) : super.pure();
+  const BrandEntityValidator.dirty({String value = ''}) : super.dirty(value);
 
   @override
   String? validator(String value) {

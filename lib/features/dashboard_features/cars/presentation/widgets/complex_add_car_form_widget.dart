@@ -28,10 +28,10 @@ class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
     return BlocConsumer<AddCarBloc, AddCarState>(
       listener: (context, state) {
         if (state.status.isFailure) {
-          SnackbarsK.errorSnackbar(state.message).show(context);
+          SnackbarsK.errorSnackbar(state.message!).show(context);
         }
         if (state.status.isSuccess) {
-          SnackbarsK.successSnackbar("Success").show(context);
+          SnackbarsK.successSnackbar(state.message!).show(context);
           context.pop();
         }
       },

@@ -2,8 +2,8 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 
 class YearEntityValidator extends FormzInput<String, String> {
-  const YearEntityValidator.pure() : super.pure('');
-  const YearEntityValidator.dirty([super.value = '']) : super.dirty();
+  const YearEntityValidator.pure([super.value = '']) : super.pure();
+  const YearEntityValidator.dirty({String value = ''}) : super.dirty(value);
 
   @override
   String? validator(String value) {

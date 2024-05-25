@@ -509,6 +509,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Successfully added the vehicle`
+  String get successfullyAddedTheVehicle {
+    return Intl.message(
+      'Successfully added the vehicle',
+      name: 'successfullyAddedTheVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Car`
+  String get addCar {
+    return Intl.message(
+      'Add Car',
+      name: 'addCar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

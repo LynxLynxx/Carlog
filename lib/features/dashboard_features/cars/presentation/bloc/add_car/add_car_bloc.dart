@@ -5,6 +5,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/model_en
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/year_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -23,72 +24,62 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
   }
 
   _onBrandChanged(_BrandChanged event, Emitter<AddCarState> emit) {
-    final brand = BrandEntityValidator.dirty(event.brand);
-    String brandError = "";
-    if (brand.displayError != null) {
-      brandError = brand.displayError!;
-    }
+    final brand = BrandEntityValidator.pure(event.brand);
     emit(
-      state.copyWith(brandEntity: brand, brandErrorMessage: brandError),
+      state.copyWith(brandEntity: brand),
     );
   }
 
   _onModelChanged(_ModelChanged event, Emitter<AddCarState> emit) {
-    final model = ModelEntityValidator.dirty(event.model);
-    String modelError = "";
-    if (model.displayError != null) {
-      modelError = model.displayError!;
-    }
+    final model = ModelEntityValidator.pure(event.model);
     emit(
-      state.copyWith(modelEntity: model, brandErrorMessage: modelError),
+      state.copyWith(modelEntity: model),
     );
   }
 
   _onYearChanged(_YearChanged event, Emitter<AddCarState> emit) {
-    final year = YearEntityValidator.dirty(event.year);
-    String yearError = "";
-    if (year.displayError != null) {
-      yearError = year.displayError!;
-    }
+    final year = YearEntityValidator.pure(event.year);
     emit(
-      state.copyWith(yearEntity: year, yearErrorMessage: yearError),
+      state.copyWith(yearEntity: year),
     );
   }
 
   _onPlateChanged(_PlateChanged event, Emitter<AddCarState> emit) {
-    final plate = PlateEntityValidator.dirty(event.plate);
-    String plateError = "";
-    if (plate.displayError != null) {
-      plateError = plate.displayError!;
-    }
+    final plate = PlateEntityValidator.pure(event.plate);
     emit(
-      state.copyWith(plateEntity: plate, plateErrorMessage: plateError),
+      state.copyWith(plateEntity: plate),
     );
   }
 
   _onAddCarSubmitted(_AddCarSubmitted event, Emitter<AddCarState> emit) async {
-    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-    if ((state.brandErrorMessage.isEmpty) &&
-        state.modelErrorMessage.isEmpty &&
-        state.yearErrorMessage.isEmpty &&
-        state.plateErrorMessage.isEmpty) {
-      final result = await _carRepository.createCarByUser(
-          state.brandEntity.value,
-          state.modelEntity.value,
-          state.yearEntity.value,
-          state.plateEntity.value);
+    final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
+    final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
+    final year = YearEntityValidator.dirty(value: state.yearEntity.value);
+    final plate = PlateEntityValidator.dirty(value: state.plateEntity.value);
 
-      if (result.isSome()) {
-        return emit(state.copyWith(
-            status: FormzSubmissionStatus.failure,
-            message: result.asOption().message!));
-      }
-
+    if (!Formz.validate([brand, model, year, plate])) {
       return emit(state.copyWith(
-          status: FormzSubmissionStatus.success, message: "Success"));
+          brandEntity: brand,
+          modelEntity: model,
+          yearEntity: year,
+          plateEntity: plate,
+          message: null));
     }
-    return emit(state.copyWith(
-        status: FormzSubmissionStatus.failure,
-        message: "An error has occured"));
+
+    final result = await _carRepository.createCarByUser(
+        state.brandEntity.value,
+        state.modelEntity.value,
+        state.yearEntity.value,
+        state.plateEntity.value);
+
+    if (result.isSome()) {
+      return emit(state.copyWith(
+          status: FormzSubmissionStatus.failure,
+          message: result.asOption().message!));
+    }
+
+    emit(state.copyWith(
+        status: FormzSubmissionStatus.success,
+        message: S.current.successfullyAddedTheVehicle));
   }
 }

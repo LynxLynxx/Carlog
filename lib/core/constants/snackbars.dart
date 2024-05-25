@@ -9,7 +9,7 @@ class SnackbarsK extends Constants {
         type: AnimatedSnackBarType.info,
         duration: DurationsK.d3000,
         mobilePositionSettings: const MobilePositionSettings(
-          topOnAppearance: 50,
+          topOnAppearance: 75,
         ),
         mobileSnackBarPosition: MobileSnackBarPosition.top,
       );
@@ -20,7 +20,7 @@ class SnackbarsK extends Constants {
         type: AnimatedSnackBarType.warning,
         duration: DurationsK.d3000,
         mobilePositionSettings: const MobilePositionSettings(
-          topOnAppearance: 50,
+          topOnAppearance: 75,
         ),
         mobileSnackBarPosition: MobileSnackBarPosition.top,
       );
@@ -31,7 +31,7 @@ class SnackbarsK extends Constants {
         type: AnimatedSnackBarType.success,
         duration: DurationsK.d3000,
         mobilePositionSettings: const MobilePositionSettings(
-          topOnAppearance: 50,
+          topOnAppearance: 75,
         ),
         mobileSnackBarPosition: MobileSnackBarPosition.top,
       );
