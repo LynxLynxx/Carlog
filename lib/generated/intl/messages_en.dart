@@ -95,13 +95,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "litersValidator": MessageLookupByLibrary.simpleMessage(
+            "Liters should be between 1 and 4 digits"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "milageValidator": MessageLookupByLibrary.simpleMessage(
+            "Liters should be between 1 and 8 digits"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
+        "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
+            "Liters should be between 1 and 8 digits"),
+        "priceValidator": MessageLookupByLibrary.simpleMessage(
+            "Liters should be between 1 and 5 digits"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),

@@ -9,6 +9,5 @@ class ManageCarState with _$ManageCarState {
     @Default(YearEntityValidator.pure()) YearEntityValidator yearEntity,
     @Default(PlateEntityValidator.pure()) PlateEntityValidator plateEntity,
     String? message,
-    @Default(false) bool buttonEnable,
   ]) = _ManageCarState;
 }

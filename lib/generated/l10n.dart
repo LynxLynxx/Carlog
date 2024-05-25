@@ -569,6 +569,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Liters should be between 1 and 4 digits`
+  String get litersValidator {
+    return Intl.message(
+      'Liters should be between 1 and 4 digits',
+      name: 'litersValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liters should be between 1 and 5 digits`
+  String get priceValidator {
+    return Intl.message(
+      'Liters should be between 1 and 5 digits',
+      name: 'priceValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liters should be between 1 and 8 digits`
+  String get milageValidator {
+    return Intl.message(
+      'Liters should be between 1 and 8 digits',
+      name: 'milageValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liters should be between 1 and 8 digits`
+  String get pricePerLiterValidator {
+    return Intl.message(
+      'Liters should be between 1 and 8 digits',
+      name: 'pricePerLiterValidator',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

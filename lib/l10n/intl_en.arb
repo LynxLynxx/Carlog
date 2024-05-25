@@ -51,5 +51,9 @@
   "successfullyDeletedTheVehicle": "Successfully deleted the vehicle",
   "addCar": "Add Car",
   "updateCar": "Update Car",
-  "deleteVehicleConfirmation": "Are you sure you want to delete this vehicle?"
+  "deleteVehicleConfirmation": "Are you sure you want to delete this vehicle?",
+  "litersValidator": "Liters should be between 1 and 4 digits",
+  "priceValidator": "Liters should be between 1 and 5 digits",
+  "milageValidator": "Liters should be between 1 and 8 digits",
+  "pricePerLiterValidator": "Liters should be between 1 and 8 digits"
 }
