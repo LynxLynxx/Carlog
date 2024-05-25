@@ -75,16 +75,15 @@ class CarRepository {
         },
       );
 
-      final copiedCar = await deletedCarRef.add({
+      await deletedCarRef.doc(car?.carId).set({
         "userId": user.uid,
         "brand": car?.brand ?? "",
         "model": car?.model ?? "",
         "year": (car?.year ?? "").toString().isNotEmpty ? car?.year : 0,
         "plate": car?.plate ?? "",
-        "carId": "",
+        "carId": car?.carId,
       });
 
-      await deletedCarRef.doc(copiedCar.id).update({"carId": copiedCar.id});
       await carRef.doc(car!.carId).delete();
     });
   }
