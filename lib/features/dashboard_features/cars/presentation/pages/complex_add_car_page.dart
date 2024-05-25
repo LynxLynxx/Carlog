@@ -1,3 +1,4 @@
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/complex_add_car_form_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class ComplexAddCarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCarBloc(),
+      create: (context) => AddCarBloc(locator()),
       child: const ComplexAddCarView(),
     );
   }

@@ -12,5 +12,7 @@ class AddCarState with _$AddCarState {
     @Default('') String yearErrorMessage,
     @Default(PlateEntityValidator.pure()) PlateEntityValidator plateEntity,
     @Default('') String plateErrorMessage,
+    @Default('') String message,
+    @Default(false) bool buttonEnable,
   ]) = _AddCarState;
 }

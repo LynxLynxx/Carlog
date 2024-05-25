@@ -1,4 +1,5 @@
-import 'package:carlog/core/router/routes_constants.dart';
+import 'dart:developer';
+
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,12 @@ class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<AddCarBloc, AddCarState>(
       listener: (context, state) {
-        if (state.status.isInProgress) {
-          context.go(RoutesK.loading);
+        if (state.status.isFailure) {
+          log(state.message);
+        }
+        if (state.status.isSuccess) {
+          log(state.message);
+          context.pop();
         }
       },
       builder: (context, state) {
