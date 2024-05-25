@@ -24,7 +24,7 @@ class CarRepository {
         "userId": user.uid,
         "brand": carBrand,
         "model": carModel,
-        "year": int.parse(carYear),
+        "year": carYear.isNotEmpty ? int.parse(carYear) : 0,
         "plate": carPlate,
       });
     });

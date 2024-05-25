@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +28,10 @@ class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
     return BlocConsumer<AddCarBloc, AddCarState>(
       listener: (context, state) {
         if (state.status.isFailure) {
-          log(state.message);
+          SnackbarsK.errorSnackbar(state.message).show(context);
         }
         if (state.status.isSuccess) {
-          log(state.message);
+          SnackbarsK.successSnackbar("Success").show(context);
           context.pop();
         }
       },
@@ -127,11 +126,23 @@ class _ComplexAddCarFormWidgetState extends State<ComplexAddCarFormWidget> {
             const SizedBox(
               height: 30,
             ),
-            FilledButton(
-              onPressed: () => context
-                  .read<AddCarBloc>()
-                  .add(const AddCarEvent.addCarSubmitted()),
-              child: const Text("Create"),
+            BlocSelector<AddCarBloc, AddCarState, bool>(
+              selector: (state) {
+                return state.brandEntity.value.isNotEmpty &&
+                    state.modelEntity.value.isNotEmpty &&
+                    state.yearEntity.value.isNotEmpty &&
+                    state.plateEntity.value.isNotEmpty;
+              },
+              builder: (context, state) {
+                return FilledButton(
+                  onPressed: state
+                      ? () => context
+                          .read<AddCarBloc>()
+                          .add(const AddCarEvent.addCarSubmitted())
+                      : null,
+                  child: const Text("Create"),
+                );
+              },
             ),
           ],
         );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
@@ -70,8 +68,7 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
 
   _onAddCarSubmitted(_AddCarSubmitted event, Emitter<AddCarState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-
-    if (state.brandErrorMessage.isEmpty &&
+    if ((state.brandErrorMessage.isEmpty) &&
         state.modelErrorMessage.isEmpty &&
         state.yearErrorMessage.isEmpty &&
         state.plateErrorMessage.isEmpty) {
@@ -90,6 +87,8 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
       return emit(state.copyWith(
           status: FormzSubmissionStatus.success, message: "Success"));
     }
-    log("error has occured");
+    return emit(state.copyWith(
+        status: FormzSubmissionStatus.failure,
+        message: "An error has occured"));
   }
 }
