@@ -3,7 +3,7 @@
 
 import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +13,7 @@ import 'package:go_router/go_router.dart';
 
 class ManageCarFormWidget extends StatelessWidget {
   final ManageCarStatus manageCarStatus;
-  final AddCarBloc addCarBloc;
+  final ManageCarBloc addCarBloc;
   final List<TextEditingController> textEditingControllerList;
   ManageCarFormWidget({
     super.key,
@@ -29,7 +29,7 @@ class ManageCarFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddCarBloc, AddCarState>(
+    return BlocConsumer<ManageCarBloc, ManageCarState>(
       bloc: addCarBloc,
       listener: (context, state) {
         textEditingControllerList[0].text = addCarBloc.state.brandEntity.value;
@@ -45,7 +45,7 @@ class ManageCarFormWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final bloc = context.read<AddCarBloc>();
+        final bloc = context.read<ManageCarBloc>();
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -63,8 +63,8 @@ class ManageCarFormWidget extends StatelessWidget {
                 FocusScope.of(context).requestFocus(f2);
               },
               onChanged: (value) => context
-                  .read<AddCarBloc>()
-                  .add(AddCarEvent.brandChanged(value)),
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.brandChanged(value)),
             ),
             const SizedBox(
               height: 30,
@@ -86,8 +86,8 @@ class ManageCarFormWidget extends StatelessWidget {
                 FocusScope.of(context).requestFocus(f3);
               },
               onChanged: (value) => context
-                  .read<AddCarBloc>()
-                  .add(AddCarEvent.modelChanged(value)),
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.modelChanged(value)),
             ),
             const SizedBox(
               height: 30,
@@ -111,8 +111,8 @@ class ManageCarFormWidget extends StatelessWidget {
                 FocusScope.of(context).requestFocus(f4);
               },
               onChanged: (value) => context
-                  .read<AddCarBloc>()
-                  .add(AddCarEvent.yearChanged(value)),
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.yearChanged(value)),
             ),
             const SizedBox(
               height: 30,
@@ -129,17 +129,17 @@ class ManageCarFormWidget extends StatelessWidget {
               onEditingComplete: () {
                 f4.unfocus();
                 context
-                    .read<AddCarBloc>()
-                    .add(const AddCarEvent.addCarSubmitted());
+                    .read<ManageCarBloc>()
+                    .add(const ManageCarEvent.addCarSubmitted());
               },
               onChanged: (value) => context
-                  .read<AddCarBloc>()
-                  .add(AddCarEvent.plateChanged(value)),
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.plateChanged(value)),
             ),
             const SizedBox(
               height: 30,
             ),
-            BlocSelector<AddCarBloc, AddCarState, bool>(
+            BlocSelector<ManageCarBloc, ManageCarState, bool>(
               selector: (state) {
                 return state.brandEntity.value.isNotEmpty &&
                     state.modelEntity.value.isNotEmpty &&
@@ -151,11 +151,11 @@ class ManageCarFormWidget extends StatelessWidget {
                   onPressed: state
                       ? () => manageCarStatus == ManageCarStatus.add
                           ? context
-                              .read<AddCarBloc>()
-                              .add(const AddCarEvent.addCarSubmitted())
+                              .read<ManageCarBloc>()
+                              .add(const ManageCarEvent.addCarSubmitted())
                           : context
-                              .read<AddCarBloc>()
-                              .add(const AddCarEvent.editCarSubmitted())
+                              .read<ManageCarBloc>()
+                              .add(const ManageCarEvent.editCarSubmitted())
                       : null,
                   child: Text(manageCarStatus == ManageCarStatus.add
                       ? "Create"

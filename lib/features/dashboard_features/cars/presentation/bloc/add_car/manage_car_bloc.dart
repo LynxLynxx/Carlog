@@ -11,15 +11,16 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'add_car_bloc.freezed.dart';
-part 'add_car_event.dart';
-part 'add_car_state.dart';
+part 'manage_car_bloc.freezed.dart';
+part 'manage_car_event.dart';
+part 'manage_car_state.dart';
 
-class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
+class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
   final CarsBloc carsBloc;
   final CarRepository _carRepository;
   late String carId = "";
-  AddCarBloc(this._carRepository, this.carsBloc) : super(const _AddCarState()) {
+  ManageCarBloc(this._carRepository, this.carsBloc)
+      : super(const _ManageCarState()) {
     on<_BrandChanged>(_onBrandChanged);
     on<_ModelChanged>(_onModelChanged);
     on<_YearChanged>(_onYearChanged);
@@ -30,35 +31,35 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
     on<_DeleteCarSubmitted>(_onDeleteCarSubmitted);
   }
 
-  _onBrandChanged(_BrandChanged event, Emitter<AddCarState> emit) {
+  _onBrandChanged(_BrandChanged event, Emitter<ManageCarState> emit) {
     final brand = BrandEntityValidator.pure(event.brand);
     emit(
       state.copyWith(brandEntity: brand),
     );
   }
 
-  _onModelChanged(_ModelChanged event, Emitter<AddCarState> emit) {
+  _onModelChanged(_ModelChanged event, Emitter<ManageCarState> emit) {
     final model = ModelEntityValidator.pure(event.model);
     emit(
       state.copyWith(modelEntity: model),
     );
   }
 
-  _onYearChanged(_YearChanged event, Emitter<AddCarState> emit) {
+  _onYearChanged(_YearChanged event, Emitter<ManageCarState> emit) {
     final year = YearEntityValidator.pure(event.year);
     emit(
       state.copyWith(yearEntity: year),
     );
   }
 
-  _onPlateChanged(_PlateChanged event, Emitter<AddCarState> emit) {
+  _onPlateChanged(_PlateChanged event, Emitter<ManageCarState> emit) {
     final plate = PlateEntityValidator.pure(event.plate);
     emit(
       state.copyWith(plateEntity: plate),
     );
   }
 
-  _onSetInitialCar(_SetInitialCar event, Emitter<AddCarState> emit) {
+  _onSetInitialCar(_SetInitialCar event, Emitter<ManageCarState> emit) {
     final brand =
         BrandEntityValidator.dirty(value: event.carFirebaseEntity.brand ?? "");
     final model =
@@ -75,7 +76,8 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
         plateEntity: plate));
   }
 
-  _onAddCarSubmitted(_AddCarSubmitted event, Emitter<AddCarState> emit) async {
+  _onAddCarSubmitted(
+      _AddCarSubmitted event, Emitter<ManageCarState> emit) async {
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
@@ -109,7 +111,7 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
   }
 
   _onEditCarSubmitted(
-      _EditCarSubmitted event, Emitter<AddCarState> emit) async {
+      _EditCarSubmitted event, Emitter<ManageCarState> emit) async {
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
@@ -144,7 +146,7 @@ class AddCarBloc extends Bloc<AddCarEvent, AddCarState> {
   }
 
   _onDeleteCarSubmitted(
-      _DeleteCarSubmitted event, Emitter<AddCarState> emit) async {
+      _DeleteCarSubmitted event, Emitter<ManageCarState> emit) async {
     final result = await _carRepository.deleteCarByUser(
       carId,
     );

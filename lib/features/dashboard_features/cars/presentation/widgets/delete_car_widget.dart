@@ -3,7 +3,7 @@ import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +18,7 @@ class DeleteCarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: appContext.read<AddCarBloc>(),
+      value: appContext.read<ManageCarBloc>(),
       child: const DeleteCarView(),
     );
   }
@@ -63,8 +63,8 @@ class DeleteCarView extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       context
-                          .read<AddCarBloc>()
-                          .add(const AddCarEvent.deleteCarSubmitted());
+                          .read<ManageCarBloc>()
+                          .add(const ManageCarEvent.deleteCarSubmitted());
                       context.pop();
                     },
                     icon: SvgPicture.asset(

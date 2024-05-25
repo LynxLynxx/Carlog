@@ -1,8 +1,8 @@
-part of 'add_car_bloc.dart';
+part of 'manage_car_bloc.dart';
 
 @freezed
-class AddCarState with _$AddCarState {
-  const factory AddCarState([
+class ManageCarState with _$ManageCarState {
+  const factory ManageCarState([
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(BrandEntityValidator.pure()) BrandEntityValidator brandEntity,
     @Default(ModelEntityValidator.pure()) ModelEntityValidator modelEntity,
@@ -10,5 +10,5 @@ class AddCarState with _$AddCarState {
     @Default(PlateEntityValidator.pure()) PlateEntityValidator plateEntity,
     String? message,
     @Default(false) bool buttonEnable,
-  ]) = _AddCarState;
+  ]) = _ManageCarState;
 }
