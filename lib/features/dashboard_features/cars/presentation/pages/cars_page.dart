@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/car_list_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,8 +27,9 @@ class _CarsViewState extends State<CarsView> {
   @override
   Widget build(BuildContext context) {
     return DashboardAppbar.title(
-        title: "Cars",
-        body: Center(
+      title: "Cars",
+      body: Center(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               IconButton(
@@ -39,8 +40,11 @@ class _CarsViewState extends State<CarsView> {
                 icon: const Icon(Icons.add),
                 onPressed: () => context.push(RoutesK.complexAddCar),
               ),
+              const CarListWidget(),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
