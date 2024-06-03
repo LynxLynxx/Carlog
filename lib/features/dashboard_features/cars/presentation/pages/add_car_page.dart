@@ -2,8 +2,8 @@ import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,9 +52,13 @@ class _CarsViewState extends State<AddCarView> {
                   ),
                 ],
               ),
-              LottieBuilder.asset(
-                AnimationsK.addCar,
-                repeat: false,
+              SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: LottieBuilder.asset(
+                  AnimationsK.addCar,
+                  repeat: false,
+                ),
               ),
               const Text(
                 "Car Brand",
@@ -68,9 +72,6 @@ class _CarsViewState extends State<AddCarView> {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => GestureDetector(
-                          // onTap: () => setState(() {
-                          //       selectedBrand = index;
-                          //     }),
                           onTap: () => context.read<BasicAddCarBloc>().add(
                               BasicAddCarEvent.changeBrand(brandId: index)),
                           child: CarListElement(
