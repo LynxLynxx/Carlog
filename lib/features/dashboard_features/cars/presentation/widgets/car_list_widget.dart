@@ -110,13 +110,7 @@ class AddCarListElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(
-        RoutesK.manageCar,
-        extra: {
-          "manageCarStatus": ManageCarStatus.add,
-          "appContext": context,
-        },
-      ),
+      onTap: () => context.push(RoutesK.addCar, extra: context),
       child: Padding(
         padding: PaddingsK.h30v10,
         child: Card(

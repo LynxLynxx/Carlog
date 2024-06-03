@@ -1,9 +1,14 @@
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,25 +16,34 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class AddCarPage extends StatelessWidget {
-  const AddCarPage({super.key});
+  final BuildContext appContext;
+  const AddCarPage({super.key, required this.appContext});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BasicAddCarBloc(),
-      child: const AddCarView(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BasicAddCarBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ManageCarBloc(
+            locator(),
+            appContext.read<CarsBloc>(),
+          ),
+        ),
+      ],
+      child: AddCarView(
+        appContext: appContext,
+      ),
     );
   }
 }
 
-class AddCarView extends StatefulWidget {
-  const AddCarView({super.key});
+class AddCarView extends StatelessWidget {
+  final BuildContext appContext;
+  const AddCarView({super.key, required this.appContext});
 
-  @override
-  State<AddCarView> createState() => _CarsViewState();
-}
-
-class _CarsViewState extends State<AddCarView> {
   @override
   Widget build(BuildContext context) {
     final carList = CarEntity.fromMap(JsonsK.cars);
@@ -114,11 +128,20 @@ class _CarsViewState extends State<AddCarView> {
                   style: text16W500LS1.copyWith(fontSize: 14),
                 ),
               ),
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Enter it manually!",
-                  style: text16W500LS1.copyWith(fontWeight: FontWeight.w700),
+              GestureDetector(
+                onTap: () => context.push(
+                  RoutesK.manageCar,
+                  extra: {
+                    "manageCarStatus": ManageCarStatus.add,
+                    "appContext": appContext,
+                  },
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Enter it manually!",
+                    style: text16W500LS1.copyWith(fontWeight: FontWeight.w700),
+                  ),
                 ),
               ),
             ],

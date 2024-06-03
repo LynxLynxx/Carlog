@@ -1,12 +1,9 @@
 import 'package:carlog/core/di/injectable_config.dart';
-import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/car_list_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class CarsPage extends StatelessWidget {
   const CarsPage({super.key});
@@ -33,30 +30,11 @@ class _CarsViewState extends State<CarsView> {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardAppbar.title(
+    return const DashboardAppbar.title(
       title: "Cars",
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () => context.push(RoutesK.addCar),
-              ),
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () => context.push(
-                  RoutesK.manageCar,
-                  extra: {
-                    "manageCarStatus": ManageCarStatus.add,
-                    "appContext": context,
-                  },
-                ),
-              ),
-            ],
-          ),
-          const CarListWidget(),
+          CarListWidget(),
         ],
       ),
     );

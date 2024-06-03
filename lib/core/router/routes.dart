@@ -117,7 +117,12 @@ final List<StatefulShellBranch> shellBranches = [
       routes: [
         AnimationGoRoute(
           path: "addCar",
-          builder: (context, state) => const AddCarPage(),
+          builder: (context, state) {
+            final extra = state.extra as BuildContext;
+            return AddCarPage(
+              appContext: extra,
+            );
+          },
         ),
         AnimationGoRoute(
             path: "manageCar",

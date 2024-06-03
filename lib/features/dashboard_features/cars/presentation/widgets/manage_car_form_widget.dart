@@ -2,6 +2,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:carlog/core/constants/snackbars.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
@@ -41,7 +42,7 @@ class ManageCarFormWidget extends StatelessWidget {
         }
         if (state.status.isSuccess) {
           SnackbarsK.successSnackbar(state.message!).show(context);
-          context.pop();
+          context.go(RoutesK.cars);
         }
       },
       builder: (context, state) {
