@@ -87,7 +87,7 @@ class CarListElementWidget extends StatelessWidget {
               children: [
                 AutoSizeText(
                   carEntity.brand ?? "",
-                  style: text22W700LS8Black87,
+                  style: text22W700LS3,
                   maxLines: 1,
                 ),
                 AutoSizeText(

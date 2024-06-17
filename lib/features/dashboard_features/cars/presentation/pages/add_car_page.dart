@@ -50,102 +50,109 @@ class AddCarView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          margin: PaddingsK.h20,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  Text(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () => context.pop(),
+                    icon: const Icon(Icons.arrow_back_ios)),
+                Expanded(
+                  child: Text(
                     S.of(context).addCar,
                     style: text22W700LS3,
                   ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: PaddingsK.h20,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200,
+                    width: double.infinity,
+                    child: LottieBuilder.asset(
+                      AnimationsK.addCar,
+                      repeat: false,
+                    ),
+                  ),
+                  const Text(
+                    "Car Brand",
+                    style: text22W700LS3,
+                  ),
+                  BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
+                    builder: (context, state) {
+                      return SizedBox(
+                        height: 70,
+                        width: double.infinity,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => GestureDetector(
+                              onTap: () => context.read<BasicAddCarBloc>().add(
+                                  BasicAddCarEvent.changeBrand(brandId: index)),
+                              child: CarListElement(
+                                  isSelected: index == state.brandId,
+                                  text: carList[index].brand)),
+                          itemCount: carList.length,
+                        ),
+                      );
+                    },
+                  ),
+                  const Text(
+                    "Model",
+                    style: text22W700LS3,
+                  ),
+                  BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
+                    builder: (context, state) {
+                      return SizedBox(
+                        height: 70,
+                        width: double.infinity,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => GestureDetector(
+                              onTap: () => context.read<BasicAddCarBloc>().add(
+                                  BasicAddCarEvent.changeModel(modelId: index)),
+                              child: CarListElement(
+                                  isSelected: index == state.modelId,
+                                  text: carList[state.brandId].models[index])),
+                          itemCount: carList[state.brandId].models.length,
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Unable to locate your brand or model?",
+                      style: text16W500LS1.copyWith(fontSize: 14),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => context.push(
+                      RoutesK.manageCar,
+                      extra: {
+                        "manageCarStatus": ManageCarStatus.add,
+                        "appContext": appContext,
+                      },
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Enter it manually!",
+                        style:
+                            text16W500LS1.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: LottieBuilder.asset(
-                  AnimationsK.addCar,
-                  repeat: false,
-                ),
-              ),
-              const Text(
-                "Car Brand",
-                style: text22W700LS3,
-              ),
-              BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
-                builder: (context, state) {
-                  return SizedBox(
-                    height: 70,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => GestureDetector(
-                          onTap: () => context.read<BasicAddCarBloc>().add(
-                              BasicAddCarEvent.changeBrand(brandId: index)),
-                          child: CarListElement(
-                              isSelected: index == state.brandId,
-                              text: carList[index].brand)),
-                      itemCount: carList.length,
-                    ),
-                  );
-                },
-              ),
-              const Text(
-                "Model",
-                style: text22W700LS3,
-              ),
-              BlocBuilder<BasicAddCarBloc, BasicAddCarState>(
-                builder: (context, state) {
-                  return SizedBox(
-                    height: 70,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => GestureDetector(
-                          onTap: () => context.read<BasicAddCarBloc>().add(
-                              BasicAddCarEvent.changeModel(modelId: index)),
-                          child: CarListElement(
-                              isSelected: index == state.modelId,
-                              text: carList[state.brandId].models[index])),
-                      itemCount: carList[state.brandId].models.length,
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Unable to locate your brand or model?",
-                  style: text16W500LS1.copyWith(fontSize: 14),
-                ),
-              ),
-              GestureDetector(
-                onTap: () => context.push(
-                  RoutesK.manageCar,
-                  extra: {
-                    "manageCarStatus": ManageCarStatus.add,
-                    "appContext": appContext,
-                  },
-                ),
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Enter it manually!",
-                    style: text16W500LS1.copyWith(fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
