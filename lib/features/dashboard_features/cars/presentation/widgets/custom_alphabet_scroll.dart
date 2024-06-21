@@ -2,8 +2,10 @@
 
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomAlphabetScroll extends StatefulWidget {
   const CustomAlphabetScroll({
@@ -118,34 +120,55 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ListView.builder(
-          controller: listController,
-          scrollDirection: Axis.vertical,
-          itemCount: _list.length,
-          itemBuilder: (context, index) {
-            return ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: widget.itemExtent),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 40),
-                child: Container(
-                  padding: PaddingsK.all16,
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: PaddingsK.circular10,
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                  ),
-                  child: Text(
-                    _list[index].brand,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
+        BlocBuilder<ManageCarBloc, ManageCarState>(
+          builder: (context, state) {
+            return ListView.builder(
+              controller: listController,
+              scrollDirection: Axis.vertical,
+              itemCount: _list.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => context.read<ManageCarBloc>().add(
+                        ManageCarEvent.brandChanged(_list[index].brand),
+                      ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: widget.itemExtent),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 40),
+                      child: Container(
+                        padding: PaddingsK.all16,
+                        margin: EdgeInsets.symmetric(
+                            vertical:
+                                state.brandEntity.value == _list[index].brand
+                                    ? 2
+                                    : 5,
+                            horizontal: 15),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: state.brandEntity.value == _list[index].brand
+                              ? Border.all(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 3,
+                                )
+                              : null,
+                          borderRadius: PaddingsK.circular10,
+                          color: Theme.of(context).colorScheme.primaryContainer,
                         ),
-                    textAlign: TextAlign.center,
+                        child: Text(
+                          _list[index].brand,
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                  ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             );
           },
         ),

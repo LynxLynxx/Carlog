@@ -67,7 +67,6 @@ class _AddCarViewState extends State<AddCarView>
           _currentFrame = (_controller.value * _totalFrames).round();
         });
       });
-    _animateToNextFrame();
   }
 
   void _animateToNextFrame() {
@@ -115,7 +114,7 @@ class _AddCarViewState extends State<AddCarView>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(
-                        height: 150,
+                        height: 130,
                         child: LottieBuilder.asset(
                           AnimationsK.paintCar,
                           controller: _controller,
@@ -138,7 +137,7 @@ class _AddCarViewState extends State<AddCarView>
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.45,
@@ -153,17 +152,28 @@ class _AddCarViewState extends State<AddCarView>
                         alignment: Alignment.center,
                         child: Text(
                           "Unable to locate your brand or model?",
-                          style: text16W500LS1.copyWith(fontSize: 14),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall!
+                              .copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer),
                         ),
                       ),
                       GestureDetector(
-                        //
                         child: Container(
                           alignment: Alignment.center,
                           child: Text(
                             "Enter it manually!",
-                            style: text16W500LS1.copyWith(
-                                fontWeight: FontWeight.w700),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                    fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -176,15 +186,26 @@ class _AddCarViewState extends State<AddCarView>
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: _animateToNextFrame,
-        shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: SvgPicture.asset(
-          ImagesK.arrowForward,
-          colorFilter: ColorFilter.mode(
-              Theme.of(context).colorScheme.onPrimary, BlendMode.srcIn),
-        ),
+      floatingActionButton: BlocSelector<ManageCarBloc, ManageCarState, bool>(
+        selector: (state) {
+          return state.brandEntity.value.isNotEmpty;
+        },
+        builder: (context, state) {
+          return FloatingActionButton(
+            onPressed: state
+                ? () {
+                    _animateToNextFrame();
+                  }
+                : null,
+            shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            child: SvgPicture.asset(
+              ImagesK.arrowForward,
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.onPrimary, BlendMode.srcIn),
+            ),
+          );
+        },
       ),
     );
   }
