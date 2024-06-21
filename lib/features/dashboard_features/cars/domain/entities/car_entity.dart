@@ -6,8 +6,8 @@ part 'car_entity.g.dart';
 @freezed
 class CarEntity with _$CarEntity {
   factory CarEntity({
+    required int id,
     required String brand,
-    required String imageUrl,
     required List<String> models,
   }) = _CarEntity;
 

@@ -4,25 +4,23 @@ class JsonsK extends Constants {
   static Map<String, dynamic> cars = {
     "data": [
       {
+        "id": 0,
         "brand": "Acura",
-        "imageUrl": "https://www.carlogos.org/logo/Acura-logo-1990-640x406.jpg",
         "models": ["ILX", "MDX", "NSX", "RDX", "TLX"]
       },
       {
+        "id": 1,
         "brand": "Alfa Romeo",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Alfa-Romeo-logo-2015-640x550.jpg",
         "models": ["Giulia", "Stelvio", "Tonale"]
       },
       {
+        "id": 2,
         "brand": "Aston Martin",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Aston-Martin-logo-2003-640x286.jpg",
         "models": ["DB12", "DBS", "Vantage", "Valhalla", "Valour"]
       },
       {
+        "id": 3,
         "brand": "Audi",
-        "imageUrl": "https://www.carlogos.org/car-logos/audi-logo-2016-640.png",
         "models": [
           "A3",
           "A4",
@@ -38,14 +36,13 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 4,
         "brand": "Bentley",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png",
         "models": ["Bentayga", "Continental GT", "Flying Spur"]
       },
       {
+        "id": 5,
         "brand": "BMW",
-        "imageUrl": "https://www.carlogos.org/car-logos/bmw-logo-2020-gray.png",
         "models": [
           "2 Series",
           "3 Series",
@@ -64,15 +61,13 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 6,
         "brand": "Cadillac",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/cadillac-logo-2021-full-640.png",
         "models": ["CT4", "CT5", "Escalade", "XT4", "XT5", "XT6"]
       },
       {
+        "id": 7,
         "brand": "Chevrolet",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Chevrolet-logo-2013-640x281.jpg",
         "models": [
           "Blazer",
           "Bolt",
@@ -88,36 +83,33 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 8,
         "brand": "Chrysler",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/chrysler-logo-2009-640.png",
         "models": ["300", "Pacifica"]
       },
       {
+        "id": 9,
         "brand": "Daewoo",
-        "imageUrl": "https://www.carlogos.org/logo/Daewoo-logo-640x404.jpg",
         "models": ["Lanos", "Leganza", "Nubira"]
       },
       {
+        "id": 10,
         "brand": "Dodge",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/dodge-logo-2010-640.png",
         "models": ["Challenger", "Charger", "Durango", "Journey"]
       },
       {
+        "id": 11,
         "brand": "Ferrari",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png",
         "models": ["488", "812", "F8", "Portofino", "Roma", "SF90"]
       },
       {
+        "id": 12,
         "brand": "Fiat",
-        "imageUrl": "https://www.carlogos.org/logo/Fiat-logo-2006-640x550.jpg",
         "models": ["500", "500X", "Tipo"]
       },
       {
+        "id": 13,
         "brand": "Ford",
-        "imageUrl": "https://www.carlogos.org/car-logos/ford-logo-2017-640.png",
         "models": [
           "Bronco",
           "Edge",
@@ -130,25 +122,23 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 14,
         "brand": "GMC",
-        "imageUrl": "https://www.carlogos.org/logo/GMC-logo-640x145.jpg",
         "models": ["Acadia", "Canyon", "Sierra", "Terrain", "Yukon"]
       },
       {
+        "id": 15,
         "brand": "Honda",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/honda-logo-2000-full-640.png",
         "models": ["Accord", "Civic", "CR-V", "HR-V", "Pilot"]
       },
       {
+        "id": 16,
         "brand": "Hummer",
-        "imageUrl": "https://www.carlogos.org/logo/Hummer-logo-2000x205.png",
         "models": ["EV Pickup", "EV SUV"]
       },
       {
+        "id": 17,
         "brand": "Hyundai",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/hyundai-logo-2011-640.png",
         "models": [
           "Elantra",
           "Kona",
@@ -160,25 +150,23 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 18,
         "brand": "Infiniti",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Infiniti-logo-1989-640x308.jpg",
         "models": ["Q50", "Q60", "QX50", "QX60", "QX80"]
       },
       {
+        "id": 19,
         "brand": "Isuzu",
-        "imageUrl": "https://www.carlogos.org/logo/Isuzu-logo-1991-640x106.jpg",
         "models": ["D-Max", "MU-X"]
       },
       {
+        "id": 20,
         "brand": "Jaguar",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/jaguar-logo-2021-640.png",
         "models": ["E-PACE", "F-PACE", "F-TYPE", "I-PACE", "XE", "XF"]
       },
       {
+        "id": 21,
         "brand": "Jeep",
-        "imageUrl": "https://www.carlogos.org/car-logos/jeep-logo-1993-640.png",
         "models": [
           "Cherokee",
           "Compass",
@@ -189,8 +177,8 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 22,
         "brand": "Kia",
-        "imageUrl": "https://www.carlogos.org/logo/Kia-logo-640x321.jpg",
         "models": [
           "Carnival",
           "EV6",
@@ -202,15 +190,13 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 23,
         "brand": "Lamborghini",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png",
         "models": ["Aventador", "Huracán", "Urus"]
       },
       {
+        "id": 24,
         "brand": "Land Rover",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Land-Rover-logo-2011-640x335.jpg",
         "models": [
           "Defender",
           "Discovery",
@@ -221,48 +207,43 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 25,
         "brand": "Lexus",
-        "imageUrl": "https://www.carlogos.org/logo/Lexus-logo-1988-640x266.jpg",
         "models": ["ES", "GX", "IS", "LS", "LX", "NX", "RX", "UX"]
       },
       {
+        "id": 26,
         "brand": "Lincoln",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Lincoln-logo-2019-640x222.jpg",
         "models": ["Aviator", "Corsair", "Nautilus", "Navigator"]
       },
       {
+        "id": 27,
         "brand": "Lotus",
-        "imageUrl": "https://www.carlogos.org/logo/Lotus-logo-2019-640x550.jpg",
         "models": ["Emira", "Evija", "Evora"]
       },
       {
+        "id": 28,
         "brand": "Maserati",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/maserati-logo-2020-640.png",
         "models": ["Ghibli", "Levante", "MC20", "Quattroporte"]
       },
       {
+        "id": 29,
         "brand": "Maybach",
-        "imageUrl": "https://www.carlogos.org/logo/Maybach-logo-640x353.jpg",
         "models": ["S-Class"]
       },
       {
+        "id": 30,
         "brand": "Mazda",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/mazda-logo-2018-vertical-640.png",
         "models": ["CX-30", "CX-5", "CX-9", "MX-5 Miata", "Mazda3", "Mazda6"]
       },
       {
+        "id": 31,
         "brand": "McLaren",
-        "imageUrl":
-            "https://www.carlogos.org/logo/McLaren-logo-2002-640x92.jpg",
         "models": ["570S", "720S", "Artura", "GT"]
       },
       {
+        "id": 32,
         "brand": "Mercedes-Benz",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Mercedes-Benz-logo-2011-640x369.jpg",
         "models": [
           "A-Class",
           "C-Class",
@@ -277,19 +258,18 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 33,
         "brand": "MINI",
-        "imageUrl": "https://www.carlogos.org/logo/Mini-logo-2001-640x270.jpg",
         "models": ["Clubman", "Countryman", "Hardtop"]
       },
       {
+        "id": 34,
         "brand": "Mitsubishi",
-        "imageUrl": "https://www.carlogos.org/logo/Mitsubishi-logo-640x550.jpg",
         "models": ["Eclipse Cross", "Mirage", "Outlander", "Outlander Sport"]
       },
       {
+        "id": 35,
         "brand": "Nissan",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png",
         "models": [
           "Altima",
           "Armada",
@@ -305,41 +285,38 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 36,
         "brand": "Pontiac",
-        "imageUrl": "https://www.carlogos.org/logo/Pontiac-logo-640x440.jpg",
         "models": ["Bonneville", "G6", "Grand Prix", "Solstice"]
       },
       {
+        "id": 37,
         "brand": "Porsche",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/porsche-logo-2014-full-640.png",
         "models": ["911", "Cayenne", "Macan", "Panamera", "Taycan"]
       },
       {
+        "id": 38,
         "brand": "Ram",
-        "imageUrl": "https://www.carlogos.org/logo/RAM-logo-2009-640x550.jpg",
         "models": ["1500", "2500", "3500"]
       },
       {
+        "id": 39,
         "brand": "Rolls-Royce",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Rolls-Royce-logo-640x550.jpg",
         "models": ["Cullinan", "Dawn", "Ghost", "Phantom", "Wraith"]
       },
       {
+        "id": 40,
         "brand": "Saab",
-        "imageUrl": "https://www.carlogos.org/logo/Saab-logo-2013-640x143.jpg",
         "models": ["9-3", "9-5"]
       },
       {
+        "id": 41,
         "brand": "smart",
-        "imageUrl": "https://www.carlogos.org/logo/Smart-logo-1994-640x550.jpg",
         "models": ["EQ fortwo"]
       },
       {
+        "id": 42,
         "brand": "Subaru",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/subaru-logo-2019-640.png",
         "models": [
           "Ascent",
           "Crosstrek",
@@ -350,20 +327,18 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 43,
         "brand": "Suzuki",
-        "imageUrl": "https://www.carlogos.org/logo/Suzuki-logo-640x285.jpg",
         "models": ["Jimny", "Vitara"]
       },
       {
+        "id": 44,
         "brand": "Tesla",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/tesla-logo-2007-full-640.png",
         "models": ["Model 3", "Model S", "Model X", "Model Y"]
       },
       {
+        "id": 45,
         "brand": "Toyota",
-        "imageUrl":
-            "https://www.carlogos.org/car-logos/toyota-logo-2020-europe-640.png",
         "models": [
           "4Runner",
           "Avalon",
@@ -378,14 +353,13 @@ class JsonsK extends Constants {
         ]
       },
       {
+        "id": 46,
         "brand": "Volkswagen",
-        "imageUrl":
-            "https://www.carlogos.org/logo/Volkswagen-logo-2019-640x500.jpg",
         "models": ["Atlas", "Golf", "ID.4", "Jetta", "Passat", "Tiguan"]
       },
       {
+        "id": 47,
         "brand": "Volvo",
-        "imageUrl": "https://www.carlogos.org/logo/Volvo-logo-2014-640x550.jpg",
         "models": ["S60", "S90", "V60", "XC40", "XC60", "XC90"]
       }
     ]

@@ -131,41 +131,10 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
                   onTap: () => context.read<ManageCarBloc>().add(
                         ManageCarEvent.brandChanged(_list[index].brand),
                       ),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: widget.itemExtent),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 40),
-                      child: Container(
-                        padding: PaddingsK.all16,
-                        margin: EdgeInsets.symmetric(
-                            vertical:
-                                state.brandEntity.value == _list[index].brand
-                                    ? 2
-                                    : 5,
-                            horizontal: 15),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: state.brandEntity.value == _list[index].brand
-                              ? Border.all(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  width: 3,
-                                )
-                              : null,
-                          borderRadius: PaddingsK.circular10,
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                        ),
-                        child: Text(
-                          _list[index].brand,
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                  ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
+                  child: _ListElementWidget(
+                    maxHeight: widget.itemExtent,
+                    carEntity: _list[index],
+                    state: state,
                   ),
                 );
               },
@@ -228,6 +197,54 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
     );
   }
 }
+
+class _ListElementWidget extends StatelessWidget {
+  const _ListElementWidget({
+    super.key,
+    required this.maxHeight,
+    required this.carEntity,
+    required this.state,
+  });
+
+  final double maxHeight;
+  final CarEntity carEntity;
+  final ManageCarState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: maxHeight),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 40),
+        child: Container(
+          padding: PaddingsK.all16,
+          margin: EdgeInsets.symmetric(
+              vertical: state.brandEntity.value == carEntity.brand ? 2 : 5,
+              horizontal: 15),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: state.brandEntity.value == carEntity.brand
+                ? Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 3,
+                  )
+                : null,
+            borderRadius: PaddingsK.circular10,
+            color: Theme.of(context).colorScheme.primaryContainer,
+          ),
+          child: Text(
+            carEntity.brand,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 const List<String> alphabets = [
   'a',
