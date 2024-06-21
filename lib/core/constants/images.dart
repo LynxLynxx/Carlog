@@ -27,5 +27,8 @@ class ImagesK extends Constants {
   static const yes = "$icons/circle_yes.svg";
   static const no = "$icons/circle_no.svg";
 
+  //ANCHOR - ARROWS
+  static const arrowForward = "$icons/arrow_forward.svg";
+
   //!SECTION
 }

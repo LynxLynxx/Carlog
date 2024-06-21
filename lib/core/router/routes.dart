@@ -87,7 +87,15 @@ final List<RouteBase> routes = [
       return DialogPage(builder: (_) => const ConnectionLostPage());
     },
   ),
-
+  AnimationGoRoute(
+    path: "/addCar",
+    builder: (context, state) {
+      final extra = state.extra as BuildContext;
+      return AddCarPage(
+        appContext: extra,
+      );
+    },
+  ),
   //!SECTION
 ];
 
@@ -115,15 +123,6 @@ final List<StatefulShellBranch> shellBranches = [
       path: RoutesK.cars,
       builder: (context, state) => const CarsPage(),
       routes: [
-        AnimationGoRoute(
-          path: "addCar",
-          builder: (context, state) {
-            final extra = state.extra as BuildContext;
-            return AddCarPage(
-              appContext: extra,
-            );
-          },
-        ),
         AnimationGoRoute(
             path: "manageCar",
             builder: (context, state) {

@@ -32,6 +32,7 @@ class PaddingsK extends Constants {
   static BorderRadius circular5 = BorderRadius.circular(5.0);
   static BorderRadius circular10 = BorderRadius.circular(10.0);
   static BorderRadius circular20 = BorderRadius.circular(20.0);
+  static BorderRadius circular30 = BorderRadius.circular(30.0);
 
 
   //!SECTION
