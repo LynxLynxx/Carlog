@@ -107,12 +107,15 @@ class _AddCarViewState extends State<AddCarView>
               padding: PaddingsK.h20,
               child: Column(
                 children: [
-                  LottieBuilder.asset(
-                    AnimationsK.paintCar,
-                    controller: _controller,
-                    onLoaded: (composition) {
-                      _controller.duration = composition.duration;
-                    },
+                  SizedBox(
+                    height: 150,
+                    child: LottieBuilder.asset(
+                      AnimationsK.paintCar,
+                      controller: _controller,
+                      onLoaded: (composition) {
+                        _controller.duration = composition.duration;
+                      },
+                    ),
                   ),
                   TweenAnimationBuilder<double>(
                     duration: Durations.long1,
