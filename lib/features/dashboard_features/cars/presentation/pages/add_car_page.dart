@@ -8,8 +8,11 @@ import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/congratulations_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_brand_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_main_data_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_model_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_submain_data_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +59,7 @@ class _AddCarViewState extends State<AddCarView>
   late final AnimationController _controller;
   int _currentFrame = 0;
   int _page = 0;
-  final int _step = 50;
+  final int _step = 63;
   final int _totalFrames = 251;
 
   @override
@@ -75,8 +78,10 @@ class _AddCarViewState extends State<AddCarView>
     final nextValue = nextFrame / _totalFrames;
     _page++;
     _controller.animateTo(nextValue, duration: DurationsK.d1000);
-    _pageController.animateToPage(_page,
-        duration: DurationsK.d350, curve: Curves.linear);
+    _page != 5
+        ? _pageController.animateToPage(_page,
+            duration: DurationsK.d350, curve: Curves.linear)
+        : null;
   }
 
   @override
@@ -104,6 +109,15 @@ class _AddCarViewState extends State<AddCarView>
                     style: text22W700LS3,
                   ),
                 ),
+                _page == 2 || _page == 3
+                    ? TextButton(
+                        onPressed: () => _animateToNextFrame(),
+                        child: Text(
+                          "Skip",
+                          style: context.titleSmall!
+                              .copyWith(color: context.secondaryColor),
+                        ))
+                    : const SizedBox.shrink()
               ],
             ),
             Expanded(
@@ -145,9 +159,25 @@ class _AddCarViewState extends State<AddCarView>
                         child: PageView(
                           controller: _pageController,
                           physics: const NeverScrollableScrollPhysics(),
-                          children: const [
-                            PickCarBrandWidget(),
-                            PickCarModelWidget(),
+                          children: [
+                            const PickCarBrandWidget(),
+                            const PickCarModelWidget(),
+                            PickCarMainDataWidget(
+                              textEditingControllerList: [
+                                TextEditingController(),
+                                TextEditingController(),
+                                TextEditingController(),
+                              ],
+                            ),
+                            PickCarSubMainDataWidget(
+                              textEditingControllerList: [
+                                TextEditingController(),
+                                TextEditingController(),
+                                TextEditingController(),
+                                TextEditingController(),
+                              ],
+                            ),
+                            const CongratulationsWidget(),
                           ],
                         ),
                       ),

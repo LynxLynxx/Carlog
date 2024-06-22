@@ -2,6 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/car_type_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_capacity_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/fuel_type_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/year_entity_validator.dart';
@@ -24,7 +28,12 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     on<_BrandChanged>(_onBrandChanged);
     on<_ModelChanged>(_onModelChanged);
     on<_YearChanged>(_onYearChanged);
+    on<_MilageChanged>(_onMilageChanged);
     on<_PlateChanged>(_onPlateChanged);
+    on<_CarTypeChanged>(_onCarTypeChanged);
+    on<_FuelTypeChanged>(_onFuelTypeChanged);
+    on<_EngineCapacityChanged>(_onEngineCapacityChanged);
+    on<_EnginePowerChanged>(_onEnginePowerChanged);
     on<_SetInitialCar>(_onSetInitialCar);
     on<_AddCarSubmitted>(_onAddCarSubmitted);
     on<_EditCarSubmitted>(_onEditCarSubmitted);
@@ -52,10 +61,48 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     );
   }
 
+  _onMilageChanged(_MilageChanged event, Emitter<ManageCarState> emit) {
+    final milage = MilageEntityValidator.pure(event.milage);
+    emit(
+      state.copyWith(milageEntity: milage),
+    );
+  }
+
   _onPlateChanged(_PlateChanged event, Emitter<ManageCarState> emit) {
     final plate = PlateEntityValidator.pure(event.plate);
     emit(
       state.copyWith(plateEntity: plate),
+    );
+  }
+
+  _onCarTypeChanged(_CarTypeChanged event, Emitter<ManageCarState> emit) {
+    final carType = CarTypeEntityValidator.pure(event.carType);
+    emit(
+      state.copyWith(typeEntity: carType),
+    );
+  }
+
+  _onFuelTypeChanged(_FuelTypeChanged event, Emitter<ManageCarState> emit) {
+    final fuelType = FuelTypeEntityValidator.pure(event.fuelType);
+    emit(
+      state.copyWith(fuelTypeEntity: fuelType),
+    );
+  }
+
+  _onEngineCapacityChanged(
+      _EngineCapacityChanged event, Emitter<ManageCarState> emit) {
+    final engineCapacity =
+        EngineCapacityEntityValidator.pure(event.engineCapacity);
+    emit(
+      state.copyWith(engineCapacityEntity: engineCapacity),
+    );
+  }
+
+  _onEnginePowerChanged(
+      _EnginePowerChanged event, Emitter<ManageCarState> emit) {
+    final enginePower = EngineCapacityEntityValidator.pure(event.enginePower);
+    emit(
+      state.copyWith(enginePowerEntity: enginePower),
     );
   }
 

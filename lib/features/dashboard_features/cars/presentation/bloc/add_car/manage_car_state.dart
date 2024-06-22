@@ -8,6 +8,14 @@ class ManageCarState with _$ManageCarState {
     @Default(ModelEntityValidator.pure()) ModelEntityValidator modelEntity,
     @Default(YearEntityValidator.pure()) YearEntityValidator yearEntity,
     @Default(PlateEntityValidator.pure()) PlateEntityValidator plateEntity,
+    @Default(MilageEntityValidator.pure()) MilageEntityValidator milageEntity,
+    @Default(CarTypeEntityValidator.pure()) CarTypeEntityValidator typeEntity,
+    @Default(FuelTypeEntityValidator.pure())
+    FuelTypeEntityValidator fuelTypeEntity,
+    @Default(EngineCapacityEntityValidator.pure())
+    EngineCapacityEntityValidator engineCapacityEntity,
+    @Default(EngineCapacityEntityValidator.pure())
+    EngineCapacityEntityValidator enginePowerEntity,
     String? message,
   ]) = _ManageCarState;
 }
