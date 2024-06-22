@@ -4,20 +4,18 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
-import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars_app_bar_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/congratulations_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_brand_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_main_data_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_model_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_submain_data_widget.dart';
-import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class AddCarPage extends StatelessWidget {
@@ -98,28 +96,8 @@ class _AddCarViewState extends State<AddCarView>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_back_ios)),
-                Expanded(
-                  child: Text(
-                    S.of(context).addCar,
-                    style: text22W700LS3,
-                  ),
-                ),
-                _page == 2 || _page == 3
-                    ? TextButton(
-                        onPressed: () => _animateToNextFrame(),
-                        child: Text(
-                          "Skip",
-                          style: context.titleSmall!
-                              .copyWith(color: context.secondaryColor),
-                        ))
-                    : const SizedBox.shrink()
-              ],
-            ),
+            CarsAppBarWidget(
+                page: _page, func: _animateToNextFrame, context: context),
             Expanded(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.95,
@@ -127,6 +105,7 @@ class _AddCarViewState extends State<AddCarView>
                   padding: PaddingsK.h20,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         height: 130,
