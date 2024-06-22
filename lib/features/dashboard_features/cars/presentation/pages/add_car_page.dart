@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
@@ -170,11 +171,10 @@ class _AddCarViewState extends State<AddCarView>
                   }
                 : null,
             shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
-            backgroundColor: Theme.of(context).colorScheme.primary,
+            backgroundColor: context.primaryColor,
             child: SvgPicture.asset(
               ImagesK.arrowForward,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.onPrimary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(context.onPrimary, BlendMode.srcIn),
             ),
           );
         },

@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +25,7 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         borderRadius: PaddingsK.circular20,
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: context.secondaryContainer,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,8 +85,7 @@ class BottomNavigationBarElement extends StatelessWidget {
       onTap: () => func(index),
       child: SvgPicture.asset(
         getIcon(),
-        colorFilter: ColorFilter.mode(
-            Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
+        colorFilter: ColorFilter.mode(context.onSurface, BlendMode.srcIn),
         width: 25,
         height: 25,
       ),

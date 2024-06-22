@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/reset_password/presentation/bloc/reset_password_bloc.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,7 @@ class LinkSentView extends StatelessWidget {
         width: double.infinity,
         padding: PaddingsK.all16,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: PaddingsK.circular10),
+            color: context.surfaceColor, borderRadius: PaddingsK.circular10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -58,7 +58,7 @@ class LinkSentView extends StatelessWidget {
                     onPressed: () => context.pop(),
                     icon: Icon(
                       Icons.close,
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: context.onSurface,
                     ),
                   ),
                 ),

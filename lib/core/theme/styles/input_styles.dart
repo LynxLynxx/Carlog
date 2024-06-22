@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 
 InputDecoration authTextFormFieldInputDecoration(
@@ -16,28 +17,28 @@ InputDecoration authTextFormFieldInputDecoration(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.outline,
+          color: context.outline,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.primary,
+          color: context.primaryColor,
         ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.error,
+          color: context.errorColor,
         ),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.error,
+          color: context.errorColor,
         ),
       ),
     );

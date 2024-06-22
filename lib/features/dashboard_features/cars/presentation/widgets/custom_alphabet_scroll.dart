@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages, must_be_immutable, library_private_types_in_public_api
 
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -183,7 +184,7 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
                                                   .colorScheme
                                                   .primary,
                                               fontWeight: FontWeight.w800)
-                                      : Theme.of(context).textTheme.bodyLarge!,
+                                      : context.bodyLarge!,
                                 ),
                               ),
                             ),
@@ -225,18 +226,18 @@ class _ListElementWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: state.brandEntity.value == carEntity.brand
                 ? Border.all(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: context.primaryColor,
                     width: 3,
                   )
                 : null,
             borderRadius: PaddingsK.circular10,
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: context.primaryContainer,
           ),
           child: Text(
             carEntity.brand,
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+            style: context.bodyLarge!.copyWith(
+              color: context.onPrimaryContainer,
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -244,7 +245,6 @@ class _ListElementWidget extends StatelessWidget {
     );
   }
 }
-
 
 const List<String> alphabets = [
   'a',

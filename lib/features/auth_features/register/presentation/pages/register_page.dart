@@ -99,7 +99,7 @@ class RegisterPageView extends StatelessWidget {
                       //     isLoading: false,
                       //     onTap: () {},
                       //     title: "Apple",
-                      //     asset: Theme.of(context).brightness == Brightness.dark
+                      //     asset: context.isDark
                       //         ? "assets/appleLogo3.png"
                       //         : "assets/appleLogo1.png"),
                     ],

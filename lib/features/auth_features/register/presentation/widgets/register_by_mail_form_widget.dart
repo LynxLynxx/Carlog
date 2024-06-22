@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/auth_features/register/presentation/bloc/mail_register/mail_register_bloc.dart';
@@ -74,7 +75,7 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
                   ),
                   icon: Icon(
                     isPasswordObscure ? Icons.lock : Icons.lock_open,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: context.onSurface,
                   ),
                 ),
               ),

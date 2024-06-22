@@ -1,4 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:star_menu/star_menu.dart';
@@ -27,18 +28,18 @@ class CustomFloatingButtonWidget extends StatelessWidget {
         CustomFloatingChildWidget(id: 0),
       ],
       child: FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: context.primaryColor,
         shape: CircleBorder(
           side: BorderSide(
             width: 5,
-            color: Theme.of(context).colorScheme.surface,
+            color: context.surfaceColor,
           ),
         ),
         onPressed: () {},
         elevation: 0.0,
         child: Icon(
           Icons.add,
-          color: Theme.of(context).colorScheme.surface,
+          color: context.surfaceColor,
         ),
       ),
     );
@@ -68,8 +69,8 @@ class CustomFloatingChildWidget extends StatelessWidget {
       padding: PaddingsK.all8,
       decoration: BoxDecoration(
           borderRadius: PaddingsK.circular10,
-          color: Theme.of(context).colorScheme.onPrimary,
-          border: Border.all(color: Theme.of(context).colorScheme.primary)),
+          color: context.onPrimary,
+          border: Border.all(color: context.primaryColor)),
       child: Text(
         getTitle(),
         textAlign: TextAlign.center,

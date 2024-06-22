@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -36,8 +37,7 @@ class DeleteCarView extends StatelessWidget {
         width: double.infinity,
         padding: PaddingsK.h30v15,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: PaddingsK.circular10),
+            color: context.surfaceColor, borderRadius: PaddingsK.circular10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

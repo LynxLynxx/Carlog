@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:carlog/features/other_features/root/presentation/widgets/custom_bottom_navigation_bar_widget.dart';
@@ -32,8 +33,7 @@ class RootPage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => context.push(RoutesK.connectionLostError),
                     child: CircleAvatar(
-                      backgroundColor:
-                          Theme.of(context).colorScheme.errorContainer,
+                      backgroundColor: context.errorContainer,
                       child: const Icon(Icons.wifi_off),
                     ),
                   ),

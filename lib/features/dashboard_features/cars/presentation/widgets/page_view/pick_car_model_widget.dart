@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:flutter/material.dart';
@@ -44,14 +45,16 @@ class PickCarModelWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Container(
           alignment: Alignment.center,
           child: Text(
             "Unable to locate your model?",
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                color: Theme.of(context).colorScheme.onPrimaryContainer),
+            style: Theme.of(context)
+                .textTheme
+                .labelSmall!
+                .copyWith(color: context.onPrimaryContainer),
           ),
         ),
         GestureDetector(
@@ -59,9 +62,9 @@ class PickCarModelWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               "Enter it manually!",
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  fontWeight: FontWeight.w700),
+              style: context.labelLarge!.copyWith(
+                color: context.onPrimaryContainer,
+              ),
             ),
           ),
         ),
@@ -93,18 +96,18 @@ class _ListElementWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: state.modelEntity.value == model
               ? Border.all(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: context.primaryColor,
                   width: 3,
                 )
               : null,
           borderRadius: PaddingsK.circular10,
-          color: Theme.of(context).colorScheme.primaryContainer,
+          color: context.primaryContainer,
         ),
         child: Text(
           model,
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
+          style: context.bodyLarge!.copyWith(
+            color: context.onPrimaryContainer,
+          ),
           textAlign: TextAlign.center,
         ),
       ),
