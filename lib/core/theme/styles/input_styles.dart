@@ -1,3 +1,4 @@
+import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,51 @@ InputDecoration authTextFormFieldInputDecoration(
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
+        ),
+      ),
+    );
+
+InputDecoration carTextFormFieldInputDecoration(
+        BuildContext context, String? errorText, String hintText,
+        // ignore: avoid_init_to_null
+        {int? errorMaxLine = null,
+        Widget? changeObscure}) =>
+    InputDecoration(
+      hintText: hintText,
+      hintStyle: context.bodySmall,
+      errorText: errorText,
+      errorMaxLines: errorMaxLine,
+      border: InputBorder.none,
+      suffixIcon: changeObscure,
+      contentPadding: PaddingsK.all16,
+      fillColor: context.onPrimary,
+      filled: true,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
+        borderSide: BorderSide(
+          width: 1,
+          color: context.surfaceColor,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
+        borderSide: BorderSide(
+          width: 1,
+          color: context.primaryColor,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
         borderSide: BorderSide(
           width: 1,
           color: context.errorColor,

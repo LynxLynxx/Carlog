@@ -2,9 +2,11 @@ import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/custom_alphabet_scroll.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_brand_manually_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/single_textfield_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PickCarBrandWidget extends StatefulWidget {
   const PickCarBrandWidget({super.key});
@@ -26,7 +28,7 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
           ? Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.46,
                   child: CustomAlphabetScroll(
                     list: carList,
                   ),
@@ -60,8 +62,20 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                 ),
               ],
             )
-          : PickCarBrandManuallyWidget(
-              textEditingController: TextEditingController()),
+          : SingleTextFieldWidget(
+              textEditingController: TextEditingController(),
+              func: () => setState(() {
+                isManually = false;
+                context
+                    .read<ManageCarBloc>()
+                    .add(const ManageCarEvent.brandChanged(""));
+              }),
+              title: "Car Brand",
+              hintText: "e.g. Volvo",
+              func2: (value) => context
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.brandChanged(value)),
+            ),
     );
   }
 }

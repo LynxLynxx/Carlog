@@ -1,9 +1,8 @@
 import "package:flutter/material.dart";
 
 class MaterialTheme {
-  final TextTheme textTheme;
 
-  const MaterialTheme(this.textTheme);
+  const MaterialTheme();
 
   static MaterialScheme lightScheme() {
     return const MaterialScheme(
@@ -359,13 +358,35 @@ class MaterialTheme {
     return theme(darkHighContrastScheme().toColorScheme());
   }
 
-  ThemeData theme(ColorScheme colorScheme) => ThemeData(
+  static ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,
-        textTheme: textTheme.apply(
-          bodyColor: colorScheme.onSurface,
-          displayColor: colorScheme.onSurface,
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+              fontSize: 96.0, fontWeight: FontWeight.w300, letterSpacing: -1.5),
+          displayMedium: TextStyle(
+              fontSize: 60.0, fontWeight: FontWeight.w300, letterSpacing: -0.5),
+          displaySmall: TextStyle(fontSize: 48.0, fontWeight: FontWeight.w400),
+          headlineMedium: TextStyle(
+              fontSize: 34.0, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+          headlineSmall: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+          titleLarge: TextStyle(
+              fontSize: 20.0, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+          titleMedium: TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+          titleSmall: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+          bodyLarge: TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+          bodyMedium: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+          bodySmall: TextStyle(
+              fontSize: 12.0, fontWeight: FontWeight.w400, letterSpacing: 0.4),
+          labelLarge: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w500, letterSpacing: 1.25),
+          labelSmall: TextStyle(
+              fontSize: 10.0, fontWeight: FontWeight.w400, letterSpacing: 1.5),
         ),
         scaffoldBackgroundColor: colorScheme.surface,
         canvasColor: colorScheme.surface,

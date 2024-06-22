@@ -1,13 +1,23 @@
+import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/constants/jsons.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/single_textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PickCarModelWidget extends StatelessWidget {
+class PickCarModelWidget extends StatefulWidget {
   const PickCarModelWidget({super.key});
+
+  @override
+  State<PickCarModelWidget> createState() => _PickCarModelWidgetState();
+}
+
+class _PickCarModelWidgetState extends State<PickCarModelWidget> {
+  bool isManually = false;
 
   int? getBrandId(String brand) {
     for (var car in CarEntity.fromMap(JsonsK.cars)) {
@@ -22,53 +32,74 @@ class PickCarModelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final carList = CarEntity.fromMap(JsonsK.cars);
 
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.45,
-          child: BlocBuilder<ManageCarBloc, ManageCarState>(
-            builder: (context, state) {
-              int carId = getBrandId(state.brandEntity.value) ?? 0;
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) => GestureDetector(
-                    onTap: () => context.read<ManageCarBloc>().add(
-                        ManageCarEvent.modelChanged(
-                            carList[carId].models[index])),
-                    child: _ListElementWidget(
-                        maxHeight: 75,
-                        model: carList[carId].models[index],
-                        state: state)),
-                itemCount: carList[carId].models.length,
-              );
-            },
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(
-            "Unable to locate your model?",
-            style: Theme.of(context)
-                .textTheme
-                .labelSmall!
-                .copyWith(color: context.onPrimaryContainer),
-          ),
-        ),
-        GestureDetector(
-          child: Container(
-            alignment: Alignment.center,
-            child: Text(
-              "Enter it manually!",
-              style: context.labelLarge!.copyWith(
-                color: context.onPrimaryContainer,
-              ),
+    return AnimatedSwitcher(
+      duration: DurationsK.d500,
+      child: !isManually
+          ? Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.46,
+                  child: BlocBuilder<ManageCarBloc, ManageCarState>(
+                    builder: (context, state) {
+                      int carId = getBrandId(state.brandEntity.value) ?? 0;
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) => GestureDetector(
+                            onTap: () => context.read<ManageCarBloc>().add(
+                                ManageCarEvent.modelChanged(
+                                    carList[carId].models[index])),
+                            child: _ListElementWidget(
+                                maxHeight: 75,
+                                model: carList[carId].models[index],
+                                state: state)),
+                        itemCount: carList[carId].models.length,
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Unable to locate your model?",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall!
+                        .copyWith(color: context.onPrimaryContainer),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    isManually = true;
+                  }),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Enter it manually!",
+                      style: context.labelLarge!.copyWith(
+                          color: context.onPrimaryContainer,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : SingleTextFieldWidget(
+              textEditingController: TextEditingController(),
+              func: () => setState(() {
+                isManually = false;
+                context
+                    .read<ManageCarBloc>()
+                    .add(const ManageCarEvent.modelChanged(""));
+              }),
+              title: "Car Model",
+              hintText: "e.g. V60",
+              func2: (value) => context
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.modelChanged(value)),
             ),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -93,7 +124,7 @@ class _ListElementWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             vertical: state.modelEntity.value == model ? 2 : 5, horizontal: 15),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: dropShadowEffect().copyWith(
           border: state.modelEntity.value == model
               ? Border.all(
                   color: context.primaryColor,

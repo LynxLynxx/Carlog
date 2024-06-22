@@ -134,6 +134,7 @@ class _AddCarViewState extends State<AddCarView>
                         builder: (context, value, _) => LinearProgressIndicator(
                           value: _currentFrame / _totalFrames,
                           borderRadius: PaddingsK.circular30,
+                          backgroundColor: context.outlineVariant,
                           minHeight: 8,
                         ),
                       ),

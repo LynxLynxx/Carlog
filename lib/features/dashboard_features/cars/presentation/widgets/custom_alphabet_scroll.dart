@@ -2,6 +2,7 @@
 
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -223,7 +224,7 @@ class _ListElementWidget extends StatelessWidget {
               vertical: state.brandEntity.value == carEntity.brand ? 2 : 5,
               horizontal: 15),
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: dropShadowEffect().copyWith(
             border: state.brandEntity.value == carEntity.brand
                 ? Border.all(
                     color: context.primaryColor,
