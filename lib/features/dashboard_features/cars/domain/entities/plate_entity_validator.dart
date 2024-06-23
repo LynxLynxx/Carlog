@@ -7,7 +7,10 @@ class PlateEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.isEmpty || value.length > 20) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return S.current.carPlateValidator;
+    }
+    if (value.isEmpty || value.length > 20) {
       return S.current.carPlateValidator;
     }
     return null;

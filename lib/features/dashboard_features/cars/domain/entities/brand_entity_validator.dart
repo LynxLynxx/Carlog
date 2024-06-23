@@ -7,7 +7,10 @@ class BrandEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.length < 2 || value.length > 20) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return S.current.carBrandValidator;
+    }
+    if (value.length < 2 || value.length > 20) {
       return S.current.carBrandValidator;
     }
     return null;

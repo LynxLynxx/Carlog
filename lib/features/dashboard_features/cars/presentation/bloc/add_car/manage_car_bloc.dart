@@ -4,6 +4,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_en
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_type_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_capacity_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_power_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/fuel_type_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
@@ -25,6 +26,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
   late String carId = "";
   ManageCarBloc(this._carRepository, this.carsBloc)
       : super(const _ManageCarState()) {
+    //Change the state
     on<_BrandChanged>(_onBrandChanged);
     on<_ModelChanged>(_onModelChanged);
     on<_YearChanged>(_onYearChanged);
@@ -34,6 +36,12 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     on<_FuelTypeChanged>(_onFuelTypeChanged);
     on<_EngineCapacityChanged>(_onEngineCapacityChanged);
     on<_EnginePowerChanged>(_onEnginePowerChanged);
+    //Submit the form
+    on<_SubmitCarBrand>(_onSubmitCarBrand);
+    on<_SubmitCarModel>(_onSubmitCarModel);
+    on<_SubmitCarMainInfo>(_onSubmitCarMainInfo);
+    on<_SubmitCarSubMainInfo>(_onSubmitCarSubMainInfo);
+    //Other
     on<_SetInitialCar>(_onSetInitialCar);
     on<_AddCarSubmitted>(_onAddCarSubmitted);
     on<_EditCarSubmitted>(_onEditCarSubmitted);
@@ -100,10 +108,123 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onEnginePowerChanged(
       _EnginePowerChanged event, Emitter<ManageCarState> emit) {
-    final enginePower = EngineCapacityEntityValidator.pure(event.enginePower);
+    final enginePower = EnginePowerEntityValidator.pure(event.enginePower);
     emit(
       state.copyWith(enginePowerEntity: enginePower),
     );
+  }
+
+  _onSubmitCarBrand(_SubmitCarBrand event, Emitter<ManageCarState> emit) async {
+    final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
+
+    if (!Formz.validate([brand])) {
+      return emit(state.copyWith(
+        brandEntity: brand,
+        message: null,
+      ));
+    }
+
+    emit(state.copyWith(
+      status: FormzSubmissionStatus.success,
+    ));
+
+    return emit(state.copyWith(
+      status: FormzSubmissionStatus.inProgress,
+    ));
+  }
+
+  _onSubmitCarModel(_SubmitCarModel event, Emitter<ManageCarState> emit) async {
+    final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
+
+    if (!Formz.validate([model])) {
+      return emit(state.copyWith(modelEntity: model, message: null));
+    }
+
+    emit(state.copyWith(
+      status: FormzSubmissionStatus.success,
+    ));
+
+    return emit(state.copyWith(
+      status: FormzSubmissionStatus.inProgress,
+    ));
+  }
+
+  _onSubmitCarMainInfo(
+      _SubmitCarMainInfo event, Emitter<ManageCarState> emit) async {
+    final year = YearEntityValidator.dirty(value: state.yearEntity.value);
+    final milage = MilageEntityValidator.dirty(value: state.milageEntity.value);
+    final plate = PlateEntityValidator.dirty(value: state.plateEntity.value);
+
+    List<FormzInput> fields = [year, milage];
+
+    // if (year.value.isNotEmpty) {
+    //   fields.add(year);
+    // }
+    // if (milage.value.isNotEmpty) {
+    //   fields.add(milage);
+    // }
+    if (plate.value.isNotEmpty) {
+      fields.add(plate);
+    }
+
+    if (!Formz.validate(fields)) {
+      return emit(state.copyWith(
+          yearEntity: year,
+          milageEntity: milage,
+          plateEntity: plate,
+          message: null));
+    }
+
+    emit(state.copyWith(
+      status: FormzSubmissionStatus.success,
+    ));
+
+    return emit(state.copyWith(
+      status: FormzSubmissionStatus.inProgress,
+    ));
+  }
+
+  _onSubmitCarSubMainInfo(
+      _SubmitCarSubMainInfo event, Emitter<ManageCarState> emit) async {
+    final type = CarTypeEntityValidator.dirty(value: state.typeEntity.value);
+    final fuelType =
+        FuelTypeEntityValidator.dirty(value: state.fuelTypeEntity.value);
+    final capacity = EngineCapacityEntityValidator.dirty(
+        value: state.engineCapacityEntity.value);
+    final power =
+        EnginePowerEntityValidator.dirty(value: state.enginePowerEntity.value);
+
+    List<FormzInput> fields = [];
+
+    if (type.value.isNotEmpty) {
+      fields.add(type);
+    }
+    if (fuelType.value.isNotEmpty) {
+      fields.add(fuelType);
+    }
+    if (capacity.value.isNotEmpty) {
+      fields.add(capacity);
+    }
+    if (power.value.isNotEmpty) {
+      fields.add(power);
+    }
+
+    if (!Formz.validate(fields)) {
+      return emit(state.copyWith(
+          typeEntity: type,
+          fuelTypeEntity: fuelType,
+          engineCapacityEntity: capacity,
+          enginePowerEntity: power,
+          message: null));
+    }
+
+    emit(state.copyWith(
+      status: FormzSubmissionStatus.success,
+    ));
+
+    return emit(state.copyWith(
+      status: FormzSubmissionStatus.inProgress,
+    ));
   }
 
   _onSetInitialCar(_SetInitialCar event, Emitter<ManageCarState> emit) {

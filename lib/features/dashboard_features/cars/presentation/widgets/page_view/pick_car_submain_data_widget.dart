@@ -35,6 +35,7 @@ class PickCarSubMainDataWidget extends StatelessWidget {
                   .add(ManageCarEvent.carTypeChanged(value)),
               title: "Type",
               hintText: "e.g. SUV",
+              displayError: state.typeEntity.displayError ?? "",
             ),
             const SizedBox(
               height: 30,
@@ -46,6 +47,7 @@ class PickCarSubMainDataWidget extends StatelessWidget {
                   .add(ManageCarEvent.fuelTypeChanged(value)),
               title: "Fuel Type",
               hintText: "e.g. Hybrid",
+              displayError: state.fuelTypeEntity.displayError ?? "",
             ),
             const SizedBox(
               height: 30,
@@ -62,6 +64,7 @@ class PickCarSubMainDataWidget extends StatelessWidget {
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(7),
               ],
+              displayError: state.engineCapacityEntity.displayError ?? "",
             ),
             const SizedBox(
               height: 30,
@@ -78,6 +81,7 @@ class PickCarSubMainDataWidget extends StatelessWidget {
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(4),
               ],
+              displayError: state.enginePowerEntity.displayError ?? "",
             ),
             const SizedBox(
               height: 30,

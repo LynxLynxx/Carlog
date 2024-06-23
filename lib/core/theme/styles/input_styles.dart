@@ -45,15 +45,13 @@ InputDecoration authTextFormFieldInputDecoration(
     );
 
 InputDecoration carTextFormFieldInputDecoration(
-        BuildContext context, String? errorText, String hintText,
+        BuildContext context, String hintText,
         // ignore: avoid_init_to_null
         {int? errorMaxLine = null,
         Widget? changeObscure}) =>
     InputDecoration(
       hintText: hintText,
       hintStyle: context.bodySmall,
-      errorText: errorText,
-      errorMaxLines: errorMaxLine,
       border: InputBorder.none,
       suffixIcon: changeObscure,
       contentPadding: PaddingsK.all16,

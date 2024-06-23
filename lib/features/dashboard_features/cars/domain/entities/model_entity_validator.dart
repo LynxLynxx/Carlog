@@ -7,7 +7,10 @@ class ModelEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.length < 2 || value.length > 30) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return S.current.carModelValidator;
+    }
+    if (value.length < 2 || value.length > 30) {
       return S.current.carModelValidator;
     }
     return null;

@@ -11,6 +11,10 @@ class ManageCarEvent with _$ManageCarEvent {
   const factory ManageCarEvent.fuelTypeChanged(String fuelType) = _FuelTypeChanged;
   const factory ManageCarEvent.engineCapacityChanged(String engineCapacity) = _EngineCapacityChanged;
   const factory ManageCarEvent.enginePowerChanged(String enginePower) = _EnginePowerChanged;
+  const factory ManageCarEvent.submitCarBrand() = _SubmitCarBrand;
+  const factory ManageCarEvent.submitCarModel() = _SubmitCarModel;
+  const factory ManageCarEvent.submitCarMainInfo() = _SubmitCarMainInfo;
+  const factory ManageCarEvent.submitCarSubMainInfo() = _SubmitCarSubMainInfo;
   const factory ManageCarEvent.setInitialCar(CarFirebaseEntity carFirebaseEntity) =
       _SetInitialCar;
   const factory ManageCarEvent.addCarSubmitted() = _AddCarSubmitted;

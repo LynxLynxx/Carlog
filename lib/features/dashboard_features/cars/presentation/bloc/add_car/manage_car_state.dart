@@ -14,8 +14,8 @@ class ManageCarState with _$ManageCarState {
     FuelTypeEntityValidator fuelTypeEntity,
     @Default(EngineCapacityEntityValidator.pure())
     EngineCapacityEntityValidator engineCapacityEntity,
-    @Default(EngineCapacityEntityValidator.pure())
-    EngineCapacityEntityValidator enginePowerEntity,
+    @Default(EnginePowerEntityValidator.pure())
+    EnginePowerEntityValidator enginePowerEntity,
     String? message,
   ]) = _ManageCarState;
 }

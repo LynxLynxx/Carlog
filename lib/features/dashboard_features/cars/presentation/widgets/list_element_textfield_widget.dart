@@ -1,13 +1,12 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:carlog/core/addons/error_widget.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListElementTextfieldWidget extends StatelessWidget {
   final String title;
@@ -16,6 +15,8 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final Function(String) func;
   final TextInputType textInputType;
   final List<TextInputFormatter>? textInputFormatterList;
+  final String displayError;
+  final bool isRequired;
   ListElementTextfieldWidget({
     super.key,
     required this.textEditingController,
@@ -24,6 +25,8 @@ class ListElementTextfieldWidget extends StatelessWidget {
     required this.hintText,
     this.textInputFormatterList,
     this.textInputType = TextInputType.text,
+    required this.displayError,
+    this.isRequired = false,
   });
 
   FocusNode f1 = FocusNode();
@@ -34,17 +37,31 @@ class ListElementTextfieldWidget extends StatelessWidget {
       padding: PaddingsK.h10,
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
+          SizedBox(
+            height: 25,
+            child: Row(
+              children: [
+                Text(
                   title,
                   style: context.titleLarge!.copyWith(
                     color: context.onPrimaryContainer,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 5,
+                ),
+                if (isRequired)
+                  Container(
+                    height: 15,
+                    alignment: Alignment.topCenter,
+                    child: Icon(
+                      Icons.star,
+                      color: context.errorColor,
+                      size: 10,
+                    ),
+                  ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -54,10 +71,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
             child: TextFormField(
               controller: textEditingController,
               autocorrect: false,
-              decoration: carTextFormFieldInputDecoration(
-                  context,
-                  context.read<ManageCarBloc>().state.brandEntity.displayError,
-                  hintText,
+              decoration: carTextFormFieldInputDecoration(context, hintText,
                   errorMaxLine: 2),
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
@@ -69,6 +83,11 @@ class ListElementTextfieldWidget extends StatelessWidget {
               onChanged: (func),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          ErrorBannerWidget(
+              displayError: displayError.isNotEmpty ? displayError : "")
         ],
       ),
     );

@@ -7,7 +7,10 @@ class MilageEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.isEmpty || value.length > 8) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return S.current.milageValidator;
+    }
+    if (value.isEmpty || value.length > 8) {
       return S.current.milageValidator;
     }
     return null;
