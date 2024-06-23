@@ -89,6 +89,16 @@ class _AddCarViewState extends State<AddCarView>
     super.dispose();
   }
 
+  final List<TextEditingController> textEditingControllerList = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,17 +163,17 @@ class _AddCarViewState extends State<AddCarView>
                               const PickCarModelWidget(),
                               PickCarMainDataWidget(
                                 textEditingControllerList: [
-                                  TextEditingController(),
-                                  TextEditingController(),
-                                  TextEditingController(),
+                                  textEditingControllerList[0],
+                                  textEditingControllerList[1],
+                                  textEditingControllerList[2],
                                 ],
                               ),
                               PickCarSubMainDataWidget(
                                 textEditingControllerList: [
-                                  TextEditingController(),
-                                  TextEditingController(),
-                                  TextEditingController(),
-                                  TextEditingController(),
+                                  textEditingControllerList[3],
+                                  textEditingControllerList[4],
+                                  textEditingControllerList[5],
+                                  textEditingControllerList[6],
                                 ],
                               ),
                               const CongratulationsWidget(),

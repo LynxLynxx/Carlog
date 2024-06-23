@@ -17,6 +17,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatterList;
   final String displayError;
   final bool isRequired;
+  final Function()? funcClose;
   ListElementTextfieldWidget({
     super.key,
     required this.textEditingController,
@@ -27,6 +28,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
     this.textInputType = TextInputType.text,
     required this.displayError,
     this.isRequired = false,
+    this.funcClose,
   });
 
   FocusNode f1 = FocusNode();
@@ -41,23 +43,37 @@ class ListElementTextfieldWidget extends StatelessWidget {
             height: 25,
             child: Row(
               children: [
-                Text(
-                  title,
-                  style: context.titleLarge!.copyWith(
-                    color: context.onPrimaryContainer,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(
+                        title,
+                        style: context.titleLarge!.copyWith(
+                          color: context.onPrimaryContainer,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      if (isRequired)
+                        Container(
+                          height: 15,
+                          alignment: Alignment.topCenter,
+                          child: Icon(
+                            Icons.star,
+                            color: context.errorColor,
+                            size: 10,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
-                if (isRequired)
-                  Container(
-                    height: 15,
-                    alignment: Alignment.topCenter,
+                if (funcClose != null)
+                  GestureDetector(
+                    onTap: funcClose,
                     child: Icon(
-                      Icons.star,
-                      color: context.errorColor,
-                      size: 10,
+                      Icons.close,
+                      color: context.primaryColor,
                     ),
                   ),
               ],
@@ -87,7 +103,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
             height: 10,
           ),
           ErrorBannerWidget(
-              displayError: displayError.isNotEmpty ? displayError : "")
+              displayError: displayError.isNotEmpty ? displayError : ""),
         ],
       ),
     );

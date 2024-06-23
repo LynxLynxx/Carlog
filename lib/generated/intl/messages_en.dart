@@ -99,7 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Liters should be between 1 and 4 digits"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
-            "Liters should be between 1 and 8 digits"),
+            "Milage should be between 1 and 8 digits"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
@@ -107,9 +107,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
-            "Liters should be between 1 and 8 digits"),
+            "Price should be between 1 and 8 digits"),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
-            "Liters should be between 1 and 5 digits"),
+            "Price should be between 1 and 5 digits"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),

@@ -4,7 +4,7 @@ import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/custom_alphabet_scroll.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/single_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/list_element_textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +17,8 @@ class PickCarBrandWidget extends StatefulWidget {
 
 class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
   bool isManually = false;
+
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,8 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                 GestureDetector(
                   onTap: () => setState(() {
                     isManually = true;
+                    context.read<ManageCarBloc>().add(
+                        const ManageCarEvent.brandChanged(""));
                   }),
                   child: Container(
                     alignment: Alignment.center,
@@ -62,19 +66,25 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                 ),
               ],
             )
-          : SingleTextFieldWidget(
-              textEditingController: TextEditingController(),
-              func: () => setState(() {
-                isManually = false;
-                context
-                    .read<ManageCarBloc>()
-                    .add(const ManageCarEvent.brandChanged(""));
-              }),
-              title: "Car Brand",
-              hintText: "e.g. Volvo",
-              func2: (value) => context
-                  .read<ManageCarBloc>()
-                  .add(ManageCarEvent.brandChanged(value)),
+          : BlocBuilder<ManageCarBloc, ManageCarState>(
+              builder: (context, state) {
+                return ListElementTextfieldWidget(
+                  textEditingController: textEditingController,
+                  func: (value) => context
+                      .read<ManageCarBloc>()
+                      .add(ManageCarEvent.brandChanged(value)),
+                  title: "Car Brand",
+                  hintText: "e.g. Volvo",
+                  isRequired: true,
+                  displayError: state.brandEntity.displayError ?? "",
+                  funcClose: () => setState(() {
+                    isManually = false;
+                    context
+                        .read<ManageCarBloc>()
+                        .add(const ManageCarEvent.brandChanged(""));
+                  }),
+                );
+              },
             ),
     );
   }

@@ -580,30 +580,30 @@ class S {
     );
   }
 
-  /// `Liters should be between 1 and 5 digits`
+  /// `Price should be between 1 and 5 digits`
   String get priceValidator {
     return Intl.message(
-      'Liters should be between 1 and 5 digits',
+      'Price should be between 1 and 5 digits',
       name: 'priceValidator',
       desc: '',
       args: [],
     );
   }
 
-  /// `Liters should be between 1 and 8 digits`
+  /// `Milage should be between 1 and 8 digits`
   String get milageValidator {
     return Intl.message(
-      'Liters should be between 1 and 8 digits',
+      'Milage should be between 1 and 8 digits',
       name: 'milageValidator',
       desc: '',
       args: [],
     );
   }
 
-  /// `Liters should be between 1 and 8 digits`
+  /// `Price should be between 1 and 8 digits`
   String get pricePerLiterValidator {
     return Intl.message(
-      'Liters should be between 1 and 8 digits',
+      'Price should be between 1 and 8 digits',
       name: 'pricePerLiterValidator',
       desc: '',
       args: [],

@@ -6,7 +6,10 @@ class CarTypeEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.length < 2 || value.length > 15) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return null;
+    }
+    if (value.length < 2 || value.length > 15) {
       return 'The car type should be between 2 and 15 characters';
     }
     return null;

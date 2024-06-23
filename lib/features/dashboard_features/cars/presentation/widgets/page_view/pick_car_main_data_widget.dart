@@ -14,13 +14,8 @@ class PickCarMainDataWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ManageCarBloc, ManageCarState>(
       listener: (context, state) {
-        if (state.status.isFailure) {
-          // SnackbarsK.errorSnackbar(state.message!).show(context);
-        }
-        if (state.status.isSuccess) {
-          // SnackbarsK.successSnackbar(state.message!).show(context);
-          // context.go(RoutesK.cars);
-        }
+        if (state.status.isFailure) {}
+        if (state.status.isSuccess) {}
       },
       builder: (context, state) {
         return Column(

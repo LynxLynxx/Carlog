@@ -7,7 +7,10 @@ class EngineCapacityEntityValidator extends FormzInput<String, String> {
 
   @override
   String? validator(String value) {
-    if ((value.isEmpty || value.length > 7) && value.isNotEmpty) {
+    if (value.isEmpty) {
+      return null;
+    }
+    if (value.length > 7) {
       return 'Engine capacity should be between 1 and 7 digits';
     }
     return null;

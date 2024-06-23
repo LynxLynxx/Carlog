@@ -155,19 +155,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final milage = MilageEntityValidator.dirty(value: state.milageEntity.value);
     final plate = PlateEntityValidator.dirty(value: state.plateEntity.value);
 
-    List<FormzInput> fields = [year, milage];
-
-    // if (year.value.isNotEmpty) {
-    //   fields.add(year);
-    // }
-    // if (milage.value.isNotEmpty) {
-    //   fields.add(milage);
-    // }
-    if (plate.value.isNotEmpty) {
-      fields.add(plate);
-    }
-
-    if (!Formz.validate(fields)) {
+    if (!Formz.validate([year, milage, plate])) {
       return emit(state.copyWith(
           yearEntity: year,
           milageEntity: milage,
@@ -194,22 +182,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final power =
         EnginePowerEntityValidator.dirty(value: state.enginePowerEntity.value);
 
-    List<FormzInput> fields = [];
-
-    if (type.value.isNotEmpty) {
-      fields.add(type);
-    }
-    if (fuelType.value.isNotEmpty) {
-      fields.add(fuelType);
-    }
-    if (capacity.value.isNotEmpty) {
-      fields.add(capacity);
-    }
-    if (power.value.isNotEmpty) {
-      fields.add(power);
-    }
-
-    if (!Formz.validate(fields)) {
+    if (!Formz.validate([type, fuelType, capacity, power])) {
       return emit(state.copyWith(
           typeEntity: type,
           fuelTypeEntity: fuelType,
