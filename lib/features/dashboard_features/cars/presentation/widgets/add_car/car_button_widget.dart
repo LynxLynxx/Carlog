@@ -5,6 +5,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_ca
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CarButtonWidget extends StatelessWidget {
   final int page;
@@ -29,6 +30,8 @@ class CarButtonWidget extends StatelessWidget {
         context.read<ManageCarBloc>().add(
               const ManageCarEvent.submitCarSubMainInfo(),
             );
+      case 4:
+        context.pop();
     }
   }
 
@@ -36,7 +39,7 @@ class CarButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocSelector<ManageCarBloc, ManageCarState, bool>(
       selector: (state) {
-        return true;
+        return state.isButtonActive;
       },
       builder: (context, state) {
         return FloatingActionButton(

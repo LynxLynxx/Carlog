@@ -70,8 +70,9 @@ class _AddCarViewState extends State<AddCarView>
   void _animateToNextFrame() {
     final nextFrame = (_currentFrame + _step).clamp(0, _totalFrames);
     final nextValue = nextFrame / _totalFrames;
-    _page++;
+
     _controller.animateTo(nextValue, duration: DurationsK.d1000);
+    _page++;
     _page != 5
         ? _pageController.animateToPage(_page,
             duration: DurationsK.d350, curve: Curves.linear)

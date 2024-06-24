@@ -17,5 +17,6 @@ class ManageCarState with _$ManageCarState {
     @Default(EnginePowerEntityValidator.pure())
     EnginePowerEntityValidator enginePowerEntity,
     String? message,
+    @Default(true) bool isButtonActive,
   ]) = _ManageCarState;
 }

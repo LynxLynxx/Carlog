@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
@@ -125,12 +126,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     }
 
     emit(state.copyWith(
-      status: FormzSubmissionStatus.success,
-    ));
-
+        status: FormzSubmissionStatus.success, isButtonActive: false));
+    await Future.delayed(DurationsK.d350);
     return emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-    ));
+        status: FormzSubmissionStatus.inProgress, isButtonActive: true));
   }
 
   _onSubmitCarModel(_SubmitCarModel event, Emitter<ManageCarState> emit) async {
@@ -141,12 +140,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     }
 
     emit(state.copyWith(
-      status: FormzSubmissionStatus.success,
-    ));
-
+        status: FormzSubmissionStatus.success, isButtonActive: false));
+    await Future.delayed(DurationsK.d350);
     return emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-    ));
+        status: FormzSubmissionStatus.inProgress, isButtonActive: true));
   }
 
   _onSubmitCarMainInfo(
@@ -164,12 +161,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     }
 
     emit(state.copyWith(
-      status: FormzSubmissionStatus.success,
-    ));
-
+        status: FormzSubmissionStatus.success, isButtonActive: false));
+    await Future.delayed(DurationsK.d1000);
     return emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-    ));
+        status: FormzSubmissionStatus.inProgress, isButtonActive: true));
   }
 
   _onSubmitCarSubMainInfo(
@@ -192,12 +187,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     }
 
     emit(state.copyWith(
-      status: FormzSubmissionStatus.success,
-    ));
-
+        status: FormzSubmissionStatus.success, isButtonActive: false));
+    await Future.delayed(DurationsK.d1000);
     return emit(state.copyWith(
-      status: FormzSubmissionStatus.inProgress,
-    ));
+        status: FormzSubmissionStatus.inProgress, isButtonActive: true));
   }
 
   _onSetInitialCar(_SetInitialCar event, Emitter<ManageCarState> emit) {

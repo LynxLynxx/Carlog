@@ -63,7 +63,7 @@ class PickCarSubMainDataWidget extends StatelessWidget {
               height: 20,
             ),
             ListElementTextfieldWidget(
-              textEditingController: textEditingControllerList[2],
+              textEditingController: textEditingControllerList[3],
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.enginePowerChanged(value)),
