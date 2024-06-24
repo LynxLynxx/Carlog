@@ -1,3 +1,4 @@
+import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 
 class EnginePowerEntityValidator extends FormzInput<String, String> {
@@ -11,7 +12,7 @@ class EnginePowerEntityValidator extends FormzInput<String, String> {
       return null;
     }
     if (value.length > 4) {
-      return 'Engine power should be between 1 and 4 digits';
+      return S.current.enginePowerValidator;
     }
     return null;
   }

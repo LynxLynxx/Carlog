@@ -510,6 +510,46 @@ class S {
     );
   }
 
+  /// `The vehicle type should be between 2 and 15 characters`
+  String get carTypeValidator {
+    return Intl.message(
+      'The vehicle type should be between 2 and 15 characters',
+      name: 'carTypeValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The engine capacity should be between 1 and 7 digits`
+  String get engineCapacityValidator {
+    return Intl.message(
+      'The engine capacity should be between 1 and 7 digits',
+      name: 'engineCapacityValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The engine power should be between 1 and 4 digits`
+  String get enginePowerValidator {
+    return Intl.message(
+      'The engine power should be between 1 and 4 digits',
+      name: 'enginePowerValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The fuel type should be between 2 and 15 characters`
+  String get fuelTypeValidator {
+    return Intl.message(
+      'The fuel type should be between 2 and 15 characters',
+      name: 'fuelTypeValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Successfully added the vehicle`
   String get successfullyAddedTheVehicle {
     return Intl.message(
@@ -605,6 +645,256 @@ class S {
     return Intl.message(
       'Price should be between 1 and 8 digits',
       name: 'pricePerLiterValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cars`
+  String get cars {
+    return Intl.message(
+      'Cars',
+      name: 'cars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations!`
+  String get congratulations {
+    return Intl.message(
+      'Congratulations!',
+      name: 'congratulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have successfully created your car!`
+  String get youHaveSuccessfullyCreatedYourCar {
+    return Intl.message(
+      'You have successfully created your car!',
+      name: 'youHaveSuccessfullyCreatedYourCar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to locate your brand?`
+  String get unableToLocateYourBrand {
+    return Intl.message(
+      'Unable to locate your brand?',
+      name: 'unableToLocateYourBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter it manually!`
+  String get enterItManually {
+    return Intl.message(
+      'Enter it manually!',
+      name: 'enterItManually',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Car Brand`
+  String get carBrand {
+    return Intl.message(
+      'Car Brand',
+      name: 'carBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Volvo`
+  String get egVolvo {
+    return Intl.message(
+      'e.g. Volvo',
+      name: 'egVolvo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year of production`
+  String get yearOfProduction {
+    return Intl.message(
+      'Year of production',
+      name: 'yearOfProduction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 2024`
+  String get eg2024 {
+    return Intl.message(
+      'e.g. 2024',
+      name: 'eg2024',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Milage`
+  String get milage {
+    return Intl.message(
+      'Milage',
+      name: 'milage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 10 000`
+  String get eg10000 {
+    return Intl.message(
+      'e.g. 10 000',
+      name: 'eg10000',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plate`
+  String get plate {
+    return Intl.message(
+      'Plate',
+      name: 'plate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. AUM 550`
+  String get egAUM550 {
+    return Intl.message(
+      'e.g. AUM 550',
+      name: 'egAUM550',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to locate your model?`
+  String get unableToLocateYourModel {
+    return Intl.message(
+      'Unable to locate your model?',
+      name: 'unableToLocateYourModel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Car Model`
+  String get carModel {
+    return Intl.message(
+      'Car Model',
+      name: 'carModel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. XC90`
+  String get egXC90 {
+    return Intl.message(
+      'e.g. XC90',
+      name: 'egXC90',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message(
+      'Type',
+      name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. SUV`
+  String get egSUV {
+    return Intl.message(
+      'e.g. SUV',
+      name: 'egSUV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel Type`
+  String get fuelType {
+    return Intl.message(
+      'Fuel Type',
+      name: 'fuelType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Hybrid`
+  String get egHybrid {
+    return Intl.message(
+      'e.g. Hybrid',
+      name: 'egHybrid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Engine Capacity`
+  String get engineCapacity {
+    return Intl.message(
+      'Engine Capacity',
+      name: 'engineCapacity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 1984`
+  String get eg1984 {
+    return Intl.message(
+      'e.g. 1984',
+      name: 'eg1984',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Engine Power`
+  String get enginePower {
+    return Intl.message(
+      'Engine Power',
+      name: 'enginePower',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 163`
+  String get eg163 {
+    return Intl.message(
+      'e.g. 163',
+      name: 'eg163',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
       desc: '',
       args: [],
     );

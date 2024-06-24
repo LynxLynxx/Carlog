@@ -5,6 +5,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/car_enti
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/custom_alphabet_scroll.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,7 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "Unable to locate your brand?",
+                    S.of(context).unableToLocateYourBrand,
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
@@ -51,13 +52,14 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                 GestureDetector(
                   onTap: () => setState(() {
                     isManually = true;
-                    context.read<ManageCarBloc>().add(
-                        const ManageCarEvent.brandChanged(""));
+                    context
+                        .read<ManageCarBloc>()
+                        .add(const ManageCarEvent.brandChanged(""));
                   }),
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      "Enter it manually!",
+                      S.of(context).enterItManually,
                       style: context.labelLarge!.copyWith(
                           color: context.onPrimaryContainer,
                           fontWeight: FontWeight.w700),
@@ -73,8 +75,8 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
                   func: (value) => context
                       .read<ManageCarBloc>()
                       .add(ManageCarEvent.brandChanged(value)),
-                  title: "Car Brand",
-                  hintText: "e.g. Volvo",
+                  title: S.of(context).carBrand,
+                  hintText: S.of(context).egVolvo,
                   isRequired: true,
                   displayError: state.brandEntity.displayError ?? "",
                   funcClose: () => setState(() {

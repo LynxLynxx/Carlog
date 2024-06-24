@@ -35,7 +35,7 @@ class CarsAppBarWidget extends StatelessWidget {
                 .add(const ManageCarEvent.enginePowerChanged(""));
           },
           child: Text(
-            "Skip",
+            S.of(context).skip,
             style: context.titleSmall!.copyWith(color: context.secondaryColor),
           ),
         );

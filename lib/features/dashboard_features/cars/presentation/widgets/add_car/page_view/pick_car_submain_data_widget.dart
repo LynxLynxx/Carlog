@@ -1,5 +1,6 @@
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +26,8 @@ class PickCarSubMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.carTypeChanged(value)),
-              title: "Type",
-              hintText: "e.g. SUV",
+              title: S.of(context).type,
+              hintText: S.of(context).egSUV,
               displayError: state.typeEntity.displayError ?? "",
             ),
             const SizedBox(
@@ -37,8 +38,8 @@ class PickCarSubMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.fuelTypeChanged(value)),
-              title: "Fuel Type",
-              hintText: "e.g. Hybrid",
+              title: S.of(context).fuelType,
+              hintText: S.of(context).egHybrid,
               displayError: state.fuelTypeEntity.displayError ?? "",
             ),
             const SizedBox(
@@ -49,8 +50,8 @@ class PickCarSubMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.engineCapacityChanged(value)),
-              title: "Engine Capacity (cm3)",
-              hintText: "e.g. AUM 550",
+              title: S.of(context).engineCapacity,
+              hintText: S.of(context).eg1984,
               textInputType: TextInputType.number,
               textInputFormatterList: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -66,8 +67,8 @@ class PickCarSubMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.enginePowerChanged(value)),
-              title: "Engine Power (HP)",
-              hintText: "e.g. 163",
+              title: S.of(context).enginePower,
+              hintText: S.of(context).eg163,
               textInputType: TextInputType.number,
               textInputFormatterList: [
                 FilteringTextInputFormatter.digitsOnly,

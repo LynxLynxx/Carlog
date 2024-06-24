@@ -191,7 +191,6 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
 
 class _ListElementWidget extends StatelessWidget {
   const _ListElementWidget({
-    super.key,
     required this.maxHeight,
     required this.carEntity,
     required this.state,

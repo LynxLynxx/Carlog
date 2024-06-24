@@ -1,5 +1,6 @@
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +26,8 @@ class PickCarMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.yearChanged(value)),
-              title: "Year of production",
-              hintText: "e.g. 2024",
+              title: S.of(context).yearOfProduction,
+              hintText: S.of(context).eg2024,
               isRequired: true,
               textInputType: TextInputType.number,
               textInputFormatterList: [
@@ -43,8 +44,8 @@ class PickCarMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.milageChanged(value)),
-              title: "Milage",
-              hintText: "e.g. 10 000",
+              title: S.of(context).milage,
+              hintText: S.of(context).eg10000,
               isRequired: true,
               textInputType: TextInputType.number,
               textInputFormatterList: [
@@ -61,8 +62,8 @@ class PickCarMainDataWidget extends StatelessWidget {
               func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.plateChanged(value)),
-              title: "Plate",
-              hintText: "e.g. AUM 550",
+              title: S.of(context).plate,
+              hintText: S.of(context).egAUM550,
               displayError: state.plateEntity.displayError ?? "",
             ),
           ],

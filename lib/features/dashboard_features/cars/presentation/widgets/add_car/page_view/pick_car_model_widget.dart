@@ -6,6 +6,7 @@ import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +66,7 @@ class _PickCarModelWidgetState extends State<PickCarModelWidget> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "Unable to locate your model?",
+                    S.of(context).unableToLocateYourModel,
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
@@ -82,7 +83,7 @@ class _PickCarModelWidgetState extends State<PickCarModelWidget> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      "Enter it manually!",
+                      S.of(context).enterItManually,
                       style: context.labelLarge!.copyWith(
                           color: context.onPrimaryContainer,
                           fontWeight: FontWeight.w700),
@@ -98,8 +99,8 @@ class _PickCarModelWidgetState extends State<PickCarModelWidget> {
                   func: (value) => context
                       .read<ManageCarBloc>()
                       .add(ManageCarEvent.modelChanged(value)),
-                  title: "Car Model",
-                  hintText: "e.g. V60",
+                  title: S.of(context).carModel,
+                  hintText: S.of(context).egXC90,
                   isRequired: true,
                   displayError: state.modelEntity.displayError ?? "",
                   funcClose: () => setState(() {

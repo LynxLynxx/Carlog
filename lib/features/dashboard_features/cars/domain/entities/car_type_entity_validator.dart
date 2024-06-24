@@ -1,3 +1,4 @@
+import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 
 class CarTypeEntityValidator extends FormzInput<String, String> {
@@ -10,7 +11,7 @@ class CarTypeEntityValidator extends FormzInput<String, String> {
       return null;
     }
     if (value.length < 2 || value.length > 15) {
-      return 'The car type should be between 2 and 15 characters';
+      return S.current.carTypeValidator;
     }
     return null;
   }

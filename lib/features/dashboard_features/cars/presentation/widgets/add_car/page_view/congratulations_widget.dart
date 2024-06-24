@@ -1,4 +1,5 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CongratulationsWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class CongratulationsWidget extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-            "Congratulations!",
+            S.of(context).congratulations,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
@@ -25,7 +26,7 @@ class CongratulationsWidget extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-            "You have successfully created your car!",
+            S.of(context).youHaveSuccessfullyCreatedYourCar,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!

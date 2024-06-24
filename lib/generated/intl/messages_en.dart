@@ -30,20 +30,45 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you getting an electric car? We support them too!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "Receive notifications about upcoming services and planned repairs!"),
+        "carBrand": MessageLookupByLibrary.simpleMessage("Car Brand"),
         "carBrandValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle brand name should be between 2 and 20 characters"),
+        "carModel": MessageLookupByLibrary.simpleMessage("Car Model"),
         "carModelValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle model name should be between 1 and 30 characters"),
         "carPlateValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle plate should be between 1 and 15 characters"),
+        "carTypeValidator": MessageLookupByLibrary.simpleMessage(
+            "The vehicle type should be between 2 and 15 characters"),
         "carYearValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle year of manufacture should be 4 characters"),
+        "cars": MessageLookupByLibrary.simpleMessage("Cars"),
+        "congratulations":
+            MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this vehicle?"),
+        "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
+        "eg163": MessageLookupByLibrary.simpleMessage("e.g. 163"),
+        "eg1984": MessageLookupByLibrary.simpleMessage("e.g. 1984"),
+        "eg2024": MessageLookupByLibrary.simpleMessage("e.g. 2024"),
+        "egAUM550": MessageLookupByLibrary.simpleMessage("e.g. AUM 550"),
+        "egHybrid": MessageLookupByLibrary.simpleMessage("e.g. Hybrid"),
+        "egSUV": MessageLookupByLibrary.simpleMessage("e.g. SUV"),
+        "egVolvo": MessageLookupByLibrary.simpleMessage("e.g. Volvo"),
+        "egXC90": MessageLookupByLibrary.simpleMessage("e.g. XC90"),
         "electricCars": MessageLookupByLibrary.simpleMessage("Electric cars"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "engineCapacity":
+            MessageLookupByLibrary.simpleMessage("Engine Capacity"),
+        "engineCapacityValidator": MessageLookupByLibrary.simpleMessage(
+            "The engine capacity should be between 1 and 7 digits"),
+        "enginePower": MessageLookupByLibrary.simpleMessage("Engine Power"),
+        "enginePowerValidator": MessageLookupByLibrary.simpleMessage(
+            "The engine power should be between 1 and 4 digits"),
+        "enterItManually":
+            MessageLookupByLibrary.simpleMessage("Enter it manually!"),
         "errorAborted":
             MessageLookupByLibrary.simpleMessage("The operation was aborted"),
         "errorAccountExists": MessageLookupByLibrary.simpleMessage(
@@ -94,10 +119,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "User with this credentials does not exists"),
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
+        "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
+        "fuelTypeValidator": MessageLookupByLibrary.simpleMessage(
+            "The fuel type should be between 2 and 15 characters"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "litersValidator": MessageLookupByLibrary.simpleMessage(
             "Liters should be between 1 and 4 digits"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -106,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
+        "plate": MessageLookupByLibrary.simpleMessage("Plate"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
             "Price should be between 1 and 8 digits"),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
@@ -113,13 +143,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully added the vehicle"),
         "successfullyDeletedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully deleted the vehicle"),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully edited the vehicle"),
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
+            "Unable to locate your brand?"),
+        "unableToLocateYourModel": MessageLookupByLibrary.simpleMessage(
+            "Unable to locate your model?"),
         "updateCar": MessageLookupByLibrary.simpleMessage("Update Car"),
-        "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!")
+        "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
+        "yearOfProduction":
+            MessageLookupByLibrary.simpleMessage("Year of production"),
+        "youHaveSuccessfullyCreatedYourCar":
+            MessageLookupByLibrary.simpleMessage(
+                "You have successfully created your car!")
       };
 }
