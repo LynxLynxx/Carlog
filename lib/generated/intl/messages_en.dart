@@ -38,8 +38,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "The vehicle model name should be between 1 and 30 characters"),
         "carPlateValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle plate should be between 1 and 15 characters"),
-        "carTypeValidator": MessageLookupByLibrary.simpleMessage(
-            "The vehicle type should be between 2 and 15 characters"),
         "carYearValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle year of manufacture should be 4 characters"),
         "cars": MessageLookupByLibrary.simpleMessage("Cars"),
@@ -120,8 +118,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
-        "fuelTypeValidator": MessageLookupByLibrary.simpleMessage(
-            "The fuel type should be between 2 and 15 characters"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "litersValidator": MessageLookupByLibrary.simpleMessage(
             "Liters should be between 1 and 4 digits"),

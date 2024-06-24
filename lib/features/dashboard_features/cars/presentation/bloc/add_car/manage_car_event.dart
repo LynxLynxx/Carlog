@@ -7,8 +7,8 @@ class ManageCarEvent with _$ManageCarEvent {
   const factory ManageCarEvent.yearChanged(String year) = _YearChanged;
   const factory ManageCarEvent.plateChanged(String plate) = _PlateChanged;
   const factory ManageCarEvent.milageChanged(String milage) = _MilageChanged;
-  const factory ManageCarEvent.carTypeChanged(String carType) = _CarTypeChanged;
-  const factory ManageCarEvent.fuelTypeChanged(String fuelType) = _FuelTypeChanged;
+  const factory ManageCarEvent.carTypeChanged(CarTypeEnum carType) = _CarTypeChanged;
+  const factory ManageCarEvent.fuelTypeChanged(FuelTypeEnum fuelType) = _FuelTypeChanged;
   const factory ManageCarEvent.engineCapacityChanged(String engineCapacity) = _EngineCapacityChanged;
   const factory ManageCarEvent.enginePowerChanged(String enginePower) = _EnginePowerChanged;
   const factory ManageCarEvent.submitCarBrand() = _SubmitCarBrand;

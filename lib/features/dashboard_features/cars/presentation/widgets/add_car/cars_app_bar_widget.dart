@@ -23,10 +23,9 @@ class CarsAppBarWidget extends StatelessWidget {
             func();
             context
                 .read<ManageCarBloc>()
-                .add(const ManageCarEvent.carTypeChanged(""));
-            context
-                .read<ManageCarBloc>()
-                .add(const ManageCarEvent.fuelTypeChanged(""));
+                .add(const ManageCarEvent.carTypeChanged(CarTypeEnum.Sedan));
+            context.read<ManageCarBloc>().add(
+                const ManageCarEvent.fuelTypeChanged(FuelTypeEnum.Gasoline));
             context
                 .read<ManageCarBloc>()
                 .add(const ManageCarEvent.engineCapacityChanged(""));

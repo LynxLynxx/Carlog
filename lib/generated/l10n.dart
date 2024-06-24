@@ -510,16 +510,6 @@ class S {
     );
   }
 
-  /// `The vehicle type should be between 2 and 15 characters`
-  String get carTypeValidator {
-    return Intl.message(
-      'The vehicle type should be between 2 and 15 characters',
-      name: 'carTypeValidator',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `The engine capacity should be between 1 and 7 digits`
   String get engineCapacityValidator {
     return Intl.message(
@@ -535,16 +525,6 @@ class S {
     return Intl.message(
       'The engine power should be between 1 and 4 digits',
       name: 'enginePowerValidator',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `The fuel type should be between 2 and 15 characters`
-  String get fuelTypeValidator {
-    return Intl.message(
-      'The fuel type should be between 2 and 15 characters',
-      name: 'fuelTypeValidator',
       desc: '',
       args: [],
     );

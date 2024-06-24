@@ -3,10 +3,8 @@ import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/entities/car_type_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_capacity_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_power_entity_validator.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/entities/fuel_type_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
@@ -85,16 +83,14 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
   }
 
   _onCarTypeChanged(_CarTypeChanged event, Emitter<ManageCarState> emit) {
-    final carType = CarTypeEntityValidator.pure(event.carType);
     emit(
-      state.copyWith(typeEntity: carType),
+      state.copyWith(typeEntity: event.carType),
     );
   }
 
   _onFuelTypeChanged(_FuelTypeChanged event, Emitter<ManageCarState> emit) {
-    final fuelType = FuelTypeEntityValidator.pure(event.fuelType);
     emit(
-      state.copyWith(fuelTypeEntity: fuelType),
+      state.copyWith(fuelTypeEntity: event.fuelType),
     );
   }
 
@@ -169,18 +165,13 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onSubmitCarSubMainInfo(
       _SubmitCarSubMainInfo event, Emitter<ManageCarState> emit) async {
-    final type = CarTypeEntityValidator.dirty(value: state.typeEntity.value);
-    final fuelType =
-        FuelTypeEntityValidator.dirty(value: state.fuelTypeEntity.value);
     final capacity = EngineCapacityEntityValidator.dirty(
         value: state.engineCapacityEntity.value);
     final power =
         EnginePowerEntityValidator.dirty(value: state.enginePowerEntity.value);
 
-    if (!Formz.validate([type, fuelType, capacity, power])) {
+    if (!Formz.validate([capacity, power])) {
       return emit(state.copyWith(
-          typeEntity: type,
-          fuelTypeEntity: fuelType,
           engineCapacityEntity: capacity,
           enginePowerEntity: power,
           message: null));

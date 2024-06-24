@@ -1,4 +1,5 @@
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,27 +22,38 @@ class PickCarSubMainDataWidget extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            ListElementTextfieldWidget(
-              textEditingController: textEditingControllerList[0],
-              func: (value) => context
-                  .read<ManageCarBloc>()
-                  .add(ManageCarEvent.carTypeChanged(value)),
+            CustomDropdownWidget(
               title: S.of(context).type,
-              hintText: S.of(context).egSUV,
-              displayError: state.typeEntity.displayError ?? "",
+              id: 0,
             ),
             const SizedBox(
               height: 20,
             ),
-            ListElementTextfieldWidget(
-              textEditingController: textEditingControllerList[1],
-              func: (value) => context
-                  .read<ManageCarBloc>()
-                  .add(ManageCarEvent.fuelTypeChanged(value)),
+            CustomDropdownWidget(
               title: S.of(context).fuelType,
-              hintText: S.of(context).egHybrid,
-              displayError: state.fuelTypeEntity.displayError ?? "",
+              id: 1,
             ),
+            // ListElementTextfieldWidget(
+            //   textEditingController: textEditingControllerList[0],
+            //   func: (value) => context
+            //       .read<ManageCarBloc>()
+            //       .add(ManageCarEvent.carTypeChanged(value)),
+            //   title: S.of(context).type,
+            //   hintText: S.of(context).egSUV,
+            //   displayError: state.typeEntity.displayError ?? "",
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // ListElementTextfieldWidget(
+            //   textEditingController: textEditingControllerList[1],
+            //   func: (value) => context
+            //       .read<ManageCarBloc>()
+            //       .add(ManageCarEvent.fuelTypeChanged(value)),
+            //   title: S.of(context).fuelType,
+            //   hintText: S.of(context).egHybrid,
+            //   displayError: state.fuelTypeEntity.displayError ?? "",
+            // ),
             const SizedBox(
               height: 20,
             ),

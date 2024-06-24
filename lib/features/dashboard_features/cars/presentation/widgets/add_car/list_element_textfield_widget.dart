@@ -92,6 +92,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
               focusNode: f1,
+              style: context.titleMedium,
               inputFormatters: textInputFormatterList,
               onEditingComplete: () {
                 f1.unfocus();
