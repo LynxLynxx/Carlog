@@ -4,6 +4,8 @@ import 'package:carlog/core/router/router.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
+import 'package:carlog/features/other_features/push_notifications/bloc/fcm/fcm_bloc.dart';
+import 'package:carlog/features/other_features/push_notifications/bloc/fcm_token/fcm_token_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +31,14 @@ Future<void> main() async {
       BlocProvider(
         create: (context) => NetworkConnectionCubit(),
         lazy: false,
+      ),
+      BlocProvider(
+        lazy: false,
+        create: (context) => FcmBloc(),
+      ),
+      BlocProvider(
+        lazy: false,
+        create: (context) => FcmTokenBloc(),
       ),
     ],
     child: const MyApp(),

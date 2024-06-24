@@ -1,0 +1,6 @@
+part of 'fcm_bloc.dart';
+
+@freezed
+class FcmEvent with _$FcmEvent {
+  const factory FcmEvent.started() = _Started;
+}

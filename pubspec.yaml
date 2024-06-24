@@ -45,6 +45,7 @@ dependencies:
   circular_menu: ^3.0.0
   star_menu: ^4.0.1
   animated_snack_bar: ^0.4.0
+  firebase_messaging: ^14.9.4
 
 dev_dependencies:
   flutter_test:
