@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/constants.dart';
 class DurationsK extends Constants {
   //SECTION - [DURATIONS]
 
+  static const d250 = Duration(milliseconds: 250);
   static const d350 = Duration(milliseconds: 350);
   static const d500 = Duration(milliseconds: 500);
   static const d1000 = Duration(milliseconds: 1000);

@@ -4,15 +4,14 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/basic_add_car/basic_add_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/car_button_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars_app_bar_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/congratulations_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_brand_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_main_data_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_model_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/page_view/pick_car_submain_data_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/car_button_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/cars_app_bar_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/congratulations_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_brand_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_main_data_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_model_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_submain_data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -26,9 +25,6 @@ class AddCarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => BasicAddCarBloc(),
-        ),
         BlocProvider(
           create: (context) => ManageCarBloc(
             locator(),
@@ -105,9 +101,7 @@ class _AddCarViewState extends State<AddCarView>
       body: SafeArea(
         child: BlocListener<ManageCarBloc, ManageCarState>(
           listener: (context, state) {
-            if (state.status.isFailure) {
-              // SnackbarsK.errorSnackbar(state.message!).show(context);
-            }
+            if (state.status.isFailure) {}
             if (state.status.isSuccess) {
               _animateToNextFrame();
             }

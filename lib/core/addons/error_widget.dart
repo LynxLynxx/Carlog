@@ -10,7 +10,7 @@ class ErrorBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-        duration: DurationsK.d350,
+        duration: DurationsK.d250,
         child: displayError.isNotEmpty
             ? ErrorChildWidget(
                 displayError: displayError,

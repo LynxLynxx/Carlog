@@ -480,10 +480,10 @@ class S {
     );
   }
 
-  /// `The vehicle model name should be between 2 and 30 characters`
+  /// `The vehicle model name should be between 1 and 30 characters`
   String get carModelValidator {
     return Intl.message(
-      'The vehicle model name should be between 2 and 30 characters',
+      'The vehicle model name should be between 1 and 30 characters',
       name: 'carModelValidator',
       desc: '',
       args: [],

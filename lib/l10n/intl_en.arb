@@ -43,7 +43,7 @@
   "errorUnimplemented": "Operation is not implemented or not supported",
   "errorUnknown": "Unkown error occurred",
   "carBrandValidator": "The vehicle brand name should be between 2 and 20 characters",
-  "carModelValidator": "The vehicle model name should be between 2 and 30 characters",
+  "carModelValidator": "The vehicle model name should be between 1 and 30 characters",
   "carYearValidator": "The vehicle year of manufacture should be 4 characters",
   "carPlateValidator": "The vehicle plate should be between 1 and 15 characters",
   "successfullyAddedTheVehicle": "Successfully added the vehicle",

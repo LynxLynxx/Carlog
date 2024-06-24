@@ -1,6 +1,6 @@
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/car_list_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/car_list_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

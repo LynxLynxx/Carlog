@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "carBrandValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle brand name should be between 2 and 20 characters"),
         "carModelValidator": MessageLookupByLibrary.simpleMessage(
-            "The vehicle model name should be between 2 and 30 characters"),
+            "The vehicle model name should be between 1 and 30 characters"),
         "carPlateValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle plate should be between 1 and 15 characters"),
         "carYearValidator": MessageLookupByLibrary.simpleMessage(

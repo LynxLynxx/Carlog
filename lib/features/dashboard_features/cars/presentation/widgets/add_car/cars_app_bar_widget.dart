@@ -17,25 +17,6 @@ class CarsAppBarWidget extends StatelessWidget {
 
   Widget getAction() {
     switch (page) {
-      case 2:
-        return TextButton(
-          onPressed: () {
-            func();
-            context
-                .read<ManageCarBloc>()
-                .add(const ManageCarEvent.yearChanged(""));
-            context
-                .read<ManageCarBloc>()
-                .add(const ManageCarEvent.milageChanged(""));
-            context
-                .read<ManageCarBloc>()
-                .add(const ManageCarEvent.plateChanged(""));
-          },
-          child: Text(
-            "Skip",
-            style: context.titleSmall!.copyWith(color: context.secondaryColor),
-          ),
-        );
       case 3:
         return TextButton(
           onPressed: () {

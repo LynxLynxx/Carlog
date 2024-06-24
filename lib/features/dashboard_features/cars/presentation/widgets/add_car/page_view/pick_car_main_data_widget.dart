@@ -1,5 +1,5 @@
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/list_element_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +36,7 @@ class PickCarMainDataWidget extends StatelessWidget {
               displayError: state.yearEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[1],
@@ -54,7 +54,7 @@ class PickCarMainDataWidget extends StatelessWidget {
               displayError: state.milageEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[2],
@@ -64,9 +64,6 @@ class PickCarMainDataWidget extends StatelessWidget {
               title: "Plate",
               hintText: "e.g. AUM 550",
               displayError: state.plateEntity.displayError ?? "",
-            ),
-            const SizedBox(
-              height: 30,
             ),
           ],
         );
