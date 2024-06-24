@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addCar": MessageLookupByLibrary.simpleMessage("Dodaj samochód"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analityka"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "Uzyskaj dostęp do szczegółowych statystyk wydatków na samochód!"),
@@ -29,10 +30,42 @@ class MessageLookup extends MessageLookupByLibrary {
             "Posiadasz samochód elektryczny? My również go wspieramy!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "Otrzymuj powiadomienia o nadchodzących serwisach i planowanych naprawach!"),
+        "carBrand": MessageLookupByLibrary.simpleMessage("Marka samochodu"),
+        "carBrandValidator": MessageLookupByLibrary.simpleMessage(
+            "Nazwa marki pojazdu powinna zawierać od 2 do 20 znaków."),
+        "carModel": MessageLookupByLibrary.simpleMessage("Model samochodu"),
+        "carModelValidator": MessageLookupByLibrary.simpleMessage(
+            "Nazwa modelu pojazdu powinna zawierać od 1 do 30 znaków."),
+        "carPlateValidator": MessageLookupByLibrary.simpleMessage(
+            "Numer rejestracyjny pojazdu powinien zawierać od 1 do 15 znaków."),
+        "carYearValidator": MessageLookupByLibrary.simpleMessage(
+            "Rok produkcji pojazdu powinien zawierać 4 znaki."),
+        "cars": MessageLookupByLibrary.simpleMessage("Samochody"),
+        "congratulations": MessageLookupByLibrary.simpleMessage("Gratulacje!"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Utwórz konto!"),
+        "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Czy na pewno chcesz usunąć ten pojazd?"),
+        "eg10000": MessageLookupByLibrary.simpleMessage("np. 10 000"),
+        "eg163": MessageLookupByLibrary.simpleMessage("np. 163"),
+        "eg1984": MessageLookupByLibrary.simpleMessage("np. 1984"),
+        "eg2024": MessageLookupByLibrary.simpleMessage("np. 2024"),
+        "egAUM550": MessageLookupByLibrary.simpleMessage("np. AUM 550"),
+        "egHybrid": MessageLookupByLibrary.simpleMessage("np. Hybrid"),
+        "egSUV": MessageLookupByLibrary.simpleMessage("np. SUV"),
+        "egVolvo": MessageLookupByLibrary.simpleMessage("np. Volvo"),
+        "egXC90": MessageLookupByLibrary.simpleMessage("np. XC90"),
         "electricCars":
             MessageLookupByLibrary.simpleMessage("Samochody elektryczne"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "engineCapacity":
+            MessageLookupByLibrary.simpleMessage("Pojemność silnika"),
+        "engineCapacityValidator": MessageLookupByLibrary.simpleMessage(
+            "Pojemność silnika powinna zawierać od 1 do 7 cyfr."),
+        "enginePower": MessageLookupByLibrary.simpleMessage("Moc silnika"),
+        "enginePowerValidator": MessageLookupByLibrary.simpleMessage(
+            "Moc silnika powinna zawierać od 1 do 4 cyfr."),
+        "enterItManually":
+            MessageLookupByLibrary.simpleMessage("Wpisz ją ręcznie!"),
         "errorAborted":
             MessageLookupByLibrary.simpleMessage("Operacja została przerwana"),
         "errorAccountExists": MessageLookupByLibrary.simpleMessage(
@@ -83,17 +116,48 @@ class MessageLookup extends MessageLookupByLibrary {
             "Użytkownik z tymi poświadczeniami nie istnieje"),
         "errorWeakPassword":
             MessageLookupByLibrary.simpleMessage("Podaj silniejsze hasło"),
+        "fuelType": MessageLookupByLibrary.simpleMessage("Rodzaj paliwa"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Rozpocznij"),
+        "litersValidator": MessageLookupByLibrary.simpleMessage(
+            "Pojemność w litrach powinna zawierać od 1 do 4 cyfr."),
         "login": MessageLookupByLibrary.simpleMessage("Logowanie"),
+        "milage": MessageLookupByLibrary.simpleMessage("Przebieg"),
+        "milageValidator": MessageLookupByLibrary.simpleMessage(
+            "Przebieg powinien zawierać od 1 do 8 cyfr."),
         "next": MessageLookupByLibrary.simpleMessage("Dalej"),
         "notifications": MessageLookupByLibrary.simpleMessage("Powiadomienia"),
         "or": MessageLookupByLibrary.simpleMessage("LUB"),
         "password": MessageLookupByLibrary.simpleMessage("Hasło"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Odzyskiwanie hasła"),
+        "plate": MessageLookupByLibrary.simpleMessage("Numer rejestracyjny"),
+        "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
+            "Cena powinna zawierać od 1 do 8 cyfr."),
+        "priceValidator": MessageLookupByLibrary.simpleMessage(
+            "Cena powinna zawierać od 1 do 5 cyfr."),
         "register": MessageLookupByLibrary.simpleMessage("Rejestracja"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Przypomnij hasło"),
-        "welocomeBack": MessageLookupByLibrary.simpleMessage("Witamy ponownie!")
+        "skip": MessageLookupByLibrary.simpleMessage("Pomiń"),
+        "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Pojazd został pomyślnie dodany."),
+        "successfullyDeletedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Pojazd został pomyślnie usunięty."),
+        "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Pojazd został pomyślnie edytowany."),
+        "type": MessageLookupByLibrary.simpleMessage("Typ"),
+        "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
+            "Nie możesz znaleźć swojej marki?"),
+        "unableToLocateYourModel": MessageLookupByLibrary.simpleMessage(
+            "Nie możesz znaleźć swojego modelu?"),
+        "updateCar":
+            MessageLookupByLibrary.simpleMessage("Aktualizuj samochód"),
+        "welocomeBack":
+            MessageLookupByLibrary.simpleMessage("Witamy ponownie!"),
+        "yearOfProduction":
+            MessageLookupByLibrary.simpleMessage("Rok produkcji"),
+        "youHaveSuccessfullyCreatedYourCar":
+            MessageLookupByLibrary.simpleMessage(
+                "Pomyślnie utworzyłeś swój samochód!")
       };
 }
