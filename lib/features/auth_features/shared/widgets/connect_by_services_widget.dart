@@ -15,30 +15,33 @@ class ConnectByService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: SizedBox(
-        // width: 0.2.sw,
-        height: 60,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: !isLoading
-                ? Image.asset(
-                    asset,
-                    width: 30,
-                    height: 30,
-                  )
-                : SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: Transform.scale(
-                      scale: 0.85,
-                      child: const CircularProgressIndicator(
-                        strokeWidth: 4,
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SizedBox(
+          // width: 0.2.sw,
+          height: 60,
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: !isLoading
+                  ? Image.asset(
+                      asset,
+                      width: 30,
+                      height: 30,
+                    )
+                  : SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Transform.scale(
+                        scale: 0.85,
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 4,
+                        ),
                       ),
                     ),
-                  ),
+            ),
           ),
         ),
       ),

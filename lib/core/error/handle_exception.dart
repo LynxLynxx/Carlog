@@ -1,4 +1,5 @@
 import 'package:carlog/core/error/failures.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,8 @@ Future<Either<Failure, ResponseType>> handleResponse<ResponseType>(
     return Right(response);
   } on FirebaseAuthException catch (e) {
     return Left(_handleFirebaseAuthException(e));
+  } on FirebaseException catch (e) {
+    return Left(_handleFirebaseFirestoreErrors(e));
   } catch (e) {
     return Left(_handleCommonErrors(e));
   }
@@ -22,60 +25,102 @@ Future<Option<Failure>> handleVoidResponse<ResponseType>(
     return const None();
   } on FirebaseAuthException catch (e) {
     return Some(_handleFirebaseAuthException(e));
+  } on FirebaseException catch (e) {
+    return Some(_handleFirebaseFirestoreErrors(e));
   } catch (e) {
     return Some(_handleCommonErrors(e));
   }
 }
 
 Failure _handleFirebaseAuthException(FirebaseAuthException exception) {
+  final tr = S.current;
   switch (exception.code) {
     case 'account-exists-with-different-credential':
-      return const AuthFailure(
-        message: 'Account exists with different credentials.',
+      return AuthFailure(
+        message: tr.errorAccountExists,
       );
     case 'invalid-credential':
-      return const AuthFailure(
-        message: 'The credential received is malformed or has expired.',
+      return AuthFailure(
+        message: tr.errorInvalidCredential,
       );
     case 'operation-not-allowed':
-      return const AuthFailure(
-        message: 'Operation is not allowed.  Please contact support.',
+      return AuthFailure(
+        message: tr.errorOperationNotAllowed,
       );
     case 'user-disabled':
-      return const AuthFailure(
-        message:
-            'This user has been disabled. Please contact support for help.',
+      return AuthFailure(
+        message: tr.errorUserDisabled,
       );
     case 'user-not-found':
-      return const AuthFailure(
-        message: 'Email is not found, please create an account.',
+      return AuthFailure(
+        message: tr.errorUserNotFound,
       );
     case 'wrong-password':
-      return const AuthFailure(
-        message: 'Incorrect password, please try again.',
+      return AuthFailure(
+        message: tr.errorInvalidCredential,
       );
     case 'invalid-verification-code':
-      return const AuthFailure(
-        message: 'The credential verification code received is invalid.',
+      return AuthFailure(
+        message: tr.errorInvalidVerificationCode,
       );
     case 'invalid-verification-id':
-      return const AuthFailure(
-        message: 'The credential verification ID received is invalid.',
+      return AuthFailure(
+        message: tr.errorInvalidCerificationId,
       );
     case 'invalid-email':
-      return const AuthFailure(
-        message: 'Email is not valid or badly formatted.',
+      return AuthFailure(
+        message: tr.errorInvalidEmail,
       );
     case 'email-already-in-use':
-      return const AuthFailure(
-        message: 'An account already exists for that email.',
+      return AuthFailure(
+        message: tr.errorInvalidCredential,
       );
     case 'weak-password':
-      return const AuthFailure(
-        message: 'Please enter a stronger password.',
+      return AuthFailure(
+        message: tr.errorWeakPassword,
       );
     default:
       return UnknownFailure.undefinedFirebase(message: exception.code);
+  }
+}
+
+Failure _handleFirebaseFirestoreErrors(FirebaseException firebaseException) {
+  final tr = S.current;
+  switch (firebaseException.code) {
+    case 'aborted':
+      return FirestoreFailure(message: tr.errorAborted);
+    case "already-exists":
+      return FirestoreFailure(message: tr.errorAlreadyExists);
+    case "canceled":
+      return FirestoreFailure(message: tr.errorCancled);
+    case "data-loss":
+      return FirestoreFailure(message: tr.errorDataLoss);
+    case "deadline-exceeded":
+      return FirestoreFailure(message: tr.errorDeadlineExceeded);
+
+    case "failed_precondition":
+      return FirestoreFailure(message: tr.errorFailedPrecondition);
+    case "interal":
+      return FirestoreFailure(message: tr.errorInternal);
+    case "invalid_argument":
+      return FirestoreFailure(message: tr.errorInvalidArgument);
+    case "not-found":
+      return FirestoreFailure(message: tr.errorNotFound);
+    case "out-of-range":
+      return FirestoreFailure(message: tr.errorOutOfRange);
+    case "resourse-exhausted":
+      return FirestoreFailure(message: tr.errorResourceExhausted);
+
+    case "unauthenticated":
+      return FirestoreFailure(message: tr.errorUnauthenticated);
+    case "unavailable":
+      return FirestoreFailure(message: tr.errorUnavailable);
+    case "unimplemented":
+      return FirestoreFailure(message: tr.errorUnimplemented);
+    case "unknown":
+      return FirestoreFailure(message: tr.errorUnknown);
+    default:
+      return UnknownFailure.undefinedFirebase(message: firebaseException.code);
   }
 }
 

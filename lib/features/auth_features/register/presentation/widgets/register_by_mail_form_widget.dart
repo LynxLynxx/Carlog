@@ -1,8 +1,11 @@
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/auth_features/register/presentation/bloc/mail_register/mail_register_bloc.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterByMailFormWidget extends StatefulWidget {
   const RegisterByMailFormWidget({
@@ -18,9 +21,16 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
   FocusNode f1 = FocusNode();
   FocusNode f2 = FocusNode();
 
+  bool isPasswordObscure = true;
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MailRegisterBloc, MailRegisterState>(
+    return BlocConsumer<MailRegisterBloc, MailRegisterState>(
+      listener: (context, state) {
+        if (state.status == FormzSubmissionStatus.inProgress) {
+          context.go(RoutesK.loading);
+        }
+      },
       builder: (context, state) {
         final bloc = context.read<MailRegisterBloc>();
         return Column(
@@ -33,7 +43,7 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
               decoration: authTextFormFieldInputDecoration(
                 context,
                 bloc.state.mail.displayError,
-                "Email",
+                S.of(context).email,
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.go,
@@ -49,13 +59,24 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
             TextFormField(
               key: const Key("register_password_field"),
               focusNode: f2,
-              obscureText: true,
+              obscureText: isPasswordObscure,
               autofillHints: const [AutofillHints.password],
               decoration: authTextFormFieldInputDecoration(
                 context,
-                bloc.state.password.displayError,
-                "Hasło",
+                bloc.state.password.displayError ?? bloc.state.errorMessage,
+                S.of(context).password,
                 errorMaxLine: 3,
+                changeObscure: IconButton(
+                  onPressed: () => setState(
+                    () {
+                      isPasswordObscure = !isPasswordObscure;
+                    },
+                  ),
+                  icon: Icon(
+                    isPasswordObscure ? Icons.lock : Icons.lock_open,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
               ),
               onChanged: (value) => context
                   .read<MailRegisterBloc>()
@@ -83,28 +104,8 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
                               strokeWidth: 6,
                             ),
                           )
-                        : const Text("Zarejestruj"),
+                        : Text(S.of(context).register),
                   ),
-                ),
-                AnimatedSwitcher(
-                  duration: Durations.long2,
-                  child: bloc.state.errorMessage == null
-                      ? const SizedBox(height: 10)
-                      : Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.error,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              bloc.state.errorMessage!,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onError,
-                              ),
-                            ),
-                          ),
-                        ),
                 ),
               ],
             ),
