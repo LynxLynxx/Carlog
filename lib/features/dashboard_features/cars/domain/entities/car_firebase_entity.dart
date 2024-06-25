@@ -11,6 +11,11 @@ class CarFirebaseEntity with _$CarFirebaseEntity {
     required String? model,
     required int? year,
     required String? plate,
+    required int? milage,
+    required String? carType,
+    required String? fuelType,
+    required int? engineCapacity,
+    required int? enginePower,
   }) = _CarFirebaseEntity;
 
   factory CarFirebaseEntity.fromJson(Map<String, dynamic> json) =>

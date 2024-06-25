@@ -2,8 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/account_limits.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/constants/snackbars.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
@@ -78,26 +79,71 @@ class CarListElementWidget extends StatelessWidget {
         "carFirebaseEntity": carEntity,
         "appContext": context,
       }),
-      child: Padding(
-        padding: PaddingsK.h30v10,
-        child: Card(
-          child: Container(
-            margin: PaddingsK.all16,
-            child: Column(
+      child: Container(
+        decoration:
+            dropShadowEffect().copyWith(color: context.primaryContainer),
+        margin: PaddingsK.all16,
+        padding: PaddingsK.all24,
+        height: 150,
+        child: Stack(
+          children: [
+            Container(
+              constraints: const BoxConstraints(minWidth: 125),
+              decoration: BoxDecoration(
+                  borderRadius: PaddingsK.circular10,
+                  color: context.onSecondary),
+              padding: PaddingsK.h20v10,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AutoSizeText(
+                    carEntity.brand ?? "Skoda",
+                    style: context.titleLarge,
+                    maxLines: 1,
+                  ),
+                  AutoSizeText(
+                    carEntity.model ?? "Octavia",
+                    style: context.labelSmall,
+                    maxLines: 1,
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AutoSizeText(
-                  carEntity.brand ?? "",
-                  style: text22W700LS3,
-                  maxLines: 1,
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    "assets/car_sedan.png",
+                    alignment: Alignment.bottomCenter,
+                  ),
                 ),
-                AutoSizeText(
-                  carEntity.model ?? "",
-                  style: text16W500LS1,
-                  maxLines: 1,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AutoSizeText(
+                      carEntity.fuelType ?? "Hybrid",
+                      style: context.titleLarge,
+                      maxLines: 1,
+                    ),
+                    AutoSizeText(
+                      carEntity.carType ?? "Sedan",
+                      style: context.bodySmall,
+                      maxLines: 1,
+                    ),
+                    AutoSizeText(
+                      carEntity.milage.toString(),
+                      style: context.labelLarge,
+                      maxLines: 1,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );

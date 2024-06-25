@@ -8,6 +8,7 @@ class PaddingsK extends Constants {
   static const all4 = EdgeInsets.all(4.0);
   static const all8 = EdgeInsets.all(8.0);
   static const all16 = EdgeInsets.all(16.0);
+  static const all24 = EdgeInsets.all(16.0);
 
   //ANCHOR - [HORIZONTAL]
   static const h10 = EdgeInsets.symmetric(horizontal: 10.0);
@@ -18,6 +19,7 @@ class PaddingsK extends Constants {
   static const v10 = EdgeInsets.symmetric(vertical: 10.0);
 
   //ANCHOR - [HORIZONTAL/VERTICAL]
+  static const h20v10 = EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0);
   static const h30v10 = EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0);
   static const h30v15 = EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0);
 
@@ -34,7 +36,6 @@ class PaddingsK extends Constants {
   static BorderRadius circular10 = BorderRadius.circular(10.0);
   static BorderRadius circular20 = BorderRadius.circular(20.0);
   static BorderRadius circular30 = BorderRadius.circular(30.0);
-
 
   //!SECTION
 }
