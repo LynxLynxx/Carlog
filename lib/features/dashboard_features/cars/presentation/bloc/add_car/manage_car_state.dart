@@ -55,3 +55,21 @@ class ManageCarState with _$ManageCarState {
     @Default(true) bool isButtonActive,
   ]) = _ManageCarState;
 }
+
+extension CarTypeEnumExtension on CarTypeEnum {
+  static CarTypeEnum fromString(String value) {
+    return CarTypeEnum.values.firstWhere(
+      (type) => type.toString().split('.').last == value,
+      orElse: () => CarTypeEnum.Sedan,
+    );
+  }
+}
+
+extension FuelTypeEnumExtension on FuelTypeEnum {
+  static FuelTypeEnum fromString(String value) {
+    return FuelTypeEnum.values.firstWhere(
+      (type) => type.toString().split('.').last == value,
+      orElse: () => FuelTypeEnum.Gasoline,
+    );
+  }
+}

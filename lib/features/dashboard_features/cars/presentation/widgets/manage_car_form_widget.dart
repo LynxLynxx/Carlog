@@ -3,9 +3,10 @@
 
 import 'package:carlog/core/constants/snackbars.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:carlog/core/theme/styles/input_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/custom_dropdown_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +14,10 @@ import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
 class ManageCarFormWidget extends StatelessWidget {
-  final ManageCarStatus manageCarStatus;
   final ManageCarBloc addCarBloc;
   final List<TextEditingController> textEditingControllerList;
   ManageCarFormWidget({
     super.key,
-    required this.manageCarStatus,
     required this.addCarBloc,
     required this.textEditingControllerList,
   });
@@ -36,7 +35,16 @@ class ManageCarFormWidget extends StatelessWidget {
         textEditingControllerList[0].text = addCarBloc.state.brandEntity.value;
         textEditingControllerList[1].text = addCarBloc.state.modelEntity.value;
         textEditingControllerList[2].text = addCarBloc.state.yearEntity.value;
-        textEditingControllerList[3].text = addCarBloc.state.plateEntity.value;
+        textEditingControllerList[3].text = addCarBloc.state.milageEntity.value;
+        textEditingControllerList[4].text = addCarBloc.state.plateEntity.value;
+        textEditingControllerList[5].text =
+            addCarBloc.state.typeEntity?.name ?? "";
+        textEditingControllerList[6].text =
+            addCarBloc.state.fuelTypeEntity?.name ?? "";
+        textEditingControllerList[7].text =
+            addCarBloc.state.engineCapacityEntity.value;
+        textEditingControllerList[8].text =
+            addCarBloc.state.enginePowerEntity.value;
         if (state.status.isFailure) {
           SnackbarsK.errorSnackbar(state.message!).show(context);
         }
@@ -46,99 +54,126 @@ class ManageCarFormWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final bloc = context.read<ManageCarBloc>();
         return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              key: const Key("brand_field"),
-              controller: textEditingControllerList[0],
-              autocorrect: false,
-              decoration: authTextFormFieldInputDecoration(
-                  context, bloc.state.brandEntity.displayError, "Brand",
-                  errorMaxLine: 2),
-              textInputAction: TextInputAction.go,
-              focusNode: f1,
-              onEditingComplete: () {
-                f1.unfocus();
-                FocusScope.of(context).requestFocus(f2);
-              },
-              onChanged: (value) => context
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[0],
+              func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.brandChanged(value)),
+              title: S.of(context).carBrand,
+              hintText: S.of(context).egVolvo,
+              displayError: state.brandEntity.displayError ?? "",
+              isRequired: true,
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
-            TextFormField(
-              key: const Key("model_field"),
-              controller: textEditingControllerList[1],
-              autocorrect: false,
-              decoration: authTextFormFieldInputDecoration(
-                context,
-                bloc.state.modelEntity.displayError,
-                "Model",
-                errorMaxLine: 2,
-              ),
-              textInputAction: TextInputAction.go,
-              focusNode: f2,
-              onEditingComplete: () {
-                f2.unfocus();
-                FocusScope.of(context).requestFocus(f3);
-              },
-              onChanged: (value) => context
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[1],
+              func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.modelChanged(value)),
+              title: S.of(context).carModel,
+              hintText: S.of(context).egXC90,
+              displayError: state.modelEntity.displayError ?? "",
+              isRequired: true,
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
-            TextFormField(
-              key: const Key("year_field"),
-              controller: textEditingControllerList[2],
-              autocorrect: false,
-              decoration: authTextFormFieldInputDecoration(
-                context,
-                bloc.state.yearEntity.displayError,
-                "Year",
-                errorMaxLine: 2,
-              ),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              textInputAction: TextInputAction.go,
-              focusNode: f3,
-              keyboardType: TextInputType.number,
-              onEditingComplete: () {
-                f3.unfocus();
-                FocusScope.of(context).requestFocus(f4);
-              },
-              onChanged: (value) => context
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[2],
+              func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.yearChanged(value)),
+              title: S.of(context).yearOfProduction,
+              hintText: S.of(context).eg2024,
+              isRequired: true,
+              textInputType: TextInputType.number,
+              textInputFormatterList: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(4),
+              ],
+              displayError: state.yearEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
-            TextFormField(
-              key: const Key("plate_field"),
-              controller: textEditingControllerList[3],
-              autocorrect: false,
-              decoration: authTextFormFieldInputDecoration(
-                  context, bloc.state.plateEntity.displayError, "Plate",
-                  errorMaxLine: 2),
-              textInputAction: TextInputAction.go,
-              focusNode: f4,
-              onEditingComplete: () {
-                f4.unfocus();
-                context
-                    .read<ManageCarBloc>()
-                    .add(const ManageCarEvent.addCarSubmitted());
-              },
-              onChanged: (value) => context
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[3],
+              func: (value) => context
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.milageChanged(value)),
+              title: S.of(context).milage,
+              hintText: S.of(context).eg10000,
+              isRequired: true,
+              textInputType: TextInputType.number,
+              textInputFormatterList: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(7),
+              ],
+              displayError: state.milageEntity.displayError ?? "",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[4],
+              func: (value) => context
                   .read<ManageCarBloc>()
                   .add(ManageCarEvent.plateChanged(value)),
+              title: S.of(context).plate,
+              hintText: S.of(context).egAUM550,
+              displayError: state.plateEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
+            ),
+            CustomDropdownWidget(
+              title: S.of(context).type,
+              id: 0,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomDropdownWidget(
+              title: S.of(context).fuelType,
+              id: 1,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[7],
+              func: (value) => context
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.engineCapacityChanged(value)),
+              title: S.of(context).engineCapacity,
+              hintText: S.of(context).eg1984,
+              textInputType: TextInputType.number,
+              textInputFormatterList: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(7),
+              ],
+              displayError: state.engineCapacityEntity.displayError ?? "",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListElementTextfieldWidget(
+              textEditingController: textEditingControllerList[8],
+              func: (value) => context
+                  .read<ManageCarBloc>()
+                  .add(ManageCarEvent.enginePowerChanged(value)),
+              title: S.of(context).enginePower,
+              hintText: S.of(context).eg163,
+              textInputType: TextInputType.number,
+              textInputFormatterList: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(4),
+              ],
+              displayError: state.enginePowerEntity.displayError ?? "",
             ),
             BlocSelector<ManageCarBloc, ManageCarState, bool>(
               selector: (state) {
@@ -149,18 +184,12 @@ class ManageCarFormWidget extends StatelessWidget {
               },
               builder: (context, state) {
                 return FilledButton(
-                  onPressed: state
-                      ? () => manageCarStatus == ManageCarStatus.add
-                          ? context
-                              .read<ManageCarBloc>()
-                              .add(const ManageCarEvent.addCarSubmitted())
-                          : context
-                              .read<ManageCarBloc>()
-                              .add(const ManageCarEvent.editCarSubmitted())
-                      : null,
-                  child: Text(manageCarStatus == ManageCarStatus.add
-                      ? "Create"
-                      : "Update"),
+                  onPressed: () {
+                    context
+                        .read<ManageCarBloc>()
+                        .add(const ManageCarEvent.editCarSubmitted());
+                  },
+                  child: const Text("Update"),
                 );
               },
             ),

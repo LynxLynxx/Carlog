@@ -128,7 +128,6 @@ final List<StatefulShellBranch> shellBranches = [
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>;
               return ManageCarPage(
-                manageCarStatus: extra['manageCarStatus'],
                 carFirebaseEntity: extra['carFirebaseEntity'],
                 appContext: extra['appContext'],
               );

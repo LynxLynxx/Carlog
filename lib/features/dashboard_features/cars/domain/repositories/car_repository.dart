@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,8 +37,7 @@ class CarRepository {
     });
   }
 
-  Future<Option<Failure>> updateCarByUser(String carId, String carBrand,
-      String carModel, String carYear, String carPlate) async {
+  Future<Option<Failure>> updateCarByUser(CarFirebaseEntity carFirebase) async {
     return handleVoidResponse(() async {
       final User? user = FirebaseAuth.instance.currentUser;
       if (user == null) {
@@ -45,11 +47,23 @@ class CarRepository {
       final CollectionReference carRef =
           FirebaseFirestore.instance.collection('cars');
 
-      await carRef.doc(carId).update({
-        "brand": carBrand,
-        "model": carModel,
-        "year": carYear.isNotEmpty ? int.parse(carYear) : 0,
-        "plate": carPlate,
+      await carRef.doc(carFirebase.carId).update({
+        "brand": carFirebase.brand ?? S.current.carBrand,
+        "model": carFirebase.model ?? S.current.carModel,
+        "year": carFirebase.year.toString().isNotEmpty
+            ? carFirebase.year
+            : DateTime.now().year,
+        "milage":
+            carFirebase.milage.toString().isNotEmpty ? carFirebase.milage : 1,
+        "plate": carFirebase.plate,
+        "carType": carFirebase.carType,
+        "fuelType": carFirebase.fuelType,
+        "engineCapacity": carFirebase.engineCapacity.toString().isNotEmpty
+            ? carFirebase.engineCapacity
+            : null,
+        "enginePower": carFirebase.enginePower.toString().isNotEmpty
+            ? carFirebase.enginePower
+            : null,
       });
     });
   }
@@ -104,6 +118,7 @@ class CarRepository {
           for (var docSnapshot in querySnapshot.docs) {
             final model = CarFirebaseEntity.fromJson(
                 docSnapshot.data() as Map<String, dynamic>);
+            log(model.toString());
             carList.add(model);
           }
         },

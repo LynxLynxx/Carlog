@@ -191,14 +191,32 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         ModelEntityValidator.dirty(value: event.carFirebaseEntity.model ?? "");
     final year = YearEntityValidator.dirty(
         value: event.carFirebaseEntity.year.toString());
+    final milage = MilageEntityValidator.dirty(
+        value: event.carFirebaseEntity.milage.toString());
     final plate =
         PlateEntityValidator.dirty(value: event.carFirebaseEntity.plate ?? "");
+    final carType = event.carFirebaseEntity.carType ?? "";
+    final fuelType = event.carFirebaseEntity.fuelType ?? "";
+
+    final engineCapacity = EngineCapacityEntityValidator.dirty(
+        value: event.carFirebaseEntity.engineCapacity.toString());
+    final enginePower = EnginePowerEntityValidator.dirty(
+        value: event.carFirebaseEntity.enginePower.toString());
+
     carId = event.carFirebaseEntity.carId;
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         brandEntity: brand,
         modelEntity: model,
         yearEntity: year,
-        plateEntity: plate));
+        milageEntity: milage,
+        plateEntity: plate,
+        typeEntity: CarTypeEnumExtension.fromString(carType),
+        fuelTypeEntity: FuelTypeEnumExtension.fromString(fuelType),
+        engineCapacityEntity: engineCapacity,
+        enginePowerEntity: enginePower,
+      ),
+    );
   }
 
   _onAddCarSubmitted(
@@ -240,23 +258,46 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
+    final milage = MilageEntityValidator.dirty(value: state.milageEntity.value);
     final plate = PlateEntityValidator.dirty(value: state.plateEntity.value);
+    final engineCapacity = EngineCapacityEntityValidator.dirty(
+        value: state.engineCapacityEntity.value);
+    final enginePower =
+        EnginePowerEntityValidator.dirty(value: state.enginePowerEntity.value);
 
-    if (!Formz.validate([brand, model, year, plate])) {
-      return emit(state.copyWith(
+    if (!Formz.validate(
+        [brand, model, year, milage, plate, engineCapacity, enginePower])) {
+      return emit(
+        state.copyWith(
           brandEntity: brand,
           modelEntity: model,
           yearEntity: year,
+          milageEntity: milage,
           plateEntity: plate,
-          message: null));
+          engineCapacityEntity: engineCapacity,
+          enginePowerEntity: enginePower,
+          message: null,
+        ),
+      );
     }
 
-    final result = await _carRepository.updateCarByUser(
-        carId,
-        state.brandEntity.value,
-        state.modelEntity.value,
-        state.yearEntity.value,
-        state.plateEntity.value);
+    final result = await _carRepository.updateCarByUser(CarFirebaseEntity(
+        carId: carId,
+        brand: state.brandEntity.value,
+        model: state.modelEntity.value,
+        year: int.parse(state.yearEntity.value),
+        plate: state.plateEntity.value,
+        milage: int.parse(state.milageEntity.value),
+        carType: state.typeEntity?.name,
+        fuelType: state.fuelTypeEntity?.name,
+        engineCapacity: state.engineCapacityEntity.value.isNotEmpty
+            ? int.parse(state.engineCapacityEntity.value)
+            : null,
+        enginePower: state.enginePowerEntity.value.isNotEmpty
+            ? int.parse(
+                state.enginePowerEntity.value,
+              )
+            : null));
 
     if (result.isSome()) {
       return emit(state.copyWith(

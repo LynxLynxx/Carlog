@@ -7,7 +7,6 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -55,7 +54,7 @@ class CarListWidgetView extends StatelessWidget {
       return [const AddCarListElementWidget()];
     } else if (carList.length < AccountLimitsK.carCountLimitFree) {
       return [
-        ...carList.map((car) => CarListElementWidget(carEntity: car)),
+        ...carList.map((car) => CarListElementWidget2(carEntity: car)),
         const AddCarListElementWidget()
       ];
     } else {
@@ -75,7 +74,6 @@ class CarListElementWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => context.push(RoutesK.manageCar, extra: {
-        "manageCarStatus": ManageCarStatus.edit,
         "carFirebaseEntity": carEntity,
         "appContext": context,
       }),
@@ -142,6 +140,183 @@ class CarListElementWidget extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// class CarListElementWidget2 extends StatelessWidget {
+//   final CarFirebaseEntity carEntity;
+//   const CarListElementWidget2({super.key, required this.carEntity});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () => context.push(RoutesK.manageCar, extra: {
+//         "manageCarStatus": ManageCarStatus.edit,
+//         "carFirebaseEntity": carEntity,
+//         "appContext": context,
+//       }),
+//       child: Container(
+//         decoration:
+//             dropShadowEffect().copyWith(color: context.primaryContainer),
+//         margin: PaddingsK.all16,
+//         // padding: PaddingsK.all24,
+//         height: 150,
+//         width: double.infinity,
+//         child: Stack(
+//           children: [
+//             ClipRRect(
+//               child: Container(
+//                 transform: Matrix4.translationValues(-165, 0, 0),
+//                 child: Image.asset(
+//                   width: double.infinity,
+//                   height: 150,
+//                   fit: BoxFit.contain,
+//                   "assets/car_sedan.png",
+//                   alignment: Alignment.bottomCenter,
+//                   opacity: const AlwaysStoppedAnimation(0.2),
+//                 ),
+//               ),
+//             ),
+//             SizedBox(
+//               child: Row(
+//                 children: [
+//                   const Spacer(),
+//                   Container(
+//                     width: 150,
+//                     padding: PaddingsK.h20v10,
+//                     child: Column(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       crossAxisAlignment: CrossAxisAlignment.end,
+//                       children: [
+//                         AutoSizeText(
+//                           carEntity.brand ?? "Skoda",
+//                           style: context.headlineMedium,
+//                           maxLines: 1,
+//                         ),
+//                         AutoSizeText(
+//                           carEntity.model ?? "Octavia",
+//                           style: context.labelSmall,
+//                           maxLines: 1,
+//                         ),
+//                         const SizedBox(
+//                           height: 10,
+//                         ),
+//                         AutoSizeText(
+//                           carEntity.fuelType ?? "Hybrid",
+//                           style: context.titleSmall,
+//                           maxLines: 1,
+//                         ),
+//                         AutoSizeText(
+//                           carEntity.carType ?? "Sedan",
+//                           style: context.titleSmall,
+//                           maxLines: 1,
+//                         ),
+//                         AutoSizeText(
+//                           "10100 km",
+//                           style: context.titleMedium,
+//                           maxLines: 1,
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class CarListElementWidget2 extends StatelessWidget {
+  final CarFirebaseEntity carEntity;
+  const CarListElementWidget2({super.key, required this.carEntity});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push(RoutesK.manageCar, extra: {
+        "carFirebaseEntity": carEntity,
+        "appContext": context,
+      }),
+      child: Container(
+        decoration:
+            dropShadowEffect().copyWith(color: context.primaryContainer),
+        margin: PaddingsK.all16,
+        // padding: PaddingsK.all24,
+        height: 150,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            ClipRRect(
+              child: Container(
+                transform: Matrix4.translationValues(165, 0, 0),
+                child: Image.asset(
+                  width: double.infinity,
+                  height: 150,
+                  fit: BoxFit.contain,
+                  "assets/car_sedan2.png",
+                  alignment: Alignment.bottomCenter,
+                  opacity: const AlwaysStoppedAnimation(0.2),
+                ),
+              ),
+            ),
+            SizedBox(
+              child: Row(
+                children: [
+                  Container(
+                    padding: PaddingsK.h20v10,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              carEntity.brand ?? "Skoda",
+                              style: context.headlineMedium!
+                                  .copyWith(fontWeight: FontWeight.w600),
+                              maxLines: 1,
+                            ),
+                            AutoSizeText(
+                              carEntity.model ?? "Octavia",
+                              style: context.labelSmall,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            AutoSizeText(
+                              "10100 ",
+                              style: context.headlineSmall!
+                                  .copyWith(fontWeight: FontWeight.w500),
+                              maxLines: 1,
+                            ),
+                            AutoSizeText(
+                              "km",
+                              style: context.titleMedium,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
           ],
         ),
