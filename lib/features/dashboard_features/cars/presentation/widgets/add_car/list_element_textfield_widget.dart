@@ -18,7 +18,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final String displayError;
   final bool isRequired;
   final Function()? funcClose;
-  ListElementTextfieldWidget({
+  const ListElementTextfieldWidget({
     super.key,
     required this.textEditingController,
     required this.func,
@@ -30,8 +30,6 @@ class ListElementTextfieldWidget extends StatelessWidget {
     this.isRequired = false,
     this.funcClose,
   });
-
-  FocusNode f1 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +89,8 @@ class ListElementTextfieldWidget extends StatelessWidget {
                   errorMaxLine: 2),
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
-              focusNode: f1,
               style: context.titleMedium,
               inputFormatters: textInputFormatterList,
-              onEditingComplete: () {
-                f1.unfocus();
-              },
               onChanged: (func),
             ),
           ),

@@ -65,6 +65,9 @@ class CustomDropdownWidget extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(
+            height: 5,
+          ),
         ],
       ),
     );

@@ -175,24 +175,7 @@ class ManageCarFormWidget extends StatelessWidget {
               ],
               displayError: state.enginePowerEntity.displayError ?? "",
             ),
-            BlocSelector<ManageCarBloc, ManageCarState, bool>(
-              selector: (state) {
-                return state.brandEntity.value.isNotEmpty &&
-                    state.modelEntity.value.isNotEmpty &&
-                    state.yearEntity.value.isNotEmpty &&
-                    state.plateEntity.value.isNotEmpty;
-              },
-              builder: (context, state) {
-                return FilledButton(
-                  onPressed: () {
-                    context
-                        .read<ManageCarBloc>()
-                        .add(const ManageCarEvent.editCarSubmitted());
-                  },
-                  child: const Text("Update"),
-                );
-              },
-            ),
+            
           ],
         );
       },

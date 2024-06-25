@@ -1,6 +1,7 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
@@ -109,6 +110,30 @@ class _ManageCarViewState extends State<ManageCarView> {
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: BlocSelector<ManageCarBloc, ManageCarState, bool>(
+        selector: (state) {
+          return state.brandEntity.value.isNotEmpty &&
+              state.modelEntity.value.isNotEmpty &&
+              state.yearEntity.value.isNotEmpty &&
+              state.plateEntity.value.isNotEmpty;
+        },
+        builder: (context, state) {
+          return FloatingActionButton(
+            onPressed: () {
+              context
+                  .read<ManageCarBloc>()
+                  .add(const ManageCarEvent.editCarSubmitted());
+            },
+            shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
+            backgroundColor: context.primaryColor,
+            child: SvgPicture.asset(
+              ImagesK.save,
+              colorFilter: ColorFilter.mode(context.onPrimary, BlendMode.srcIn),
+            ),
+          );
+        },
       ),
     );
   }

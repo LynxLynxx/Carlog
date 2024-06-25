@@ -96,6 +96,28 @@ final List<RouteBase> routes = [
       );
     },
   ),
+  AnimationGoRoute(
+      path: "/manageCar",
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        return ManageCarPage(
+          carFirebaseEntity: extra['carFirebaseEntity'],
+          appContext: extra['appContext'],
+        );
+      },
+      routes: [
+        GoRoute(
+          path: 'deleteCarConfirmation',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            final extra = state.extra as BuildContext;
+            return DialogPage(
+              builder: (_) => DeleteCarPage(
+                appContext: extra,
+              ),
+            );
+          },
+        ),
+      ]),
   //!SECTION
 ];
 
@@ -120,32 +142,9 @@ final List<StatefulShellBranch> shellBranches = [
         ),
       ]),
   BranchGoRoute(
-      path: RoutesK.cars,
-      builder: (context, state) => const CarsPage(),
-      routes: [
-        AnimationGoRoute(
-            path: "manageCar",
-            builder: (context, state) {
-              final extra = state.extra as Map<String, dynamic>;
-              return ManageCarPage(
-                carFirebaseEntity: extra['carFirebaseEntity'],
-                appContext: extra['appContext'],
-              );
-            },
-            routes: [
-              GoRoute(
-                path: 'deleteCarConfirmation',
-                pageBuilder: (BuildContext context, GoRouterState state) {
-                  final extra = state.extra as BuildContext;
-                  return DialogPage(
-                    builder: (_) => DeleteCarPage(
-                      appContext: extra,
-                    ),
-                  );
-                },
-              ),
-            ]),
-      ]),
+    path: RoutesK.cars,
+    builder: (context, state) => const CarsPage(),
+  ),
   BranchGoRoute(
       path: RoutesK.statistics,
       builder: (context, state) => const AnalyticsPage()),
