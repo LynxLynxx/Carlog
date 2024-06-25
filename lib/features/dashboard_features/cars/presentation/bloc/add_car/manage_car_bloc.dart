@@ -250,15 +250,22 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final result = await _carRepository.createCarByUser(
       CarFirebaseEntity(
         carId: "",
-        brand: state.brandEntity.value,
-        model: state.modelEntity.value,
-        year: state.yearEntity.value,
-        plate: state.plateEntity.value,
-        milage: state.milageEntity.value,
-        carType: state.typeEntity?.name,
-        fuelType: state.fuelTypeEntity?.name,
-        engineCapacity: state.engineCapacityEntity.value,
-        enginePower: state.enginePowerEntity.value,
+        brand: state.brandEntity.value != "" ? state.brandEntity.value : null,
+        model: state.modelEntity.value != "" ? state.modelEntity.value : null,
+        year: state.yearEntity.value != "" ? state.yearEntity.value : null,
+        plate: state.plateEntity.value != "" ? state.plateEntity.value : null,
+        milage:
+            state.milageEntity.value != "" ? state.milageEntity.value : null,
+        carType: state.typeEntity?.name != "" ? state.typeEntity?.name : null,
+        fuelType: state.fuelTypeEntity?.name != ""
+            ? state.fuelTypeEntity?.name
+            : null,
+        engineCapacity: state.engineCapacityEntity.value != ""
+            ? state.engineCapacityEntity.value
+            : null,
+        enginePower: state.enginePowerEntity.value != ""
+            ? state.enginePowerEntity.value
+            : null,
       ),
     );
 
@@ -305,15 +312,22 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final result = await _carRepository.updateCarByUser(
       CarFirebaseEntity(
         carId: carId,
-        brand: state.brandEntity.value,
-        model: state.modelEntity.value,
-        year: state.yearEntity.value,
-        plate: state.plateEntity.value,
-        milage: state.milageEntity.value,
-        carType: state.typeEntity?.name,
-        fuelType: state.fuelTypeEntity?.name,
-        engineCapacity: state.engineCapacityEntity.value,
-        enginePower: state.enginePowerEntity.value,
+        brand: state.brandEntity.value != "" ? state.brandEntity.value : null,
+        model: state.modelEntity.value != "" ? state.modelEntity.value : null,
+        year: state.yearEntity.value != "" ? state.yearEntity.value : null,
+        plate: state.plateEntity.value != "" ? state.plateEntity.value : null,
+        milage:
+            state.milageEntity.value != "" ? state.milageEntity.value : null,
+        carType: state.typeEntity?.name != "" ? state.typeEntity?.name : null,
+        fuelType: state.fuelTypeEntity?.name != ""
+            ? state.fuelTypeEntity?.name
+            : null,
+        engineCapacity: state.engineCapacityEntity.value != ""
+            ? state.engineCapacityEntity.value
+            : null,
+        enginePower: state.enginePowerEntity.value != ""
+            ? state.enginePowerEntity.value
+            : null,
       ),
     );
 
