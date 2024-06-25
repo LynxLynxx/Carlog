@@ -189,19 +189,19 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         BrandEntityValidator.dirty(value: event.carFirebaseEntity.brand ?? "");
     final model =
         ModelEntityValidator.dirty(value: event.carFirebaseEntity.model ?? "");
-    final year = YearEntityValidator.dirty(
-        value: event.carFirebaseEntity.year.toString());
+    final year =
+        YearEntityValidator.dirty(value: event.carFirebaseEntity.year ?? "");
     final milage = MilageEntityValidator.dirty(
-        value: event.carFirebaseEntity.milage.toString());
+        value: event.carFirebaseEntity.milage ?? "");
     final plate =
         PlateEntityValidator.dirty(value: event.carFirebaseEntity.plate ?? "");
     final carType = event.carFirebaseEntity.carType ?? "";
     final fuelType = event.carFirebaseEntity.fuelType ?? "";
 
     final engineCapacity = EngineCapacityEntityValidator.dirty(
-        value: event.carFirebaseEntity.engineCapacity.toString());
+        value: event.carFirebaseEntity.engineCapacity ?? "");
     final enginePower = EnginePowerEntityValidator.dirty(
-        value: event.carFirebaseEntity.enginePower.toString());
+        value: event.carFirebaseEntity.enginePower ?? "");
 
     carId = event.carFirebaseEntity.carId;
     emit(
@@ -281,23 +281,20 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
       );
     }
 
-    final result = await _carRepository.updateCarByUser(CarFirebaseEntity(
+    final result = await _carRepository.updateCarByUser(
+      CarFirebaseEntity(
         carId: carId,
         brand: state.brandEntity.value,
         model: state.modelEntity.value,
-        year: int.parse(state.yearEntity.value),
+        year: state.yearEntity.value,
         plate: state.plateEntity.value,
-        milage: int.parse(state.milageEntity.value),
+        milage: state.milageEntity.value,
         carType: state.typeEntity?.name,
         fuelType: state.fuelTypeEntity?.name,
-        engineCapacity: state.engineCapacityEntity.value.isNotEmpty
-            ? int.parse(state.engineCapacityEntity.value)
-            : null,
-        enginePower: state.enginePowerEntity.value.isNotEmpty
-            ? int.parse(
-                state.enginePowerEntity.value,
-              )
-            : null));
+        engineCapacity: state.engineCapacityEntity.value,
+        enginePower: state.enginePowerEntity.value,
+      ),
+    );
 
     if (result.isSome()) {
       return emit(state.copyWith(

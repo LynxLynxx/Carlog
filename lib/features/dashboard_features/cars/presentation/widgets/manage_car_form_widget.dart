@@ -67,7 +67,7 @@ class ManageCarFormWidget extends StatelessWidget {
               isRequired: true,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[1],
@@ -80,7 +80,7 @@ class ManageCarFormWidget extends StatelessWidget {
               isRequired: true,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[2],
@@ -98,7 +98,7 @@ class ManageCarFormWidget extends StatelessWidget {
               displayError: state.yearEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[3],
@@ -116,7 +116,7 @@ class ManageCarFormWidget extends StatelessWidget {
               displayError: state.milageEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[4],
@@ -128,21 +128,21 @@ class ManageCarFormWidget extends StatelessWidget {
               displayError: state.plateEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             CustomDropdownWidget(
               title: S.of(context).type,
               id: 0,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             CustomDropdownWidget(
               title: S.of(context).fuelType,
               id: 1,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[7],
@@ -159,7 +159,7 @@ class ManageCarFormWidget extends StatelessWidget {
               displayError: state.engineCapacityEntity.displayError ?? "",
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListElementTextfieldWidget(
               textEditingController: textEditingControllerList[8],
@@ -175,7 +175,6 @@ class ManageCarFormWidget extends StatelessWidget {
               ],
               displayError: state.enginePowerEntity.displayError ?? "",
             ),
-            
           ],
         );
       },

@@ -3,8 +3,8 @@ import 'package:formz/formz.dart';
 
 class EnginePowerEntityValidator extends FormzInput<String, String> {
   const EnginePowerEntityValidator.pure([super.value = '']) : super.pure();
-  const EnginePowerEntityValidator.dirty({String value = ''})
-      : super.dirty(value);
+  const EnginePowerEntityValidator.dirty({String? value = ''})
+      : super.dirty(value ?? "");
 
   @override
   String? validator(String value) {

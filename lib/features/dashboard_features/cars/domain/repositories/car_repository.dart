@@ -50,20 +50,13 @@ class CarRepository {
       await carRef.doc(carFirebase.carId).update({
         "brand": carFirebase.brand ?? S.current.carBrand,
         "model": carFirebase.model ?? S.current.carModel,
-        "year": carFirebase.year.toString().isNotEmpty
-            ? carFirebase.year
-            : DateTime.now().year,
-        "milage":
-            carFirebase.milage.toString().isNotEmpty ? carFirebase.milage : 1,
+        "year": carFirebase.year,
+        "milage": carFirebase.milage,
         "plate": carFirebase.plate,
         "carType": carFirebase.carType,
         "fuelType": carFirebase.fuelType,
-        "engineCapacity": carFirebase.engineCapacity.toString().isNotEmpty
-            ? carFirebase.engineCapacity
-            : null,
-        "enginePower": carFirebase.enginePower.toString().isNotEmpty
-            ? carFirebase.enginePower
-            : null,
+        "engineCapacity": carFirebase.engineCapacity,
+        "enginePower": carFirebase.enginePower,
       });
     });
   }

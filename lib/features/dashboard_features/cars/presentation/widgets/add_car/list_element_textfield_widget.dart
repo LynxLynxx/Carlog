@@ -33,6 +33,9 @@ class ListElementTextfieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (textEditingController.text == "null") {
+      textEditingController.clear();
+    }
     return Padding(
       padding: PaddingsK.h10,
       child: Column(
