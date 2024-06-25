@@ -1,7 +1,7 @@
-import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
+import 'package:carlog/core/constants/settings_items.dart';
+import 'package:carlog/features/dashboard_features/settings/presentation/widgets/settings_section_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -9,18 +9,19 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DashboardAppbar.title(
-        title: "Settings",
-        body: Center(
-          child: Column(
-            children: [
-              const Text("Settings"),
-              TextButton(
-                  onPressed: () => context
-                      .read<AuthBloc>()
-                      .add(const AuthEvent.appLogoutRequested()),
-                  child: const Text("Wyloguj"))
-            ],
+      title: "Settings",
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
+          itemCount: settingsItems.length,
+          itemBuilder: (context, index) => SettingsSectionWidget(
+            sectionEntity: settingsItems[index],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

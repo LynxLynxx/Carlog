@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 
 class MaterialTheme {
-
   const MaterialTheme();
 
   static MaterialScheme lightScheme() {
@@ -523,7 +522,13 @@ extension MaterialSchemeUtils on MaterialScheme {
       onErrorContainer: onErrorContainer,
       surface: surface,
       onSurface: onSurface,
-      surfaceContainerHighest: surfaceVariant,
+      surfaceContainerHighest: surfaceContainerHighest,
+      surfaceContainerHigh: surfaceContainerHigh,
+      surfaceContainerLow: surfaceContainerLow,
+      surfaceContainerLowest: surfaceContainerLowest,
+      surfaceBright: surfaceBright,
+      surfaceContainer: surfaceContainer,
+      surfaceDim: surfaceDim,
       onSurfaceVariant: onSurfaceVariant,
       outline: outline,
       outlineVariant: outlineVariant,

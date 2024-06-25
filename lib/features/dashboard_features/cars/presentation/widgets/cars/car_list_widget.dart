@@ -37,11 +37,10 @@ class CarListWidgetView extends StatelessWidget {
           return const CircularProgressIndicator();
         }
         if (state.status.isSuccess) {
-          return Expanded(
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: _buildCarListWidget(state.carList),
-            ),
+          return ListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: _buildCarListWidget(state.carList),
           );
         }
         return const SizedBox.shrink();
