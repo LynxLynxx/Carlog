@@ -30,6 +30,9 @@ class CarButtonWidget extends StatelessWidget {
         context.read<ManageCarBloc>().add(
               const ManageCarEvent.submitCarSubMainInfo(),
             );
+        context
+            .read<ManageCarBloc>()
+            .add(const ManageCarEvent.addCarSubmitted());
       case 4:
         context.pop();
     }

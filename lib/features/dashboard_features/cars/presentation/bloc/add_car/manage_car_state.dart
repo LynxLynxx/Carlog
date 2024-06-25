@@ -57,19 +57,23 @@ class ManageCarState with _$ManageCarState {
 }
 
 extension CarTypeEnumExtension on CarTypeEnum {
-  static CarTypeEnum fromString(String value) {
-    return CarTypeEnum.values.firstWhere(
-      (type) => type.toString().split('.').last == value,
-      orElse: () => CarTypeEnum.Sedan,
-    );
+  static CarTypeEnum? fromString(String value) {
+    return value.isNotEmpty
+        ? CarTypeEnum.values.firstWhere(
+            (type) => type.toString().split('.').last == value,
+            orElse: () => CarTypeEnum.Sedan,
+          )
+        : null;
   }
 }
 
 extension FuelTypeEnumExtension on FuelTypeEnum {
-  static FuelTypeEnum fromString(String value) {
-    return FuelTypeEnum.values.firstWhere(
-      (type) => type.toString().split('.').last == value,
-      orElse: () => FuelTypeEnum.Gasoline,
-    );
+  static FuelTypeEnum? fromString(String value) {
+    return value.isNotEmpty
+        ? FuelTypeEnum.values.firstWhere(
+            (type) => type.toString().split('.').last == value,
+            orElse: () => FuelTypeEnum.Gasoline,
+          )
+        : null;
   }
 }

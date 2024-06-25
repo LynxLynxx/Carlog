@@ -13,8 +13,7 @@ import 'package:injectable/injectable.dart';
 class CarRepository {
   const CarRepository();
 
-  Future<Option<Failure>> createCarByUser(
-      String carBrand, String carModel, String carYear, String carPlate) async {
+  Future<Option<Failure>> createCarByUser(CarFirebaseEntity carFirebase) async {
     return handleVoidResponse(() async {
       final User? user = FirebaseAuth.instance.currentUser;
       if (user == null) {
@@ -26,11 +25,16 @@ class CarRepository {
 
       final addCar = await carRef.add({
         "userId": user.uid,
-        "brand": carBrand,
-        "model": carModel,
-        "year": carYear.isNotEmpty ? int.parse(carYear) : 0,
-        "plate": carPlate,
         "carId": "",
+        "brand": carFirebase.brand ?? S.current.carBrand,
+        "model": carFirebase.model ?? S.current.carModel,
+        "year": carFirebase.year,
+        "milage": carFirebase.milage,
+        "plate": carFirebase.plate,
+        "carType": carFirebase.carType,
+        "fuelType": carFirebase.fuelType,
+        "engineCapacity": carFirebase.engineCapacity,
+        "enginePower": carFirebase.enginePower,
       });
 
       await carRef.doc(addCar.id).update({"carId": addCar.id});

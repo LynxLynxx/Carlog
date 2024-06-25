@@ -224,22 +224,43 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
+    final milage = MilageEntityValidator.dirty(value: state.milageEntity.value);
     final plate = PlateEntityValidator.dirty(value: state.plateEntity.value);
+    final engineCapacity = EngineCapacityEntityValidator.dirty(
+        value: state.engineCapacityEntity.value);
+    final enginePower =
+        EnginePowerEntityValidator.dirty(value: state.enginePowerEntity.value);
 
-    if (!Formz.validate([brand, model, year, plate])) {
-      return emit(state.copyWith(
+    if (!Formz.validate(
+        [brand, model, year, milage, plate, engineCapacity, enginePower])) {
+      return emit(
+        state.copyWith(
           brandEntity: brand,
           modelEntity: model,
           yearEntity: year,
+          milageEntity: milage,
           plateEntity: plate,
-          message: null));
+          engineCapacityEntity: engineCapacity,
+          enginePowerEntity: enginePower,
+          message: null,
+        ),
+      );
     }
 
     final result = await _carRepository.createCarByUser(
-        state.brandEntity.value,
-        state.modelEntity.value,
-        state.yearEntity.value,
-        state.plateEntity.value);
+      CarFirebaseEntity(
+        carId: "",
+        brand: state.brandEntity.value,
+        model: state.modelEntity.value,
+        year: state.yearEntity.value,
+        plate: state.plateEntity.value,
+        milage: state.milageEntity.value,
+        carType: state.typeEntity?.name,
+        fuelType: state.fuelTypeEntity?.name,
+        engineCapacity: state.engineCapacityEntity.value,
+        enginePower: state.enginePowerEntity.value,
+      ),
+    );
 
     if (result.isSome()) {
       return emit(state.copyWith(
