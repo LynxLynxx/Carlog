@@ -33,6 +33,16 @@ class AuthRepository {
     return await secureStorageService.readCurrentUser() ?? UserEntity.unAuth;
   }
 
+  Future<Option<Failure>> signIn(
+      {required String email, required String password}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      ),
+    );
+  }
+
   Future<Option<Failure>> signUp(
       {required String email, required String password}) async {
     return handleVoidResponse(
@@ -41,6 +51,36 @@ class AuthRepository {
         password: password,
       ),
     );
+  }
+
+  Future<Option<Failure>> resetPassword({required String email}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.sendPasswordResetEmail(
+        email: email,
+      ),
+    );
+  }
+
+  Future<Option<Failure>> signInWithGoogle() {
+    return handleVoidResponse(() async {
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().disconnect();
+        await GoogleSignIn().signOut();
+      }
+      final GoogleSignInAccount? gUser = await GoogleSignIn(
+        scopes: ['profile', 'https://www.googleapis.com/auth/plus.me'],
+      ).signIn();
+
+      if (gUser == null) {
+        return null;
+      }
+
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
+
+      final googleCredential = GoogleAuthProvider.credential(
+          accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+      await FirebaseAuth.instance.signInWithCredential(googleCredential);
+    });
   }
 
   Future<Option<Failure>> createUserDocument() async {

@@ -20,6 +20,16 @@ class AuthFailure extends Failure with _$AuthFailure {
 }
 
 @freezed
+class FirestoreFailure extends Failure with _$FirestoreFailure {
+  const factory FirestoreFailure({required String message}) = _FirestoreFailure;
+
+  const FirestoreFailure._();
+
+  @override
+  List<Object?> get props => [message];
+}
+
+@freezed
 class ParseFailure extends Failure with _$ParseFailure {
   const factory ParseFailure.typeFailure({StackTrace? stackTrace}) =
       TypeFailure;

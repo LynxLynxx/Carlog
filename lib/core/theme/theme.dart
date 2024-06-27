@@ -1,62 +1,61 @@
 import "package:flutter/material.dart";
 
 class MaterialTheme {
-  final TextTheme textTheme;
 
-  const MaterialTheme(this.textTheme);
+  const MaterialTheme();
 
   static MaterialScheme lightScheme() {
     return const MaterialScheme(
       brightness: Brightness.light,
-      primary: Color(0xff735b28),
-      surfaceTint: Color(0xff735b28),
-      onPrimary: Color(0xffffffff),
-      primaryContainer: Color(0xffe5c487),
-      onPrimaryContainer: Color(0xff483404),
-      secondary: Color(0xff6a5d45),
-      onSecondary: Color(0xffffffff),
-      secondaryContainer: Color(0xfff4e1c3),
-      onSecondaryContainer: Color(0xff534731),
-      tertiary: Color(0xff576336),
-      onTertiary: Color(0xffffffff),
-      tertiaryContainer: Color(0xffc0ce97),
-      onTertiaryContainer: Color(0xff303b13),
-      error: Color(0xffba1a1a),
-      onError: Color(0xffffffff),
-      errorContainer: Color(0xffffdad6),
-      onErrorContainer: Color(0xff410002),
-      background: Color(0xfffff8f2),
-      onBackground: Color(0xff1e1b17),
-      surface: Color(0xfffff8f2),
-      onSurface: Color(0xff1e1b17),
-      surfaceVariant: Color(0xffede1d1),
-      onSurfaceVariant: Color(0xff4d463a),
-      outline: Color(0xff7f7668),
-      outlineVariant: Color(0xffd0c5b5),
-      shadow: Color(0xff000000),
-      scrim: Color(0xff000000),
-      inverseSurface: Color(0xff33302b),
-      inverseOnSurface: Color(0xfff7efe8),
-      inversePrimary: Color(0xffe3c286),
-      primaryFixed: Color(0xffffdea3),
-      onPrimaryFixed: Color(0xff261900),
-      primaryFixedDim: Color(0xffe3c286),
-      onPrimaryFixedVariant: Color(0xff594313),
-      secondaryFixed: Color(0xfff3e0c2),
-      onSecondaryFixed: Color(0xff231a08),
-      secondaryFixedDim: Color(0xffd6c4a7),
-      onSecondaryFixedVariant: Color(0xff51452f),
-      tertiaryFixed: Color(0xffdae9b0),
-      onTertiaryFixed: Color(0xff161f00),
-      tertiaryFixedDim: Color(0xffbfcd96),
-      onTertiaryFixedVariant: Color(0xff404b21),
-      surfaceDim: Color(0xffe0d9d2),
-      surfaceBright: Color(0xfffff8f2),
-      surfaceContainerLowest: Color(0xffffffff),
-      surfaceContainerLow: Color(0xfffaf2eb),
-      surfaceContainer: Color(0xfff4ede5),
-      surfaceContainerHigh: Color(0xffeee7e0),
-      surfaceContainerHighest: Color(0xffe9e1da),
+      primary: Color(0xFF36618E),
+      surfaceTint: Color(0xFF36618E),
+      onPrimary: Color(0xFFFFFFFF),
+      primaryContainer: Color(0xFFD1E4FF),
+      onPrimaryContainer: Color(0xFF001D36),
+      secondary: Color(0xFF535F70),
+      onSecondary: Color(0xFFFFFFFF),
+      secondaryContainer: Color(0xFFD7E3F7),
+      onSecondaryContainer: Color(0xFF101C2B),
+      tertiary: Color(0xFF6B5778),
+      onTertiary: Color(0xFFFFFFFF),
+      tertiaryContainer: Color(0xFFF2DAFF),
+      onTertiaryContainer: Color(0xFF251431),
+      error: Color(0xFFBA1A1A),
+      onError: Color(0xFFFFFFFF),
+      errorContainer: Color(0xFFFFDAD6),
+      onErrorContainer: Color(0xFF410002),
+      background: Color(0xFFF8F9FF),
+      onBackground: Color(0xFF191C20),
+      surface: Color(0xFFF8F9FF),
+      onSurface: Color(0xFF191C20),
+      surfaceVariant: Color(0xFF43474E),
+      onSurfaceVariant: Color(0xFF43474E),
+      outline: Color(0xFF73777F),
+      outlineVariant: Color(0xFFC3C7CF),
+      shadow: Color(0xFF000000),
+      scrim: Color(0xFF000000),
+      inverseSurface: Color(0xFF2E3135),
+      inverseOnSurface: Color(0xFFEFF0F7),
+      inversePrimary: Color(0xFFA0CAFD),
+      primaryFixed: Color(0xFFD1E4FF),
+      onPrimaryFixed: Color(0xFF001D36),
+      primaryFixedDim: Color(0xFF36618E),
+      onPrimaryFixedVariant: Color(0xFF001D36),
+      secondaryFixed: Color(0xFFD7E3F7),
+      onSecondaryFixed: Color(0xFF101C2B),
+      secondaryFixedDim: Color(0xFF535F70),
+      onSecondaryFixedVariant: Color(0xFF101C2B),
+      tertiaryFixed: Color(0xFFF2DAFF),
+      onTertiaryFixed: Color(0xFF251431),
+      tertiaryFixedDim: Color(0xFF6B5778),
+      onTertiaryFixedVariant: Color(0xFF251431),
+      surfaceDim: Color(0xFFF8F9FF),
+      surfaceBright: Color(0xFFF8F9FF),
+      surfaceContainerLowest: Color(0xFFF8F9FF),
+      surfaceContainerLow: Color(0xFFF8F9FF),
+      surfaceContainer: Color(0xFFF8F9FF),
+      surfaceContainerHigh: Color(0xFFF8F9FF),
+      surfaceContainerHighest: Color(0xFFE1E2E8),
     );
   }
 
@@ -359,15 +358,37 @@ class MaterialTheme {
     return theme(darkHighContrastScheme().toColorScheme());
   }
 
-  ThemeData theme(ColorScheme colorScheme) => ThemeData(
+  static ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,
-        textTheme: textTheme.apply(
-          bodyColor: colorScheme.onSurface,
-          displayColor: colorScheme.onSurface,
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+              fontSize: 96.0, fontWeight: FontWeight.w300, letterSpacing: -1.5),
+          displayMedium: TextStyle(
+              fontSize: 60.0, fontWeight: FontWeight.w300, letterSpacing: -0.5),
+          displaySmall: TextStyle(fontSize: 48.0, fontWeight: FontWeight.w400),
+          headlineMedium: TextStyle(
+              fontSize: 34.0, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+          headlineSmall: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+          titleLarge: TextStyle(
+              fontSize: 20.0, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+          titleMedium: TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+          titleSmall: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+          bodyLarge: TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+          bodyMedium: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+          bodySmall: TextStyle(
+              fontSize: 12.0, fontWeight: FontWeight.w400, letterSpacing: 0.4),
+          labelLarge: TextStyle(
+              fontSize: 14.0, fontWeight: FontWeight.w500, letterSpacing: 1.25),
+          labelSmall: TextStyle(
+              fontSize: 10.0, fontWeight: FontWeight.w400, letterSpacing: 1.5),
         ),
-        scaffoldBackgroundColor: colorScheme.background,
+        scaffoldBackgroundColor: colorScheme.surface,
         canvasColor: colorScheme.surface,
       );
 
@@ -500,11 +521,9 @@ extension MaterialSchemeUtils on MaterialScheme {
       onError: onError,
       errorContainer: errorContainer,
       onErrorContainer: onErrorContainer,
-      background: background,
-      onBackground: onBackground,
       surface: surface,
       onSurface: onSurface,
-      surfaceVariant: surfaceVariant,
+      surfaceContainerHighest: surfaceVariant,
       onSurfaceVariant: onSurfaceVariant,
       outline: outline,
       outlineVariant: outlineVariant,

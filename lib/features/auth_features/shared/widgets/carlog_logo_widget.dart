@@ -1,3 +1,4 @@
+import 'package:carlog/features/auth_features/shared/widgets/car_hero_widget.dart';
 import 'package:carlog/shared/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 
@@ -8,15 +9,16 @@ class CarlogLogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 16),
       child: SizedBox(
-        height: 130,
+        height: 150,
+        width: double.infinity,
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
-            const Positioned(
-              top: -5,
+            Positioned(
+              top: -10,
               child: GradientText(
                 "CARLOG",
                 gradient: LinearGradient(
@@ -33,13 +35,7 @@ class CarlogLogoWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 30,
-              child: Image.asset(
-                "assets/car_logo-min.png",
-                width: MediaQuery.of(context).size.width * .75,
-              ),
-            ),
+            CarHeroWidget(),
           ],
         ),
       ),

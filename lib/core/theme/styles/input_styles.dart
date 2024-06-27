@@ -1,41 +1,88 @@
+import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 
 InputDecoration authTextFormFieldInputDecoration(
         BuildContext context, String? errorText, String labelText,
         // ignore: avoid_init_to_null
-        {int? errorMaxLine = null}) =>
+        {int? errorMaxLine = null,
+        Widget? changeObscure}) =>
     InputDecoration(
       labelText: labelText,
       errorText: errorText,
       errorMaxLines: errorMaxLine,
       border: InputBorder.none,
-      contentPadding: const EdgeInsets.all(6),
+      suffixIcon: changeObscure,
+      contentPadding: const EdgeInsets.all(12),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.outline,
+          color: context.outline,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.primary,
+          color: context.primaryColor,
         ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.error,
+          color: context.errorColor,
         ),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(
           width: 1,
-          color: Theme.of(context).colorScheme.error,
+          color: context.errorColor,
+        ),
+      ),
+    );
+
+InputDecoration carTextFormFieldInputDecoration(
+        BuildContext context, String hintText,
+        // ignore: avoid_init_to_null
+        {int? errorMaxLine = null,
+        Widget? changeObscure}) =>
+    InputDecoration(
+      hintText: hintText,
+      hintStyle: context.bodySmall,
+      border: InputBorder.none,
+      suffixIcon: changeObscure,
+      contentPadding: PaddingsK.all16,
+      fillColor: context.onPrimary,
+      filled: true,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
+        borderSide: BorderSide(
+          width: 1,
+          color: context.surfaceColor,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
+        borderSide: BorderSide(
+          width: 1,
+          color: context.primaryColor,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: PaddingsK.circular10,
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
         ),
       ),
     );
