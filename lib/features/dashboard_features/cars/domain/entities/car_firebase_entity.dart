@@ -18,6 +18,32 @@ class CarFirebaseEntity with _$CarFirebaseEntity {
     String? enginePower,
   }) = _CarFirebaseEntity;
 
+  factory CarFirebaseEntity.empty() => CarFirebaseEntity(
+        carId: '1',
+        brand: '',
+        model: '',
+        year: '',
+        plate: '',
+        milage: '',
+        carType: '',
+        fuelType: '',
+        engineCapacity: '',
+        enginePower: '',
+      );
+  
+  factory CarFirebaseEntity.example() => CarFirebaseEntity(
+        carId: '1',
+        brand: 'Audi',
+        model: 'A4',
+        year: '2010',
+        plate: 'WAW 12345',
+        milage: '200000',
+        carType: 'Sedan',
+        fuelType: 'Diesel',
+        engineCapacity: '2000',
+        enginePower: '140',
+      );
+
   factory CarFirebaseEntity.fromJson(Map<String, dynamic> json) =>
       _$CarFirebaseEntityFromJson(json);
 }

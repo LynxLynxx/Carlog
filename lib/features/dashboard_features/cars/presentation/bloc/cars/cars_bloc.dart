@@ -19,7 +19,7 @@ class CarsBloc extends Bloc<CarsEvent, CarsState> {
     final result = await _carRepository.getListOfCarsByUser();
     result.fold(
         (l) => emit(state.copyWith(
-            message: l.toString(), status: FormzSubmissionStatus.failure)),
+            message: l.message, status: FormzSubmissionStatus.failure)),
         (r) => emit(
             state.copyWith(carList: r, status: FormzSubmissionStatus.success)));
   }
