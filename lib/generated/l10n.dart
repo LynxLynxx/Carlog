@@ -879,6 +879,176 @@ class S {
       args: [],
     );
   }
+
+  /// `ACCOUNT`
+  String get account {
+    return Intl.message(
+      'ACCOUNT',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Account`
+  String get myAccount {
+    return Intl.message(
+      'My Account',
+      name: 'myAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logOut {
+    return Intl.message(
+      'Log Out',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CUSTOMIZE`
+  String get customize {
+    return Intl.message(
+      'CUSTOMIZE',
+      name: 'customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color Theme`
+  String get colorTheme {
+    return Intl.message(
+      'Color Theme',
+      name: 'colorTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Region/Country`
+  String get regionCountry {
+    return Intl.message(
+      'Region/Country',
+      name: 'regionCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERMISSIONS`
+  String get permissions {
+    return Intl.message(
+      'PERMISSIONS',
+      name: 'permissions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Push Notifications`
+  String get pushNotifications {
+    return Intl.message(
+      'Push Notifications',
+      name: 'pushNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Library`
+  String get library {
+    return Intl.message(
+      'Library',
+      name: 'library',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FEEDBACK`
+  String get feedback {
+    return Intl.message(
+      'FEEDBACK',
+      name: 'feedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request New Feature`
+  String get requestNewFeature {
+    return Intl.message(
+      'Request New Feature',
+      name: 'requestNewFeature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report Problem`
+  String get reportProblem {
+    return Intl.message(
+      'Report Problem',
+      name: 'reportProblem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LEGAL INFORMATION`
+  String get legalInformation {
+    return Intl.message(
+      'LEGAL INFORMATION',
+      name: 'legalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Use`
+  String get termsOfUse {
+    return Intl.message(
+      'Terms of Use',
+      name: 'termsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

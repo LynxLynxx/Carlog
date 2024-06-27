@@ -82,5 +82,22 @@
   "eg1984": "e.g. 1984",
   "enginePower": "Engine Power",
   "eg163": "e.g. 163",
-  "skip": "Skip"
+  "skip": "Skip",
+  "account": "ACCOUNT",
+  "myAccount": "My Account",
+  "changePassword": "Change Password",
+  "logOut": "Log Out",
+  "customize": "CUSTOMIZE",
+  "language": "Language",
+  "colorTheme": "Color Theme",
+  "regionCountry": "Region/Country",
+  "permissions": "PERMISSIONS",
+  "pushNotifications": "Push Notifications",
+  "library": "Library",
+  "feedback": "FEEDBACK",
+  "requestNewFeature": "Request New Feature",
+  "reportProblem": "Report Problem",
+  "legalInformation": "LEGAL INFORMATION",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfUse": "Terms of Use"
 }
