@@ -31,6 +31,7 @@ class ImagesK extends Constants {
 
   //ANCHOR - ARROWS
   static const arrowForward = "$icons/arrow_forward.svg";
+  static const arrow = "$icons/arrow.svg";
 
   //ANCHOR - SAVE
   static const save = "$icons/save.svg";
