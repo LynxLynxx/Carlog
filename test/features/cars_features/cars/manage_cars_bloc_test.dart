@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/brand_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_capacity_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/engine_power_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
@@ -303,6 +304,166 @@ void main() {
           },
         );
       });
+
+      group(
+        'brand submit',
+        () {
+          blocTest<ManageCarBloc, ManageCarState>(
+            'emits state with status success and then inProgress when brand is valid',
+            build: () => manageCarBloc,
+            act: (bloc) => bloc.add(const ManageCarEvent.submitCarBrand()),
+            seed: () => manageCarBloc.state.copyWith(
+              brandEntity: const BrandEntityValidator.pure('Audi'),
+            ),
+            wait: const Duration(milliseconds: 400),
+            expect: () => <ManageCarState>[
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.success,
+                isButtonActive: false,
+              ),
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.inProgress,
+                isButtonActive: true,
+              ),
+            ],
+            verify: (bloc) {
+              final state = bloc.state;
+              expect(state.brandEntity.error, null);
+              expect(state.status, FormzSubmissionStatus.inProgress);
+            },
+          );
+        },
+      );
+
+      group(
+        'model submit',
+        () {
+          blocTest<ManageCarBloc, ManageCarState>(
+            'emits state with status success and then inProgress when model is valid',
+            build: () => manageCarBloc,
+            act: (bloc) => bloc.add(const ManageCarEvent.submitCarModel()),
+            seed: () => manageCarBloc.state.copyWith(
+              modelEntity: const ModelEntityValidator.pure('A4'),
+            ),
+            wait: const Duration(milliseconds: 400),
+            expect: () => <ManageCarState>[
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.success,
+                isButtonActive: false,
+              ),
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.inProgress,
+                isButtonActive: true,
+              ),
+            ],
+            verify: (bloc) {
+              final state = bloc.state;
+              expect(state.modelEntity.error, null);
+              expect(state.status, FormzSubmissionStatus.inProgress);
+            },
+          );
+        },
+      );
+
+      group(
+        'main info submit',
+        () {
+          blocTest<ManageCarBloc, ManageCarState>(
+            'emits state with status success and then inProgress when main info is valid',
+            build: () => manageCarBloc,
+            act: (bloc) => bloc.add(const ManageCarEvent.submitCarMainInfo()),
+            seed: () => manageCarBloc.state.copyWith(
+              yearEntity: const YearEntityValidator.pure('2024'),
+              milageEntity: const MilageEntityValidator.pure('10000'),
+              plateEntity: const PlateEntityValidator.pure('AUM 550'),
+            ),
+            wait: const Duration(milliseconds: 1200),
+            expect: () => <ManageCarState>[
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.success,
+                isButtonActive: false,
+              ),
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.inProgress,
+                isButtonActive: true,
+              ),
+            ],
+            verify: (bloc) {
+              final state = bloc.state;
+              expect(state.yearEntity.error, null);
+              expect(state.milageEntity.error, null);
+              expect(state.plateEntity.error, null);
+              expect(state.status, FormzSubmissionStatus.inProgress);
+            },
+          );
+        },
+      );
+
+      group(
+        'sub main info submit',
+        () {
+          blocTest<ManageCarBloc, ManageCarState>(
+            'emits state with status success and then inProgress when sub main info is valid',
+            build: () => manageCarBloc,
+            act: (bloc) =>
+                bloc.add(const ManageCarEvent.submitCarSubMainInfo()),
+            seed: () => manageCarBloc.state.copyWith(
+              typeEntity: CarTypeEnum.Coupe,
+              fuelTypeEntity: FuelTypeEnum.Electric,
+              engineCapacityEntity:
+                  const EngineCapacityEntityValidator.pure('1984'),
+              enginePowerEntity: const EnginePowerEntityValidator.pure('163'),
+            ),
+            wait: const Duration(milliseconds: 1200),
+            expect: () => <ManageCarState>[
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.success,
+                isButtonActive: false,
+              ),
+              manageCarBloc.state.copyWith(
+                status: FormzSubmissionStatus.inProgress,
+                isButtonActive: true,
+              ),
+            ],
+            verify: (bloc) {
+              final state = bloc.state;
+              expect(state.engineCapacityEntity.error, null);
+              expect(state.enginePowerEntity.error, null);
+              expect(state.status, FormzSubmissionStatus.inProgress);
+            },
+          );
+        },
+      );
+
+      group(
+        'set initial car',
+        () {
+          blocTest<ManageCarBloc, ManageCarState>(
+            'emits state with car details from CarFirebaseEntity',
+            build: () => manageCarBloc,
+            act: (bloc) => bloc.add(ManageCarEvent.setInitialCar(
+              CarFirebaseEntity.example(),
+            )),
+            expect: () => <ManageCarState>[
+              manageCarBloc.state.copyWith(
+                brandEntity: const BrandEntityValidator.dirty(value: 'Audi'),
+                modelEntity: const ModelEntityValidator.dirty(value: 'A4'),
+                yearEntity: const YearEntityValidator.dirty(value: '2010'),
+                milageEntity:
+                    const MilageEntityValidator.dirty(value: '200000'),
+                plateEntity:
+                    const PlateEntityValidator.dirty(value: 'WAW 12345'),
+                typeEntity: CarTypeEnumExtension.fromString('Sedan'),
+                fuelTypeEntity: FuelTypeEnumExtension.fromString('Diesel'),
+                engineCapacityEntity:
+                    const EngineCapacityEntityValidator.dirty(value: '2000'),
+                enginePowerEntity:
+                    const EnginePowerEntityValidator.dirty(value: '140'),
+              ),
+            ],
+          );
+        },
+      );
     },
   );
 }
