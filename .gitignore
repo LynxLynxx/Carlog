@@ -53,3 +53,6 @@ app.*.map.json
 
 firebase_options.dart
 l10n.yaml
+/ios/Runner/GoogleService-Info.plist
+/android/app/google-services.json
+firebase.json
