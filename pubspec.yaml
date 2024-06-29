@@ -46,6 +46,7 @@ dependencies:
   star_menu: ^4.0.1
   animated_snack_bar: ^0.4.0
   dropdown_button2: ^2.3.9
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:
