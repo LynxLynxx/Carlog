@@ -9,7 +9,7 @@ ButtonStyle tutorialButton(BuildContext context) => ElevatedButton.styleFrom(
     );
 
 ButtonStyle homeCarButton(BuildContext context) => ElevatedButton.styleFrom(
-      elevation: 6,
+      elevation: 0,
       backgroundColor: context.surfaceTint,
       minimumSize: Size.zero,
       padding: EdgeInsets.zero,

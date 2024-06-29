@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/button_styles.dart';
+import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
@@ -69,14 +70,14 @@ SliverAppBar homeAppBar(
               ],
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             DropDownWidget(
               isExpanded: isExpanded,
               func: func,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
           ],
         ),
@@ -96,77 +97,87 @@ class DropDownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        BlocBuilder<CarsBloc, CarsState>(
-          builder: (context, state) {
-            if (state.carList.isEmpty) {
-              return const CircularProgressIndicator();
-            }
-            return AnimatedContainer(
-              duration: Durations.medium3,
-              height: isExpanded ? 60 * state.carList.length.toDouble() : 60,
-              margin: PaddingsK.h20,
-              decoration: BoxDecoration(
-                color:
-                    isExpanded ? context.primaryContainer : context.surfaceDim,
-                borderRadius: PaddingsK.circular30,
-              ),
-              padding: PaddingsK.h20v10,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: isExpanded
-                      ? state.carList
-                          .map((model) => GestureDetector(
-                                onTap: () {
-                                  context.read<UserAppBloc>().add(
-                                        UserAppEvent.selectCar(model),
-                                      );
-                                  func();
-                                },
-                                child: CarSelectElementWidget(
-                                  carFirebaseEntity: model,
-                                ),
-                              ))
-                          .toList()
-                      : [
-                          CarSelectElementWidget(
-                            carFirebaseEntity:
-                                context.watch<UserAppBloc>().state.car!,
+    return BlocBuilder<CarsBloc, CarsState>(
+      builder: (context, state) {
+        return state.carList.isNotEmpty
+            ? AnimatedContainer(
+                duration: Durations.medium3,
+                height: isExpanded
+                    ? 45 * state.carList.length.toDouble() + 15
+                    : 50 + 15,
+                child: Stack(
+                  children: [
+                    AnimatedContainer(
+                      duration: Durations.medium3,
+                      height: isExpanded
+                          ? 45 * state.carList.length.toDouble()
+                          : 50,
+                      margin: PaddingsK.h20,
+                      decoration: dropShadowEffect().copyWith(
+                        color: isExpanded
+                            ? context.primaryContainer
+                            : context.surfaceDim,
+                        borderRadius: PaddingsK.circular30,
+                      ),
+                      padding: PaddingsK.h20v10,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: isExpanded
+                              ? state.carList
+                                  .map((model) => GestureDetector(
+                                        onTap: () {
+                                          context.read<UserAppBloc>().add(
+                                                UserAppEvent.selectCar(model),
+                                              );
+                                          func();
+                                        },
+                                        child: CarSelectElementWidget(
+                                          carFirebaseEntity: model,
+                                        ),
+                                      ))
+                                  .toList()
+                              : [
+                                  CarSelectElementWidget(
+                                      carFirebaseEntity: context
+                                          .watch<UserAppBloc>()
+                                          .state
+                                          .car!),
+                                ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: MediaQuery.of(context).size.width * 0.4 < 150
+                          ? 150
+                          : MediaQuery.of(context).size.width * 0.4,
+                      right: MediaQuery.of(context).size.width * 0.4 < 150
+                          ? 150
+                          : MediaQuery.of(context).size.width * 0.4,
+                      bottom: -10,
+                      child: ElevatedButton(
+                        style: homeCarButton(context),
+                        onPressed: () => func(),
+                        child: AnimatedRotation(
+                          duration: DurationsK.d250,
+                          turns: isExpanded ? -0.5 : 0.0,
+                          child: Image.asset(
+                            "assets/icons/arrow.png",
+                            fit: BoxFit.fitHeight,
                           ),
-                        ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            );
-          },
-        ),
-        Positioned(
-          left: 150,
-          right: 150,
-          bottom: 0,
-          child: Transform.translate(
-            offset: const Offset(0, 25),
-            child: ElevatedButton(
-              style: homeCarButton(context),
-              onPressed: () => func(),
-              child: AnimatedRotation(
-                duration: DurationsK.d250,
-                turns: isExpanded ? -0.5 : 0.0,
-                child: Image.asset(
-                  "assets/icons/arrow.png",
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+              )
+            : const SizedBox.shrink();
+      },
     );
   }
 }
 
 class CarSelectElementWidget extends StatelessWidget {
-  final CarFirebaseEntity carFirebaseEntity;
+  final CarFirebaseEntity? carFirebaseEntity;
   const CarSelectElementWidget({
     super.key,
     required this.carFirebaseEntity,
@@ -174,47 +185,44 @@ class CarSelectElementWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Text(
-                carFirebaseEntity.brand ?? "",
-                style: context.headlineSmall!.copyWith(
-                  color: context.onPrimaryContainer,
-                ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(
+              carFirebaseEntity?.brand ?? "",
+              style: context.headlineSmall!.copyWith(
+                color: context.onPrimaryContainer,
               ),
-              const SizedBox(
-                width: 5,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              carFirebaseEntity?.model ?? "",
+              style: context.titleMedium!.copyWith(
+                color: context.secondaryColor,
               ),
-              Text(
-                carFirebaseEntity.model ?? "",
-                style: context.titleMedium!.copyWith(
-                  color: context.secondaryColor,
-                ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              carFirebaseEntity?.milage ?? "",
+              style: context.headlineSmall!
+                  .copyWith(color: context.onPrimaryContainer),
+            ),
+            Text(
+              "KM",
+              style: context.labelSmall!.copyWith(
+                color: context.secondaryColor,
               ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                carFirebaseEntity.milage ?? "",
-                style: context.headlineSmall!
-                    .copyWith(color: context.onPrimaryContainer),
-              ),
-              Text(
-                "KM",
-                style: context.labelSmall!.copyWith(
-                  color: context.secondaryColor,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
