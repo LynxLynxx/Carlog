@@ -879,6 +879,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You have no cars yet, add one!`
+  String get youHaveNoCarsYet {
+    return Intl.message(
+      'You have no cars yet, add one!',
+      name: 'youHaveNoCarsYet',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -82,5 +82,6 @@
   "eg1984": "e.g. 1984",
   "enginePower": "Engine Power",
   "eg163": "e.g. 163",
-  "skip": "Skip"
+  "skip": "Skip",
+  "youHaveNoCarsYet": "You have no cars yet, add one!"
 }

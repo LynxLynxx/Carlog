@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
         "yearOfProduction":
             MessageLookupByLibrary.simpleMessage("Year of production"),
+        "youHaveNoCarsYet": MessageLookupByLibrary.simpleMessage(
+            "You have no cars yet, add one!"),
         "youHaveSuccessfullyCreatedYourCar":
             MessageLookupByLibrary.simpleMessage(
                 "You have successfully created your car!")
