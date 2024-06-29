@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:carlog/features/auth_features/shared/entities/user_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -69,5 +70,22 @@ class SecureStorageService {
 
   resetFirstEntryToApp() async {
     await _secureStorage.write(key: "firstEntry", value: "true");
+  }
+
+  writeCarToApp(CarFirebaseEntity car) async {
+    await _secureStorage.write(key: "car", value: jsonEncode(car.toJson()));
+  }
+
+  Future<CarFirebaseEntity> readCarFromApp() async {
+    String? carString = await _secureStorage.read(key: "car");
+    if (carString != null) {
+      return CarFirebaseEntity.fromJson(jsonDecode(carString));
+    } else {
+      return CarFirebaseEntity.empty();
+    }
+  }
+
+  resetCarInApp() async {
+    await _secureStorage.write(key: "car", value: "");
   }
 }
