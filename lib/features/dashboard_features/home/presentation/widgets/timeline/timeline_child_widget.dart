@@ -3,7 +3,7 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
-import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/service_activity_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +11,11 @@ import 'package:flutter_svg/svg.dart';
 
 class TimelineChildWidget extends StatelessWidget {
   final bool isFirst;
-  final CarActionEntity carActionEntity;
+  final CarActionDayEntity carActionDayEntity;
   const TimelineChildWidget({
     super.key,
     required this.isFirst,
-    required this.carActionEntity,
+    required this.carActionDayEntity,
   });
 
   @override
@@ -39,7 +39,7 @@ class TimelineChildWidget extends StatelessWidget {
                         ? S.of(context).today.toUpperCase()
                         : FormatsK.eeee.format(
                             DateTime.fromMillisecondsSinceEpoch(
-                              carActionEntity.timestamp!,
+                              carActionDayEntity.timestamp!,
                             ),
                           ),
                     style: context.titleLarge!
@@ -48,7 +48,7 @@ class TimelineChildWidget extends StatelessWidget {
                   Text(
                     FormatsK.ddMMyyyy.format(
                       DateTime.fromMillisecondsSinceEpoch(
-                        carActionEntity.timestamp!,
+                        carActionDayEntity.timestamp!,
                       ),
                     ),
                     style: context.labelSmall!
@@ -58,7 +58,7 @@ class TimelineChildWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {},
-                child: SvgPicture.asset(carActionEntity.notificationActive
+                child: SvgPicture.asset(carActionDayEntity.notificationActive!
                     ? ImagesK.bellFill
                     : ImagesK.bell),
               )
@@ -67,10 +67,15 @@ class TimelineChildWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          carActionEntity.action != null
-              ? ServiceActivityWidget(
-                  carActionEntity: carActionEntity,
-                  isFirst: isFirst,
+          carActionDayEntity.carActions.isNotEmpty
+              ? Column(
+                  children: carActionDayEntity.carActions
+                      .map((model) => ServiceActivityWidget(
+                            carActionDayEntity: carActionDayEntity,
+                            isFirst: isFirst,
+                            index: 0,
+                          ))
+                      .toList(),
                 )
               : Text(
                   S.of(context).youDontHaveAnPlannedActivity,

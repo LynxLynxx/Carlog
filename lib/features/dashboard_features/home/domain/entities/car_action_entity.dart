@@ -12,7 +12,6 @@ class CarActionEntity with _$CarActionEntity {
     required String? longitude,
     required String? address,
     required CarActionEnum? action,
-    required bool notificationActive
   }) = _CarActionEntity;
 
   factory CarActionEntity.example() => CarActionEntity(
@@ -21,7 +20,6 @@ class CarActionEntity with _$CarActionEntity {
         longitude: '21.005980',
         address: "Marszałkowska 1, 00-068 Warszawa, Polska",
         action: CarActionEnum.service,
-        notificationActive: false
       );
 
   factory CarActionEntity.fromJson(Map<String, dynamic> json) =>

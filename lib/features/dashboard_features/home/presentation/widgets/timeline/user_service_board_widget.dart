@@ -1,5 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
-import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/timeline_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,17 +16,17 @@ class UserServiceBoardWidget extends StatelessWidget {
           TimelineWidget(
             isFirst: true,
             isLast: false,
-            carActionEntity: CarActionEntity.example(),
+            carActionDayEntity: CarActionDayEntity.example(),
           ),
           TimelineWidget(
             isFirst: false,
             isLast: false,
-            carActionEntity: CarActionEntity.example(),
+            carActionDayEntity: CarActionDayEntity.example(),
           ),
           TimelineWidget(
             isFirst: false,
             isLast: true,
-            carActionEntity: CarActionEntity.example(),
+            carActionDayEntity: CarActionDayEntity.example(),
           ),
         ],
       ),
