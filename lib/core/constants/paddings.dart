@@ -17,6 +17,7 @@ class PaddingsK extends Constants {
 
   //ANCHOR - [VERTICAL]
   static const v10 = EdgeInsets.symmetric(vertical: 10.0);
+  static const v20 = EdgeInsets.symmetric(vertical: 20.0);
 
   //ANCHOR - [HORIZONTAL/VERTICAL]
   static const h20v10 = EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0);

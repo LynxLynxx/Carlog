@@ -886,6 +886,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have an planned activity yet.`
+  String get youDontHaveAnPlannedActivity {
+    return Intl.message(
+      'You don’t have an planned activity yet.',
+      name: 'youDontHaveAnPlannedActivity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

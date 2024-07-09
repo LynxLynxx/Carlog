@@ -97,12 +97,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "successfullyAddedTheVehicle" : MessageLookupByLibrary.simpleMessage("Successfully added the vehicle"),
     "successfullyDeletedTheVehicle" : MessageLookupByLibrary.simpleMessage("Successfully deleted the vehicle"),
     "successfullyEditedTheVehicle" : MessageLookupByLibrary.simpleMessage("Successfully edited the vehicle"),
+    "today" : MessageLookupByLibrary.simpleMessage("Today"),
     "type" : MessageLookupByLibrary.simpleMessage("Type"),
     "unableToLocateYourBrand" : MessageLookupByLibrary.simpleMessage("Unable to locate your brand?"),
     "unableToLocateYourModel" : MessageLookupByLibrary.simpleMessage("Unable to locate your model?"),
     "updateCar" : MessageLookupByLibrary.simpleMessage("Update Car"),
     "welocomeBack" : MessageLookupByLibrary.simpleMessage("Welcome Back!"),
     "yearOfProduction" : MessageLookupByLibrary.simpleMessage("Year of production"),
+    "youDontHaveAnPlannedActivity" : MessageLookupByLibrary.simpleMessage("You don’t have an planned activity yet."),
     "youHaveNoCarsYet" : MessageLookupByLibrary.simpleMessage("You have no cars yet, add one!"),
     "youHaveSuccessfullyCreatedYourCar" : MessageLookupByLibrary.simpleMessage("You have successfully created your car!")
   };

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -121,6 +122,26 @@ class CarRepository {
         },
       );
       return carList;
+    });
+  }
+
+  Future<Either<Failure, List<CarActionEntity>> > getCarActionsByCarId(String carId) async {
+    return handleResponse(() async {
+      final CollectionReference carActionsRef =
+          FirebaseFirestore.instance.collection('carActions');
+
+      List<CarActionEntity> carActionsList = [];
+      await carActionsRef.where('carId', isEqualTo: carId).get().then(
+        (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            final model = CarActionEntity.fromJson(
+                docSnapshot.data() as Map<String, dynamic>);
+            log(model.toString());
+            carActionsList.add(model);
+          }
+        },
+      );
+      return carActionsList;
     });
   }
 }
