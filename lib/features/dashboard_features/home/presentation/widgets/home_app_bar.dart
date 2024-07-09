@@ -10,6 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:formz/formz.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 SliverAppBar homeAppBar(
   BuildContext context,
@@ -94,6 +96,21 @@ class DropDownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CarsBloc, CarsState>(
       builder: (context, state) {
+        if (state.status.isInProgress || state.status.isInitial) {
+          return Skeletonizer(
+              child: Container(
+            height: 50,
+            margin: PaddingsK.h20,
+            width: MediaQuery.of(context).size.width * 0.8,
+            decoration: dropShadowEffect().copyWith(
+              color: context.surfaceDim,
+              borderRadius: PaddingsK.circular30,
+            ),
+            padding: PaddingsK.h20v10,
+            child: CarSelectElementWidget(
+                carFirebaseEntity: CarFirebaseEntity.example()),
+          ));
+        }
         return state.carList.isNotEmpty
             ? DropdownButtonHideUnderline(
                 child: Container(

@@ -7,6 +7,7 @@ import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appb
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -42,19 +43,25 @@ class _HomePageState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final carList = context.watch<CarsBloc>().state.carList;
     return DashboardAppbar.appbar(
-      appBar: homeAppBar(
-        context,
-        () => setState(
-          () {
-            isExpanded = !isExpanded;
-          },
+        appBar: homeAppBar(
+          context,
+          () => setState(
+            () {
+              isExpanded = !isExpanded;
+            },
+          ),
         ),
-      ),
-      body: carList.isNotEmpty
-          ? const UserServiceBoardWidget()
-          : const NoCarsFoundWidget(),
-    );
+        body: BlocBuilder<CarsBloc, CarsState>(
+          builder: (context, state) {
+            if (state.status.isInProgress || state.status.isInitial) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return state.carList.isNotEmpty
+                ? const UserServiceBoardWidget()
+                : const NoCarsFoundWidget();
+          },
+        ));
   }
 }
