@@ -5,10 +5,8 @@ import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/user_service_board_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -48,7 +46,6 @@ class _HomePageState extends State<HomeView> {
     return DashboardAppbar.appbar(
       appBar: homeAppBar(
         context,
-        isExpanded,
         () => setState(
           () {
             isExpanded = !isExpanded;
@@ -56,7 +53,7 @@ class _HomePageState extends State<HomeView> {
         ),
       ),
       body: carList.isNotEmpty
-          ? UserServiceBoardWidget()
+          ? const UserServiceBoardWidget()
           : const NoCarsFoundWidget(),
     );
   }
