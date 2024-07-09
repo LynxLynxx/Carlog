@@ -13,6 +13,7 @@ class UserServiceBoardWidget extends StatelessWidget {
     return Padding(
       padding: PaddingsK.h20,
       child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           TimelineWidget(
             isFirst: true,

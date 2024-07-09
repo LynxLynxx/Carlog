@@ -18,7 +18,10 @@ SliverAppBar homeAppBar(
   Function() func,
 ) {
   return SliverAppBar(
-    toolbarHeight: 130,
+    toolbarHeight: 50,
+    expandedHeight: 120,
+    collapsedHeight: 50,
+    backgroundColor: context.surfaceColor,
     flexibleSpace: Container(
       padding: PaddingsK.h20,
       decoration: BoxDecoration(
