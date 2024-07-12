@@ -1,7 +1,10 @@
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_service/manage_service_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_menu/star_menu.dart';
 
 class CustomFloatingButtonWidget extends StatelessWidget {
@@ -21,11 +24,14 @@ class CustomFloatingButtonWidget extends StatelessWidget {
         centerOffset: Offset(0, -50),
         openDurationMs: 150,
       ),
-      items: const [
-        CustomFloatingChildWidget(id: 3),
-        CustomFloatingChildWidget(id: 2),
-        CustomFloatingChildWidget(id: 1),
-        CustomFloatingChildWidget(id: 0),
+      items: [
+        const CustomFloatingChildWidget(id: 3),
+        const CustomFloatingChildWidget(id: 2),
+        BlocProvider(
+          create: (context) => ManageServiceBloc(locator(), locator()),
+          child: const CustomFloatingChildWidget(id: 1),
+        ),
+        const CustomFloatingChildWidget(id: 0),
       ],
       child: FloatingActionButton(
         backgroundColor: context.primaryColor,
@@ -65,16 +71,32 @@ class CustomFloatingChildWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: PaddingsK.all8,
-      decoration: BoxDecoration(
-          borderRadius: PaddingsK.circular10,
-          color: context.onPrimary,
-          border: Border.all(color: context.primaryColor)),
-      child: Text(
-        getTitle(),
-        textAlign: TextAlign.center,
-        style: text16W500LS1,
+    return GestureDetector(
+      onTap: () => {
+        if (id == 1)
+          {
+            context
+                .read<ManageServiceBloc>()
+                .add(const ManageServiceEvent.changeLatitude("40.689247")),
+            context
+                .read<ManageServiceBloc>()
+                .add(const ManageServiceEvent.changeLongitude("-74.044502")),
+            context
+                .read<ManageServiceBloc>()
+                .add(const ManageServiceEvent.submitServiceEvent()),
+          }
+      },
+      child: Container(
+        padding: PaddingsK.all8,
+        decoration: BoxDecoration(
+            borderRadius: PaddingsK.circular10,
+            color: context.onPrimary,
+            border: Border.all(color: context.primaryColor)),
+        child: Text(
+          getTitle(),
+          textAlign: TextAlign.center,
+          style: text16W500LS1,
+        ),
       ),
     );
   }

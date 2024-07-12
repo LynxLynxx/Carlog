@@ -1,5 +1,7 @@
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_service/manage_service_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/service/service_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/home_app_bar.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_cars_found_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_service_board_widget.dart';
@@ -25,6 +27,13 @@ class HomePage extends StatelessWidget {
           create: (context) =>
               UserAppBloc(locator())..add(const UserAppEvent.readCarFromApp()),
         ),
+        BlocProvider(
+          create: (context) => ManageServiceBloc(locator(), locator()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ServiceBloc(locator())..add(const ServiceEvent.getServices()),
+        ),
       ],
       child: const HomeView(),
     );
@@ -44,24 +53,25 @@ class _HomePageState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return DashboardAppbar.appbar(
-        appBar: homeAppBar(
-          context,
-          () => setState(
-            () {
-              isExpanded = !isExpanded;
-            },
-          ),
-        ),
-        body: BlocBuilder<CarsBloc, CarsState>(
-          builder: (context, state) {
-            if (state.status.isInProgress || state.status.isInitial) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            return state.carList.isNotEmpty
-                ? const UserServiceBoardWidget()
-                : const NoCarsFoundWidget();
+      appBar: homeAppBar(
+        context,
+        () => setState(
+          () {
+            isExpanded = !isExpanded;
           },
-        ));
+        ),
+      ),
+      body: BlocBuilder<CarsBloc, CarsState>(
+        builder: (context, state) {
+          if (state.status.isInProgress || state.status.isInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return state.carList.isNotEmpty
+              ? const UserServiceBoardWidget()
+              : const NoCarsFoundWidget();
+        },
+      ),
+    );
   }
 }

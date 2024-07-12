@@ -906,6 +906,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Coordinates should be between 1 and 16 characters`
+  String get coordinatesValidator {
+    return Intl.message(
+      'Coordinates should be between 1 and 16 characters',
+      name: 'coordinatesValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully added the activity`
+  String get successfullyAddedTheActivity {
+    return Intl.message(
+      'Successfully added the activity',
+      name: 'successfullyAddedTheActivity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

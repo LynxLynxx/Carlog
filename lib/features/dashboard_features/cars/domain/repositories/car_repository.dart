@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -125,23 +126,96 @@ class CarRepository {
     });
   }
 
-  Future<Either<Failure, List<CarActionEntity>> > getCarActionsByCarId(String carId) async {
+  Future<Either<Failure, List<CarActionDayEntity>>> getCarActionsByCarId(
+      String carId) async {
     return handleResponse(() async {
-      final CollectionReference carActionsRef =
-          FirebaseFirestore.instance.collection('carActions');
+      final CollectionReference carActionsRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions');
 
-      List<CarActionEntity> carActionsList = [];
-      await carActionsRef.where('carId', isEqualTo: carId).get().then(
+      List<CarActionDayEntity> carActionDayList = [];
+      await carActionsRef.get().then(
         (querySnapshot) {
           for (var docSnapshot in querySnapshot.docs) {
-            final model = CarActionEntity.fromJson(
-                docSnapshot.data() as Map<String, dynamic>);
-            log(model.toString());
-            carActionsList.add(model);
+            final data = docSnapshot.data() as Map<String, dynamic>;
+            final List<CarActionEntity> carActions =
+                (data['carActions'] as List)
+                    .map((action) => CarActionEntity.fromJson(action))
+                    .toList();
+
+            final carActionDayEntity = CarActionDayEntity(
+              timestamp: data['timestamp'],
+              notificationActive: data['notificationActive'],
+              carActions: carActions,
+            );
+
+            carActionDayList.add(carActionDayEntity);
           }
         },
       );
-      return carActionsList;
+      return carActionDayList;
     });
   }
+
+  Future<Option<Failure>> addCarActionsByCarId(
+      String carId, CarActionEntity carAction) async {
+    return handleVoidResponse(() async {
+      final CollectionReference carActionsRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions');
+
+      DateTime actionDate =
+          DateTime.fromMillisecondsSinceEpoch(carAction.timestamp!);
+      int day = actionDate.day;
+      int month = actionDate.month;
+      int year = actionDate.year;
+
+      QuerySnapshot querySnapshot = await carActionsRef.get();
+      DocumentSnapshot? existingDocument;
+
+      for (var doc in querySnapshot.docs) {
+        DateTime docDate = DateTime.fromMillisecondsSinceEpoch(
+            (doc.data() as Map<String, dynamic>)['timestamp']);
+        if (docDate.year == year &&
+            docDate.month == month &&
+            docDate.day == day) {
+          existingDocument = doc;
+          break;
+        }
+      }
+
+      if (existingDocument != null) {
+        DocumentSnapshot document = querySnapshot.docs.first;
+        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+        List<dynamic> carActions = data['carActions'] ?? [];
+        carActions.add(carAction.toJson());
+
+        await carActionsRef.doc(document.id).update({'carActions': carActions});
+      } else {
+        final data = {
+          "timestamp": carAction.timestamp,
+          "debugDate": "$day-$month-$year",
+          "notificationActive": false,
+          "carActions": [carAction.toJson()],
+        };
+
+        await carActionsRef.add(data);
+      }
+    });
+  }
+
+  // Future<Option<Failure>> changeNotificationOfDayByCarId(
+  //     String carId, String dayId, bool notification) async {
+  //   return handleVoidResponse(() async {
+  //     final CollectionReference carRef =
+  //         FirebaseFirestore.instance.collection('cars');
+
+  //     await carRef.doc(carId).update({
+  //       "notification": notification,
+  //     });
+  //   });
+  // }
 }

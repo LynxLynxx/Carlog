@@ -85,5 +85,7 @@
   "skip": "Skip",
   "youHaveNoCarsYet": "You have no cars yet, add one!",
   "today": "Today",
-  "youDontHaveAnPlannedActivity": "You don’t have an planned activity yet."
+  "youDontHaveAnPlannedActivity": "You don’t have an planned activity yet.",
+  "coordinatesValidator": "Coordinates should be between 1 and 16 characters",
+  "successfullyAddedTheActivity": "Successfully added the activity"
 }
