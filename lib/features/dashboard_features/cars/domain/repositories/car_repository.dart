@@ -141,7 +141,16 @@ class CarRepository {
             final data = docSnapshot.data() as Map<String, dynamic>;
             final List<CarActionEntity> carActions =
                 (data['carActions'] as List)
-                    .map((action) => CarActionEntity.fromJson(action))
+                    .map((action) {
+                      final model = CarActionEntity.fromJson(action);
+                      if (!DateTime.fromMillisecondsSinceEpoch(model.timestamp!)
+                          .isBefore(DateTime.now())) {
+                        return model;
+                      }
+                      return null;
+                    })
+                    .where((action) => action != null)
+                    .cast<CarActionEntity>()
                     .toList();
 
             final carActionDayEntity = CarActionDayEntity(
@@ -154,6 +163,11 @@ class CarRepository {
           }
         },
       );
+      carActionDayList.sort((a, b) {
+        final dateA = DateTime.fromMillisecondsSinceEpoch(a.timestamp!);
+        final dateB = DateTime.fromMillisecondsSinceEpoch(b.timestamp!);
+        return dateA.compareTo(dateB);
+      });
       return carActionDayList;
     });
   }
