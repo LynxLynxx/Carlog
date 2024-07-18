@@ -83,6 +83,16 @@ class AuthRepository {
     });
   }
 
+  Future<Option<Failure>> signInWithMicrosoft() {
+    return handleVoidResponse(() async {
+      final provider = OAuthProvider('microsoft.com');
+      provider.setCustomParameters(
+          {"tenant": "6f9bd7d4-1007-4014-b414-bf371740d90b"});
+
+      await FirebaseAuth.instance.signInWithProvider(provider);
+    });
+  }
+
   Future<Option<Failure>> createUserDocument() async {
     return handleVoidResponse(() async {
       // final User? user = FirebaseAuth.instance.currentUser;

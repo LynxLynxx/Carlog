@@ -5,6 +5,7 @@ import 'package:carlog/core/services/secure_storage_service.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/bloc/microsoft_auth/microsoft_auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
@@ -28,6 +29,11 @@ class LoginPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GoogleAuthBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => MicrosoftAuthBloc(
             locator(),
           ),
         ),
@@ -94,13 +100,17 @@ class LoginPageView extends StatelessWidget {
                             asset: "assets/GoogleLogo1.png");
                       },
                     ),
-                    // ConnectByService(
-                    //     isLoading: false,
-                    //     onTap: () {},
-                    //     title: "Apple",
-                    //     asset: context.isDark
-                    //         ? "assets/appleLogo3.png"
-                    //         : "assets/appleLogo1.png"),
+                    BlocBuilder<MicrosoftAuthBloc, MicrosoftAuthState>(
+                      builder: (context, state) {
+                        return ConnectByService(
+                            isLoading: false,
+                            onTap: () => context
+                                .read<MicrosoftAuthBloc>()
+                                .add(const MicrosoftAuthEvent.firebaseLogin()),
+                            title: "Microsoft",
+                            asset: "assets/microsoft.png");
+                      },
+                    ),
                   ],
                 ),
               ],
