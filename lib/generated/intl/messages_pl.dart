@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("KONTO"),
         "addCar": MessageLookupByLibrary.simpleMessage("Dodaj samochód"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analityka"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
@@ -41,8 +42,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "carYearValidator": MessageLookupByLibrary.simpleMessage(
             "Rok produkcji pojazdu powinien zawierać 4 znaki."),
         "cars": MessageLookupByLibrary.simpleMessage("Samochody"),
+        "changePassword": MessageLookupByLibrary.simpleMessage("Zmień hasło"),
+        "colorTheme":
+            MessageLookupByLibrary.simpleMessage("Motyw kolorystyczny"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Gratulacje!"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Utwórz konto!"),
+        "customize": MessageLookupByLibrary.simpleMessage("DOSTOSUJ"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Czy na pewno chcesz usunąć ten pojazd?"),
         "eg10000": MessageLookupByLibrary.simpleMessage("np. 10 000"),
@@ -116,28 +121,45 @@ class MessageLookup extends MessageLookupByLibrary {
             "Użytkownik z tymi poświadczeniami nie istnieje"),
         "errorWeakPassword":
             MessageLookupByLibrary.simpleMessage("Podaj silniejsze hasło"),
+        "feedback": MessageLookupByLibrary.simpleMessage("OPINIE"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Rodzaj paliwa"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Rozpocznij"),
+        "language": MessageLookupByLibrary.simpleMessage("Język"),
+        "legalInformation":
+            MessageLookupByLibrary.simpleMessage("INFORMACJE PRAWNE"),
+        "library": MessageLookupByLibrary.simpleMessage("Biblioteka"),
         "litersValidator": MessageLookupByLibrary.simpleMessage(
             "Pojemność w litrach powinna zawierać od 1 do 4 cyfr."),
+        "logOut": MessageLookupByLibrary.simpleMessage("Wyloguj się"),
         "login": MessageLookupByLibrary.simpleMessage("Logowanie"),
         "milage": MessageLookupByLibrary.simpleMessage("Przebieg"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Przebieg powinien zawierać od 1 do 8 cyfr."),
+        "myAccount": MessageLookupByLibrary.simpleMessage("Moje konto"),
         "next": MessageLookupByLibrary.simpleMessage("Dalej"),
         "notifications": MessageLookupByLibrary.simpleMessage("Powiadomienia"),
         "or": MessageLookupByLibrary.simpleMessage("LUB"),
         "password": MessageLookupByLibrary.simpleMessage("Hasło"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Odzyskiwanie hasła"),
+        "permissions": MessageLookupByLibrary.simpleMessage("UPRAWNIENIA"),
         "plate": MessageLookupByLibrary.simpleMessage("Numer rejestracyjny"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
             "Cena powinna zawierać od 1 do 8 cyfr."),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
             "Cena powinna zawierać od 1 do 5 cyfr."),
+        "privacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Polityka prywatności"),
+        "pushNotifications":
+            MessageLookupByLibrary.simpleMessage("Powiadomienia push"),
+        "regionCountry": MessageLookupByLibrary.simpleMessage("Region/Kraj"),
         "register": MessageLookupByLibrary.simpleMessage("Rejestracja"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Przypomnij hasło"),
+        "reportProblem": MessageLookupByLibrary.simpleMessage("Zgłoś problem"),
+        "requestNewFeature":
+            MessageLookupByLibrary.simpleMessage("Poproś o nową funkcję"),
+        "settings": MessageLookupByLibrary.simpleMessage("Ustawienia"),
         "skip": MessageLookupByLibrary.simpleMessage("Pomiń"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Pojazd został pomyślnie dodany."),
@@ -145,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pojazd został pomyślnie usunięty."),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Pojazd został pomyślnie edytowany."),
+        "termsOfUse":
+            MessageLookupByLibrary.simpleMessage("Warunki korzystania"),
         "type": MessageLookupByLibrary.simpleMessage("Typ"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
             "Nie możesz znaleźć swojej marki?"),

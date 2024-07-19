@@ -1,6 +1,7 @@
-import 'package:carlog/core/constants/settings_items.dart';
+import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_items.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/widgets/settings_section_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -9,16 +10,16 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DashboardAppbar.title(
-      title: "Settings",
+      title: S.current.settings,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: EdgeInsets.zero,
-          itemCount: settingsItems.length,
+          itemCount: settingsItems(context).length,
           itemBuilder: (context, index) => SettingsSectionWidget(
-            sectionEntity: settingsItems[index],
+            sectionEntity: settingsItems(context)[index],
           ),
         ),
       ),

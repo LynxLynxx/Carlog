@@ -1,13 +1,14 @@
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_action_enu.dart';
+import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_action_enum.dart';
 import 'package:flutter/material.dart';
 
 final class SettingsItemEntity {
   final String name;
   final SettingsItemAction action;
-  final IconData icon;
+  final String icon;
   final Color iconColor;
   String selectionName;
   bool switchValue;
+  final VoidCallback? onTap;
 
   SettingsItemEntity({
     required this.name,
@@ -16,6 +17,7 @@ final class SettingsItemEntity {
     required this.iconColor,
     this.selectionName = "",
     this.switchValue = false,
+    this.onTap,
   });
 
   SettingsItemEntity.switchButton({
@@ -25,6 +27,7 @@ final class SettingsItemEntity {
     required this.iconColor,
     this.selectionName = "",
     this.switchValue = false,
+    this.onTap,
   });
 
   SettingsItemEntity.selectionButton({
@@ -34,5 +37,6 @@ final class SettingsItemEntity {
     required this.iconColor,
     this.selectionName = "",
     this.switchValue = false,
+    this.onTap,
   });
 }

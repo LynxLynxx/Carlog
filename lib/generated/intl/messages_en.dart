@@ -159,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportProblem": MessageLookupByLibrary.simpleMessage("Report Problem"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Request New Feature"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully added the vehicle"),

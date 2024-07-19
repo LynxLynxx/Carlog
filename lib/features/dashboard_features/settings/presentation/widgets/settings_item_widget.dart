@@ -1,8 +1,9 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_action_enu.dart';
+import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_action_enum.dart';
 import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SettingsItemWidget extends StatefulWidget {
   final SettingsItemEntity settingsItem;
@@ -20,9 +21,12 @@ class _SettingsItemWidgetState extends State<SettingsItemWidget> {
       child: ListTile(
           minVerticalPadding: 1,
           enableFeedback: true,
-          leading: Icon(
+          leading: SvgPicture.asset(
             widget.settingsItem.icon,
-            color: widget.settingsItem.iconColor,
+            colorFilter: ColorFilter.mode(
+              widget.settingsItem.iconColor,
+              BlendMode.srcIn,
+            ),
           ),
           title: Text(
             widget.settingsItem.name,
@@ -36,7 +40,7 @@ class _SettingsItemWidgetState extends State<SettingsItemWidget> {
   Function()? _onTapFunction(SettingsItemEntity item) {
     switch (item.action) {
       case SettingsItemAction.none:
-        return () {};
+        return item.onTap;
       default:
         return null;
     }
@@ -55,9 +59,7 @@ class _SettingsItemWidgetState extends State<SettingsItemWidget> {
 
       case SettingsItemAction.selectionButton:
         return TextButton.icon(
-          onPressed: () {
-            print("BUTTON");
-          },
+          onPressed: item.onTap,
           label: Text(item.selectionName),
           icon: const Icon(Icons.keyboard_arrow_right_outlined),
           iconAlignment: IconAlignment.end,
