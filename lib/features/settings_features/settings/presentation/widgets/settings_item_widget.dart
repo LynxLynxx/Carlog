@@ -1,6 +1,6 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_action_enum.dart';
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_entity.dart';
+import 'package:carlog/features/settings_features/settings/domain/entities/settings_item_action_enum.dart';
+import 'package:carlog/features/settings_features/settings/domain/entities/settings_item_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

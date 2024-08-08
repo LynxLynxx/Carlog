@@ -6,17 +6,27 @@ import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
+import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationDocumentsDirectory(),
+  );
+
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp();
   configureDependencies();
@@ -35,6 +45,10 @@ Future<void> main() async {
       ),
       BlocProvider(
         create: (context) => ThemeModeCubit(),
+      ),
+      BlocProvider(
+        lazy: false,
+        create: (context) => LanguageCubit(Intl(), S()),
       ),
     ],
     child: const MyApp(),
@@ -67,20 +81,24 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],
-      child: MaterialApp.router(
-        title: 'Carlog',
-        theme: const MaterialTheme().light(),
-        darkTheme: const MaterialTheme().dark(),
-        themeMode: context.watch<ThemeModeCubit>().state.themeMode,
-        routerConfig: router,
-        locale: Locale(Intl.getCurrentLocale()),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
+      child: BlocBuilder<LanguageCubit, LanguageState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Carlog',
+            theme: const MaterialTheme().light(),
+            darkTheme: const MaterialTheme().dark(),
+            themeMode: context.watch<ThemeModeCubit>().state.themeMode,
+            routerConfig: router,
+            locale: context.watch<LanguageCubit>().state.currentLocal,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+          );
+        },
       ),
     );
   }

@@ -100,5 +100,7 @@
   "legalInformation": "INFORMACIÓN LEGAL",
   "privacyPolicy": "Política de privacidad",
   "termsOfUse": "Términos de uso",
-  "settings": "Configuración"
+  "settings": "Configuración",
+  "supportedLanguage": "{language, select, pl{Polaco} en{Inglés} other{Español}}",
+  "supportedThemes": "{theme, select, light{claro} other{oscuro}}"
 }

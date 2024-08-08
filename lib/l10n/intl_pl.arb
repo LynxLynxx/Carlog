@@ -100,5 +100,23 @@
   "legalInformation": "INFORMACJE PRAWNE",
   "privacyPolicy": "Polityka prywatności",
   "termsOfUse": "Warunki korzystania",
-  "settings": "Ustawienia"
+  "settings": "Ustawienia",
+  "supportedLanguage": "{language, select, en{angielski} es{hiszpański} pl{polski} other{hiszpański}}",
+  "@supportedLanguage": {
+    "description": "suporrted readable language",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "supportedThemes": "{theme, select, dark{ciemny} light{jasny} other{ciemny}}",
+  "@supportedThemes": {
+    "description": "supported readable themes",
+    "placeholders": {
+      "theme": {
+        "type": "String"
+      }
+    }
+  }
 }

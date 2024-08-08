@@ -20,6 +20,19 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pl';
 
+  static String m0(language) => "${Intl.select(language, {
+            'en': 'angielski',
+            'es': 'hiszpański',
+            'pl': 'polski',
+            'other': 'hiszpański',
+          })}";
+
+  static String m1(theme) => "${Intl.select(theme, {
+            'dark': 'ciemny',
+            'light': 'jasny',
+            'other': 'ciemny',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("KONTO"),
@@ -167,6 +180,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pojazd został pomyślnie usunięty."),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Pojazd został pomyślnie edytowany."),
+        "supportedLanguage": m0,
+        "supportedThemes": m1,
         "termsOfUse":
             MessageLookupByLibrary.simpleMessage("Warunki korzystania"),
         "type": MessageLookupByLibrary.simpleMessage("Typ"),

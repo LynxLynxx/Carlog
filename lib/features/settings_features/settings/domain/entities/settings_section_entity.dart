@@ -1,4 +1,4 @@
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_item_entity.dart';
+import 'package:carlog/features/settings_features/settings/domain/entities/settings_item_entity.dart';
 
 final class SettingsSectionEntity {
   final String name;

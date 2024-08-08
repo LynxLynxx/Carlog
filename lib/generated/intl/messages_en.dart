@@ -20,6 +20,17 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(language) => "${Intl.select(language, {
+            'pl': 'Polish',
+            'en': 'English',
+            'other': 'Spanish',
+          })}";
+
+  static String m1(theme) => "${Intl.select(theme, {
+            'light': 'light',
+            'other': 'dark',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("ACCOUNT"),
@@ -83,11 +94,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorDataLoss": MessageLookupByLibrary.simpleMessage(
             "Your data was lost or corrupted"),
         "errorDeadlineExceeded": MessageLookupByLibrary.simpleMessage(
-            "Operation couldn\'t be completed"),
+            "Operation couldn\'\'t be completed"),
         "errorEmailInUse":
             MessageLookupByLibrary.simpleMessage("Account already exists"),
         "errorFailedPrecondition": MessageLookupByLibrary.simpleMessage(
-            "Operation was rejected, because system could\'nt procced with execution"),
+            "Operation was rejected, because system couldn\'\'t procced with execution"),
         "errorInternal": MessageLookupByLibrary.simpleMessage(
             "Internal error occoured. Please try again later"),
         "errorInvalidArgument": MessageLookupByLibrary.simpleMessage(
@@ -109,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorResourceExhausted": MessageLookupByLibrary.simpleMessage(
             "Resources are not available at this time. Try again later"),
         "errorUnauthenticated": MessageLookupByLibrary.simpleMessage(
-            "You don\'t have permission to perform this operation"),
+            "You don\'\'t have permission to perform this operation"),
         "errorUnavailable": MessageLookupByLibrary.simpleMessage(
             "The service is currently unavailable"),
         "errorUnimplemented": MessageLookupByLibrary.simpleMessage(
@@ -167,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully deleted the vehicle"),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully edited the vehicle"),
+        "supportedLanguage": m0,
+        "supportedThemes": m1,
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(

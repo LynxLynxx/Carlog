@@ -360,20 +360,20 @@ class S {
     );
   }
 
-  /// `Operation couldn't be completed`
+  /// `Operation couldn''t be completed`
   String get errorDeadlineExceeded {
     return Intl.message(
-      'Operation couldn\'t be completed',
+      'Operation couldn\'\'t be completed',
       name: 'errorDeadlineExceeded',
       desc: '',
       args: [],
     );
   }
 
-  /// `Operation was rejected, because system could'nt procced with execution`
+  /// `Operation was rejected, because system couldn''t procced with execution`
   String get errorFailedPrecondition {
     return Intl.message(
-      'Operation was rejected, because system could\'nt procced with execution',
+      'Operation was rejected, because system couldn\'\'t procced with execution',
       name: 'errorFailedPrecondition',
       desc: '',
       args: [],
@@ -430,10 +430,10 @@ class S {
     );
   }
 
-  /// `You don't have permission to perform this operation`
+  /// `You don''t have permission to perform this operation`
   String get errorUnauthenticated {
     return Intl.message(
-      'You don\'t have permission to perform this operation',
+      'You don\'\'t have permission to perform this operation',
       name: 'errorUnauthenticated',
       desc: '',
       args: [],
@@ -1057,6 +1057,35 @@ class S {
       name: 'settings',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `{language, select, pl{Polish} en{English} other{Spanish}}`
+  String supportedLanguage(String language) {
+    return Intl.select(
+      language,
+      {
+        'pl': 'Polish',
+        'en': 'English',
+        'other': 'Spanish',
+      },
+      name: 'supportedLanguage',
+      desc: 'suporrted readable language',
+      args: [language],
+    );
+  }
+
+  /// `{theme, select, light{light} other{dark}}`
+  String supportedThemes(String theme) {
+    return Intl.select(
+      theme,
+      {
+        'light': 'light',
+        'other': 'dark',
+      },
+      name: 'supportedThemes',
+      desc: 'supported readable themes',
+      args: [theme],
     );
   }
 }

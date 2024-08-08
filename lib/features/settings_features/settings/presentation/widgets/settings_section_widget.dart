@@ -1,6 +1,6 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
-import 'package:carlog/features/dashboard_features/settings/domain/entities/settings_section_entity.dart';
-import 'package:carlog/features/dashboard_features/settings/presentation/widgets/settings_item_widget.dart';
+import 'package:carlog/features/settings_features/settings/domain/entities/settings_section_entity.dart';
+import 'package:carlog/features/settings_features/settings/presentation/widgets/settings_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingsSectionWidget extends StatelessWidget {
