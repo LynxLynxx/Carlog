@@ -147,6 +147,8 @@ class CarRepository {
               hours: DateTime.now().hour,
               minutes: DateTime.now().minute,
               seconds: DateTime.now().second,
+              milliseconds: DateTime.now().millisecond,
+              microseconds: DateTime.now().microsecond,
             )))) {
               continue;
             }
