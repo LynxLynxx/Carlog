@@ -55,11 +55,6 @@ class _HomePageState extends State<HomeView> {
     return DashboardAppbar.appbar(
       appBar: homeAppBar(
         context,
-        () => setState(
-          () {
-            isExpanded = !isExpanded;
-          },
-        ),
       ),
       body: BlocBuilder<CarsBloc, CarsState>(
         builder: (context, state) {

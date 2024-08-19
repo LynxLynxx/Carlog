@@ -15,7 +15,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 SliverAppBar homeAppBar(
   BuildContext context,
-  Function() func,
 ) {
   return SliverAppBar(
     toolbarHeight: 50,
@@ -75,9 +74,7 @@ SliverAppBar homeAppBar(
             const SizedBox(
               height: 15,
             ),
-            DropDownWidget(
-              func: func,
-            ),
+            const DropDownWidget(),
             const SizedBox(
               height: 20,
             ),
@@ -89,10 +86,8 @@ SliverAppBar homeAppBar(
 }
 
 class DropDownWidget extends StatelessWidget {
-  final Function() func;
   const DropDownWidget({
     super.key,
-    required this.func,
   });
 
   @override
@@ -138,7 +133,6 @@ class DropDownWidget extends StatelessWidget {
                       context.read<UserAppBloc>().add(
                             UserAppEvent.selectCar(newValue!),
                           );
-                      func();
                     },
                     iconStyleData: const IconStyleData(iconSize: 0),
                     dropdownStyleData: DropdownStyleData(
