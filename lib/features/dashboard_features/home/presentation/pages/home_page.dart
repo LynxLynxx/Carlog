@@ -22,17 +22,16 @@ class HomePage extends StatelessWidget {
           create: (context) =>
               CarsBloc(locator())..add(const CarsEvent.getCars()),
         ),
+        BlocProvider(create: (context) => ServiceBloc(locator())),
         BlocProvider(
           lazy: false,
-          create: (context) =>
-              UserAppBloc(locator())..add(const UserAppEvent.readCarFromApp()),
+          create: (context) => UserAppBloc(
+            locator(),
+            context.read<ServiceBloc>(),
+          )..add(const UserAppEvent.readCarFromApp()),
         ),
         BlocProvider(
           create: (context) => ManageServiceBloc(locator(), locator()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              ServiceBloc(locator())..add(const ServiceEvent.getServices()),
         ),
       ],
       child: const HomeView(),

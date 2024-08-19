@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/services/secure_storage_service.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/service/service_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_app_bloc.freezed.dart';
@@ -9,7 +10,9 @@ part 'user_app_state.dart';
 
 class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
   final SecureStorageService secureStorageService;
-  UserAppBloc(this.secureStorageService) : super(const _UserAppState()) {
+  final ServiceBloc serviceBloc;
+  UserAppBloc(this.secureStorageService, this.serviceBloc)
+      : super(const _UserAppState()) {
     on<_SelectCar>(_onSelectCar);
     on<_ReadCarFromApp>(_onReadCarFromApp);
     on<_ResetCarInApp>(_onResetCarInApp);
@@ -17,11 +20,14 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
 
   _onSelectCar(_SelectCar event, Emitter<UserAppState> emit) async {
     await secureStorageService.writeCarToApp(event.carFirebaseEntity);
+    serviceBloc
+        .add(ServiceEvent.getServices(carId: event.carFirebaseEntity.carId));
     emit(state.copyWith(car: event.carFirebaseEntity));
   }
 
   _onReadCarFromApp(_ReadCarFromApp event, Emitter<UserAppState> emit) async {
     final car = await secureStorageService.readCarFromApp();
+    serviceBloc.add(ServiceEvent.getServices(carId: car.carId));
     emit(state.copyWith(car: car));
   }
 

@@ -56,8 +56,10 @@ SliverAppBar homeAppBar(
                   children: [
                     SvgPicture.asset(
                       ImagesK.search,
-                      width: 30,
-                      height: 30,
+                      width: 35,
+                      height: 35,
+                      colorFilter: ColorFilter.mode(
+                          context.onPrimaryContainer, BlendMode.srcIn),
                     ),
                     const SizedBox(
                       width: 10,
@@ -66,6 +68,8 @@ SliverAppBar homeAppBar(
                       ImagesK.bell,
                       width: 30,
                       height: 30,
+                      colorFilter: ColorFilter.mode(
+                          context.onPrimaryContainer, BlendMode.srcIn),
                     ),
                   ],
                 ),

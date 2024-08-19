@@ -1,7 +1,7 @@
-import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/car_list_widget.dart';
-import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class NoCarsFoundWidget extends StatelessWidget {
   const NoCarsFoundWidget({
@@ -11,18 +11,16 @@ class NoCarsFoundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        LottieBuilder.asset(AnimationsK.carGarage, width: double.infinity,),
+        const SizedBox(
+          height: 20,
+        ),
         const SizedBox(
           width: double.infinity,
           height: 100,
           child: AddCarListElementWidget(),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Text(
-          S.of(context).youHaveNoCarsYet,
-          style: context.titleLarge,
         ),
       ],
     );

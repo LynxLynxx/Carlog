@@ -26,9 +26,6 @@ class CarsView extends StatefulWidget {
 }
 
 class _CarsViewState extends State<CarsView> {
-  int selectedBrand = 0;
-  int selectedModel = 0;
-
   @override
   Widget build(BuildContext context) {
     return DashboardAppbar.title(

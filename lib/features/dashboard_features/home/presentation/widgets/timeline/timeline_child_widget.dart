@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:carlog/core/constants/formats.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
@@ -22,7 +20,6 @@ class TimelineChildWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("CarActionDayEntity: $carActionDayEntity");
     return BlocProvider(
       lazy: false,
       create: (context) => ServiceNotificationBloc(locator())
@@ -40,7 +37,6 @@ class _TimelineChildWidget extends StatelessWidget {
   final bool isFirst;
   final CarActionDayEntity carActionDayEntity;
   const _TimelineChildWidget({
-    super.key,
     required this.isFirst,
     required this.carActionDayEntity,
   });
@@ -60,6 +56,7 @@ class _TimelineChildWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     isFirst
@@ -93,6 +90,8 @@ class _TimelineChildWidget extends StatelessWidget {
                       width: 30,
                       height: 30,
                       fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          context.onPrimaryContainer, BlendMode.srcIn),
                     ),
                   );
                 },

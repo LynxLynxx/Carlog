@@ -16,13 +16,11 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
 
   _onGetServices(_GetServices event, Emitter<ServiceState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-    final result =
-        await _carRepository.getCarActionsByCarId("Psi7UTfL47sgp1usWGn3");
+    final result = await _carRepository.getCarActionsByCarId(event.carId);
     result.fold(
         (l) => emit(state.copyWith(
             message: l.toString(), status: FormzSubmissionStatus.failure)),
         (r) => emit(state.copyWith(
             carActionDayEntity: r, status: FormzSubmissionStatus.success)));
   }
-
 }
