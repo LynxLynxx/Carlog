@@ -39,9 +39,7 @@ class TimelineChildWidget extends StatelessWidget {
                         ? S.of(context).today.toUpperCase()
                         : FormatsK.eeee
                             .format(
-                              DateTime.fromMillisecondsSinceEpoch(
-                                carActionDayEntity.timestamp!,
-                              ),
+                              carActionDayEntity.timestamp!
                             )
                             .toUpperCase(),
                     style: context.titleLarge!
@@ -49,9 +47,7 @@ class TimelineChildWidget extends StatelessWidget {
                   ),
                   Text(
                     FormatsK.ddMMyyyy.format(
-                      DateTime.fromMillisecondsSinceEpoch(
-                        carActionDayEntity.timestamp!,
-                      ),
+                      carActionDayEntity.timestamp!
                     ),
                     style: context.labelSmall!
                         .copyWith(color: context.onPrimaryContainer),

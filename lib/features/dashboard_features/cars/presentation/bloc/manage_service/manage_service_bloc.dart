@@ -80,9 +80,7 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
     final result = await _carRepository.addCarActionsByCarId(
       "Psi7UTfL47sgp1usWGn3",
       CarActionEntity(
-          timestamp: DateTime.now()
-              .add(const Duration(days: 3))
-              .millisecondsSinceEpoch,
+          timestamp: DateTime.now().add(const Duration(days: 3)),
           latitude: state.latitude.value != "" ? state.latitude.value : null,
           longitude: state.longitude.value != "" ? state.longitude.value : null,
           address: address,

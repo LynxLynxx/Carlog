@@ -139,22 +139,29 @@ class CarRepository {
         (querySnapshot) {
           for (var docSnapshot in querySnapshot.docs) {
             final data = docSnapshot.data() as Map<String, dynamic>;
+
+            final DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
+                (data['timestamp'] as Timestamp).millisecondsSinceEpoch);
+
+            if (timestamp.isBefore(DateTime.now().subtract(Duration(
+              hours: DateTime.now().hour,
+              minutes: DateTime.now().minute,
+              seconds: DateTime.now().second,
+            )))) {
+              continue;
+            }
+
             final List<CarActionEntity> carActions =
                 (data['carActions'] as List)
                     .map((action) {
                       final model = CarActionEntity.fromJson(action);
-                      if (!DateTime.fromMillisecondsSinceEpoch(model.timestamp!)
-                          .isBefore(DateTime.now())) {
-                        return model;
-                      }
-                      return null;
+                      return model;
                     })
-                    .where((action) => action != null)
                     .cast<CarActionEntity>()
                     .toList();
 
             final carActionDayEntity = CarActionDayEntity(
-              timestamp: data['timestamp'],
+              timestamp: timestamp,
               notificationActive: data['notificationActive'],
               carActions: carActions,
             );
@@ -163,11 +170,11 @@ class CarRepository {
           }
         },
       );
+
       carActionDayList.sort((a, b) {
-        final dateA = DateTime.fromMillisecondsSinceEpoch(a.timestamp!);
-        final dateB = DateTime.fromMillisecondsSinceEpoch(b.timestamp!);
-        return dateA.compareTo(dateB);
+        return a.timestamp!.compareTo(b.timestamp!);
       });
+
       return carActionDayList;
     });
   }
@@ -180,11 +187,9 @@ class CarRepository {
           .doc(carId)
           .collection('actions');
 
-      DateTime actionDate =
-          DateTime.fromMillisecondsSinceEpoch(carAction.timestamp!);
-      int day = actionDate.day;
-      int month = actionDate.month;
-      int year = actionDate.year;
+      int day = carAction.timestamp?.day ?? 0;
+      int month = carAction.timestamp?.month ?? 0;
+      int year = carAction.timestamp?.year ?? 0;
 
       QuerySnapshot querySnapshot = await carActionsRef.get();
       DocumentSnapshot? existingDocument;
@@ -210,8 +215,7 @@ class CarRepository {
         await carActionsRef.doc(document.id).update({'carActions': carActions});
       } else {
         final data = {
-          "timestamp": carAction.timestamp,
-          "debugDate": "$day-$month-$year",
+          "timestamp": Timestamp.fromDate(carAction.timestamp!),
           "notificationActive": false,
           "carActions": [carAction.toJson()],
         };
