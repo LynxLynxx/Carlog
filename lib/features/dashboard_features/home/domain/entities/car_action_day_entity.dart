@@ -12,12 +12,16 @@ class CarActionDayEntity with _$CarActionDayEntity {
     @TimestampConverter() DateTime? timestamp,
     required bool? notificationActive,
     required List<CarActionEntity> carActions,
+    required String? carId,
+    required String actionId,
   }) = _CarActionDayEntity;
 
   factory CarActionDayEntity.example() => CarActionDayEntity(
         timestamp: DateTime.fromMillisecondsSinceEpoch(1719686401),
         notificationActive: true,
         carActions: [CarActionEntity.example(), CarActionEntity.example()],
+        carId: "Psi7UTfL47sgp1usWGn3",
+        actionId: "5l2HyY8WULdn6yYBx8kR",
       );
 
   factory CarActionDayEntity.fromJson(Map<String, dynamic> json) =>

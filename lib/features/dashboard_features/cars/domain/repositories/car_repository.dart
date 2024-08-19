@@ -164,6 +164,8 @@ class CarRepository {
               timestamp: timestamp,
               notificationActive: data['notificationActive'],
               carActions: carActions,
+              carId: data['carId'],
+              actionId: data['actionId'],
             );
 
             carActionDayList.add(carActionDayEntity);
@@ -218,22 +220,31 @@ class CarRepository {
           "timestamp": Timestamp.fromDate(carAction.timestamp!),
           "notificationActive": false,
           "carActions": [carAction.toJson()],
+          "carId": carId,
+          "actionId": "",
         };
 
-        await carActionsRef.add(data);
+        final addAction = await carActionsRef.add(data);
+
+        await carActionsRef
+            .doc(addAction.id)
+            .update({"actionId": addAction.id});
       }
     });
   }
 
-  // Future<Option<Failure>> changeNotificationOfDayByCarId(
-  //     String carId, String dayId, bool notification) async {
-  //   return handleVoidResponse(() async {
-  //     final CollectionReference carRef =
-  //         FirebaseFirestore.instance.collection('cars');
+  Future<Option<Failure>> changeNotificationOfDayByCarId(
+      String carId, String actionId, bool notification) async {
+    return handleVoidResponse(() async {
+      final DocumentReference carRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions')
+          .doc(actionId);
 
-  //     await carRef.doc(carId).update({
-  //       "notification": notification,
-  //     });
-  //   });
-  // }
+      await carRef.update({
+        "notificationActive": notification,
+      });
+    });
+  }
 }
