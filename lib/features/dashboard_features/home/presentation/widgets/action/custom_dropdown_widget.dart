@@ -3,29 +3,17 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDropdownWidget extends StatelessWidget {
-  final int id;
-  final String title;
   const CustomDropdownWidget({
     super.key,
-    required this.title,
-    required this.id,
   });
-
-  getWidget(ManageCarState state) {
-    switch (id) {
-      case 0:
-        return _CarTypeWidget(state: state);
-      case 1:
-        return _FuelTypeWidget(state: state);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +29,7 @@ class CustomDropdownWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        title,
+                        S.of(context).type,
                         style: context.titleLarge!.copyWith(
                           color: context.onPrimaryContainer,
                         ),
@@ -55,12 +43,12 @@ class CustomDropdownWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          BlocBuilder<ManageCarBloc, ManageCarState>(
+          BlocBuilder<ManageActionBloc, ManageActionState>(
             builder: (context, state) {
               return Container(
                 decoration: dropShadowEffect(),
                 child: DropdownButtonHideUnderline(
-                  child: getWidget(state),
+                  child: _CarActionWidget(state: state),
                 ),
               );
             },
@@ -74,21 +62,21 @@ class CustomDropdownWidget extends StatelessWidget {
   }
 }
 
-class _CarTypeWidget extends StatelessWidget {
-  final ManageCarState state;
-  const _CarTypeWidget({
+class _CarActionWidget extends StatelessWidget {
+  final ManageActionState state;
+  const _CarActionWidget({
     required this.state,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton2<CarTypeEnum>(
+    return DropdownButton2<CarActionEnum>(
       isExpanded: true,
-      items: CarTypeEnum.values
-          .map((CarTypeEnum carType) => DropdownMenuItem<CarTypeEnum>(
-                value: carType,
+      items: CarActionEnum.values
+          .map((CarActionEnum carAction) => DropdownMenuItem<CarActionEnum>(
+                value: carAction,
                 child: Text(
-                  carType.name,
+                  CarActionEnumExtension.getCustomName(carAction),
                   style: context.titleMedium!.copyWith(
                     color: context.onPrimaryContainer,
                   ),
@@ -97,77 +85,14 @@ class _CarTypeWidget extends StatelessWidget {
               ))
           .toList(),
       hint: Text(
-        S.of(context).egSUV,
+        S.of(context).egService,
         style: context.bodySmall,
       ),
-      value: state.typeEntity,
-      onChanged: (carType) {
+      value: state.action,
+      onChanged: (carAction) {
         context
-            .read<ManageCarBloc>()
-            .add(ManageCarEvent.carTypeChanged(carType!));
-      },
-      buttonStyleData: const ButtonStyleData(
-        height: 55,
-        width: double.infinity,
-        padding: EdgeInsets.only(left: 14, right: 14),
-      ),
-      iconStyleData: const IconStyleData(
-        icon: Icon(
-          Icons.keyboard_arrow_down,
-        ),
-        iconSize: 20,
-      ),
-      dropdownStyleData: DropdownStyleData(
-        maxHeight: 200,
-        width: 230,
-        decoration: BoxDecoration(
-          borderRadius: PaddingsK.circular10,
-          color: context.surfaceColor,
-        ),
-        offset: const Offset(0, -10),
-        scrollbarTheme: const ScrollbarThemeData(
-          radius: Radius.circular(40),
-        ),
-      ),
-      menuItemStyleData: const MenuItemStyleData(
-        height: 40,
-        padding: EdgeInsets.only(left: 14, right: 14),
-      ),
-    );
-  }
-}
-
-class _FuelTypeWidget extends StatelessWidget {
-  final ManageCarState state;
-  const _FuelTypeWidget({
-    required this.state,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton2<FuelTypeEnum>(
-      isExpanded: true,
-      items: FuelTypeEnum.values
-          .map((FuelTypeEnum fuelType) => DropdownMenuItem<FuelTypeEnum>(
-                value: fuelType,
-                child: Text(
-                  fuelType.name,
-                  style: context.titleMedium!.copyWith(
-                    color: context.onPrimaryContainer,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ))
-          .toList(),
-      hint: Text(
-        S.of(context).egHybrid,
-        style: context.bodySmall,
-      ),
-      value: state.fuelTypeEntity,
-      onChanged: (fuelType) {
-        context
-            .read<ManageCarBloc>()
-            .add(ManageCarEvent.fuelTypeChanged(fuelType!));
+            .read<ManageActionBloc>()
+            .add(ManageActionEvent.changeActionType(carAction!));
       },
       buttonStyleData: const ButtonStyleData(
         height: 55,

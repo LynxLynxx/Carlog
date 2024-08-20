@@ -917,11 +917,61 @@ class S {
     );
   }
 
+  /// `Address should be between 1 and 100 characters`
+  String get addressValidator {
+    return Intl.message(
+      'Address should be between 1 and 100 characters',
+      name: 'addressValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Successfully added the activity`
   String get successfullyAddedTheActivity {
     return Intl.message(
       'Successfully added the activity',
       name: 'successfullyAddedTheActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Service`
+  String get egService {
+    return Intl.message(
+      'e.g. Service',
+      name: 'egService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Walkway, 10004, NY, United States`
+  String get egWalkway {
+    return Intl.message(
+      'e.g. Walkway, 10004, NY, United States',
+      name: 'egWalkway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Action`
+  String get addAction {
+    return Intl.message(
+      'Add Action',
+      name: 'addAction',
       desc: '',
       args: [],
     );

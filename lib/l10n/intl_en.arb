@@ -87,5 +87,10 @@
   "today": "Today",
   "youDontHaveAnPlannedActivity": "You don’t have an planned activity yet.",
   "coordinatesValidator": "Coordinates should be between 1 and 16 characters",
-  "successfullyAddedTheActivity": "Successfully added the activity"
+  "addressValidator": "Address should be between 1 and 100 characters",
+  "successfullyAddedTheActivity": "Successfully added the activity",
+  "egService": "e.g. Service",
+  "egWalkway": "e.g. Walkway, 10004, NY, United States",
+  "address": "Address",
+  "addAction": "Add Action"
 }

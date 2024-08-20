@@ -1,11 +1,8 @@
 import 'package:carlog/core/constants/paddings.dart';
-import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_service/manage_service_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:star_menu/star_menu.dart';
 
@@ -38,12 +35,9 @@ class CustomFloatingButtonWidget extends StatelessWidget {
           id: 2,
           starMenuController: controller,
         ),
-        BlocProvider(
-          create: (context) => ManageServiceBloc(locator(), locator()),
-          child: CustomFloatingChildWidget(
-            id: 1,
-            starMenuController: controller,
-          ),
+        CustomFloatingChildWidget(
+          id: 1,
+          starMenuController: controller,
         ),
         CustomFloatingChildWidget(
           id: 0,

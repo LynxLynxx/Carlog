@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
@@ -117,7 +115,6 @@ class CarRepository {
           for (var docSnapshot in querySnapshot.docs) {
             final model = CarFirebaseEntity.fromJson(
                 docSnapshot.data() as Map<String, dynamic>);
-            log(model.toString());
             carList.add(model);
           }
         },
@@ -214,43 +211,42 @@ class CarRepository {
           .doc(carId)
           .collection('actions');
 
-      int day = carAction.timestamp?.day ?? 0;
-      int month = carAction.timestamp?.month ?? 0;
-      int year = carAction.timestamp?.year ?? 0;
+      final DateTime actionDate = carAction.timestamp!;
+      final int day = actionDate.day;
+      final int month = actionDate.month;
+      final int year = actionDate.year;
 
-      QuerySnapshot querySnapshot = await carActionsRef.get();
-      DocumentSnapshot? existingDocument;
+      QuerySnapshot querySnapshot = await carActionsRef
+          .where('timestamp',
+              isGreaterThanOrEqualTo:
+                  Timestamp.fromDate(DateTime(year, month, day)),
+              isLessThanOrEqualTo:
+                  Timestamp.fromDate(DateTime(year, month, day + 1)))
+          .limit(1)
+          .get();
 
-      for (var doc in querySnapshot.docs) {
-        DateTime docDate = DateTime.fromMillisecondsSinceEpoch(
-            (doc.data() as Map<String, dynamic>)['timestamp']);
-        if (docDate.year == year &&
-            docDate.month == month &&
-            docDate.day == day) {
-          existingDocument = doc;
-          break;
-        }
-      }
+      DocumentSnapshot? existingDocument =
+          querySnapshot.docs.isNotEmpty ? querySnapshot.docs.first : null;
 
       if (existingDocument != null) {
-        DocumentSnapshot document = querySnapshot.docs.first;
-        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-
+        Map<String, dynamic> data =
+            existingDocument.data() as Map<String, dynamic>;
         List<dynamic> carActions = data['carActions'] ?? [];
         carActions.add(carAction.toJson());
 
-        await carActionsRef.doc(document.id).update({'carActions': carActions});
+        await carActionsRef
+            .doc(existingDocument.id)
+            .update({'carActions': carActions});
       } else {
-        final data = {
-          "timestamp": Timestamp.fromDate(carAction.timestamp!),
+        final newData = {
+          "timestamp": Timestamp.fromDate(actionDate),
           "notificationActive": false,
           "carActions": [carAction.toJson()],
           "carId": carId,
           "actionId": "",
         };
 
-        final addAction = await carActionsRef.add(data);
-
+        final addAction = await carActionsRef.add(newData);
         await carActionsRef
             .doc(addAction.id)
             .update({"actionId": addAction.id});

@@ -1,12 +1,13 @@
-part of 'manage_service_bloc.dart';
+part of 'manage_action_bloc.dart';
 
 @freezed
-class ManageServiceState with _$ManageServiceState {
-  const factory ManageServiceState([
+class ManageActionState with _$ManageActionState {
+  const factory ManageActionState([
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(CoordinatesEntityValidator.pure()) CoordinatesEntityValidator latitude,
     @Default(CoordinatesEntityValidator.pure()) CoordinatesEntityValidator longitude,
+    @Default(AddressEntityValidator.pure()) AddressEntityValidator address,
     @Default(CarActionEnum.service) CarActionEnum action,
     String? message,
-  ]) = _ManageServiceState;
+  ]) = _ManageActionState;
 }

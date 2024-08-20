@@ -21,7 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "addAction" : MessageLookupByLibrary.simpleMessage("Add Action"),
     "addCar" : MessageLookupByLibrary.simpleMessage("Add Car"),
+    "address" : MessageLookupByLibrary.simpleMessage("Address"),
+    "addressValidator" : MessageLookupByLibrary.simpleMessage("Address should be between 1 and 100 characters"),
     "analytics" : MessageLookupByLibrary.simpleMessage("Analytics"),
     "bodyAnalyticsTutorial" : MessageLookupByLibrary.simpleMessage("Have access to preview statistics on car expenses!"),
     "bodyElectricCarsTutorial" : MessageLookupByLibrary.simpleMessage("Are you getting an electric car? We support them too!"),
@@ -44,7 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "egAUM550" : MessageLookupByLibrary.simpleMessage("e.g. AUM 550"),
     "egHybrid" : MessageLookupByLibrary.simpleMessage("e.g. Hybrid"),
     "egSUV" : MessageLookupByLibrary.simpleMessage("e.g. SUV"),
+    "egService" : MessageLookupByLibrary.simpleMessage("e.g. Service"),
     "egVolvo" : MessageLookupByLibrary.simpleMessage("e.g. Volvo"),
+    "egWalkway" : MessageLookupByLibrary.simpleMessage("e.g. Walkway, 10004, NY, United States"),
     "egXC90" : MessageLookupByLibrary.simpleMessage("e.g. XC90"),
     "electricCars" : MessageLookupByLibrary.simpleMessage("Electric cars"),
     "email" : MessageLookupByLibrary.simpleMessage("Email"),

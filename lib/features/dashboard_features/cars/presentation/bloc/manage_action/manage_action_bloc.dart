@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/address_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/coordinates_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
@@ -9,23 +10,24 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'manage_service_bloc.freezed.dart';
-part 'manage_service_event.dart';
-part 'manage_service_state.dart';
+part 'manage_action_bloc.freezed.dart';
+part 'manage_action_event.dart';
+part 'manage_action_state.dart';
 
-class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
+class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
   final CarRepository _carRepository;
   final LocationRepository _locationRepository;
-  ManageServiceBloc(this._carRepository, this._locationRepository)
-      : super(const ManageServiceState()) {
+  ManageActionBloc(this._carRepository, this._locationRepository)
+      : super(const ManageActionState()) {
     on<_ChangeLatitudeEvent>(_onChangeLatitudeEvent);
     on<_ChangeLongitudeEvent>(_onChangeLongitudeEvent);
-    on<_ChangeServiceTypeEvent>(_onChangeServiceTypeEvent);
-    on<_SubmitServiceEvent>(_onSubmitServiceEvent);
+    on<_ChangeAddressEvent>(_onChangeAddressEvent);
+    on<_ChangeActionTypeEvent>(_onChangeActionTypeEvent);
+    on<_SubmitActionEvent>(_onSubmitActionEvent);
   }
 
   _onChangeLatitudeEvent(
-      _ChangeLatitudeEvent event, Emitter<ManageServiceState> emit) {
+      _ChangeLatitudeEvent event, Emitter<ManageActionState> emit) {
     final latitude = CoordinatesEntityValidator.pure(event.value);
     emit(
       state.copyWith(latitude: latitude),
@@ -33,22 +35,30 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
   }
 
   _onChangeLongitudeEvent(
-      _ChangeLongitudeEvent event, Emitter<ManageServiceState> emit) {
+      _ChangeLongitudeEvent event, Emitter<ManageActionState> emit) {
     final longitude = CoordinatesEntityValidator.pure(event.value);
     emit(
       state.copyWith(longitude: longitude),
     );
   }
 
-  _onChangeServiceTypeEvent(
-      _ChangeServiceTypeEvent event, Emitter<ManageServiceState> emit) {
+  _onChangeAddressEvent(
+      _ChangeAddressEvent event, Emitter<ManageActionState> emit) {
+    final address = AddressEntityValidator.pure(event.value);
+    emit(
+      state.copyWith(address: address),
+    );
+  }
+
+  _onChangeActionTypeEvent(
+      _ChangeActionTypeEvent event, Emitter<ManageActionState> emit) {
     emit(
       state.copyWith(action: event.value),
     );
   }
 
-  _onSubmitServiceEvent(
-      _SubmitServiceEvent event, Emitter<ManageServiceState> emit) async {
+  _onSubmitActionEvent(
+      _SubmitActionEvent event, Emitter<ManageActionState> emit) async {
     final latitude =
         CoordinatesEntityValidator.dirty(value: state.latitude.value);
     final longitude =
@@ -96,6 +106,5 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyAddedTheActivity));
-    // carsBloc.add(const CarsEvent.getCars());
   }
 }
