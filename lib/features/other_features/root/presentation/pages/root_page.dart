@@ -64,7 +64,7 @@ class RootPage extends StatelessWidget {
       //   ),
       // ),
 
-      floatingActionButton: const CustomFloatingButtonWidget(),
+      floatingActionButton: CustomFloatingButtonWidget(),
       bottomNavigationBar:
           CustomBottomNavigationBarWidget(navigationShell: navigationShell),
     );

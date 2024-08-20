@@ -14,6 +14,7 @@ class RoutesK {
   static const home = "/";
   static const cars = "/cars";
   static const addCar = "/addCar";
+  static const addAction = "/addAction";
   static const manageCar = "/manageCar";
   static const deleteCarConfirmation = "$manageCar/deleteCarConfirmation";
   static const statistics = "/statistics";

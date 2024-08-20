@@ -135,22 +135,33 @@ class CarRepository {
           .collection('actions');
 
       List<CarActionDayEntity> carActionDayList = [];
+      bool todayExists = false;
       await carActionsRef.get().then(
         (querySnapshot) {
           for (var docSnapshot in querySnapshot.docs) {
             final data = docSnapshot.data() as Map<String, dynamic>;
 
-            final DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
+            DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
                 (data['timestamp'] as Timestamp).millisecondsSinceEpoch);
 
-            if (timestamp.isBefore(DateTime.now().subtract(Duration(
-              hours: DateTime.now().hour,
-              minutes: DateTime.now().minute,
-              seconds: DateTime.now().second,
-              milliseconds: DateTime.now().millisecond,
-              microseconds: DateTime.now().microsecond,
-            )))) {
+            timestamp = DateTime(
+              timestamp.year,
+              timestamp.month,
+              timestamp.day,
+            );
+
+            final DateTime startOfToday = DateTime(
+              DateTime.now().year,
+              DateTime.now().month,
+              DateTime.now().day,
+            );
+
+            if (timestamp.isBefore(startOfToday)) {
               continue;
+            }
+
+            if (timestamp == startOfToday) {
+              todayExists = true;
             }
 
             final List<CarActionEntity> carActions =
@@ -174,6 +185,18 @@ class CarRepository {
           }
         },
       );
+
+      if (!todayExists) {
+        final carActionDayEntity = CarActionDayEntity(
+          timestamp: DateTime.now(),
+          notificationActive: false,
+          carActions: [],
+          carId: '',
+          actionId: '',
+        );
+
+        carActionDayList.add(carActionDayEntity);
+      }
 
       carActionDayList.sort((a, b) {
         return a.timestamp!.compareTo(b.timestamp!);

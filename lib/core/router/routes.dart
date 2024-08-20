@@ -13,6 +13,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_c
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/pages/action_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
@@ -94,6 +95,12 @@ final List<RouteBase> routes = [
       return AddCarPage(
         appContext: extra,
       );
+    },
+  ),
+  AnimationGoRoute(
+    path: "/addAction",
+    builder: (context, state) {
+      return const ActionPage();
     },
   ),
   AnimationGoRoute(

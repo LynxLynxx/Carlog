@@ -1,18 +1,23 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_service/manage_service_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:star_menu/star_menu.dart';
 
 class CustomFloatingButtonWidget extends StatelessWidget {
-  const CustomFloatingButtonWidget({super.key});
+  CustomFloatingButtonWidget({super.key});
+
+  final StarMenuController controller = StarMenuController();
 
   @override
   Widget build(BuildContext context) {
     return StarMenu(
+      controller: controller,
       params: const StarMenuParameters(
         shape: MenuShape.linear,
         linearShapeParams: LinearShapeParams(
@@ -25,13 +30,25 @@ class CustomFloatingButtonWidget extends StatelessWidget {
         openDurationMs: 150,
       ),
       items: [
-        const CustomFloatingChildWidget(id: 3),
-        const CustomFloatingChildWidget(id: 2),
+        CustomFloatingChildWidget(
+          id: 3,
+          starMenuController: controller,
+        ),
+        CustomFloatingChildWidget(
+          id: 2,
+          starMenuController: controller,
+        ),
         BlocProvider(
           create: (context) => ManageServiceBloc(locator(), locator()),
-          child: const CustomFloatingChildWidget(id: 1),
+          child: CustomFloatingChildWidget(
+            id: 1,
+            starMenuController: controller,
+          ),
         ),
-        const CustomFloatingChildWidget(id: 0),
+        CustomFloatingChildWidget(
+          id: 0,
+          starMenuController: controller,
+        ),
       ],
       child: FloatingActionButton(
         backgroundColor: context.primaryColor,
@@ -54,7 +71,9 @@ class CustomFloatingButtonWidget extends StatelessWidget {
 
 class CustomFloatingChildWidget extends StatelessWidget {
   final int id;
-  const CustomFloatingChildWidget({super.key, required this.id});
+  final StarMenuController starMenuController;
+  const CustomFloatingChildWidget(
+      {super.key, required this.id, required this.starMenuController});
 
   getTitle() {
     switch (id) {
@@ -75,15 +94,17 @@ class CustomFloatingChildWidget extends StatelessWidget {
       onTap: () => {
         if (id == 1)
           {
-            context
-                .read<ManageServiceBloc>()
-                .add(const ManageServiceEvent.changeLatitude("40.689247")),
-            context
-                .read<ManageServiceBloc>()
-                .add(const ManageServiceEvent.changeLongitude("-74.044502")),
-            context
-                .read<ManageServiceBloc>()
-                .add(const ManageServiceEvent.submitServiceEvent()),
+            // context
+            //     .read<ManageServiceBloc>()
+            //     .add(const ManageServiceEvent.changeLatitude("40.689247")),
+            // context
+            //     .read<ManageServiceBloc>()
+            //     .add(const ManageServiceEvent.changeLongitude("-74.044502")),
+            // context
+            //     .read<ManageServiceBloc>()
+            //     .add(const ManageServiceEvent.submitServiceEvent()),
+            starMenuController.closeMenu!(),
+            context.push(RoutesK.addAction),
           }
       },
       child: Container(
