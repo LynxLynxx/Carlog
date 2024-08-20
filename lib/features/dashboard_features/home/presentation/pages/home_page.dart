@@ -1,6 +1,6 @@
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/service/service_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/home_app_bar.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_cars_found_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_service_board_widget.dart';
@@ -21,12 +21,14 @@ class HomePage extends StatelessWidget {
           create: (context) =>
               CarsBloc(locator())..add(const CarsEvent.getCars()),
         ),
-        BlocProvider(create: (context) => ServiceBloc(locator())),
+        BlocProvider(
+          create: (context) => ActionBloc(locator()),
+        ),
         BlocProvider(
           lazy: false,
           create: (context) => UserAppBloc(
             locator(),
-            context.read<ServiceBloc>(),
+            context.read<ActionBloc>(),
           )..add(const UserAppEvent.readCarFromApp()),
         ),
       ],

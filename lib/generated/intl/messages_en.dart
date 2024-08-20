@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "carYearValidator" : MessageLookupByLibrary.simpleMessage("The vehicle year of manufacture should be 4 characters"),
     "cars" : MessageLookupByLibrary.simpleMessage("Cars"),
     "congratulations" : MessageLookupByLibrary.simpleMessage("Congratulations!"),
-    "coordinatesValidator" : MessageLookupByLibrary.simpleMessage("Coordinates should be between 1 and 16 characters"),
+    "coordinatesValidator" : MessageLookupByLibrary.simpleMessage("Coordinates should be between 1 and 25 characters"),
     "createAccount" : MessageLookupByLibrary.simpleMessage("Create Account!"),
     "deleteVehicleConfirmation" : MessageLookupByLibrary.simpleMessage("Are you sure you want to delete this vehicle?"),
     "eg10000" : MessageLookupByLibrary.simpleMessage("e.g. 10 000"),

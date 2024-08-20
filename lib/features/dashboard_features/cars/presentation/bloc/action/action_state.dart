@@ -1,10 +1,10 @@
-part of 'service_bloc.dart';
+part of 'action_bloc.dart';
 
 @freezed
-class ServiceState with _$ServiceState {
-  const factory ServiceState([
+class ActionState with _$ActionState {
+  const factory ActionState([
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default([]) List<CarActionDayEntity> carActionDayEntity,
     String? message,
-  ]) = _ServiceState;
+  ]) = _ActionState;
 }

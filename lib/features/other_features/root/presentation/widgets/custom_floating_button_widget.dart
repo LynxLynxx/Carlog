@@ -98,7 +98,7 @@ class CustomFloatingChildWidget extends StatelessWidget {
             //     .read<ManageServiceBloc>()
             //     .add(const ManageServiceEvent.submitServiceEvent()),
             starMenuController.closeMenu!(),
-            context.push(RoutesK.addAction),
+            context.push(RoutesK.addAction, extra: context),
           }
       },
       child: Container(

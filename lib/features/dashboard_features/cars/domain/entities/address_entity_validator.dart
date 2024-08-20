@@ -3,16 +3,15 @@ import 'package:formz/formz.dart';
 
 class AddressEntityValidator extends FormzInput<String, String> {
   const AddressEntityValidator.pure([super.value = '']) : super.pure();
-  const AddressEntityValidator.dirty({String value = ''})
-      : super.dirty(value);
+  const AddressEntityValidator.dirty({String value = ''}) : super.dirty(value);
 
   @override
   String? validator(String value) {
     if (value.isEmpty) {
-      return S.current.coordinatesValidator;
+      return S.current.addressValidator;
     }
-    if (value.length > 30) {
-      return S.current.coordinatesValidator;
+    if (value.length > 100) {
+      return S.current.addressValidator;
     }
     return null;
   }

@@ -10,7 +10,7 @@ class CoordinatesEntityValidator extends FormzInput<String, String> {
     if (value.isEmpty) {
       return S.current.coordinatesValidator;
     }
-    if (value.length < 2 || value.length > 16) {
+    if (value.length < 2 || value.length > 25) {
       return S.current.coordinatesValidator;
     }
     return null;

@@ -1,6 +1,6 @@
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/paddings.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/service/service_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/timeline_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +12,7 @@ class UserServiceBoardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ServiceBloc, ServiceState>(
+    return BlocConsumer<ActionBloc, ActionState>(
       listener: (context, state) {},
       builder: (context, state) {
         if (state.status.isInProgress || state.status.isInitial) {

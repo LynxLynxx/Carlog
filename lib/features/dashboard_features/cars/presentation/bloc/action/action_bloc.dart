@@ -4,17 +4,17 @@ import 'package:carlog/features/dashboard_features/home/domain/entities/car_acti
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'service_bloc.freezed.dart';
-part 'service_event.dart';
-part 'service_state.dart';
+part 'action_bloc.freezed.dart';
+part 'action_event.dart';
+part 'action_state.dart';
 
-class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
+class ActionBloc extends Bloc<ActionEvent, ActionState> {
   final CarRepository _carRepository;
-  ServiceBloc(this._carRepository) : super(const _ServiceState()) {
-    on<_GetServices>(_onGetServices);
+  ActionBloc(this._carRepository) : super(const _ActionState()) {
+    on<_GetActions>(_onGetActions);
   }
 
-  _onGetServices(_GetServices event, Emitter<ServiceState> emit) async {
+  _onGetActions(_GetActions event, Emitter<ActionState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final result = await _carRepository.getCarActionsByCarId(event.carId);
     result.fold(

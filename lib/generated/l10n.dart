@@ -907,10 +907,10 @@ class S {
     );
   }
 
-  /// `Coordinates should be between 1 and 16 characters`
+  /// `Coordinates should be between 1 and 25 characters`
   String get coordinatesValidator {
     return Intl.message(
-      'Coordinates should be between 1 and 16 characters',
+      'Coordinates should be between 1 and 25 characters',
       name: 'coordinatesValidator',
       desc: '',
       args: [],
