@@ -94,5 +94,7 @@
   "address": "Address",
   "addAction": "Add Action",
   "date": "Date",
-  "eg20240101": "e.g. 2024-01-01"
+  "eg20240101": "e.g. 2024-01-01",
+  "updateMilage": "Update Milage",
+  "successfullyUpdatedTheMilage": "Successfully updated the milage"
 }

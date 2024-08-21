@@ -88,17 +88,13 @@ class CustomFloatingChildWidget extends StatelessWidget {
       onTap: () => {
         if (id == 1)
           {
-            // context
-            //     .read<ManageServiceBloc>()
-            //     .add(const ManageServiceEvent.changeLatitude("40.689247")),
-            // context
-            //     .read<ManageServiceBloc>()
-            //     .add(const ManageServiceEvent.changeLongitude("-74.044502")),
-            // context
-            //     .read<ManageServiceBloc>()
-            //     .add(const ManageServiceEvent.submitServiceEvent()),
             starMenuController.closeMenu!(),
             context.push(RoutesK.addAction, extra: context),
+          }
+        else if (id == 2)
+          {
+            starMenuController.closeMenu!(),
+            context.push(RoutesK.addMilage, extra: context),
           }
       },
       child: Container(

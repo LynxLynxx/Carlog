@@ -270,4 +270,16 @@ class CarRepository {
       });
     });
   }
+
+  Future<Option<Failure>> updateMilageByCarId(
+      String carId, String milage) async {
+    return handleVoidResponse(() async {
+      final DocumentReference carRef =
+          FirebaseFirestore.instance.collection('cars').doc(carId);
+
+      await carRef.update({
+        "milage": milage,
+      });
+    });
+  }
 }

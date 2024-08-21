@@ -996,6 +996,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Update Milage`
+  String get updateMilage {
+    return Intl.message(
+      'Update Milage',
+      name: 'updateMilage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully updated the milage`
+  String get successfullyUpdatedTheMilage {
+    return Intl.message(
+      'Successfully updated the milage',
+      name: 'successfullyUpdatedTheMilage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

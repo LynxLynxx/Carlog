@@ -16,8 +16,8 @@ import 'package:carlog/features/dashboard_features/cars/presentation/widgets/del
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/map_page.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/pages/milage_page.dart';
 import 'package:carlog/features/dashboard_features/settings/presentation/pages/settings_page.dart';
-import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
@@ -130,18 +130,11 @@ final List<StatefulShellBranch> shellBranches = [
       path: RoutesK.home,
       builder: (context, state) => const HomePage(),
       routes: [
-        GoRoute(
-          // fullScreen: true,
-          path: "add",
-          builder: (context, state) => Scaffold(
-            body: DashboardAppbar.title(
-              title: "TEST",
-              actions: [
-                IconButton.filled(onPressed: () {}, icon: const Icon(Icons.abc))
-              ],
-              body: const Center(),
-            ),
-          ),
+        AnimationGoRoute(
+          path: "addMilage",
+          builder: (context, state) {
+            return const UpdateMilagePage();
+          },
         ),
         AnimationGoRoute(
             path: "addAction",

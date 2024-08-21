@@ -43,67 +43,76 @@ class ActionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BlocConsumer<ManageActionBloc, ManageActionState>(
-          listener: (context, state) {
-            textEditingControllerList[0].text = state.address.value;
-            textEditingControllerList[1].text =
-                state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SafeArea(
+          child: BlocConsumer<ManageActionBloc, ManageActionState>(
+            listener: (context, state) {
+              textEditingControllerList[0].text = state.address.value;
+              textEditingControllerList[1].text = state.date != null
+                  ? FormatsK.yyyyMMdd.format(state.date!)
+                  : "";
+            },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  CustomAppBar(title: S.of(context).addAction),
+                  Padding(
+                    padding: PaddingsK.all16,
+                    child: Column(
+                      children: [
+                        const CustomDropdownWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        AddressPickerWidget(
+                            textEditingController: textEditingControllerList[0],
+                            state: state),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        DatePickerWidget(
+                            textEditingController: textEditingControllerList[1],
+                            state: state),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton:
+            BlocSelector<ManageActionBloc, ManageActionState, bool>(
+          selector: (state) {
+            return state.address.value.isNotEmpty &&
+                state.latitude.value.isNotEmpty &&
+                state.longitude.value.isNotEmpty;
           },
           builder: (context, state) {
-            return Column(
-              children: [
-                CustomAppBar(title: S.of(context).addAction),
-                Padding(
-                  padding: PaddingsK.all16,
-                  child: Column(
-                    children: [
-                      const CustomDropdownWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      AddressPickerWidget(
-                          textEditingController: textEditingControllerList[0],
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      DatePickerWidget(
-                          textEditingController: textEditingControllerList[1],
-                          state: state),
-                    ],
-                  ),
+            return Padding(
+              padding: PaddingsK.v10,
+              child: FloatingActionButton(
+                onPressed: () {
+                  context
+                      .read<ManageActionBloc>()
+                      .add(const ManageActionEvent.submitActionEvent());
+                  context.pop();
+                },
+                shape:
+                    RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
+                backgroundColor: context.primaryColor,
+                child: SvgPicture.asset(
+                  ImagesK.save,
+                  colorFilter:
+                      ColorFilter.mode(context.onPrimary, BlendMode.srcIn),
                 ),
-              ],
+              ),
             );
           },
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton:
-          BlocSelector<ManageActionBloc, ManageActionState, bool>(
-        selector: (state) {
-          return state.address.value.isNotEmpty &&
-              state.latitude.value.isNotEmpty &&
-              state.longitude.value.isNotEmpty;
-        },
-        builder: (context, state) {
-          return FloatingActionButton(
-            onPressed: () {
-              context
-                  .read<ManageActionBloc>()
-                  .add(const ManageActionEvent.submitActionEvent());
-              context.pop();
-            },
-            shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
-            backgroundColor: context.primaryColor,
-            child: SvgPicture.asset(
-              ImagesK.save,
-              colorFilter: ColorFilter.mode(context.onPrimary, BlendMode.srcIn),
-            ),
-          );
-        },
       ),
     );
   }

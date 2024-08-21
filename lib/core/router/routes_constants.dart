@@ -12,6 +12,7 @@ class RoutesK {
   //!SECTION
 
   static const home = "/";
+  static const addMilage = "/addMilage";
   static const cars = "/cars";
   static const addCar = "/addCar";
   static const addAction = "/addAction";
