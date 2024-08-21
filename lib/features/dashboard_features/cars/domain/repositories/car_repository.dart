@@ -133,9 +133,11 @@ class CarRepository {
 
       List<CarActionDayEntity> carActionDayList = [];
       bool todayExists = false;
+      bool iterated = false;
       await carActionsRef.get().then(
         (querySnapshot) {
           for (var docSnapshot in querySnapshot.docs) {
+            iterated = true;
             final data = docSnapshot.data() as Map<String, dynamic>;
 
             DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
@@ -183,7 +185,7 @@ class CarRepository {
         },
       );
 
-      if (!todayExists) {
+      if (!todayExists && iterated) {
         final carActionDayEntity = CarActionDayEntity(
           timestamp: DateTime.now(),
           notificationActive: false,
