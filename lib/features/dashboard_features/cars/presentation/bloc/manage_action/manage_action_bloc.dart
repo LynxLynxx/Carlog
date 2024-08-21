@@ -108,7 +108,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
           latitude: state.latitude.value != "" ? state.latitude.value : null,
           longitude: state.longitude.value != "" ? state.longitude.value : null,
           address: state.address.value != "" ? state.address.value : null,
-          action: CarActionEnum.service),
+          action: state.action),
     );
 
     if (result.isSome()) {
