@@ -14,3 +14,11 @@ BoxDecoration dropShadowEffect(BuildContext context) => BoxDecoration(
         ),
       ],
     );
+
+List<BoxShadow> carlogBoxShadow(BuildContext context) => [
+      BoxShadow(
+        color: context.shadow.withOpacity(0.6),
+        blurRadius: 10,
+        offset: const Offset(2, 8),
+      )
+    ];

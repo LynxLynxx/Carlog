@@ -44,6 +44,51 @@ InputDecoration authTextFormFieldInputDecoration(
       ),
     );
 
+InputDecoration carlogInputSettingsDecoration(
+  BuildContext context,
+  String? errorText, {
+  String? labelText,
+  Widget? changeObscure,
+  int? errorMaxLine,
+}) =>
+    InputDecoration(
+      errorText: errorText,
+      errorMaxLines: errorMaxLine,
+      border: InputBorder.none,
+      suffixIcon: changeObscure,
+      fillColor: context.surfaceBright,
+      filled: true,
+      contentPadding: const EdgeInsets.all(16),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.outline,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.primaryColor,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(
+          width: 1,
+          color: context.errorColor,
+        ),
+      ),
+    );
+
 InputDecoration carTextFormFieldInputDecoration(
         BuildContext context, String hintText,
         // ignore: avoid_init_to_null

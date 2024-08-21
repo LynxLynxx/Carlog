@@ -1,4 +1,5 @@
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
@@ -56,7 +57,7 @@ class RootView extends StatelessWidget {
       case RoutesK.home:
       case RoutesK.cars:
       case RoutesK.statistics:
-      case RoutesK.profile:
+      case RoutesK.settings:
         return true;
     }
     return false;
@@ -67,6 +68,7 @@ class RootView extends StatelessWidget {
     final connectionStatus =
         context.watch<NetworkConnectionCubit>().state.connectionStatus;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           navigationShell,
@@ -108,9 +110,10 @@ class RootView extends StatelessWidget {
       //   ),
       // ),
 
-      floatingActionButton:
-          getMainPages() ? CustomFloatingButtonWidget() : null,
-      bottomNavigationBar: getMainPages()
+      floatingActionButton: GoRouter.of(context).showNavBar
+          ? CustomFloatingButtonWidget()
+          : null,
+      bottomNavigationBar: GoRouter.of(context).showNavBar
           ? CustomBottomNavigationBarWidget(navigationShell: navigationShell)
           : null,
     );
