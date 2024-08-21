@@ -29,7 +29,7 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
 
   _onReadCarFromApp(_ReadCarFromApp event, Emitter<UserAppState> emit) async {
     final car = await secureStorageService.readCarFromApp();
-    //TODO check
+    //TODO check -> stream subscription
     while (carsBloc.state.carList.isEmpty) {
       await Future.delayed(const Duration(milliseconds: 100));
     }

@@ -33,6 +33,7 @@ class MapView extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
+                //TODO full screen + stack
                 CustomAppBar(title: S.of(context).addAction),
                 Expanded(
                   child: Container(

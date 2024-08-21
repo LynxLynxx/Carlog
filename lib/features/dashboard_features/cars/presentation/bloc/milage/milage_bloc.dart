@@ -57,7 +57,6 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyUpdatedTheMilage));
 
-    //TODO check
     _carsBloc.add(const CarsEvent.getCars());
     CarFirebaseEntity updatedCar =
         _userAppBloc.state.car!.copyWith(milage: state.milage.value);
