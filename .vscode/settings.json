@@ -33,4 +33,10 @@
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.expand": false,
+    "cSpell.words": [
+        "carlog"
+    ],
+    "cSpell.enableFiletypes": [
+        "!json"
+    ],
 }

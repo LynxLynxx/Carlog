@@ -1,5 +1,6 @@
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,43 @@ Future<Option<Failure>> handleVoidResponse<ResponseType>(
     return Some(_handleFirebaseFirestoreErrors(e));
   } catch (e) {
     return Some(_handleCommonErrors(e));
+  }
+}
+
+Future<ResponseType> handleFirestoreDocData<ResponseType>(
+  String documentPath,
+  ResponseType Function(Map<String, dynamic> doc) onDocumentExists,
+) async {
+  try {
+    final docSnapshot =
+        await FirebaseFirestore.instance.doc(documentPath).get();
+
+    if (docSnapshot.exists && docSnapshot.data() != null) {
+      return onDocumentExists(docSnapshot.data()!);
+    } else {
+      throw FirebaseException(plugin: "firestore", code: "not-found");
+    }
+  } catch (e) {
+    throw FirebaseException(
+        plugin: "firestore", code: "not-found", message: e.toString());
+  }
+}
+
+Future<ResponseType> handleFirestoreDoc<ResponseType>(
+  DocumentReference document,
+  ResponseType Function(DocumentReference doc) onDocumentExists,
+) async {
+  try {
+    final docSnapshot = await document.get();
+
+    if (docSnapshot.exists) {
+      return onDocumentExists(document);
+    } else {
+      throw FirebaseException(plugin: "firestore", code: "not-found");
+    }
+  } catch (e) {
+    throw FirebaseException(
+        plugin: "firestore", code: "not-found", message: e.toString());
   }
 }
 

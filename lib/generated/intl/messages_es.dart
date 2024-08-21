@@ -20,8 +20,21 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
+  static String m0(language) => "${Intl.select(language, {
+            'pl': 'Polaco',
+            'en': 'Inglés',
+            'other': 'Español',
+          })}";
+
+  static String m1(theme) => "${Intl.select(theme, {
+            'light': 'claro',
+            'other': 'oscuro',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("CUENTA"),
+        "addCar": MessageLookupByLibrary.simpleMessage("Añadir coche"),
         "analytics": MessageLookupByLibrary.simpleMessage("Análisis"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "¡Accede a una vista previa de las estadísticas de gastos de tu coche!"),
@@ -29,11 +42,49 @@ class MessageLookup extends MessageLookupByLibrary {
             "¿Tienes un coche eléctrico? ¡También los apoyamos!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "¡Recibe notificaciones sobre los próximos servicios y reparaciones programadas!"),
+        "carBrand": MessageLookupByLibrary.simpleMessage("Marca del coche"),
+        "carBrandValidator": MessageLookupByLibrary.simpleMessage(
+            "El nombre de la marca del vehículo debe tener entre 2 y 20 caracteres"),
+        "carModel": MessageLookupByLibrary.simpleMessage("Modelo del coche"),
+        "carModelValidator": MessageLookupByLibrary.simpleMessage(
+            "El nombre del modelo del vehículo debe tener entre 1 y 30 caracteres"),
+        "carPlateValidator": MessageLookupByLibrary.simpleMessage(
+            "La matrícula del vehículo debe tener entre 1 y 15 caracteres"),
+        "carYearValidator": MessageLookupByLibrary.simpleMessage(
+            "El año de fabricación del vehículo debe tener 4 caracteres"),
+        "cars": MessageLookupByLibrary.simpleMessage("Coches"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Cambiar contraseña"),
+        "colorTheme": MessageLookupByLibrary.simpleMessage("Tema de color"),
+        "congratulations":
+            MessageLookupByLibrary.simpleMessage("¡Felicidades!"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("¡Crea una cuenta!"),
+        "customize": MessageLookupByLibrary.simpleMessage("PERSONALIZAR"),
+        "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
+            "¿Está seguro de que desea eliminar este vehículo?"),
+        "eg10000": MessageLookupByLibrary.simpleMessage("p. ej. 10 000"),
+        "eg163": MessageLookupByLibrary.simpleMessage("p. ej. 163"),
+        "eg1984": MessageLookupByLibrary.simpleMessage("p. ej. 1984"),
+        "eg2024": MessageLookupByLibrary.simpleMessage("p. ej. 2024"),
+        "egAUM550": MessageLookupByLibrary.simpleMessage("p. ej. AUM 550"),
+        "egHybrid": MessageLookupByLibrary.simpleMessage("p. ej. Híbrido"),
+        "egSUV": MessageLookupByLibrary.simpleMessage("p. ej. SUV"),
+        "egVolvo": MessageLookupByLibrary.simpleMessage("p. ej. Volvo"),
+        "egXC90": MessageLookupByLibrary.simpleMessage("p. ej. XC90"),
         "electricCars":
             MessageLookupByLibrary.simpleMessage("Coches eléctricos"),
         "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
+        "engineCapacity":
+            MessageLookupByLibrary.simpleMessage("Cilindrada del motor"),
+        "engineCapacityValidator": MessageLookupByLibrary.simpleMessage(
+            "La cilindrada del motor debe tener entre 1 y 7 dígitos"),
+        "enginePower":
+            MessageLookupByLibrary.simpleMessage("Potencia del motor"),
+        "enginePowerValidator": MessageLookupByLibrary.simpleMessage(
+            "La potencia del motor debe tener entre 1 y 4 dígitos"),
+        "enterItManually":
+            MessageLookupByLibrary.simpleMessage("¡Introdúzcalo manualmente!"),
         "errorAborted": MessageLookupByLibrary.simpleMessage(
             "La operación se ha cancelado."),
         "errorAccountExists": MessageLookupByLibrary.simpleMessage(
@@ -84,18 +135,70 @@ class MessageLookup extends MessageLookupByLibrary {
             "No existe un usuario con estas credenciales."),
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, introduce una contraseña más segura."),
+        "feedback": MessageLookupByLibrary.simpleMessage("RETROALIMENTACIÓN"),
+        "fuelType": MessageLookupByLibrary.simpleMessage("Tipo de combustible"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Empezar"),
+        "language": MessageLookupByLibrary.simpleMessage("Idioma"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Apellido"),
+        "legalInformation":
+            MessageLookupByLibrary.simpleMessage("INFORMACIÓN LEGAL"),
+        "library": MessageLookupByLibrary.simpleMessage("Biblioteca"),
+        "litersValidator": MessageLookupByLibrary.simpleMessage(
+            "Los litros deben tener entre 1 y 4 dígitos"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "milage": MessageLookupByLibrary.simpleMessage("Kilometraje"),
+        "milageValidator": MessageLookupByLibrary.simpleMessage(
+            "El kilometraje debe tener entre 1 y 8 dígitos"),
+        "myAccount": MessageLookupByLibrary.simpleMessage("Mi cuenta"),
+        "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notificaciones"),
         "or": MessageLookupByLibrary.simpleMessage("O"),
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Recuperación de contraseña"),
+        "permissions": MessageLookupByLibrary.simpleMessage("PERMISOS"),
+        "plate": MessageLookupByLibrary.simpleMessage("Matrícula"),
+        "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
+            "El precio debe tener entre 1 y 8 dígitos"),
+        "priceValidator": MessageLookupByLibrary.simpleMessage(
+            "El precio debe tener entre 1 y 5 dígitos"),
+        "privacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Política de privacidad"),
+        "pushNotifications":
+            MessageLookupByLibrary.simpleMessage("Notificaciones push"),
+        "regionCountry": MessageLookupByLibrary.simpleMessage("Región/País"),
         "register": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Recordar contraseña"),
+        "reportProblem":
+            MessageLookupByLibrary.simpleMessage("Reportar problema"),
+        "requestNewFeature":
+            MessageLookupByLibrary.simpleMessage("Solicitar nueva función"),
+        "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
+        "skip": MessageLookupByLibrary.simpleMessage("Omitir"),
+        "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Vehículo añadido correctamente"),
+        "successfullyDeletedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Vehículo eliminado correctamente"),
+        "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
+            "Vehículo editado correctamente"),
+        "supportedLanguage": m0,
+        "supportedThemes": m1,
+        "termsOfUse": MessageLookupByLibrary.simpleMessage("Términos de uso"),
+        "type": MessageLookupByLibrary.simpleMessage("Tipo"),
+        "unableToLocateYourBrand":
+            MessageLookupByLibrary.simpleMessage("¿No encuentra su marca?"),
+        "unableToLocateYourModel":
+            MessageLookupByLibrary.simpleMessage("¿No encuentra su modelo?"),
+        "updateCar": MessageLookupByLibrary.simpleMessage("Actualizar coche"),
         "welocomeBack":
-            MessageLookupByLibrary.simpleMessage("¡Bienvenido de nuevo!")
+            MessageLookupByLibrary.simpleMessage("¡Bienvenido de nuevo!"),
+        "yearOfProduction":
+            MessageLookupByLibrary.simpleMessage("Año de producción"),
+        "youHaveSuccessfullyCreatedYourCar":
+            MessageLookupByLibrary.simpleMessage(
+                "¡Ha creado su coche con éxito!")
       };
 }

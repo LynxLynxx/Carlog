@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
@@ -23,6 +24,7 @@ class RootPage extends StatelessWidget {
     final connectionStatus =
         context.watch<NetworkConnectionCubit>().state.connectionStatus;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           navigationShell,
@@ -64,9 +66,12 @@ class RootPage extends StatelessWidget {
       //   ),
       // ),
 
-      floatingActionButton: const CustomFloatingButtonWidget(),
-      bottomNavigationBar:
-          CustomBottomNavigationBarWidget(navigationShell: navigationShell),
+      floatingActionButton: GoRouter.of(context).showNavBar
+          ? const CustomFloatingButtonWidget()
+          : null,
+      bottomNavigationBar: GoRouter.of(context).showNavBar
+          ? CustomBottomNavigationBarWidget(navigationShell: navigationShell)
+          : null,
     );
   }
 }

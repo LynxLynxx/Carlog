@@ -360,20 +360,20 @@ class S {
     );
   }
 
-  /// `Operation couldn't be completed`
+  /// `Operation couldn''t be completed`
   String get errorDeadlineExceeded {
     return Intl.message(
-      'Operation couldn\'t be completed',
+      'Operation couldn\'\'t be completed',
       name: 'errorDeadlineExceeded',
       desc: '',
       args: [],
     );
   }
 
-  /// `Operation was rejected, because system could'nt procced with execution`
+  /// `Operation was rejected, because system couldn''t procced with execution`
   String get errorFailedPrecondition {
     return Intl.message(
-      'Operation was rejected, because system could\'nt procced with execution',
+      'Operation was rejected, because system couldn\'\'t procced with execution',
       name: 'errorFailedPrecondition',
       desc: '',
       args: [],
@@ -430,10 +430,10 @@ class S {
     );
   }
 
-  /// `You don't have permission to perform this operation`
+  /// `You don''t have permission to perform this operation`
   String get errorUnauthenticated {
     return Intl.message(
-      'You don\'t have permission to perform this operation',
+      'You don\'\'t have permission to perform this operation',
       name: 'errorUnauthenticated',
       desc: '',
       args: [],
@@ -875,6 +875,255 @@ class S {
     return Intl.message(
       'Skip',
       name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT`
+  String get account {
+    return Intl.message(
+      'ACCOUNT',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Account`
+  String get myAccount {
+    return Intl.message(
+      'My Account',
+      name: 'myAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logOut {
+    return Intl.message(
+      'Log Out',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CUSTOMIZE`
+  String get customize {
+    return Intl.message(
+      'CUSTOMIZE',
+      name: 'customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color Theme`
+  String get colorTheme {
+    return Intl.message(
+      'Color Theme',
+      name: 'colorTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Region/Country`
+  String get regionCountry {
+    return Intl.message(
+      'Region/Country',
+      name: 'regionCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERMISSIONS`
+  String get permissions {
+    return Intl.message(
+      'PERMISSIONS',
+      name: 'permissions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Push Notifications`
+  String get pushNotifications {
+    return Intl.message(
+      'Push Notifications',
+      name: 'pushNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Library`
+  String get library {
+    return Intl.message(
+      'Library',
+      name: 'library',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FEEDBACK`
+  String get feedback {
+    return Intl.message(
+      'FEEDBACK',
+      name: 'feedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request New Feature`
+  String get requestNewFeature {
+    return Intl.message(
+      'Request New Feature',
+      name: 'requestNewFeature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report Problem`
+  String get reportProblem {
+    return Intl.message(
+      'Report Problem',
+      name: 'reportProblem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LEGAL INFORMATION`
+  String get legalInformation {
+    return Intl.message(
+      'LEGAL INFORMATION',
+      name: 'legalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Use`
+  String get termsOfUse {
+    return Intl.message(
+      'Terms of Use',
+      name: 'termsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{language, select, pl{Polish} en{English} other{Spanish}}`
+  String supportedLanguage(String language) {
+    return Intl.select(
+      language,
+      {
+        'pl': 'Polish',
+        'en': 'English',
+        'other': 'Spanish',
+      },
+      name: 'supportedLanguage',
+      desc: 'suporrted readable language',
+      args: [language],
+    );
+  }
+
+  /// `{theme, select, light{light} other{dark}}`
+  String supportedThemes(String theme) {
+    return Intl.select(
+      theme,
+      {
+        'light': 'light',
+        'other': 'dark',
+      },
+      name: 'supportedThemes',
+      desc: 'supported readable themes',
+      args: [theme],
+    );
+  }
+
+  /// `First name`
+  String get name {
+    return Intl.message(
+      'First name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message(
+      'Last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filed cannot be empty`
+  String get notValidEmpty {
+    return Intl.message(
+      'Filed cannot be empty',
+      name: 'notValidEmpty',
       desc: '',
       args: [],
     );

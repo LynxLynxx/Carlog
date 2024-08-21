@@ -20,8 +20,20 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(language) => "${Intl.select(language, {
+            'pl': 'Polish',
+            'en': 'English',
+            'other': 'Spanish',
+          })}";
+
+  static String m1(theme) => "${Intl.select(theme, {
+            'light': 'light',
+            'other': 'dark',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("ACCOUNT"),
         "addCar": MessageLookupByLibrary.simpleMessage("Add Car"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
@@ -41,10 +53,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "carYearValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle year of manufacture should be 4 characters"),
         "cars": MessageLookupByLibrary.simpleMessage("Cars"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
+        "colorTheme": MessageLookupByLibrary.simpleMessage("Color Theme"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
+        "customize": MessageLookupByLibrary.simpleMessage("CUSTOMIZE"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this vehicle?"),
         "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
@@ -78,11 +94,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorDataLoss": MessageLookupByLibrary.simpleMessage(
             "Your data was lost or corrupted"),
         "errorDeadlineExceeded": MessageLookupByLibrary.simpleMessage(
-            "Operation couldn\'t be completed"),
+            "Operation couldn\'\'t be completed"),
         "errorEmailInUse":
             MessageLookupByLibrary.simpleMessage("Account already exists"),
         "errorFailedPrecondition": MessageLookupByLibrary.simpleMessage(
-            "Operation was rejected, because system could\'nt procced with execution"),
+            "Operation was rejected, because system couldn\'\'t procced with execution"),
         "errorInternal": MessageLookupByLibrary.simpleMessage(
             "Internal error occoured. Please try again later"),
         "errorInvalidArgument": MessageLookupByLibrary.simpleMessage(
@@ -104,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorResourceExhausted": MessageLookupByLibrary.simpleMessage(
             "Resources are not available at this time. Try again later"),
         "errorUnauthenticated": MessageLookupByLibrary.simpleMessage(
-            "You don\'t have permission to perform this operation"),
+            "You don\'\'t have permission to perform this operation"),
         "errorUnavailable": MessageLookupByLibrary.simpleMessage(
             "The service is currently unavailable"),
         "errorUnimplemented": MessageLookupByLibrary.simpleMessage(
@@ -117,28 +133,49 @@ class MessageLookup extends MessageLookupByLibrary {
             "User with this credentials does not exists"),
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
+        "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "legalInformation":
+            MessageLookupByLibrary.simpleMessage("LEGAL INFORMATION"),
+        "library": MessageLookupByLibrary.simpleMessage("Library"),
         "litersValidator": MessageLookupByLibrary.simpleMessage(
             "Liters should be between 1 and 4 digits"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
+        "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
+        "name": MessageLookupByLibrary.simpleMessage("First name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notValidEmpty":
+            MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
+        "permissions": MessageLookupByLibrary.simpleMessage("PERMISSIONS"),
         "plate": MessageLookupByLibrary.simpleMessage("Plate"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
             "Price should be between 1 and 8 digits"),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
             "Price should be between 1 and 5 digits"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "pushNotifications":
+            MessageLookupByLibrary.simpleMessage("Push Notifications"),
+        "regionCountry": MessageLookupByLibrary.simpleMessage("Region/Country"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),
+        "reportProblem": MessageLookupByLibrary.simpleMessage("Report Problem"),
+        "requestNewFeature":
+            MessageLookupByLibrary.simpleMessage("Request New Feature"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully added the vehicle"),
@@ -146,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully deleted the vehicle"),
         "successfullyEditedTheVehicle": MessageLookupByLibrary.simpleMessage(
             "Successfully edited the vehicle"),
+        "supportedLanguage": m0,
+        "supportedThemes": m1,
+        "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
             "Unable to locate your brand?"),

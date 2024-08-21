@@ -31,14 +31,14 @@
   "errorAlreadyExists": "This data already exists",
   "errorCancled": "The operation was cancelled",
   "errorDataLoss": "Your data was lost or corrupted",
-  "errorDeadlineExceeded": "Operation couldn't be completed",
-  "errorFailedPrecondition": "Operation was rejected, because system could'nt procced with execution",
+  "errorDeadlineExceeded": "Operation couldn''t be completed",
+  "errorFailedPrecondition": "Operation was rejected, because system couldn''t procced with execution",
   "errorInternal": "Internal error occoured. Please try again later",
   "errorInvalidArgument": "Invalid arguemnt was specified",
   "errorNotFound": "Requested document was not found",
   "errorOutOfRange": "Operation was attempted past the valid range",
   "errorResourceExhausted": "Resources are not available at this time. Try again later",
-  "errorUnauthenticated": "You don't have permission to perform this operation",
+  "errorUnauthenticated": "You don''t have permission to perform this operation",
   "errorUnavailable": "The service is currently unavailable",
   "errorUnimplemented": "Operation is not implemented or not supported",
   "errorUnknown": "Unkown error occurred",
@@ -82,5 +82,45 @@
   "eg1984": "e.g. 1984",
   "enginePower": "Engine Power",
   "eg163": "e.g. 163",
-  "skip": "Skip"
+  "skip": "Skip",
+  "account": "ACCOUNT",
+  "myAccount": "My Account",
+  "changePassword": "Change Password",
+  "logOut": "Log Out",
+  "customize": "CUSTOMIZE",
+  "language": "Language",
+  "colorTheme": "Color Theme",
+  "regionCountry": "Region/Country",
+  "permissions": "PERMISSIONS",
+  "pushNotifications": "Push Notifications",
+  "library": "Library",
+  "feedback": "FEEDBACK",
+  "requestNewFeature": "Request New Feature",
+  "reportProblem": "Report Problem",
+  "legalInformation": "LEGAL INFORMATION",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfUse": "Terms of Use",
+  "settings": "Settings",
+  "supportedLanguage": "{language, select, pl{Polish} en{English} other{Spanish}}",
+  "@supportedLanguage": {
+    "description": "suporrted readable language",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "supportedThemes": "{theme, select, light{light} other{dark}}",
+  "@supportedThemes": {
+    "description": "supported readable themes",
+    "placeholders": {
+      "theme": {
+        "type": "String"
+      }
+    }
+  },
+  "name": "First name",
+  "lastName": "Last name",
+  "save": "Save",
+  "notValidEmpty": "Filed cannot be empty"
 }
