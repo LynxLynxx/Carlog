@@ -976,6 +976,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 2024-01-01`
+  String get eg20240101 {
+    return Intl.message(
+      'e.g. 2024-01-01',
+      name: 'eg20240101',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

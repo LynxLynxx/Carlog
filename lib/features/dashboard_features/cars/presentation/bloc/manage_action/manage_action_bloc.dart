@@ -17,13 +17,13 @@ part 'manage_action_state.dart';
 class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
   final CarRepository _carRepository;
   final LocationRepository _locationRepository;
-  ManageActionBloc(
-      this._carRepository, this._locationRepository)
+  ManageActionBloc(this._carRepository, this._locationRepository)
       : super(const ManageActionState()) {
     on<_ChangeLatitudeEvent>(_onChangeLatitudeEvent);
     on<_ChangeLongitudeEvent>(_onChangeLongitudeEvent);
     on<_ChangeAddressEvent>(_onChangeAddressEvent);
     on<_ChangeActionTypeEvent>(_onChangeActionTypeEvent);
+    on<_ChangeDateEvent>(_onChangeDateEvent);
     on<_GenerateAddress>(_onGenerateAddress);
     on<_SubmitActionEvent>(_onSubmitActionEvent);
   }
@@ -56,6 +56,12 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
       _ChangeActionTypeEvent event, Emitter<ManageActionState> emit) {
     emit(
       state.copyWith(action: event.value),
+    );
+  }
+
+  _onChangeDateEvent(_ChangeDateEvent event, Emitter<ManageActionState> emit) {
+    emit(
+      state.copyWith(date: event.value),
     );
   }
 

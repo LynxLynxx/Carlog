@@ -79,7 +79,7 @@ class CarListElementWidget extends StatelessWidget {
       }),
       child: Container(
         decoration:
-            dropShadowEffect().copyWith(color: context.primaryContainer),
+            dropShadowEffect(context).copyWith(color: context.primaryContainer),
         margin: PaddingsK.all16,
         padding: PaddingsK.all24,
         height: 150,

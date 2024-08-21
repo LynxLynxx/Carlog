@@ -104,7 +104,7 @@ class DropDownWidget extends StatelessWidget {
             height: 50,
             margin: PaddingsK.h20,
             width: MediaQuery.of(context).size.width * 0.8,
-            decoration: dropShadowEffect().copyWith(
+            decoration: dropShadowEffect(context).copyWith(
               color: context.surfaceDim,
               borderRadius: PaddingsK.circular30,
             ),
@@ -119,7 +119,7 @@ class DropDownWidget extends StatelessWidget {
                   height: 50,
                   margin: PaddingsK.h20,
                   width: MediaQuery.of(context).size.width * 0.8,
-                  decoration: dropShadowEffect().copyWith(
+                  decoration: dropShadowEffect(context).copyWith(
                     color: context.surfaceDim,
                     borderRadius: PaddingsK.circular30,
                   ),
@@ -141,7 +141,7 @@ class DropDownWidget extends StatelessWidget {
                     iconStyleData: const IconStyleData(iconSize: 0),
                     dropdownStyleData: DropdownStyleData(
                       width: MediaQuery.of(context).size.width * 0.8,
-                      decoration: dropShadowEffect().copyWith(
+                      decoration: dropShadowEffect(context).copyWith(
                         color: context.surfaceDim,
                         borderRadius: PaddingsK.circular30,
                       ),

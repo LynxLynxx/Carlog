@@ -1,11 +1,12 @@
+import 'package:carlog/core/constants/formats.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
-import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/custom_appbar.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class ActionView extends StatelessWidget {
 
   final List<TextEditingController> textEditingControllerList = [
     TextEditingController(),
+    TextEditingController(),
   ];
 
   @override
@@ -44,6 +46,8 @@ class ActionView extends StatelessWidget {
         child: BlocConsumer<ManageActionBloc, ManageActionState>(
           listener: (context, state) {
             textEditingControllerList[0].text = state.address.value;
+            textEditingControllerList[1].text =
+                state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
           },
           builder: (context, state) {
             return Column(
@@ -57,54 +61,18 @@ class ActionView extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ListElementTextfieldWidget(
-                                textEditingController:
-                                    textEditingControllerList[0],
-                                func: (value) {
-                                  context.read<ManageActionBloc>().add(
-                                      ManageActionEvent.changeAddress(value));
-                                  context.read<ManageActionBloc>().add(
-                                      ManageActionEvent.changeLatitude(value));
-                                  context.read<ManageActionBloc>().add(
-                                      ManageActionEvent.changeLongitude(value));
-                                },
-                                title: S.of(context).address,
-                                hintText: S.of(context).egWalkway,
-                                displayError: state.address.displayError ?? ""),
-                          ),
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              GestureDetector(
-                                onTap: () =>
-                                    context.push(RoutesK.map, extra: context),
-                                child: Container(
-                                  padding: PaddingsK.all4,
-                                  width: 40,
-                                  height: 40,
-                                  child: SvgPicture.asset(
-                                    ImagesK.map,
-                                    colorFilter: ColorFilter.mode(
-                                        context.primaryColor, BlendMode.srcIn),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+                      AddressPickerWidget(
+                          textEditingController: textEditingControllerList[0],
+                          state: state),
+                      const SizedBox(
+                        height: 10,
                       ),
+                      DatePickerWidget(
+                          textEditingController: textEditingControllerList[1],
+                          state: state),
                     ],
                   ),
                 ),
-                // ElevatedButton(
-                //   onPressed: () =>
-                //   child: const Text("Map"),
-                // ),
               ],
             );
           },

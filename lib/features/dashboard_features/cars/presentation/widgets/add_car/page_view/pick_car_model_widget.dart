@@ -136,7 +136,7 @@ class _ListElementWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             vertical: state.modelEntity.value == model ? 2 : 5, horizontal: 15),
         width: double.infinity,
-        decoration: dropShadowEffect().copyWith(
+        decoration: dropShadowEffect(context).copyWith(
           border: state.modelEntity.value == model
               ? Border.all(
                   color: context.primaryColor,

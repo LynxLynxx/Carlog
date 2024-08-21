@@ -38,7 +38,7 @@ class ServiceActivityWidget extends StatelessWidget {
       height: 60,
       padding: PaddingsK.h20,
       margin: PaddingsK.v5,
-      decoration: dropShadowEffect().copyWith(
+      decoration: dropShadowEffect(context).copyWith(
         color: isFirst ? context.primaryContainer : context.onSecondary,
         borderRadius: PaddingsK.circular30,
       ),

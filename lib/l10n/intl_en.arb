@@ -92,5 +92,7 @@
   "egService": "e.g. Service",
   "egWalkway": "e.g. Walkway, 10004, NY, United States",
   "address": "Address",
-  "addAction": "Add Action"
+  "addAction": "Add Action",
+  "date": "Date",
+  "eg20240101": "e.g. 2024-01-01"
 }

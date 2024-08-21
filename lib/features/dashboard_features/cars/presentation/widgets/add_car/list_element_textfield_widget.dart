@@ -12,7 +12,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final String title;
   final String hintText;
   final TextEditingController textEditingController;
-  final Function(String) func;
+  final Function(String)? func;
   final TextInputType textInputType;
   final List<TextInputFormatter>? textInputFormatterList;
   final String displayError;
@@ -84,7 +84,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
             height: 10,
           ),
           Container(
-            decoration: dropShadowEffect(),
+            decoration: dropShadowEffect(context),
             child: TextFormField(
               controller: textEditingController,
               autocorrect: false,
