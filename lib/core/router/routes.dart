@@ -14,12 +14,13 @@ import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
-import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/connection_lost_page.dart';
 import 'package:carlog/features/other_features/error/presentation/pages/unknown_error_page.dart';
 import 'package:carlog/features/other_features/loading/presentation/pages/loading_page.dart';
 import 'package:carlog/features/other_features/root/presentation/pages/root_page.dart';
+import 'package:carlog/features/settings_features/my_account/presentation/pages/my_account_page.dart';
 import 'package:carlog/features/settings_features/settings/presentation/pages/settings_page.dart';
+import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -99,6 +100,8 @@ final List<RouteBase> routes = [
   //!SECTION
 ];
 
+final settingsNavKey = GlobalKey<NavigatorState>();
+
 //SECTION - DASHBOARD PAGES
 final List<StatefulShellBranch> shellBranches = [
   BranchGoRoute(
@@ -109,7 +112,7 @@ final List<StatefulShellBranch> shellBranches = [
           // fullScreen: true,
           path: "add",
           builder: (context, state) => Scaffold(
-            body: DashboardAppbar.title(
+            body: CarlogScaffold.title(
               title: "TEST",
               actions: [
                 IconButton.filled(onPressed: () {}, icon: const Icon(Icons.abc))
@@ -150,9 +153,20 @@ final List<StatefulShellBranch> shellBranches = [
   BranchGoRoute(
       path: RoutesK.statistics,
       builder: (context, state) => const AnalyticsPage()),
-  BranchGoRoute(
-    path: RoutesK.profile,
-    builder: (context, state) => const SettingsPage(),
+  StatefulShellBranch(
+    navigatorKey: settingsNavKey,
+    routes: [
+      GoRoute(
+        path: RoutesK.settings,
+        builder: (context, state) => const SettingsPage(),
+        routes: [
+          GoRoute(
+            path: RoutesK.myAccount.relativePath,
+            builder: (context, state) => const MyAccountPage(),
+          )
+        ],
+      ),
+    ],
   ),
 ];
 //!SECTION

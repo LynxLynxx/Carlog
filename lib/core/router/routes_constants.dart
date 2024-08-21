@@ -1,3 +1,5 @@
+import 'package:carlog/core/router/entities/route_entity.dart';
+
 class RoutesK {
   //SECTION - [HELPERS]
   static const loading = "/loading";
@@ -17,11 +19,14 @@ class RoutesK {
   static const manageCar = "$cars/manageCar";
   static const deleteCarConfirmation = "$manageCar/deleteCarConfirmation";
   static const statistics = "/statistics";
-  static const profile = "/profile";
 
   //SECTION - [ERRORS]
   static const unknownError = "/unknownError";
   static const connectionLostError = "/connectionLost";
+  //!SECTION
 
-  //SECTION -
+  //SECTION - [SETTINGS]
+  static const settings = "/settings";
+  static const myAccount =
+      RouteEntity(relativePath: "myAccount", fullPath: "$settings/myAccount");
 }

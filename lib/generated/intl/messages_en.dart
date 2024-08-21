@@ -137,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "legalInformation":
             MessageLookupByLibrary.simpleMessage("LEGAL INFORMATION"),
         "library": MessageLookupByLibrary.simpleMessage("Library"),
@@ -148,7 +149,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
+        "name": MessageLookupByLibrary.simpleMessage("First name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notValidEmpty":
+            MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -170,6 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportProblem": MessageLookupByLibrary.simpleMessage("Report Problem"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Request New Feature"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(

@@ -105,6 +105,8 @@ class AuthRepository {
         'profilePictureUrl': '', // Placeholder, can be updated later
         'plan': "free",
         'role': 'regular_user', // Set initial role (adjust based on your needs)
+        'firstName': currentUser.lastName,
+        'lastName': currentUser.lastName,
       };
 
       // Set the user data in the Firestore document

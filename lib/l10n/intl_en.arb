@@ -118,5 +118,9 @@
         "type": "String"
       }
     }
-  }
+  },
+  "name": "First name",
+  "lastName": "Last name",
+  "save": "Save",
+  "notValidEmpty": "Filed cannot be empty"
 }

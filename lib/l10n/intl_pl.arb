@@ -102,21 +102,9 @@
   "termsOfUse": "Warunki korzystania",
   "settings": "Ustawienia",
   "supportedLanguage": "{language, select, en{angielski} es{hiszpański} pl{polski} other{hiszpański}}",
-  "@supportedLanguage": {
-    "description": "suporrted readable language",
-    "placeholders": {
-      "language": {
-        "type": "String"
-      }
-    }
-  },
   "supportedThemes": "{theme, select, dark{ciemny} light{jasny} other{ciemny}}",
-  "@supportedThemes": {
-    "description": "supported readable themes",
-    "placeholders": {
-      "theme": {
-        "type": "String"
-      }
-    }
-  }
+  "name": "Imię",
+  "lastName": "Nazwisko",
+  "save": "Zapisz",
+  "notValidEmpty": "Pole nie może być puste"
 }

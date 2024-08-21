@@ -1088,6 +1088,46 @@ class S {
       args: [theme],
     );
   }
+
+  /// `First name`
+  String get name {
+    return Intl.message(
+      'First name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message(
+      'Last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filed cannot be empty`
+  String get notValidEmpty {
+    return Intl.message(
+      'Filed cannot be empty',
+      name: 'notValidEmpty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

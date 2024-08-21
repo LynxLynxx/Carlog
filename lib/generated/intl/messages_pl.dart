@@ -138,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fuelType": MessageLookupByLibrary.simpleMessage("Rodzaj paliwa"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Rozpocznij"),
         "language": MessageLookupByLibrary.simpleMessage("Język"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Nazwisko"),
         "legalInformation":
             MessageLookupByLibrary.simpleMessage("INFORMACJE PRAWNE"),
         "library": MessageLookupByLibrary.simpleMessage("Biblioteka"),
@@ -149,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Przebieg powinien zawierać od 1 do 8 cyfr."),
         "myAccount": MessageLookupByLibrary.simpleMessage("Moje konto"),
+        "name": MessageLookupByLibrary.simpleMessage("Imię"),
         "next": MessageLookupByLibrary.simpleMessage("Dalej"),
         "notifications": MessageLookupByLibrary.simpleMessage("Powiadomienia"),
         "or": MessageLookupByLibrary.simpleMessage("LUB"),

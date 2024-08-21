@@ -102,5 +102,9 @@
   "termsOfUse": "Términos de uso",
   "settings": "Configuración",
   "supportedLanguage": "{language, select, pl{Polaco} en{Inglés} other{Español}}",
-  "supportedThemes": "{theme, select, light{claro} other{oscuro}}"
+  "supportedThemes": "{theme, select, light{claro} other{oscuro}}",
+  "name": "Nombre",
+  "lastName": "Apellido",
+  "save": "Guardar",
+  "notValidEmpty": "El campo no puede estar vacío"
 }

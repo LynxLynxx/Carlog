@@ -1,5 +1,7 @@
 import 'package:carlog/core/constants/settings_icons_colors.dart';
 import 'package:carlog/core/extensions/string_extension.dart';
+import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/settings_item_entity.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/settings_section_entity.dart';
@@ -20,12 +22,20 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             name: S.of(context).myAccount,
             icon: "assets/icons/settings/user.svg",
             iconColor: settingsIconColors[0],
-            onTap: () => context.go("/settings/myAccount"),
+            onTap: () => context.push(RoutesK.myAccount.fullPath),
           ),
           SettingsItemEntity(
             name: S.of(context).changePassword,
             icon: "assets/icons/settings/password.svg",
             iconColor: settingsIconColors[1],
+          ),
+          SettingsItemEntity(
+            name: S.of(context).logOut,
+            icon: "assets/icons/settings/log_out.svg",
+            iconColor: settingsIconColors[2],
+            onTap: () => context
+                .read<AuthBloc>()
+                .add(const AuthEvent.appLogoutRequested()),
           ),
         ],
       ),

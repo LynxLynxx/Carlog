@@ -12,6 +12,8 @@ class UserEntity with _$UserEntity {
     String? email,
     String? name,
     String? photo,
+    @Default("") String firstName,
+    @Default("") String lastName,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

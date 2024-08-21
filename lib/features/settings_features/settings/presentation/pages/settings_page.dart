@@ -1,7 +1,7 @@
-import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/settings_items.dart';
 import 'package:carlog/features/settings_features/settings/presentation/widgets/settings_section_widget.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardAppbar.title(
+    return CarlogScaffold.title(
       title: S.current.settings,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
