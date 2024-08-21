@@ -19,7 +19,7 @@ class AnimationsK extends Constants {
   //ANCHOR - TUTORIAL
   static const notification = "assets/notification.json";
   static const statistics = "assets/statistics.json";
-  static const electric = "assets/electric2.json";
+  static const electric = "assets/electric.json";
 
   //ANCHOR - OTHER
   static const delete = "assets/delete.json";

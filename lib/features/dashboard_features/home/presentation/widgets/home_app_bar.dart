@@ -18,7 +18,7 @@ SliverAppBar homeAppBar(
 ) {
   return SliverAppBar(
     toolbarHeight: 50,
-    expandedHeight: 120,
+    expandedHeight: 130,
     collapsedHeight: 50,
     backgroundColor: context.surfaceColor,
     flexibleSpace: Container(
@@ -113,7 +113,8 @@ class DropDownWidget extends StatelessWidget {
                 carFirebaseEntity: CarFirebaseEntity.example()),
           ));
         }
-        return state.carList.isNotEmpty
+        return state.carList.isNotEmpty &&
+                context.watch<UserAppBloc>().state.car != null
             ? DropdownButtonHideUnderline(
                 child: Container(
                   height: 50,
@@ -125,7 +126,8 @@ class DropDownWidget extends StatelessWidget {
                   ),
                   padding: PaddingsK.h20v10,
                   child: DropdownButton2<CarFirebaseEntity>(
-                    value: context.watch<UserAppBloc>().state.car!,
+                    value: context.watch<UserAppBloc>().state.car ??
+                        state.carList.first,
                     isExpanded: true,
                     items: state.carList
                         .map((model) => DropdownMenuItem(

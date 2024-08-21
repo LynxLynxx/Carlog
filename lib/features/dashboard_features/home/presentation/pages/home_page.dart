@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
           create: (context) => UserAppBloc(
             locator(),
             context.read<ActionBloc>(),
+            context.read<CarsBloc>(),
           )..add(const UserAppEvent.readCarFromApp()),
         ),
       ],

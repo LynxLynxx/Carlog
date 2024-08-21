@@ -76,12 +76,12 @@ class SecureStorageService {
     await _secureStorage.write(key: "car", value: jsonEncode(car.toJson()));
   }
 
-  Future<CarFirebaseEntity> readCarFromApp() async {
+  Future<CarFirebaseEntity?> readCarFromApp() async {
     String? carString = await _secureStorage.read(key: "car");
     if (carString != null) {
       return CarFirebaseEntity.fromJson(jsonDecode(carString));
     } else {
-      return CarFirebaseEntity.empty();
+      return null;
     }
   }
 
