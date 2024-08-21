@@ -1,8 +1,12 @@
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:carlog/features/other_features/root/presentation/widgets/custom_bottom_navigation_bar_widget.dart';
 import 'package:carlog/features/other_features/root/presentation/widgets/custom_floating_button_widget.dart';
+import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -11,11 +15,48 @@ class RootPage extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   const RootPage({super.key, required this.navigationShell});
 
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              CarsBloc(locator())..add(const CarsEvent.getCars()),
+        ),
+        BlocProvider(
+          create: (context) => ActionBloc(locator()),
+        ),
+        BlocProvider(
+          lazy: false,
+          create: (context) => UserAppBloc(
+            locator(),
+            context.read<ActionBloc>(),
+            context.read<CarsBloc>(),
+          )..add(const UserAppEvent.readCarFromApp()),
+        ),
+      ],
+      child: RootView(navigationShell: navigationShell),
+    );
+  }
+}
+
+class RootView extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
+  const RootView({super.key, required this.navigationShell});
+
   void onTap(index) {
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
+  }
+
+  getMainPages() {
+    if (navigationShell.shellRouteContext.routerState.fullPath ==
+        RoutesK.home) {
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -64,9 +105,11 @@ class RootPage extends StatelessWidget {
       //   ),
       // ),
 
-      floatingActionButton: CustomFloatingButtonWidget(),
-      bottomNavigationBar:
-          CustomBottomNavigationBarWidget(navigationShell: navigationShell),
+      floatingActionButton:
+          getMainPages() ? CustomFloatingButtonWidget() : null,
+      bottomNavigationBar: getMainPages()
+          ? CustomBottomNavigationBarWidget(navigationShell: navigationShell)
+          : null,
     );
   }
 }

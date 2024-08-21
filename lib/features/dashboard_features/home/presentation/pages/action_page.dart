@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
@@ -23,7 +24,8 @@ class ActionPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ManageActionBloc(locator(), locator()),
+          create: (context) => ManageActionBloc(
+              locator(), locator(), context.read<ActionBloc>()),
         ),
       ],
       child: ActionView(),

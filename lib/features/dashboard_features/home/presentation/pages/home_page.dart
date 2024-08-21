@@ -1,11 +1,8 @@
-import 'package:carlog/core/di/injectable_config.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/home_app_bar.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_cars_found_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_service_board_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
-import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -15,38 +12,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              CarsBloc(locator())..add(const CarsEvent.getCars()),
-        ),
-        BlocProvider(
-          create: (context) => ActionBloc(locator()),
-        ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => UserAppBloc(
-            locator(),
-            context.read<ActionBloc>(),
-            context.read<CarsBloc>(),
-          )..add(const UserAppEvent.readCarFromApp()),
-        ),
-      ],
-      child: const HomeView(),
-    );
+    return const HomeView();
   }
 }
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
-  @override
-  State<HomeView> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomeView> {
-  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {

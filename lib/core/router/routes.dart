@@ -98,23 +98,6 @@ final List<RouteBase> routes = [
       );
     },
   ),
-  AnimationGoRoute(
-      path: "/addAction",
-      builder: (context, state) {
-        return ActionPage(
-          appContext: state.extra as BuildContext,
-        );
-      },
-      routes: [
-        AnimationGoRoute(
-          path: "map",
-          builder: (context, state) {
-            return MapPage(
-              appContext: state.extra as BuildContext,
-            );
-          },
-        ),
-      ]),
 
   AnimationGoRoute(
       path: "/manageCar",
@@ -160,6 +143,23 @@ final List<StatefulShellBranch> shellBranches = [
             ),
           ),
         ),
+        AnimationGoRoute(
+            path: "addAction",
+            builder: (context, state) {
+              return ActionPage(
+                appContext: state.extra as BuildContext,
+              );
+            },
+            routes: [
+              AnimationGoRoute(
+                path: "map",
+                builder: (context, state) {
+                  return MapPage(
+                    appContext: state.extra as BuildContext,
+                  );
+                },
+              ),
+            ]),
       ]),
   BranchGoRoute(
     path: RoutesK.cars,

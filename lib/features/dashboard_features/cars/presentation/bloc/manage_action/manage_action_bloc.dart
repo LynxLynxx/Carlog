@@ -3,6 +3,7 @@ import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/address_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/coordinates_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/other_features/location/domain/location_repository.dart';
@@ -17,7 +18,9 @@ part 'manage_action_state.dart';
 class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
   final CarRepository _carRepository;
   final LocationRepository _locationRepository;
-  ManageActionBloc(this._carRepository, this._locationRepository)
+  final ActionBloc _actionBloc;
+  ManageActionBloc(
+      this._carRepository, this._locationRepository, this._actionBloc)
       : super(const ManageActionState()) {
     on<_ChangeLatitudeEvent>(_onChangeLatitudeEvent);
     on<_ChangeLongitudeEvent>(_onChangeLongitudeEvent);
@@ -104,7 +107,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     final result = await _carRepository.addCarActionsByCarId(
       "Psi7UTfL47sgp1usWGn3",
       CarActionEntity(
-          timestamp: DateTime.now().add(const Duration(days: 3)),
+          timestamp: state.date,
           latitude: state.latitude.value != "" ? state.latitude.value : null,
           longitude: state.longitude.value != "" ? state.longitude.value : null,
           address: state.address.value != "" ? state.address.value : null,
@@ -120,5 +123,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyAddedTheActivity));
+    _actionBloc
+        .add(const ActionEvent.getActions(carId: "Psi7UTfL47sgp1usWGn3"));
   }
 }

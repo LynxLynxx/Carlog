@@ -74,28 +74,32 @@ class _TimelineChildWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              BlocBuilder<ServiceNotificationBloc, ServiceNotificationState>(
-                builder: (context, state) {
-                  return GestureDetector(
-                    onTap: () => context
-                        .read<ServiceNotificationBloc>()
-                        .add(ServiceNotificationEvent.changeNotificationStatus(
-                          carActionDayEntity.carId!,
-                          carActionDayEntity.actionId,
-                        )),
-                    child: SvgPicture.asset(
-                      state.notificationStatus
-                          ? ImagesK.bellFill
-                          : ImagesK.bell,
-                      width: 30,
-                      height: 30,
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          context.onPrimaryContainer, BlendMode.srcIn),
-                    ),
-                  );
-                },
-              )
+              carActionDayEntity.carActions.isNotEmpty
+                  ? BlocBuilder<ServiceNotificationBloc,
+                      ServiceNotificationState>(
+                      builder: (context, state) {
+                        return GestureDetector(
+                          onTap: () => context
+                              .read<ServiceNotificationBloc>()
+                              .add(ServiceNotificationEvent
+                                  .changeNotificationStatus(
+                                carActionDayEntity.carId!,
+                                carActionDayEntity.actionId,
+                              )),
+                          child: SvgPicture.asset(
+                            state.notificationStatus
+                                ? ImagesK.bellFill
+                                : ImagesK.bell,
+                            width: 30,
+                            height: 30,
+                            fit: BoxFit.cover,
+                            colorFilter: ColorFilter.mode(
+                                context.onPrimaryContainer, BlendMode.srcIn),
+                          ),
+                        );
+                      },
+                    )
+                  : const SizedBox.shrink()
             ],
           ),
           const SizedBox(
@@ -105,9 +109,8 @@ class _TimelineChildWidget extends StatelessWidget {
               ? Column(
                   children: carActionDayEntity.carActions
                       .map((model) => ServiceActivityWidget(
-                            carActionDayEntity: carActionDayEntity,
+                            carActionEntity: model,
                             isFirst: isFirst,
-                            index: 0,
                           ))
                       .toList(),
                 )
