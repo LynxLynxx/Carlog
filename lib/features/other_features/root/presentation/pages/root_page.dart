@@ -52,9 +52,12 @@ class RootView extends StatelessWidget {
   }
 
   getMainPages() {
-    if (navigationShell.shellRouteContext.routerState.fullPath ==
-        RoutesK.home) {
-      return true;
+    switch (navigationShell.shellRouteContext.routerState.fullPath) {
+      case RoutesK.home:
+      case RoutesK.cars:
+      case RoutesK.statistics:
+      case RoutesK.profile:
+        return true;
     }
     return false;
   }

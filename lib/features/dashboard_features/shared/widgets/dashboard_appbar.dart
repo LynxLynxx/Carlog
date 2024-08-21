@@ -46,13 +46,15 @@ class DashboardAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        buildAppbar(context),
-        SliverFillRemaining(
-          child: body,
-        ),
-      ],
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          buildAppbar(context),
+          SliverToBoxAdapter(
+            child: body,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -30,11 +30,7 @@ class _CarsViewState extends State<CarsView> {
   Widget build(BuildContext context) {
     return DashboardAppbar.title(
       title: S.of(context).cars,
-      body: const Column(
-        children: [
-          CarListWidget(),
-        ],
-      ),
+      body: const CarListWidget(),
     );
   }
 }

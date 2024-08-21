@@ -1,7 +1,7 @@
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/home_app_bar.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_cars_found_widget.dart';
-import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_service_board_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_action_board_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
           }
 
           return state.carList.isNotEmpty
-              ? const UserServiceBoardWidget()
+              ? const UserActionBoardWidget()
               : const NoCarsFoundWidget();
         },
       ),
