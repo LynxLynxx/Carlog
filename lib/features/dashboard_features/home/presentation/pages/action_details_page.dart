@@ -5,6 +5,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
@@ -15,28 +16,46 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class ActionPage extends StatelessWidget {
-  final BuildContext appContext;
-  const ActionPage({super.key, required this.appContext});
+class ActionDetailsPage extends StatelessWidget {
+  final String actionId;
+  final CarActionEntity carActionEntity;
+  const ActionDetailsPage(
+      {super.key, required this.actionId, required this.carActionEntity});
 
   @override
   Widget build(BuildContext context) {
-    return const ActionView();
+    return BlocProvider(
+      create: (context) =>
+          ManageActionBloc(locator(), locator(), context.read<ActionBloc>()),
+      child: ActionDetailsView(
+        carActionEntity: carActionEntity,
+      ),
+    );
   }
 }
 
-class ActionView extends StatefulWidget {
-  const ActionView({super.key});
+class ActionDetailsView extends StatefulWidget {
+  final CarActionEntity carActionEntity;
+  const ActionDetailsView({super.key, required this.carActionEntity});
 
   @override
-  State<ActionView> createState() => _ActionViewState();
+  State<ActionDetailsView> createState() => _ActionDetailsViewState();
 }
 
-class _ActionViewState extends State<ActionView> {
+class _ActionDetailsViewState extends State<ActionDetailsView> {
   final List<TextEditingController> textEditingControllerList = [
     TextEditingController(),
     TextEditingController(),
   ];
+
+  @override
+  void initState() {
+    textEditingControllerList[0].text = widget.carActionEntity.address ?? "";
+    textEditingControllerList[1].text = widget.carActionEntity.timestamp != null
+        ? FormatsK.yyyyMMdd.format(widget.carActionEntity.timestamp!)
+        : "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

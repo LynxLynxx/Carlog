@@ -11,6 +11,7 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class TimelineChildWidget extends StatelessWidget {
   final bool isFirst;
@@ -108,9 +109,13 @@ class _TimelineChildWidget extends StatelessWidget {
           carActionDayEntity.carActions.isNotEmpty
               ? Column(
                   children: carActionDayEntity.carActions
-                      .map((model) => ServiceActivityWidget(
-                            carActionEntity: model,
-                            isFirst: isFirst,
+                      .map((model) => GestureDetector(
+                            onTap: () =>
+                                context.push("/details/${model.carActionId}", extra: model),
+                            child: ServiceActivityWidget(
+                              carActionEntity: model,
+                              isFirst: isFirst,
+                            ),
                           ))
                       .toList(),
                 )

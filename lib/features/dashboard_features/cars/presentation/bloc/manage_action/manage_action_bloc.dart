@@ -10,6 +10,7 @@ import 'package:carlog/features/other_features/location/domain/location_reposito
 import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'manage_action_bloc.freezed.dart';
 part 'manage_action_event.dart';
@@ -107,6 +108,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     final result = await _carRepository.addCarActionsByCarId(
       "Psi7UTfL47sgp1usWGn3",
       CarActionEntity(
+          carActionId: const Uuid().v4(),
           timestamp: state.date,
           latitude: state.latitude.value != "" ? state.latitude.value : null,
           longitude: state.longitude.value != "" ? state.longitude.value : null,

@@ -6,6 +6,8 @@ import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_c
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/pages/action_details_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/map_page.dart';
@@ -42,6 +44,15 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
       builder: (context, state) => const HomePage(),
       routes: [
         GoRoute(
+          path: "details/:id",
+          builder: (context, state) {
+            return ActionDetailsPage(
+              actionId: state.pathParameters['id'] as String,
+              carActionEntity: state.extra as CarActionEntity,
+            );
+          },
+        ),
+        GoRoute(
           path: "addMilage",
           builder: (context, state) {
             return const UpdateMilagePage();
@@ -56,27 +67,26 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
           },
           routes: [
             GoRoute(
-              path: "map",
-              builder: (context, state) {
-                return MapPage(
-                  appContext: state.extra as BuildContext,
-                );
-              },
-              routes: [
-                GoRoute(
-              path: 'mapInfo',
-              pageBuilder: (BuildContext context, GoRouterState state) {
-                final extra = state.extra as Map<String, dynamic>;
-                return DialogPage(
-                  builder: (_) => InfoPopupWidget(
-                    title: extra['title'] as String,
-                    body: extra['body'] as String,
+                path: "map",
+                builder: (context, state) {
+                  return MapPage(
+                    appContext: state.extra as BuildContext,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: 'mapInfo',
+                    pageBuilder: (BuildContext context, GoRouterState state) {
+                      final extra = state.extra as Map<String, dynamic>;
+                      return DialogPage(
+                        builder: (_) => InfoPopupWidget(
+                          title: extra['title'] as String,
+                          body: extra['body'] as String,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-              ]
-            ),
+                ]),
           ],
         ),
       ],
