@@ -19,6 +19,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final bool isRequired;
   final bool readOnly;
   final Function()? funcClose;
+  final Function()? onTap;
   const ListElementTextfieldWidget({
     super.key,
     required this.textEditingController,
@@ -31,6 +32,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
     this.isRequired = false,
     this.funcClose,
     this.readOnly = false,
+    this.onTap,
   });
 
   @override
@@ -92,6 +94,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
               autocorrect: false,
               decoration: carTextFormFieldInputDecoration(context, hintText,
                   errorMaxLine: 2),
+              onTap: onTap,
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
               style: context.titleMedium,

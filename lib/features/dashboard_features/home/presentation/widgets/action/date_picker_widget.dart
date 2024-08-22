@@ -24,11 +24,10 @@ class DatePickerWidget extends StatelessWidget {
         Expanded(
           child: ListElementTextfieldWidget(
               textEditingController: textEditingController,
-              func: (value) {
-                // context
-                //     .read<ManageActionBloc>()
-                //     .add(ManageActionEvent.changeDate(DateTime.now()));
-              },
+              func: (value) {},
+              onTap: () => Platform.isIOS
+                  ? _iOSPicker(context)
+                  : _androidPicker(context),
               readOnly: true,
               title: S.of(context).date,
               hintText: S.of(context).eg20240101,

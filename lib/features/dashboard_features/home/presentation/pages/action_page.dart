@@ -28,14 +28,19 @@ class ActionPage extends StatelessWidget {
               locator(), locator(), context.read<ActionBloc>()),
         ),
       ],
-      child: ActionView(),
+      child: const ActionView(),
     );
   }
 }
 
-class ActionView extends StatelessWidget {
-  ActionView({super.key});
+class ActionView extends StatefulWidget {
+  const ActionView({super.key});
 
+  @override
+  State<ActionView> createState() => _ActionViewState();
+}
+
+class _ActionViewState extends State<ActionView> {
   final List<TextEditingController> textEditingControllerList = [
     TextEditingController(),
     TextEditingController(),
