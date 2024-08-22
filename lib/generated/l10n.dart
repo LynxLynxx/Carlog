@@ -1265,6 +1265,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Information`
+  String get information {
+    return Intl.message(
+      'Information',
+      name: 'information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the map to set the location of the action.`
+  String get tapOnTheMap {
+    return Intl.message(
+      'Tap on the map to set the location of the action.',
+      name: 'tapOnTheMap',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

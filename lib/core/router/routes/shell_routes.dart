@@ -13,6 +13,7 @@ import 'package:carlog/features/dashboard_features/home/presentation/pages/milag
 import 'package:carlog/features/other_features/root/presentation/pages/root_page.dart';
 import 'package:carlog/features/settings_features/my_account/presentation/pages/my_account_page.dart';
 import 'package:carlog/features/settings_features/settings/presentation/pages/settings_page.dart';
+import 'package:carlog/shared/widgets/info_popup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,6 +62,20 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
                   appContext: state.extra as BuildContext,
                 );
               },
+              routes: [
+                GoRoute(
+              path: 'mapInfo',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                final extra = state.extra as Map<String, dynamic>;
+                return DialogPage(
+                  builder: (_) => InfoPopupWidget(
+                    title: extra['title'] as String,
+                    body: extra['body'] as String,
+                  ),
+                );
+              },
+            ),
+              ]
             ),
           ],
         ),

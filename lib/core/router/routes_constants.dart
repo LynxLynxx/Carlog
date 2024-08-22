@@ -20,6 +20,7 @@ class RoutesK {
       RouteEntity(relativePath: "addCar", fullPath: "$cars/addCar");
   static const addAction = "/addAction";
   static const map = "/addAction/map";
+  static const mapInfo = "/addAction/map/mapInfo";
   static const manageCar =
       RouteEntity(relativePath: "manageCar", fullPath: "$cars/manageCar");
   static const deleteCarConfirmation = RouteEntity(

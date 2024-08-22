@@ -8,8 +8,8 @@ import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
-import 'package:carlog/features/dashboard_features/shared/widgets/custom_appbar.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,43 +45,40 @@ class ActionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        body: SafeArea(
-          child: BlocConsumer<ManageActionBloc, ManageActionState>(
-            listener: (context, state) {
-              textEditingControllerList[0].text = state.address.value;
-              textEditingControllerList[1].text = state.date != null
-                  ? FormatsK.yyyyMMdd.format(state.date!)
-                  : "";
-            },
-            builder: (context, state) {
-              return Column(
-                children: [
-                  CustomAppBar(title: S.of(context).addAction),
-                  Padding(
-                    padding: PaddingsK.all16,
-                    child: Column(
-                      children: [
-                        const CustomDropdownWidget(),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        AddressPickerWidget(
-                            textEditingController: textEditingControllerList[0],
-                            state: state),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        DatePickerWidget(
-                            textEditingController: textEditingControllerList[1],
-                            state: state),
-                      ],
-                    ),
+      child: CarlogScaffold.title(
+        title: S.of(context).addAction,
+        body: BlocConsumer<ManageActionBloc, ManageActionState>(
+          listener: (context, state) {
+            textEditingControllerList[0].text = state.address.value;
+            textEditingControllerList[1].text =
+                state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
+          },
+          builder: (context, state) {
+            return Column(
+              children: [
+                Padding(
+                  padding: PaddingsK.all16,
+                  child: Column(
+                    children: [
+                      const CustomDropdownWidget(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      AddressPickerWidget(
+                          textEditingController: textEditingControllerList[0],
+                          state: state),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      DatePickerWidget(
+                          textEditingController: textEditingControllerList[1],
+                          state: state),
+                    ],
                   ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton:

@@ -17,6 +17,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatterList;
   final String displayError;
   final bool isRequired;
+  final bool readOnly;
   final Function()? funcClose;
   const ListElementTextfieldWidget({
     super.key,
@@ -29,6 +30,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
     required this.displayError,
     this.isRequired = false,
     this.funcClose,
+    this.readOnly = false,
   });
 
   @override
@@ -93,6 +95,7 @@ class ListElementTextfieldWidget extends StatelessWidget {
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
               style: context.titleMedium,
+              readOnly: readOnly,
               inputFormatters: textInputFormatterList,
               onChanged: (func),
             ),
