@@ -118,6 +118,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
 
   _onSubmitActionEvent(
       _SubmitActionEvent event, Emitter<ManageActionState> emit) async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final result = await _carRepository.addCarActionsByCarId(
       carFirebaseEntity!.carId,
       CarActionEntity(

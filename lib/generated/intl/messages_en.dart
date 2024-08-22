@@ -104,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "litersValidator" : MessageLookupByLibrary.simpleMessage("Liters should be between 1 and 4 digits"),
     "logOut" : MessageLookupByLibrary.simpleMessage("Log Out"),
     "login" : MessageLookupByLibrary.simpleMessage("Login"),
+    "manageActions" : MessageLookupByLibrary.simpleMessage("Manage Action"),
     "milage" : MessageLookupByLibrary.simpleMessage("Milage"),
     "milageValidator" : MessageLookupByLibrary.simpleMessage("Milage should be between 1 and 8 digits"),
     "myAccount" : MessageLookupByLibrary.simpleMessage("My Account"),

@@ -1285,6 +1285,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Manage Action`
+  String get manageActions {
+    return Intl.message(
+      'Manage Action',
+      name: 'manageActions',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

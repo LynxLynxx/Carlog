@@ -138,5 +138,6 @@
   "save": "Save",
   "notValidEmpty": "Filed cannot be empty",
   "information": "Information",
-  "tapOnTheMap": "Tap on the map to set the location of the action."
+  "tapOnTheMap": "Tap on the map to set the location of the action.",
+  "manageActions": "Manage Action"
 }
