@@ -46,9 +46,12 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
         GoRoute(
           path: "details/:id",
           builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
             return ActionDetailsPage(
-              actionId: state.pathParameters['id'] as String,
-              carActionEntity: state.extra as CarActionEntity,
+              carActionId: state.pathParameters['id'] as String,
+              actionId: extra['actionId'] as String,
+              carId: extra['carId'] as String,
+              carActionEntity: extra['carAction'] as CarActionEntity,
             );
           },
         ),

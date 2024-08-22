@@ -110,8 +110,12 @@ class _TimelineChildWidget extends StatelessWidget {
               ? Column(
                   children: carActionDayEntity.carActions
                       .map((model) => GestureDetector(
-                            onTap: () =>
-                                context.push("/details/${model.carActionId}", extra: model),
+                            onTap: () => context
+                                .push("/details/${model.carActionId}", extra: {
+                              "actionId": carActionDayEntity.actionId,
+                              "carId": carActionDayEntity.carId,
+                              "carAction": model,
+                            }),
                             child: ServiceActivityWidget(
                               carActionEntity: model,
                               isFirst: isFirst,

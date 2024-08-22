@@ -256,7 +256,59 @@ class CarRepository {
     });
   }
 
-  
+  Future<Option<Failure>> updateCarActionsByCarActionId(
+      String carId, String actionId, CarActionEntity carActionEntity) async {
+    return handleVoidResponse(() async {
+      final DocumentReference carActionsDocRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions')
+          .doc(actionId);
+
+      DocumentSnapshot documentSnapshot = await carActionsDocRef.get();
+
+      if (!documentSnapshot.exists) {
+        return;
+      }
+
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+      List<dynamic> carActions = data['carActions'] ?? [];
+
+      int indexToUpdate = carActions.indexWhere((action) {
+        return action['carActionId'] == carActionEntity.carActionId;
+      });
+      if (indexToUpdate != -1) {
+        Timestamp timestamp = data['timestamp'];
+        if (DateTime.fromMillisecondsSinceEpoch(
+                        timestamp.millisecondsSinceEpoch)
+                    .day !=
+                carActionEntity.timestamp!.day ||
+            DateTime.fromMillisecondsSinceEpoch(
+                        timestamp.millisecondsSinceEpoch)
+                    .month !=
+                carActionEntity.timestamp!.day ||
+            DateTime.fromMillisecondsSinceEpoch(
+                        timestamp.millisecondsSinceEpoch)
+                    .year !=
+                carActionEntity.timestamp!.day) {
+          carActions.removeAt(indexToUpdate);
+          await carActionsDocRef.update({'carActions': carActions});
+          await addCarActionsByCarId(carId, carActionEntity);
+          if (carActions.isEmpty) {
+            await carActionsDocRef.delete();
+          }
+          return;
+        }
+
+        carActions[indexToUpdate]['latitude'] = carActionEntity.latitude;
+        carActions[indexToUpdate]['longitude'] = carActionEntity.longitude;
+        carActions[indexToUpdate]['address'] = carActionEntity.address;
+        carActions[indexToUpdate]['action'] = carActionEntity.action!.name;
+        await carActionsDocRef.update({'carActions': carActions});
+      }
+    });
+  }
 
   Future<Option<Failure>> changeNotificationOfDayByCarId(
       String carId, String actionId, bool notification) async {

@@ -16,6 +16,7 @@ class ActionBloc extends Bloc<ActionEvent, ActionState> {
 
   _onGetActions(_GetActions event, Emitter<ActionState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    await Future.delayed(const Duration(seconds: 1));
     final result = await _carRepository.getCarActionsByCarId(event.carId);
     result.fold(
         (l) => emit(state.copyWith(

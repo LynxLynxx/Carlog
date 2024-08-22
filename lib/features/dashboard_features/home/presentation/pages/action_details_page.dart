@@ -9,6 +9,7 @@ import 'package:carlog/features/dashboard_features/home/domain/entities/car_acti
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
+import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -17,26 +18,41 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ActionDetailsPage extends StatelessWidget {
+  final String carId;
   final String actionId;
+  final String carActionId;
   final CarActionEntity carActionEntity;
-  const ActionDetailsPage(
-      {super.key, required this.actionId, required this.carActionEntity});
+  const ActionDetailsPage({
+    super.key,
+    required this.actionId,
+    required this.carActionId,
+    required this.carActionEntity,
+    required this.carId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ManageActionBloc(locator(), locator(), context.read<ActionBloc>()),
+      create: (context) => ManageActionBloc(locator(), locator(),
+          context.read<ActionBloc>(), context.read<UserAppBloc>()),
       child: ActionDetailsView(
         carActionEntity: carActionEntity,
+        actionId: actionId,
+        carId: carId,
       ),
     );
   }
 }
 
 class ActionDetailsView extends StatefulWidget {
+  final String actionId;
+  final String carId;
   final CarActionEntity carActionEntity;
-  const ActionDetailsView({super.key, required this.carActionEntity});
+  const ActionDetailsView(
+      {super.key,
+      required this.carActionEntity,
+      required this.actionId,
+      required this.carId});
 
   @override
   State<ActionDetailsView> createState() => _ActionDetailsViewState();
@@ -50,6 +66,9 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
 
   @override
   void initState() {
+    context
+        .read<ManageActionBloc>()
+        .add(ManageActionEvent.setInitialData(widget.carActionEntity));
     textEditingControllerList[0].text = widget.carActionEntity.address ?? "";
     textEditingControllerList[1].text = widget.carActionEntity.timestamp != null
         ? FormatsK.yyyyMMdd.format(widget.carActionEntity.timestamp!)
@@ -109,9 +128,9 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
               padding: PaddingsK.v10,
               child: FloatingActionButton(
                 onPressed: () {
-                  context
-                      .read<ManageActionBloc>()
-                      .add(const ManageActionEvent.submitActionEvent());
+                  context.read<ManageActionBloc>().add(
+                      ManageActionEvent.updateActionEvent(widget.carId,
+                          widget.actionId, widget.carActionEntity));
                   context.pop();
                 },
                 shape:

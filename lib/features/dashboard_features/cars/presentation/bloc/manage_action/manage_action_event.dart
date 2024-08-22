@@ -9,4 +9,6 @@ class ManageActionEvent with _$ManageActionEvent {
   const factory ManageActionEvent.changeDate(DateTime value) = _ChangeDateEvent;
   const factory ManageActionEvent.generateAddress() = _GenerateAddress;
   const factory ManageActionEvent.submitActionEvent() = _SubmitActionEvent;
+  const factory ManageActionEvent.setInitialData(CarActionEntity carActionEntity) = _SetInitialData;
+  const factory ManageActionEvent.updateActionEvent(String carId, String actionId, CarActionEntity carActionEntity) = _UpdateActionEvent;
 }

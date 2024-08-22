@@ -3,6 +3,7 @@ import 'package:carlog/features/dashboard_features/home/presentation/widgets/hom
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/no_cars_found_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/user_action_board_widget.dart';
 import 'package:carlog/features/dashboard_features/shared/widgets/dashboard_appbar.dart';
+import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -28,7 +29,7 @@ class HomeView extends StatelessWidget {
       body: BlocBuilder<CarsBloc, CarsState>(
         builder: (context, state) {
           if (state.status.isInProgress || state.status.isInitial) {
-            return const Center(child: CircularProgressIndicator());
+            return const CarlogLoader();
           }
 
           return state.carList.isNotEmpty
