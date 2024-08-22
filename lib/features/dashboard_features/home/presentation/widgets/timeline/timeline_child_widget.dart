@@ -45,7 +45,7 @@ class _TimelineChildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: dropShadowEffect(context).copyWith(
-          color: isFirst ? context.onTertiary : context.primaryContainer,
+          color: isFirst ? context.surfaceDim : context.primaryContainer,
           borderRadius: PaddingsK.circular30),
       margin: EdgeInsets.only(left: 20, bottom: 15, top: isFirst ? 0 : 15),
       padding: PaddingsK.all24,
