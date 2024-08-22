@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
@@ -39,6 +40,7 @@ class ActionView extends StatefulWidget {
 class _ActionViewState extends State<ActionView> {
   final addressEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
+  final noteEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class _ActionViewState extends State<ActionView> {
             addressEditingController.text = state.address.value;
             dateEditingController.text =
                 state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
+            noteEditingController.text = state.note.value;
           },
           builder: (context, state) {
             return Column(
@@ -72,6 +75,20 @@ class _ActionViewState extends State<ActionView> {
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ListElementTextfieldWidget(
+                          textEditingController: noteEditingController,
+                          func: (value) {
+                            context
+                                .read<ManageActionBloc>()
+                                .add(ManageActionEvent.changeNote(value));
+                          },
+                          maxLines: 6,
+                          title: S.of(context).note,
+                          hintText: S.of(context).egRememberToChangeTheOil,
+                          displayError: state.note.displayError ?? ""),
                     ],
                   ),
                 ),

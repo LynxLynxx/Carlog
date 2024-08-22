@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
@@ -58,20 +59,20 @@ class ActionDetailsView extends StatefulWidget {
 }
 
 class _ActionDetailsViewState extends State<ActionDetailsView> {
-  final List<TextEditingController> textEditingControllerList = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
+  final addressEditingController = TextEditingController();
+  final dateEditingController = TextEditingController();
+  final noteEditingController = TextEditingController();
 
   @override
   void initState() {
     context
         .read<ManageActionBloc>()
         .add(ManageActionEvent.setInitialData(widget.carActionEntity));
-    textEditingControllerList[0].text = widget.carActionEntity.address ?? "";
-    textEditingControllerList[1].text = widget.carActionEntity.timestamp != null
+    addressEditingController.text = widget.carActionEntity.address ?? "";
+    dateEditingController.text = widget.carActionEntity.timestamp != null
         ? FormatsK.yyyyMMdd.format(widget.carActionEntity.timestamp!)
         : "";
+    noteEditingController.text = widget.carActionEntity.note ?? "";
     super.initState();
   }
 
@@ -83,9 +84,10 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
         title: S.of(context).manageActions,
         body: BlocConsumer<ManageActionBloc, ManageActionState>(
           listener: (context, state) {
-            textEditingControllerList[0].text = state.address.value;
-            textEditingControllerList[1].text =
+            addressEditingController.text = state.address.value;
+            dateEditingController.text =
                 state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
+            noteEditingController.text = state.note.value;
           },
           builder: (context, state) {
             return Column(
@@ -99,14 +101,25 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
                         height: 10,
                       ),
                       AddressPickerWidget(
-                          textEditingController: textEditingControllerList[0],
+                          textEditingController: addressEditingController,
                           state: state),
                       const SizedBox(
                         height: 10,
                       ),
                       DatePickerWidget(
-                          textEditingController: textEditingControllerList[1],
+                          textEditingController: dateEditingController,
                           state: state),
+                      ListElementTextfieldWidget(
+                          textEditingController: noteEditingController,
+                          func: (value) {
+                            context
+                                .read<ManageActionBloc>()
+                                .add(ManageActionEvent.changeNote(value));
+                          },
+                          maxLines: 6,
+                          title: S.of(context).note,
+                          hintText: S.of(context).egRememberToChangeTheOil,
+                          displayError: state.note.displayError ?? ""),
                     ],
                   ),
                 ),

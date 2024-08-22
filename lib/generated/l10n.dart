@@ -1295,6 +1295,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Note should be between 2 and 100 characters`
+  String get noteValidator {
+    return Intl.message(
+      'Note should be between 2 and 100 characters',
+      name: 'noteValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note`
+  String get note {
+    return Intl.message(
+      'Note',
+      name: 'note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Remember to change the oil`
+  String get egRememberToChangeTheOil {
+    return Intl.message(
+      'e.g. Remember to change the oil',
+      name: 'egRememberToChangeTheOil',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -14,6 +14,7 @@ class CarActionEntity with _$CarActionEntity {
     required String? latitude,
     required String? longitude,
     required String? address,
+    required String? note,
     required CarActionEnum? action,
   }) = _CarActionEntity;
 
@@ -23,6 +24,7 @@ class CarActionEntity with _$CarActionEntity {
         latitude: '52.231889',
         longitude: '21.005980',
         address: "Marszałkowska 1, 00-068 Warszawa, Polska",
+        note: "Note",
         action: CarActionEnum.service,
       );
 

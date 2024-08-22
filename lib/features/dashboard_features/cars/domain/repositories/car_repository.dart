@@ -287,11 +287,11 @@ class CarRepository {
             DateTime.fromMillisecondsSinceEpoch(
                         timestamp.millisecondsSinceEpoch)
                     .month !=
-                carActionEntity.timestamp!.day ||
+                carActionEntity.timestamp!.month ||
             DateTime.fromMillisecondsSinceEpoch(
                         timestamp.millisecondsSinceEpoch)
                     .year !=
-                carActionEntity.timestamp!.day) {
+                carActionEntity.timestamp!.year) {
           carActions.removeAt(indexToUpdate);
           await carActionsDocRef.update({'carActions': carActions});
           await addCarActionsByCarId(carId, carActionEntity);
@@ -300,11 +300,11 @@ class CarRepository {
           }
           return;
         }
-
         carActions[indexToUpdate]['latitude'] = carActionEntity.latitude;
         carActions[indexToUpdate]['longitude'] = carActionEntity.longitude;
         carActions[indexToUpdate]['address'] = carActionEntity.address;
         carActions[indexToUpdate]['action'] = carActionEntity.action!.name;
+        carActions[indexToUpdate]['note'] = carActionEntity.note;
         await carActionsDocRef.update({'carActions': carActions});
       }
     });

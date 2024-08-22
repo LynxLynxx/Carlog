@@ -5,6 +5,7 @@ import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/address_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/coordinates_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/entities/note_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
@@ -33,6 +34,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     on<_ChangeLatitudeEvent>(_onChangeLatitudeEvent);
     on<_ChangeLongitudeEvent>(_onChangeLongitudeEvent);
     on<_ChangeAddressEvent>(_onChangeAddressEvent);
+    on<_ChangeNoteEvent>(_onChangeNoteEvent);
     on<_ChangeActionTypeEvent>(_onChangeActionTypeEvent);
     on<_ChangeDateEvent>(_onChangeDateEvent);
     on<_GenerateAddress>(_onGenerateAddress);
@@ -66,6 +68,13 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     final address = AddressEntityValidator.pure(event.value);
     emit(
       state.copyWith(address: address),
+    );
+  }
+
+  _onChangeNoteEvent(_ChangeNoteEvent event, Emitter<ManageActionState> emit) {
+    final note = NoteEntityValidator.pure(event.value);
+    emit(
+      state.copyWith(note: note),
     );
   }
 
@@ -127,6 +136,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
           latitude: state.latitude.value != "" ? state.latitude.value : null,
           longitude: state.longitude.value != "" ? state.longitude.value : null,
           address: state.address.value != "" ? state.address.value : null,
+          note: state.note.value != "" ? state.note.value : null,
           action: state.action),
     );
 
@@ -148,6 +158,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
             event.carActionEntity.latitude ?? ""),
         longitude: CoordinatesEntityValidator.pure(
             event.carActionEntity.longitude ?? ""),
+        note: NoteEntityValidator.pure(event.carActionEntity.note ?? ""),
         address:
             AddressEntityValidator.pure(event.carActionEntity.address ?? ""),
         action: event.carActionEntity.action ?? CarActionEnum.service,
@@ -164,6 +175,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
           longitude: state.longitude.value != "" ? state.longitude.value : null,
           address: state.address.value != "" ? state.address.value : null,
           timestamp: state.date,
+          note: state.note.value != "" ? state.note.value : null,
           action: state.action),
     );
 
