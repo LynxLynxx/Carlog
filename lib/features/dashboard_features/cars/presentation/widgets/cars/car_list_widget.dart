@@ -72,13 +72,13 @@ class CarListElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(RoutesK.manageCar, extra: {
+      onTap: () => context.push(RoutesK.manageCar.fullPath, extra: {
         "carFirebaseEntity": carEntity,
         "appContext": context,
       }),
       child: Container(
         decoration:
-            dropShadowEffect().copyWith(color: context.primaryContainer),
+            dropShadowEffect(context).copyWith(color: context.primaryContainer),
         margin: PaddingsK.all16,
         padding: PaddingsK.all24,
         height: 150,
@@ -153,7 +153,7 @@ class AddCarListElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(RoutesK.addCar, extra: context),
+      onTap: () => context.push(RoutesK.addCar.fullPath, extra: context),
       child: Padding(
         padding: PaddingsK.h30v10,
         child: Card(

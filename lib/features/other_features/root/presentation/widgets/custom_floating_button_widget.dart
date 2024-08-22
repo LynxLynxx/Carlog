@@ -1,15 +1,20 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:star_menu/star_menu.dart';
 
 class CustomFloatingButtonWidget extends StatelessWidget {
-  const CustomFloatingButtonWidget({super.key});
+  CustomFloatingButtonWidget({super.key});
+
+  final StarMenuController controller = StarMenuController();
 
   @override
   Widget build(BuildContext context) {
     return StarMenu(
+      controller: controller,
       params: const StarMenuParameters(
         shape: MenuShape.linear,
         linearShapeParams: LinearShapeParams(
@@ -21,11 +26,23 @@ class CustomFloatingButtonWidget extends StatelessWidget {
         centerOffset: Offset(0, -50),
         openDurationMs: 150,
       ),
-      items: const [
-        CustomFloatingChildWidget(id: 3),
-        CustomFloatingChildWidget(id: 2),
-        CustomFloatingChildWidget(id: 1),
-        CustomFloatingChildWidget(id: 0),
+      items: [
+        CustomFloatingChildWidget(
+          id: 3,
+          starMenuController: controller,
+        ),
+        CustomFloatingChildWidget(
+          id: 2,
+          starMenuController: controller,
+        ),
+        CustomFloatingChildWidget(
+          id: 1,
+          starMenuController: controller,
+        ),
+        CustomFloatingChildWidget(
+          id: 0,
+          starMenuController: controller,
+        ),
       ],
       child: FloatingActionButton(
         backgroundColor: context.primaryColor,
@@ -48,7 +65,9 @@ class CustomFloatingButtonWidget extends StatelessWidget {
 
 class CustomFloatingChildWidget extends StatelessWidget {
   final int id;
-  const CustomFloatingChildWidget({super.key, required this.id});
+  final StarMenuController starMenuController;
+  const CustomFloatingChildWidget(
+      {super.key, required this.id, required this.starMenuController});
 
   getTitle() {
     switch (id) {
@@ -65,16 +84,30 @@ class CustomFloatingChildWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: PaddingsK.all8,
-      decoration: BoxDecoration(
-          borderRadius: PaddingsK.circular10,
-          color: context.onPrimary,
-          border: Border.all(color: context.primaryColor)),
-      child: Text(
-        getTitle(),
-        textAlign: TextAlign.center,
-        style: text16W500LS1,
+    return GestureDetector(
+      onTap: () => {
+        if (id == 1)
+          {
+            starMenuController.closeMenu!(),
+            context.push(RoutesK.addAction, extra: context),
+          }
+        else if (id == 2)
+          {
+            starMenuController.closeMenu!(),
+            context.push(RoutesK.addMilage, extra: context),
+          }
+      },
+      child: Container(
+        padding: PaddingsK.all8,
+        decoration: BoxDecoration(
+            borderRadius: PaddingsK.circular10,
+            color: context.onPrimary,
+            border: Border.all(color: context.primaryColor)),
+        child: Text(
+          getTitle(),
+          textAlign: TextAlign.center,
+          style: text16W500LS1,
+        ),
       ),
     );
   }

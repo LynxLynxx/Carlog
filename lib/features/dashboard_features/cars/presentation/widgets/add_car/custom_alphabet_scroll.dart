@@ -213,7 +213,7 @@ class _ListElementWidget extends StatelessWidget {
             horizontal: 15,
           ),
           width: double.infinity,
-          decoration: dropShadowEffect().copyWith(
+          decoration: dropShadowEffect(context).copyWith(
             border: state.brandEntity.value == carEntity.brand
                 ? Border.all(
                     color: context.primaryColor,

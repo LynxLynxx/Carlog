@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -115,12 +115,171 @@ class CarRepository {
           for (var docSnapshot in querySnapshot.docs) {
             final model = CarFirebaseEntity.fromJson(
                 docSnapshot.data() as Map<String, dynamic>);
-            log(model.toString());
             carList.add(model);
           }
         },
       );
       return carList;
+    });
+  }
+
+  Future<Either<Failure, List<CarActionDayEntity>>> getCarActionsByCarId(
+      String carId) async {
+    return handleResponse(() async {
+      final CollectionReference carActionsRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions');
+
+      List<CarActionDayEntity> carActionDayList = [];
+      bool todayExists = false;
+      bool iterated = false;
+      await carActionsRef.get().then(
+        (querySnapshot) {
+          for (var docSnapshot in querySnapshot.docs) {
+            iterated = true;
+            final data = docSnapshot.data() as Map<String, dynamic>;
+
+            DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
+                (data['timestamp'] as Timestamp).millisecondsSinceEpoch);
+
+            timestamp = DateTime(
+              timestamp.year,
+              timestamp.month,
+              timestamp.day,
+            );
+
+            final DateTime startOfToday = DateTime(
+              DateTime.now().year,
+              DateTime.now().month,
+              DateTime.now().day,
+            );
+
+            if (timestamp.isBefore(startOfToday)) {
+              continue;
+            }
+
+            if (timestamp == startOfToday) {
+              todayExists = true;
+            }
+
+            final List<CarActionEntity> carActions =
+                (data['carActions'] as List)
+                    .map((action) {
+                      final model = CarActionEntity.fromJson(action);
+                      return model;
+                    })
+                    .cast<CarActionEntity>()
+                    .toList();
+
+            final carActionDayEntity = CarActionDayEntity(
+              timestamp: timestamp,
+              notificationActive: data['notificationActive'],
+              carActions: carActions,
+              carId: data['carId'],
+              actionId: data['actionId'],
+            );
+
+            carActionDayList.add(carActionDayEntity);
+          }
+        },
+      );
+
+      if (!todayExists && iterated) {
+        final carActionDayEntity = CarActionDayEntity(
+          timestamp: DateTime.now(),
+          notificationActive: false,
+          carActions: [],
+          carId: '',
+          actionId: '',
+        );
+
+        carActionDayList.add(carActionDayEntity);
+      }
+
+      carActionDayList.sort((a, b) {
+        return a.timestamp!.compareTo(b.timestamp!);
+      });
+
+      return carActionDayList;
+    });
+  }
+
+  Future<Option<Failure>> addCarActionsByCarId(
+      String carId, CarActionEntity carAction) async {
+    return handleVoidResponse(() async {
+      final CollectionReference carActionsRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions');
+
+      final DateTime actionDate = carAction.timestamp!;
+      final int day = actionDate.day;
+      final int month = actionDate.month;
+      final int year = actionDate.year;
+
+      QuerySnapshot querySnapshot = await carActionsRef
+          .where('timestamp',
+              isGreaterThanOrEqualTo:
+                  Timestamp.fromDate(DateTime(year, month, day)),
+              isLessThanOrEqualTo:
+                  Timestamp.fromDate(DateTime(year, month, day + 1)))
+          .limit(1)
+          .get();
+
+      DocumentSnapshot? existingDocument =
+          querySnapshot.docs.isNotEmpty ? querySnapshot.docs.first : null;
+
+      if (existingDocument != null) {
+        Map<String, dynamic> data =
+            existingDocument.data() as Map<String, dynamic>;
+        List<dynamic> carActions = data['carActions'] ?? [];
+        carActions.add(carAction.toJson());
+
+        await carActionsRef
+            .doc(existingDocument.id)
+            .update({'carActions': carActions});
+      } else {
+        final newData = {
+          "timestamp": Timestamp.fromDate(actionDate),
+          "notificationActive": false,
+          "carActions": [carAction.toJson()],
+          "carId": carId,
+          "actionId": "",
+        };
+
+        final addAction = await carActionsRef.add(newData);
+        await carActionsRef
+            .doc(addAction.id)
+            .update({"actionId": addAction.id});
+      }
+    });
+  }
+
+  Future<Option<Failure>> changeNotificationOfDayByCarId(
+      String carId, String actionId, bool notification) async {
+    return handleVoidResponse(() async {
+      final DocumentReference carRef = FirebaseFirestore.instance
+          .collection('cars')
+          .doc(carId)
+          .collection('actions')
+          .doc(actionId);
+
+      await carRef.update({
+        "notificationActive": notification,
+      });
+    });
+  }
+
+  Future<Option<Failure>> updateMilageByCarId(
+      String carId, String milage) async {
+    return handleVoidResponse(() async {
+      final DocumentReference carRef =
+          FirebaseFirestore.instance.collection('cars').doc(carId);
+
+      await carRef.update({
+        "milage": milage,
+      });
     });
   }
 }

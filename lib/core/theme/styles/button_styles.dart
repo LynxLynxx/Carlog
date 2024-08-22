@@ -7,3 +7,11 @@ ButtonStyle tutorialButton(BuildContext context) => ElevatedButton.styleFrom(
       backgroundColor: context.onSurface,
       shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular10),
     );
+
+ButtonStyle homeCarButton(BuildContext context) => ElevatedButton.styleFrom(
+      elevation: 0,
+      backgroundColor: context.surfaceTint,
+      minimumSize: Size.zero,
+      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
+    );

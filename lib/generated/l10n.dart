@@ -10,7 +10,7 @@ import 'intl/messages_all.dart';
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
-// ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
+// ignore_for_file: avoid_redundant_argument_values
 
 class S {
   S();
@@ -18,31 +18,28 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
-
+ 
       return instance;
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -880,6 +877,146 @@ class S {
     );
   }
 
+  /// `You have no cars yet, add one!`
+  String get youHaveNoCarsYet {
+    return Intl.message(
+      'You have no cars yet, add one!',
+      name: 'youHaveNoCarsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have an planned activity yet.`
+  String get youDontHaveAnPlannedActivity {
+    return Intl.message(
+      'You don’t have an planned activity yet.',
+      name: 'youDontHaveAnPlannedActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coordinates should be between 1 and 25 characters`
+  String get coordinatesValidator {
+    return Intl.message(
+      'Coordinates should be between 1 and 25 characters',
+      name: 'coordinatesValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address should be between 1 and 100 characters`
+  String get addressValidator {
+    return Intl.message(
+      'Address should be between 1 and 100 characters',
+      name: 'addressValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully added the activity`
+  String get successfullyAddedTheActivity {
+    return Intl.message(
+      'Successfully added the activity',
+      name: 'successfullyAddedTheActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Service`
+  String get egService {
+    return Intl.message(
+      'e.g. Service',
+      name: 'egService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Walkway, 10004, NY, United States`
+  String get egWalkway {
+    return Intl.message(
+      'e.g. Walkway, 10004, NY, United States',
+      name: 'egWalkway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Action`
+  String get addAction {
+    return Intl.message(
+      'Add Action',
+      name: 'addAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 2024-01-01`
+  String get eg20240101 {
+    return Intl.message(
+      'e.g. 2024-01-01',
+      name: 'eg20240101',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Milage`
+  String get updateMilage {
+    return Intl.message(
+      'Update Milage',
+      name: 'updateMilage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully updated the milage`
+  String get successfullyUpdatedTheMilage {
+    return Intl.message(
+      'Successfully updated the milage',
+      name: 'successfullyUpdatedTheMilage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ACCOUNT`
   String get account {
     return Intl.message(
@@ -1061,7 +1198,7 @@ class S {
   }
 
   /// `{language, select, pl{Polish} en{English} other{Spanish}}`
-  String supportedLanguage(String language) {
+  String supportedLanguage(Object language) {
     return Intl.select(
       language,
       {
@@ -1076,7 +1213,7 @@ class S {
   }
 
   /// `{theme, select, light{light} other{dark}}`
-  String supportedThemes(String theme) {
+  String supportedThemes(Object theme) {
     return Intl.select(
       theme,
       {

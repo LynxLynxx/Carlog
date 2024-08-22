@@ -14,10 +14,17 @@ class RoutesK {
   //!SECTION
 
   static const home = "/";
+  static const addMilage = "/addMilage";
   static const cars = "/cars";
-  static const addCar = "/addCar";
-  static const manageCar = "/manageCar";
-  static const deleteCarConfirmation = "$manageCar/deleteCarConfirmation";
+  static const addCar =
+      RouteEntity(relativePath: "addCar", fullPath: "$cars/addCar");
+  static const addAction = "/addAction";
+  static const map = "/addAction/map";
+  static const manageCar =
+      RouteEntity(relativePath: "manageCar", fullPath: "$cars/manageCar");
+  static const deleteCarConfirmation = RouteEntity(
+      relativePath: "deleteCarConfirmation",
+      fullPath: "$cars/manageCar/deleteCarConfirmation");
   static const statistics = "/statistics";
 
   //SECTION - [ERRORS]

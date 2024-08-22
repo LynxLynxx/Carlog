@@ -7,6 +7,7 @@ class AnimationsK extends Constants {
   static const drivingCar = "assets/car_drive.json";
   static const addCar = "assets/add_car.json";
   static const paintCar = "assets/car_paint.json";
+  static const carGarage = "assets/car_garage.json";
 
   //ANCHOR - ERRORS
   static const connectionLost = "assets/connection_lost.json";
@@ -18,10 +19,11 @@ class AnimationsK extends Constants {
   //ANCHOR - TUTORIAL
   static const notification = "assets/notification.json";
   static const statistics = "assets/statistics.json";
-  static const electric = "assets/electric2.json";
+  static const electric = "assets/electric.json";
 
   //ANCHOR - OTHER
   static const delete = "assets/delete.json";
+  static const emptyCalendar = "assets/empty_calendar.json";
 
   //!SECTION
 }

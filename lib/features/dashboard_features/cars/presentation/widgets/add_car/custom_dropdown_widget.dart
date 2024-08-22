@@ -58,7 +58,7 @@ class CustomDropdownWidget extends StatelessWidget {
           BlocBuilder<ManageCarBloc, ManageCarState>(
             builder: (context, state) {
               return Container(
-                decoration: dropShadowEffect(),
+                decoration: dropShadowEffect(context),
                 child: DropdownButtonHideUnderline(
                   child: getWidget(state),
                 ),

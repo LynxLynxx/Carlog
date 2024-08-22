@@ -2,9 +2,9 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 
-BoxDecoration dropShadowEffect() => BoxDecoration(
+BoxDecoration dropShadowEffect(BuildContext context) => BoxDecoration(
       borderRadius: PaddingsK.circular10,
-      color: Colors.white,
+      color: context.onPrimary,
       boxShadow: const [
         BoxShadow(
           color: Color.fromRGBO(0, 0, 0, 0.25),

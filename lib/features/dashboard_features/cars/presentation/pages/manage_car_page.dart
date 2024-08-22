@@ -80,7 +80,8 @@ class _ManageCarViewState extends State<ManageCarView> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () => context.push(RoutesK.deleteCarConfirmation,
+                    onPressed: () => context.push(
+                        RoutesK.deleteCarConfirmation.fullPath,
                         extra: context),
                     icon: SvgPicture.asset(
                       ImagesK.delete,

@@ -1,3 +1,4 @@
+import 'package:carlog/core/router/routes_constants.dart';
 import 'package:go_router/go_router.dart';
 
 extension GoRouterExtension on GoRouter {
@@ -11,6 +12,9 @@ extension GoRouterExtension on GoRouter {
   }
 
   bool get showNavBar {
+    if (location() == RoutesK.addAction || location() == RoutesK.addMilage) {
+      return false;
+    }
     return location().split("/").length >= 3 ? false : true;
   }
 }

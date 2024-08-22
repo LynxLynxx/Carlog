@@ -46,6 +46,10 @@ dependencies:
   star_menu: ^4.0.1
   animated_snack_bar: ^0.4.0
   dropdown_button2: ^2.3.9
+  timeline_tile: ^2.0.0
+  geocoding: ^3.0.0
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
   hydrated_bloc: ^9.1.5
   path_provider: ^2.1.4
   skeletonizer: ^1.4.2
