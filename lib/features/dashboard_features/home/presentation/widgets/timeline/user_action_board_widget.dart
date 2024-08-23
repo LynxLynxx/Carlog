@@ -18,10 +18,10 @@ class UserActionBoardWidget extends StatelessWidget {
     return BlocConsumer<ActionBloc, ActionState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state.status.isInProgress || state.status.isInitial) {
+        if (state.status.isInProgress) {
           return const CarlogLoader();
         }
-        if (state.status.isSuccess) {
+        if (!state.status.isFailure) {
           if (state.carActionDayEntity.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
       ),
       body: BlocBuilder<CarsBloc, CarsState>(
         builder: (context, state) {
-          if (state.status.isInProgress || state.status.isInitial) {
+          if (state.status.isInProgress) {
             return const CarlogLoader();
           }
 
