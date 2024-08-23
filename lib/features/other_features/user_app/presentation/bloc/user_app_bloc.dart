@@ -23,10 +23,15 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
     on<_SelectCar>(_onSelectCar);
     on<_ReadCarFromApp>(_onReadCarFromApp);
     on<_ResetCarInApp>(_onResetCarInApp);
-    carFirebaseEntityList = carsBloc.state.carList;
+    carsBloc.state
+        .whenOrNull(data: (carList) => carFirebaseEntityList = carList);
+
     carListSubscription = carsBloc.stream.listen((state) {
-      carFirebaseEntityList = state.carList;
-      add(const _ReadCarFromApp());
+      carsBloc.state.whenOrNull(data: (carList) {
+        carFirebaseEntityList = carList;
+        add(const _ReadCarFromApp());
+        return;
+      });
     });
   }
 

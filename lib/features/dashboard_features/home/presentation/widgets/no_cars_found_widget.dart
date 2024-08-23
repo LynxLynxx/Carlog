@@ -1,5 +1,5 @@
 import 'package:carlog/core/constants/animations.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/car_list_widget.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/add_car_list_element_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -13,7 +13,10 @@ class NoCarsFoundWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        LottieBuilder.asset(AnimationsK.carGarage, width: double.infinity,),
+        LottieBuilder.asset(
+          AnimationsK.carGarage,
+          width: double.infinity,
+        ),
         const SizedBox(
           height: 20,
         ),
