@@ -44,12 +44,15 @@ class ServiceActivityWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SvgPicture.asset(
-            getIcon(),
-            width: 30,
-            height: 30,
-            colorFilter:
-                ColorFilter.mode(context.onPrimaryContainer, BlendMode.srcIn),
+          SizedBox(
+            width: 35,
+            child: SvgPicture.asset(
+              getIcon(),
+              width: 30,
+              height: 30,
+              colorFilter:
+                  ColorFilter.mode(context.onPrimaryContainer, BlendMode.srcIn),
+            ),
           ),
           const SizedBox(
             width: 10,

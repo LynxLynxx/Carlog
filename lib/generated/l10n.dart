@@ -1265,6 +1265,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Information`
+  String get information {
+    return Intl.message(
+      'Information',
+      name: 'information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the map to set the location of the action.`
+  String get tapOnTheMap {
+    return Intl.message(
+      'Tap on the map to set the location of the action.',
+      name: 'tapOnTheMap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage Action`
+  String get manageActions {
+    return Intl.message(
+      'Manage Action',
+      name: 'manageActions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note should be between 2 and 100 characters`
+  String get noteValidator {
+    return Intl.message(
+      'Note should be between 2 and 100 characters',
+      name: 'noteValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note`
+  String get note {
+    return Intl.message(
+      'Note',
+      name: 'note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Remember to change the oil`
+  String get egRememberToChangeTheOil {
+    return Intl.message(
+      'e.g. Remember to change the oil',
+      name: 'egRememberToChangeTheOil',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

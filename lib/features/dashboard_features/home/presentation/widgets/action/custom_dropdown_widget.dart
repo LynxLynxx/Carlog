@@ -70,56 +70,63 @@ class _CarActionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton2<CarActionEnum>(
-      isExpanded: true,
-      items: CarActionEnum.values
-          .map((CarActionEnum carAction) => DropdownMenuItem<CarActionEnum>(
-                value: carAction,
-                child: Text(
-                  CarActionEnumExtension.getCustomName(carAction),
-                  style: context.titleMedium!.copyWith(
-                    color: context.onPrimaryContainer,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      child: DropdownButton2<CarActionEnum>(
+        isExpanded: true,
+        items: CarActionEnum.values
+            .map((CarActionEnum carAction) => DropdownMenuItem<CarActionEnum>(
+                  value: carAction,
+                  child: Text(
+                    CarActionEnumExtension.getCustomName(carAction),
+                    style: context.titleMedium!.copyWith(
+                      color: context.onPrimaryContainer,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ))
-          .toList(),
-      hint: Text(
-        S.of(context).egService,
-        style: context.bodySmall,
-      ),
-      value: state.action,
-      onChanged: (carAction) {
-        context
-            .read<ManageActionBloc>()
-            .add(ManageActionEvent.changeActionType(carAction!));
-      },
-      buttonStyleData: const ButtonStyleData(
-        height: 55,
-        width: double.infinity,
-        padding: EdgeInsets.only(left: 14, right: 14),
-      ),
-      iconStyleData: const IconStyleData(
-        icon: Icon(
-          Icons.keyboard_arrow_down,
+                ))
+            .toList(),
+        hint: Text(
+          S.of(context).egService,
+          style: context.bodySmall,
         ),
-        iconSize: 20,
-      ),
-      dropdownStyleData: DropdownStyleData(
-        maxHeight: 200,
-        width: 230,
-        decoration: BoxDecoration(
-          borderRadius: PaddingsK.circular10,
-          color: context.surfaceColor,
+        value: state.action,
+        onChanged: (carAction) {
+          context
+              .read<ManageActionBloc>()
+              .add(ManageActionEvent.changeActionType(carAction!));
+        },
+        buttonStyleData: const ButtonStyleData(
+          height: 55,
+          width: double.infinity,
+          padding: EdgeInsets.only(left: 14, right: 14),
         ),
-        offset: const Offset(0, -10),
-        scrollbarTheme: const ScrollbarThemeData(
-          radius: Radius.circular(40),
+        iconStyleData: const IconStyleData(
+          icon: Icon(
+            Icons.keyboard_arrow_down,
+          ),
+          iconSize: 20,
         ),
-      ),
-      menuItemStyleData: const MenuItemStyleData(
-        height: 40,
-        padding: EdgeInsets.only(left: 14, right: 14),
+        dropdownStyleData: DropdownStyleData(
+          maxHeight: 200,
+          width: 230,
+          decoration: BoxDecoration(
+            borderRadius: PaddingsK.circular10,
+            color: context.surfaceColor,
+          ),
+          offset: const Offset(0, -10),
+          scrollbarTheme: const ScrollbarThemeData(
+            radius: Radius.circular(40),
+          ),
+        ),
+        menuItemStyleData: const MenuItemStyleData(
+          height: 40,
+          padding: EdgeInsets.only(left: 14, right: 14),
+        ),
       ),
     );
   }

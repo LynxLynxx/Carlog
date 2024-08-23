@@ -3,6 +3,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/timeline/timeline_widget.dart';
+import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -17,10 +18,10 @@ class UserActionBoardWidget extends StatelessWidget {
     return BlocConsumer<ActionBloc, ActionState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state.status.isInProgress || state.status.isInitial) {
-          return const Center(child: CircularProgressIndicator());
+        if (state.status.isInProgress) {
+          return const CarlogLoader();
         }
-        if (state.status.isSuccess) {
+        if (!state.status.isFailure) {
           if (state.carActionDayEntity.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

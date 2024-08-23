@@ -33,7 +33,7 @@ class RootPage extends StatelessWidget {
             locator(),
             context.read<ActionBloc>(),
             context.read<CarsBloc>(),
-          )..add(const UserAppEvent.readCarFromApp()),
+          ),
         ),
       ],
       child: RootView(navigationShell: navigationShell),
@@ -110,9 +110,8 @@ class RootView extends StatelessWidget {
       //   ),
       // ),
 
-      floatingActionButton: GoRouter.of(context).showNavBar
-          ? CustomFloatingButtonWidget()
-          : null,
+      floatingActionButton:
+          GoRouter.of(context).showNavBar ? CustomFloatingButtonWidget() : null,
       bottomNavigationBar: GoRouter.of(context).showNavBar
           ? CustomBottomNavigationBarWidget(navigationShell: navigationShell)
           : null,

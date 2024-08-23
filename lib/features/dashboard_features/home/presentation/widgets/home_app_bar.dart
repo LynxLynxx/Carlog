@@ -97,8 +97,8 @@ class DropDownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CarsBloc, CarsState>(
-      builder: (context, state) {
-        if (state.status.isInProgress || state.status.isInitial) {
+      builder: (context, carsState) {
+        if (carsState.status.isInProgress) {
           return Skeletonizer(
               child: Container(
             height: 50,
@@ -113,46 +113,55 @@ class DropDownWidget extends StatelessWidget {
                 carFirebaseEntity: CarFirebaseEntity.example()),
           ));
         }
-        return state.carList.isNotEmpty &&
-                context.watch<UserAppBloc>().state.car != null
-            ? DropdownButtonHideUnderline(
-                child: Container(
-                  height: 50,
-                  margin: PaddingsK.h20,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  decoration: dropShadowEffect(context).copyWith(
-                    color: context.surfaceDim,
-                    borderRadius: PaddingsK.circular30,
-                  ),
-                  padding: PaddingsK.h20v10,
-                  child: DropdownButton2<CarFirebaseEntity>(
-                    value: context.watch<UserAppBloc>().state.car ??
-                        state.carList.first,
-                    isExpanded: true,
-                    items: state.carList
-                        .map((model) => DropdownMenuItem(
-                            value: model,
-                            child: CarSelectElementWidget(
-                                carFirebaseEntity: model)))
-                        .toList(),
-                    onChanged: (CarFirebaseEntity? newValue) {
-                      context.read<UserAppBloc>().add(
-                            UserAppEvent.selectCar(newValue!),
-                          );
-                    },
-                    iconStyleData: const IconStyleData(iconSize: 0),
-                    dropdownStyleData: DropdownStyleData(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      decoration: dropShadowEffect(context).copyWith(
-                        color: context.surfaceDim,
-                        borderRadius: PaddingsK.circular30,
+        if (carsState.status.isSuccess) {
+          return BlocBuilder<UserAppBloc, UserAppState>(
+            builder: (context, state) {
+              if (!state.status.isSuccess) {
+                return const SizedBox.shrink();
+              }
+              // return const SizedBox();
+              return carsState.carList.isNotEmpty && state.car != null
+                  ? DropdownButtonHideUnderline(
+                      child: Container(
+                        height: 50,
+                        margin: PaddingsK.h20,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: dropShadowEffect(context).copyWith(
+                          color: context.surfaceDim,
+                          borderRadius: PaddingsK.circular30,
+                        ),
+                        padding: PaddingsK.h20v10,
+                        child: DropdownButton2<CarFirebaseEntity>(
+                          value: state.car,
+                          isExpanded: true,
+                          items: carsState.carList
+                              .map((model) => DropdownMenuItem(
+                                  value: model,
+                                  child: CarSelectElementWidget(
+                                      carFirebaseEntity: model)))
+                              .toList(),
+                          onChanged: (CarFirebaseEntity? newValue) {
+                            context.read<UserAppBloc>().add(
+                                  UserAppEvent.selectCar(newValue!),
+                                );
+                          },
+                          iconStyleData: const IconStyleData(iconSize: 0),
+                          dropdownStyleData: DropdownStyleData(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            decoration: dropShadowEffect(context).copyWith(
+                              color: context.surfaceDim,
+                              borderRadius: PaddingsK.circular30,
+                            ),
+                            offset: const Offset(-20, 40),
+                          ),
+                        ),
                       ),
-                      offset: const Offset(-20, 40),
-                    ),
-                  ),
-                ),
-              )
-            : const SizedBox.shrink();
+                    )
+                  : const SizedBox.shrink();
+            },
+          );
+        }
+        return const SizedBox.shrink();
       },
     );
   }
