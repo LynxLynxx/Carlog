@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository2.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cars_bloc.freezed.dart';

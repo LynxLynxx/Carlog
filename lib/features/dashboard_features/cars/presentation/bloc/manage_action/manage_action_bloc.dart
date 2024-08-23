@@ -6,7 +6,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/address_
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/coordinates_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/note_entity_validator.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository2.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/error/failures.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository2.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

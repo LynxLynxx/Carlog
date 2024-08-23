@@ -9,7 +9,8 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_e
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/year_entity_validator.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository2.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_car_usecase.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:formz/formz.dart';
@@ -23,7 +24,8 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
   final CarsBloc carsBloc;
   final CarRepository _carRepository;
   late String carId = "";
-  ManageCarBloc(this._carRepository, this.carsBloc)
+  final UpdateCarUsecase _updateCarUsecase;
+  ManageCarBloc(this._carRepository, this.carsBloc, this._updateCarUsecase)
       : super(const _ManageCarState()) {
     //Change the state
     on<_BrandChanged>(_onBrandChanged);
@@ -309,7 +311,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
       );
     }
 
-    final result = await _carRepository.updateCarByUser(
+    final result = await _updateCarUsecase.call(
       CarFirebaseEntity(
         carId: carId,
         brand: state.brandEntity.value != "" ? state.brandEntity.value : null,
