@@ -26,8 +26,9 @@ class ManageCarPage extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         final bloc = ManageCarBloc(
-          locator(),
           appContext.read<CarsBloc>(),
+          locator(),
+          locator(),
           locator(),
         );
         bloc.add(ManageCarEvent.setInitialCar(carFirebaseEntity));

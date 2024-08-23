@@ -9,7 +9,8 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_e
 import 'package:carlog/features/dashboard_features/cars/domain/entities/model_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/plate_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/year_entity_validator.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository2.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/usecases/add_car_usecase.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/usecases/delete_car_usecase.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_car_usecase.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -22,10 +23,12 @@ part 'manage_car_state.dart';
 
 class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
   final CarsBloc carsBloc;
-  final CarRepository _carRepository;
   late String carId = "";
+  final AddCarUsecase _addCarUsecase;
   final UpdateCarUsecase _updateCarUsecase;
-  ManageCarBloc(this._carRepository, this.carsBloc, this._updateCarUsecase)
+  final DeleteCarUsecase _deleteCarUsecase;
+  ManageCarBloc(this.carsBloc, this._addCarUsecase, this._updateCarUsecase,
+      this._deleteCarUsecase)
       : super(const _ManageCarState()) {
     //Change the state
     on<_BrandChanged>(_onBrandChanged);
@@ -249,7 +252,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
       );
     }
 
-    final result = await _carRepository.createCarByUser(
+    final result = await _addCarUsecase.call(
       CarFirebaseEntity(
         carId: "",
         brand: state.brandEntity.value != "" ? state.brandEntity.value : null,
@@ -347,7 +350,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onDeleteCarSubmitted(
       _DeleteCarSubmitted event, Emitter<ManageCarState> emit) async {
-    final result = await _carRepository.deleteCarByUser(
+    final result = await _deleteCarUsecase.call(
       carId,
     );
 
