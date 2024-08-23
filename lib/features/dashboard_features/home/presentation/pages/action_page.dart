@@ -43,6 +43,14 @@ class _ActionViewState extends State<ActionView> {
   final noteEditingController = TextEditingController();
 
   @override
+  void dispose() {
+    addressEditingController.dispose();
+    dateEditingController.dispose();
+    noteEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
