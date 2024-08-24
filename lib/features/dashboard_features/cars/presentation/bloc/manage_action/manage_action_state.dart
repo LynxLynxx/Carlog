@@ -9,6 +9,7 @@ class ManageActionState with _$ManageActionState {
     @Default(CoordinatesEntityValidator.pure())
     CoordinatesEntityValidator longitude,
     @Default(AddressEntityValidator.pure()) AddressEntityValidator address,
+    @Default(NoteEntityValidator.pure()) NoteEntityValidator note,
     @Default(null) DateTime? date,
     @Default(CarActionEnum.service) CarActionEnum action,
     String? message,

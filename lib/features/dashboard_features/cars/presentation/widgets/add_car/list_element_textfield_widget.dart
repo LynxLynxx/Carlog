@@ -17,7 +17,10 @@ class ListElementTextfieldWidget extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatterList;
   final String displayError;
   final bool isRequired;
+  final bool readOnly;
   final Function()? funcClose;
+  final Function()? onTap;
+  final int maxLines;
   const ListElementTextfieldWidget({
     super.key,
     required this.textEditingController,
@@ -29,6 +32,9 @@ class ListElementTextfieldWidget extends StatelessWidget {
     required this.displayError,
     this.isRequired = false,
     this.funcClose,
+    this.readOnly = false,
+    this.onTap,
+    this.maxLines = 1,
   });
 
   @override
@@ -90,9 +96,12 @@ class ListElementTextfieldWidget extends StatelessWidget {
               autocorrect: false,
               decoration: carTextFormFieldInputDecoration(context, hintText,
                   errorMaxLine: 2),
+              onTap: onTap,
+              maxLines: maxLines,
               textInputAction: TextInputAction.go,
               keyboardType: textInputType,
               style: context.titleMedium,
+              readOnly: readOnly,
               inputFormatters: textInputFormatterList,
               onChanged: (func),
             ),

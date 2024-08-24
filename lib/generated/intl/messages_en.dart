@@ -77,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "eg20240101": MessageLookupByLibrary.simpleMessage("e.g. 2024-01-01"),
         "egAUM550": MessageLookupByLibrary.simpleMessage("e.g. AUM 550"),
         "egHybrid": MessageLookupByLibrary.simpleMessage("e.g. Hybrid"),
+        "egRememberToChangeTheOil": MessageLookupByLibrary.simpleMessage(
+            "e.g. Remember to change the oil"),
         "egSUV": MessageLookupByLibrary.simpleMessage("e.g. SUV"),
         "egService": MessageLookupByLibrary.simpleMessage("e.g. Service"),
         "egVolvo": MessageLookupByLibrary.simpleMessage("e.g. Volvo"),
@@ -147,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "information": MessageLookupByLibrary.simpleMessage("Information"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "legalInformation":
@@ -156,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Liters should be between 1 and 4 digits"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "manageActions": MessageLookupByLibrary.simpleMessage("Manage Action"),
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
@@ -164,6 +168,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
+        "note": MessageLookupByLibrary.simpleMessage("Note"),
+        "noteValidator": MessageLookupByLibrary.simpleMessage(
+            "Note should be between 2 and 100 characters"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -200,6 +207,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully updated the milage"),
         "supportedLanguage": m0,
         "supportedThemes": m1,
+        "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
+            "Tap on the map to set the location of the action."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),

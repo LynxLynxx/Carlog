@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
@@ -17,10 +19,16 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
   final CarRepository _carRepository;
   final UserAppBloc _userAppBloc;
   final CarsBloc _carsBloc;
+  late StreamSubscription userAppBlocSubscription;
+  late CarFirebaseEntity? carFirebaseEntity;
   MilageBloc(this._carRepository, this._userAppBloc, this._carsBloc)
       : super(const _MilageState()) {
     on<_ChangeMilageEvent>(_onChangeMilageEvent);
     on<_SubmitMilageChangeEvent>(_onSubmitMilageChangeEvent);
+    carFirebaseEntity = _userAppBloc.state.car;
+    userAppBlocSubscription = _userAppBloc.stream.listen((state) {
+      carFirebaseEntity = state.car!;
+    });
   }
 
   _onChangeMilageEvent(_ChangeMilageEvent event, Emitter<MilageState> emit) {
@@ -40,12 +48,8 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
       return emit(state.copyWith(milage: milage, message: null));
     }
 
-    while (_userAppBloc.state.car == null) {
-      await Future.delayed(const Duration(milliseconds: 100));
-    }
-
     final result = await _carRepository.updateMilageByCarId(
-        _userAppBloc.state.car!.carId, state.milage.value);
+        carFirebaseEntity!.carId, state.milage.value);
 
     if (result.isSome()) {
       return emit(state.copyWith(
@@ -59,7 +63,13 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
 
     _carsBloc.add(const CarsEvent.getCars());
     CarFirebaseEntity updatedCar =
-        _userAppBloc.state.car!.copyWith(milage: state.milage.value);
+        carFirebaseEntity!.copyWith(milage: state.milage.value);
     _userAppBloc.add(UserAppEvent.selectCar(updatedCar));
+  }
+
+  @override
+  Future<void> close() {
+    userAppBlocSubscription.cancel();
+    return super.close();
   }
 }

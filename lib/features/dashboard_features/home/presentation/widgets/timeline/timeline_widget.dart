@@ -30,9 +30,9 @@ class TimelineWidget extends StatelessWidget {
         iconStyle: IconStyle(
           iconData: isFirst ? Icons.radio_button_checked : Icons.calendar_today,
           fontSize: 25,
-          // color: context.primaryColor,
+          color: context.onPrimaryContainer,
         ),
-        // color: context.primaryColor,
+        color: context.surfaceColor,
       ),
       endChild: TimelineChildWidget(
         isFirst: isFirst,

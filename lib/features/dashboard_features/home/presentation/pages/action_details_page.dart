@@ -4,6 +4,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
@@ -16,38 +17,71 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
-class ActionPage extends StatelessWidget {
-  final BuildContext appContext;
-  const ActionPage({super.key, required this.appContext});
+class ActionDetailsPage extends StatelessWidget {
+  final String carId;
+  final String actionId;
+  final String carActionId;
+  final CarActionEntity carActionEntity;
+  const ActionDetailsPage({
+    super.key,
+    required this.actionId,
+    required this.carActionId,
+    required this.carActionEntity,
+    required this.carId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ManageActionBloc(locator(), locator(),
           context.read<ActionBloc>(), context.read<UserAppBloc>()),
-      child: const ActionView(),
+      child: ActionDetailsView(
+        carActionEntity: carActionEntity,
+        actionId: actionId,
+        carId: carId,
+      ),
     );
   }
 }
 
-class ActionView extends StatefulWidget {
-  const ActionView({super.key});
+class ActionDetailsView extends StatefulWidget {
+  final String actionId;
+  final String carId;
+  final CarActionEntity carActionEntity;
+  const ActionDetailsView(
+      {super.key,
+      required this.carActionEntity,
+      required this.actionId,
+      required this.carId});
 
   @override
-  State<ActionView> createState() => _ActionViewState();
+  State<ActionDetailsView> createState() => _ActionDetailsViewState();
 }
 
-class _ActionViewState extends State<ActionView> {
+class _ActionDetailsViewState extends State<ActionDetailsView> {
   final addressEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
   final noteEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    context
+        .read<ManageActionBloc>()
+        .add(ManageActionEvent.setInitialData(widget.carActionEntity));
+    addressEditingController.text = widget.carActionEntity.address ?? "";
+    dateEditingController.text = widget.carActionEntity.timestamp != null
+        ? FormatsK.yyyyMMdd.format(widget.carActionEntity.timestamp!)
+        : "";
+    noteEditingController.text = widget.carActionEntity.note ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
-        title: S.of(context).addAction,
+        title: S.of(context).manageActions,
         body: BlocConsumer<ManageActionBloc, ManageActionState>(
           listener: (context, state) {
             addressEditingController.text = state.address.value;
@@ -75,9 +109,6 @@ class _ActionViewState extends State<ActionView> {
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       ListElementTextfieldWidget(
                           textEditingController: noteEditingController,
                           func: (value) {
@@ -112,9 +143,9 @@ class _ActionViewState extends State<ActionView> {
                       .isNotEmpty &&
                   context.watch<ManageActionBloc>().state.date != null,
               onTap: () {
-                context
-                    .read<ManageActionBloc>()
-                    .add(const ManageActionEvent.submitActionEvent());
+                context.read<ManageActionBloc>().add(
+                    ManageActionEvent.updateActionEvent(
+                        widget.carId, widget.actionId, widget.carActionEntity));
                 context.pop();
               },
             );

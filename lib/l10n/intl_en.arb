@@ -136,5 +136,11 @@
   "name": "First name",
   "lastName": "Last name",
   "save": "Save",
-  "notValidEmpty": "Filed cannot be empty"
+  "notValidEmpty": "Filed cannot be empty",
+  "information": "Information",
+  "tapOnTheMap": "Tap on the map to set the location of the action.",
+  "manageActions": "Manage Action",
+  "noteValidator": "Note should be between 2 and 100 characters",
+  "note": "Note",
+  "egRememberToChangeTheOil": "e.g. Remember to change the oil"
 }
