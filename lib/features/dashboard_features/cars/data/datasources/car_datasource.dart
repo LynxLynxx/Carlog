@@ -55,7 +55,8 @@ class CarDatasourceImpl implements CarDatasource {
       await handleFirestoreCollectionData(
           _firebaseFirestore.collection(CollectionsK.cars).path,
           conditionField: 'userId',
-          conditionValue: FirebaseAuth.instance.currentUser?.uid, (doc) {
+          isEqualToConditionValue: FirebaseAuth.instance.currentUser?.uid,
+          (doc) {
         return doc
             .map((model) => CarFirebaseEntity.fromJson(
                 model.data() as Map<String, dynamic>))

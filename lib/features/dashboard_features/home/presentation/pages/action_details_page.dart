@@ -33,7 +33,7 @@ class ActionDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManageActionBloc(locator(), locator(),
+      create: (context) => ManageActionBloc(locator(), locator(), locator(),
           context.read<ActionBloc>(), context.read<UserAppBloc>()),
       child: ActionDetailsView(
         carActionEntity: carActionEntity,

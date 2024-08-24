@@ -87,14 +87,23 @@ Future<ResponseType> handleFirestoreCollectionData<ResponseType>(
     ResponseType Function(List<QueryDocumentSnapshot<Object?>> collection)
         onCollectionExists,
     {String? conditionField,
-    dynamic conditionValue}) async {
+    dynamic isEqualToConditionValue,
+    dynamic isGreaterThanOrEqualToConditionValue,
+    dynamic isLessThanOrEqualToConditionValue}) async {
   try {
     QuerySnapshot<Object?> querySnapshot;
 
-    if (conditionField != null && conditionValue != null) {
+    if (conditionField != null &&
+        (isEqualToConditionValue != null ||
+            isGreaterThanOrEqualToConditionValue != null ||
+            isLessThanOrEqualToConditionValue != null)) {
       querySnapshot = await FirebaseFirestore.instance
           .collection(collectionPath)
-          .where(conditionField, isEqualTo: conditionValue)
+          .where(conditionField, isEqualTo: isEqualToConditionValue)
+          .where(conditionField,
+              isGreaterThanOrEqualTo: isGreaterThanOrEqualToConditionValue)
+          .where(conditionField,
+              isLessThanOrEqualTo: isLessThanOrEqualToConditionValue)
           .get();
     } else {
       querySnapshot =

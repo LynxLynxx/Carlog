@@ -10,6 +10,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
+import 'package:carlog/features/dashboard_features/home/domain/usecases/add_action_usecase.dart';
 import 'package:carlog/features/other_features/location/domain/location_repository.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -22,14 +23,15 @@ part 'manage_action_event.dart';
 part 'manage_action_state.dart';
 
 class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
+  final AddActionUsecase _addActionUsecase;
   final CarRepository _carRepository;
   final LocationRepository _locationRepository;
   final ActionBloc _actionBloc;
   final UserAppBloc _userAppBloc;
   late StreamSubscription userAppBlocSubscription;
   late CarFirebaseEntity? carFirebaseEntity;
-  ManageActionBloc(this._carRepository, this._locationRepository,
-      this._actionBloc, this._userAppBloc)
+  ManageActionBloc(this._addActionUsecase, this._carRepository,
+      this._locationRepository, this._actionBloc, this._userAppBloc)
       : super(const ManageActionState()) {
     on<_ChangeLatitudeEvent>(_onChangeLatitudeEvent);
     on<_ChangeLongitudeEvent>(_onChangeLongitudeEvent);
@@ -128,7 +130,7 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
   _onSubmitActionEvent(
       _SubmitActionEvent event, Emitter<ManageActionState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-    final result = await _carRepository.addCarActionsByCarId(
+    final result = await _addActionUsecase.call(
       carFirebaseEntity!.carId,
       CarActionEntity(
           carActionId: const Uuid().v4(),
