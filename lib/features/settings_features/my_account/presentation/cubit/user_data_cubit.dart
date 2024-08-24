@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/error/failures.dart';
+import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/settings_features/my_account/domain/entities/update_user_data_entity.dart';
 import 'package:carlog/features/settings_features/my_account/domain/entities/user_data_entity.dart';
 import 'package:carlog/features/settings_features/my_account/domain/usecases/get_user_data_usecase.dart';
@@ -12,9 +13,11 @@ part 'user_data_state.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   final GetUserDataUsecase _getUserDataUsecase;
   final UpdateUserDataUsecase _updateUserDataUsecase;
+  final AuthBloc _authBloc;
   UserDataEntity? userData;
 
-  UserDataCubit(this._getUserDataUsecase, this._updateUserDataUsecase)
+  UserDataCubit(
+      this._getUserDataUsecase, this._updateUserDataUsecase, this._authBloc)
       : super(const UserDataState.initial());
 
   void getUserData() async {
@@ -47,6 +50,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     result.fold(
       () {
         userData = UserDataEntity(firstName, lastName, userData!.email);
+        _authBloc.add(AuthEvent.changedUserData(userData!));
         emit(_Data(userData!));
       },
       (l) => emit(_Failure(l)),
