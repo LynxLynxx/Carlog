@@ -28,6 +28,7 @@ class ActionRepositoryImpl implements ActionRepository {
 
       List<CarActionDayEntity> carActionDayList = [];
       bool todayExists = false;
+      bool iterated = false;
 
       final DateTime startOfToday = DateTime(
         DateTime.now().year,
@@ -38,6 +39,7 @@ class ActionRepositoryImpl implements ActionRepository {
       final Map<DateTime, CarActionDayEntity> groupedActions = {};
 
       for (var carActionDay in carActionList) {
+        iterated = true;
         DateTime timestamp = carActionDay.timestamp ?? DateTime.now();
         timestamp = DateTime(timestamp.year, timestamp.month, timestamp.day);
 
@@ -65,7 +67,7 @@ class ActionRepositoryImpl implements ActionRepository {
         carActionDayList.add(carActionDay);
       });
 
-      if (!todayExists) {
+      if (!todayExists && iterated) {
         final carActionDayEntity = CarActionDayEntity(
           timestamp: DateTime.now(),
           notificationActive: false,
@@ -141,8 +143,9 @@ class ActionRepositoryImpl implements ActionRepository {
 
       List<CarActionEntity> carActionsCopy = List.from(model.carActions);
 
-      int index = model.carActions.indexWhere(
-          (element) => element.carActionId == carActionEntity.carActionId);
+      int index = model.carActions.indexWhere((element) {
+        return element.carActionId == carActionEntity.carActionId;
+      });
       if (index != -1) {
         DateTime actionDate = model.carActions[index].timestamp!;
         if (actionDate.day != carActionEntity.timestamp!.day ||
@@ -158,13 +161,9 @@ class ActionRepositoryImpl implements ActionRepository {
               carActionsCopy.map((e) => e.toJson()).toList(),
             );
           }
-          await _actionDatasource.addAction(carId, {
-            "timestamp": Timestamp.fromDate(carActionEntity.timestamp!),
-            "notificationActive": false,
-            "carActions": [carActionEntity.toJson()],
-            "carId": carId,
-            "actionId": "",
-          });
+
+          addAction(carId, carActionEntity);
+
           return;
         }
 
@@ -175,6 +174,7 @@ class ActionRepositoryImpl implements ActionRepository {
           action: carActionEntity.action,
           note: carActionEntity.note,
         );
+
         await _actionDatasource.updateAction(
           carId,
           actionId,
