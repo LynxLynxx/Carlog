@@ -32,6 +32,8 @@ class _MyAccountViewState extends State<_MyAccountView> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final FocusNode firstNameScope = FocusNode();
+  final FocusNode lastNameScope = FocusNode();
 
   final userDataFormKey = GlobalKey<FormState>();
 
@@ -45,79 +47,86 @@ class _MyAccountViewState extends State<_MyAccountView> {
 
   @override
   Widget build(BuildContext context) {
-    return CarlogScaffold.title(
-      title: S.of(context).myAccount,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        child: BlocConsumer<UserDataCubit, UserDataState>(
-          listener: (context, state) => state.whenOrNull(
-            data: (userData) {
-              firstNameController.value =
-                  TextEditingValue(text: userData.firstName);
-              lastNameController.value =
-                  TextEditingValue(text: userData.lastName);
-              emailController.value = TextEditingValue(text: userData.email);
-              return null;
-            },
-          ),
-          builder: (context, state) {
-            return state.when(
-              loading: () => UserDataForm(
-                userDataFormKey: userDataFormKey,
-                firstNameController: firstNameController,
-                lastNameController: lastNameController,
-                emailController: emailController,
-              ),
-              initial: () => Skeletonizer(
-                enabled: true,
-                child: UserDataForm(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      child: CarlogScaffold.title(
+        title: S.of(context).myAccount,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          child: BlocConsumer<UserDataCubit, UserDataState>(
+            listener: (context, state) => state.whenOrNull(
+              data: (userData) {
+                firstNameController.value =
+                    TextEditingValue(text: userData.firstName);
+                lastNameController.value =
+                    TextEditingValue(text: userData.lastName);
+                emailController.value = TextEditingValue(text: userData.email);
+                return null;
+              },
+            ),
+            builder: (context, state) {
+              return state.when(
+                loading: () => UserDataForm(
                   userDataFormKey: userDataFormKey,
                   firstNameController: firstNameController,
                   lastNameController: lastNameController,
                   emailController: emailController,
                 ),
+                initial: () => Skeletonizer(
+                  enabled: true,
+                  child: UserDataForm(
+                    userDataFormKey: userDataFormKey,
+                    firstNameController: firstNameController,
+                    lastNameController: lastNameController,
+                    emailController: emailController,
+                  ),
+                ),
+                data: (data) => UserDataForm(
+                  userDataFormKey: userDataFormKey,
+                  firstNameController: firstNameController,
+                  lastNameController: lastNameController,
+                  emailController: emailController,
+                  onEditingComplete: (_) => _onSave(),
+                ),
+                failure: (failure) => ErrorIndicator(failure: failure),
+              );
+            },
+          ),
+        ),
+        bottomWidget: BlocSelector<UserDataCubit, UserDataState, bool>(
+          selector: (state) {
+            return state.maybeWhen(
+              orElse: () => false,
+              loading: () => true,
+            );
+          },
+          builder: (context, state) {
+            return ValueListenableBuilder(
+              valueListenable: lastNameController,
+              builder: (context, value, child) => ValueListenableBuilder(
+                valueListenable: firstNameController,
+                builder: (context, value, child) => CarlogBottomButtonWidget(
+                  title: S.of(context).save,
+                  isLoading: state,
+                  isActive: context.watch<UserDataCubit>().isActive(
+                      firstNameController.text, lastNameController.text),
+                  onTap: _onSave(),
+                ),
               ),
-              data: (data) => UserDataForm(
-                userDataFormKey: userDataFormKey,
-                firstNameController: firstNameController,
-                lastNameController: lastNameController,
-                emailController: emailController,
-              ),
-              failure: (failure) => ErrorIndicator(failure: failure),
             );
           },
         ),
       ),
-      bottomWidget: BlocSelector<UserDataCubit, UserDataState, bool>(
-        selector: (state) {
-          return state.maybeWhen(
-            orElse: () => false,
-            loading: () => true,
-          );
-        },
-        builder: (context, state) {
-          return ValueListenableBuilder(
-            valueListenable: lastNameController,
-            builder: (context, value, child) => ValueListenableBuilder(
-              valueListenable: firstNameController,
-              builder: (context, value, child) => CarlogBottomButtonWidget(
-                title: S.of(context).save,
-                isLoading: state,
-                isActive: context.watch<UserDataCubit>().isActive(
-                    firstNameController.text, lastNameController.text),
-                onTap: () {
-                  bool valid = userDataFormKey.currentState!.validate();
-                  if (!valid) {
-                    return;
-                  }
-                  context.read<UserDataCubit>().updateUserData(
-                      firstNameController.text, lastNameController.text);
-                },
-              ),
-            ),
-          );
-        },
-      ),
     );
+  }
+
+  _onSave() {
+    bool valid = userDataFormKey.currentState!.validate();
+    if (!valid) {
+      return;
+    }
+    context
+        .read<UserDataCubit>()
+        .updateUserData(firstNameController.text, lastNameController.text);
   }
 }

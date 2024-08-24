@@ -58,7 +58,7 @@ InputDecoration carlogInputSettingsDecoration(
       suffixIcon: changeObscure,
       fillColor: context.surfaceBright,
       filled: true,
-      contentPadding: const EdgeInsets.all(16),
+      contentPadding: const EdgeInsets.all(14),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(

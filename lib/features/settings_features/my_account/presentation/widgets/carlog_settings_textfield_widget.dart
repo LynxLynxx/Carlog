@@ -9,6 +9,11 @@ class CarlogSettingTextField extends StatelessWidget {
   final String? initialValue;
   final TextEditingController? textController;
   final String? Function(String? value)? validator;
+  final TextInputType? keyboardType;
+  final Function(String?)? onEditingComplete;
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
+  final TextCapitalization? textCapitalization;
   const CarlogSettingTextField({
     super.key,
     required this.labelText,
@@ -16,6 +21,11 @@ class CarlogSettingTextField extends StatelessWidget {
     this.initialValue,
     this.textController,
     this.validator,
+    this.keyboardType,
+    this.onEditingComplete,
+    this.textInputAction,
+    this.focusNode,
+    this.textCapitalization,
   });
 
   @override
@@ -34,11 +44,16 @@ class CarlogSettingTextField extends StatelessWidget {
               boxShadow: carlogBoxShadow(context),
             ),
             child: TextFormField(
+              focusNode: focusNode,
+              textCapitalization: textCapitalization ?? TextCapitalization.none,
               decoration: carlogInputSettingsDecoration(context, null),
               readOnly: readOnly,
               initialValue: initialValue,
               controller: textController,
               validator: validator,
+              keyboardType: keyboardType,
+              textInputAction: textInputAction,
+              onFieldSubmitted: onEditingComplete,
             ),
           ),
         ],
