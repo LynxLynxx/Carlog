@@ -196,31 +196,4 @@ class CarRepository {
       }
     });
   }
-
-  Future<Option<Failure>> changeNotificationOfDayByCarId(
-      String carId, String actionId, bool notification) async {
-    return handleVoidResponse(() async {
-      final DocumentReference carRef = FirebaseFirestore.instance
-          .collection('cars')
-          .doc(carId)
-          .collection('actions')
-          .doc(actionId);
-
-      await carRef.update({
-        "notificationActive": notification,
-      });
-    });
-  }
-
-  Future<Option<Failure>> updateMilageByCarId(
-      String carId, String milage) async {
-    return handleVoidResponse(() async {
-      final DocumentReference carRef =
-          FirebaseFirestore.instance.collection('cars').doc(carId);
-
-      await carRef.update({
-        "milage": milage,
-      });
-    });
-  }
 }
