@@ -1,7 +1,7 @@
 import 'package:carlog/core/constants/collections.dart';
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
-import 'package:carlog/features/dashboard_features/cars/datasource/car_datasource.dart';
+import 'package:carlog/features/dashboard_features/cars/data/datasources/car_datasource.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';

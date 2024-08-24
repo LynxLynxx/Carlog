@@ -1,6 +1,6 @@
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
-import 'package:carlog/features/dashboard_features/cars/datasource/milage_datasource.dart';
+import 'package:carlog/features/dashboard_features/cars/data/datasources/milage_datasource.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 

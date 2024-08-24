@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_notification_status_usecase.dart';
+import 'package:carlog/features/dashboard_features/home/domain/usecases/update_notification_status_usecase.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
