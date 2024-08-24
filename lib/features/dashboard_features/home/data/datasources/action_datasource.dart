@@ -13,6 +13,7 @@ abstract class ActionDatasource {
   Future<void> addAction(String carId, Map<String, dynamic> carActionDay);
   Future<void> updateAction(
       String carId, String actionId, List<dynamic> carActions);
+  Future<void> deleteAction(String carId, String actionId);
 }
 
 class ActionDatasourceImpl implements ActionDatasource {
@@ -71,4 +72,14 @@ class ActionDatasourceImpl implements ActionDatasource {
           (doc) => doc.update({
                 "carActions": carActions,
               }));
+
+  @override
+  Future<void> deleteAction(String carId, String actionId) async =>
+      await handleFirestoreDoc(
+          _firebaseFirestore
+              .collection(CollectionsK.cars)
+              .doc(carId)
+              .collection(CollectionsK.actions)
+              .doc(actionId),
+          (doc) => doc.delete());
 }

@@ -10,6 +10,8 @@ import 'package:injectable/injectable.dart';
 abstract class ActionRepository {
   Future<Either<Failure, List<CarActionDayEntity>>> getActions(String carId);
   Future<Option<Failure>> addAction(String carId, CarActionEntity carAction);
+  Future<Option<Failure>> updateAction(
+      String carId, String actionId, CarActionEntity carActionEntity);
 }
 
 @LazySingleton(as: ActionRepository)
@@ -128,57 +130,56 @@ class ActionRepositoryImpl implements ActionRepository {
     });
   }
 
-  Future<Option<Failure>> updateCarActionsByCarActionId(
+  @override
+  Future<Option<Failure>> updateAction(
       String carId, String actionId, CarActionEntity carActionEntity) async {
     return handleVoidResponse(() async {
-      final DocumentReference carActionsDocRef = FirebaseFirestore.instance
-          .collection('cars')
-          .doc(carId)
-          .collection('actions')
-          .doc(actionId);
+      List<CarActionDayEntity> list = await _actionDatasource.getActions(carId);
 
-      DocumentSnapshot documentSnapshot = await carActionsDocRef.get();
+      CarActionDayEntity model =
+          list.firstWhere((element) => element.actionId == actionId);
 
+      List<CarActionEntity> carActionsCopy = List.from(model.carActions);
 
-      if (!documentSnapshot.exists) {
-        return;
-      }
-
-      Map<String, dynamic> data =
-          documentSnapshot.data() as Map<String, dynamic>;
-      List<dynamic> carActions = data['carActions'] ?? [];
-
-      int indexToUpdate = carActions.indexWhere((action) {
-        return action['carActionId'] == carActionEntity.carActionId;
-      });
-      if (indexToUpdate != -1) {
-        Timestamp timestamp = data['timestamp'];
-        if (DateTime.fromMillisecondsSinceEpoch(
-                        timestamp.millisecondsSinceEpoch)
-                    .day !=
-                carActionEntity.timestamp!.day ||
-            DateTime.fromMillisecondsSinceEpoch(
-                        timestamp.millisecondsSinceEpoch)
-                    .month !=
-                carActionEntity.timestamp!.month ||
-            DateTime.fromMillisecondsSinceEpoch(
-                        timestamp.millisecondsSinceEpoch)
-                    .year !=
-                carActionEntity.timestamp!.year) {
-          carActions.removeAt(indexToUpdate);
-          await carActionsDocRef.update({'carActions': carActions});
-          // await addCarActionsByCarId(carId, carActionEntity);
-          if (carActions.isEmpty) {
-            await carActionsDocRef.delete();
+      int index = model.carActions.indexWhere(
+          (element) => element.carActionId == carActionEntity.carActionId);
+      if (index != -1) {
+        DateTime actionDate = model.carActions[index].timestamp!;
+        if (actionDate.day != carActionEntity.timestamp!.day ||
+            actionDate.month != carActionEntity.timestamp!.month ||
+            actionDate.year != carActionEntity.timestamp!.year) {
+          carActionsCopy.removeAt(index);
+          if (carActionsCopy.isEmpty) {
+            await _actionDatasource.deleteAction(carId, actionId);
+          } else {
+            await _actionDatasource.updateAction(
+              carId,
+              actionId,
+              carActionsCopy.map((e) => e.toJson()).toList(),
+            );
           }
+          await _actionDatasource.addAction(carId, {
+            "timestamp": Timestamp.fromDate(carActionEntity.timestamp!),
+            "notificationActive": false,
+            "carActions": [carActionEntity.toJson()],
+            "carId": carId,
+            "actionId": "",
+          });
           return;
         }
-        carActions[indexToUpdate]['latitude'] = carActionEntity.latitude;
-        carActions[indexToUpdate]['longitude'] = carActionEntity.longitude;
-        carActions[indexToUpdate]['address'] = carActionEntity.address;
-        carActions[indexToUpdate]['action'] = carActionEntity.action!.name;
-        carActions[indexToUpdate]['note'] = carActionEntity.note;
-        await carActionsDocRef.update({'carActions': carActions});
+
+        carActionsCopy[index] = carActionsCopy[index].copyWith(
+          latitude: carActionEntity.latitude,
+          longitude: carActionEntity.longitude,
+          address: carActionEntity.address,
+          action: carActionEntity.action,
+          note: carActionEntity.note,
+        );
+        await _actionDatasource.updateAction(
+          carId,
+          actionId,
+          carActionsCopy.map((e) => e.toJson()).toList(),
+        );
       }
     });
   }
