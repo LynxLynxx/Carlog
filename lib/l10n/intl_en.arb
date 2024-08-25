@@ -148,5 +148,13 @@
   "tireChange": "Tire Change",
   "insurance": "Insurance",
   "action": "Action",
-  "expense": "Expense"
+  "expense": "Expense",
+  "serviceFee": "Service Fee",
+  "tires": "Tires",
+  "roadFee": "Road Fee",
+  "insuranceFee": "Insurance Fee",
+  "carWash": "Car Wash",
+  "parkingFee": "Parking Fee",
+  "tuning": "Tuning",
+  "other": "Other"
 }
