@@ -1,5 +1,5 @@
 import 'package:carlog/core/error/failures.dart';
-import 'package:carlog/features/dashboard_features/home/domain/repository/notification_repository.dart';
+import 'package:carlog/features/dashboard_features/home/domain/repositories/notification_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
