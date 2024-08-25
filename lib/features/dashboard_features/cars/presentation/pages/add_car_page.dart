@@ -27,8 +27,10 @@ class AddCarPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ManageCarBloc(
-            locator(),
             appContext.read<CarsBloc>(),
+            locator(),
+            locator(),
+            locator(),
           ),
         ),
       ],

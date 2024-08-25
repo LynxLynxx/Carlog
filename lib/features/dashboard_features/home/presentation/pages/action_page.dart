@@ -23,7 +23,7 @@ class ActionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManageActionBloc(locator(), locator(),
+      create: (context) => ManageActionBloc(locator(), locator(), locator(),
           context.read<ActionBloc>(), context.read<UserAppBloc>()),
       child: const ActionView(),
     );
@@ -41,6 +41,14 @@ class _ActionViewState extends State<ActionView> {
   final addressEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
   final noteEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    addressEditingController.dispose();
+    dateEditingController.dispose();
+    noteEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

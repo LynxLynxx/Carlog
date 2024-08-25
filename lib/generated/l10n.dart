@@ -1328,6 +1328,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Service`
+  String get service {
+    return Intl.message(
+      'Service',
+      name: 'service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oil Change`
+  String get oilChange {
+    return Intl.message(
+      'Oil Change',
+      name: 'oilChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tire Change`
+  String get tireChange {
+    return Intl.message(
+      'Tire Change',
+      name: 'tireChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance`
+  String get insurance {
+    return Intl.message(
+      'Insurance',
+      name: 'insurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Action`
+  String get action {
+    return Intl.message(
+      'Action',
+      name: 'action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense`
+  String get expense {
+    return Intl.message(
+      'Expense',
+      name: 'expense',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

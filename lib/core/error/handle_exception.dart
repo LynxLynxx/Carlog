@@ -70,6 +70,53 @@ Future<ResponseType> handleFirestoreDoc<ResponseType>(
   }
 }
 
+Future<ResponseType> handleFirestoreCollection<ResponseType>(
+  CollectionReference collection,
+  ResponseType Function(CollectionReference collection) onCollectionExists,
+) async {
+  try {
+    return onCollectionExists(collection);
+  } catch (e) {
+    throw FirebaseException(
+        plugin: "firestore", code: "not-found", message: e.toString());
+  }
+}
+
+Future<ResponseType> handleFirestoreCollectionData<ResponseType>(
+    String collectionPath,
+    ResponseType Function(List<QueryDocumentSnapshot<Object?>> collection)
+        onCollectionExists,
+    {String? conditionField,
+    dynamic isEqualToConditionValue,
+    dynamic isGreaterThanOrEqualToConditionValue,
+    dynamic isLessThanOrEqualToConditionValue}) async {
+  try {
+    QuerySnapshot<Object?> querySnapshot;
+
+    if (conditionField != null &&
+        (isEqualToConditionValue != null ||
+            isGreaterThanOrEqualToConditionValue != null ||
+            isLessThanOrEqualToConditionValue != null)) {
+      querySnapshot = await FirebaseFirestore.instance
+          .collection(collectionPath)
+          .where(conditionField, isEqualTo: isEqualToConditionValue)
+          .where(conditionField,
+              isGreaterThanOrEqualTo: isGreaterThanOrEqualToConditionValue)
+          .where(conditionField,
+              isLessThanOrEqualTo: isLessThanOrEqualToConditionValue)
+          .get();
+    } else {
+      querySnapshot =
+          await FirebaseFirestore.instance.collection(collectionPath).get();
+    }
+
+    return onCollectionExists(querySnapshot.docs);
+  } catch (e) {
+    throw FirebaseException(
+        plugin: "firestore", code: "not-found", message: e.toString());
+  }
+}
+
 Failure _handleFirebaseAuthException(FirebaseAuthException exception) {
   final tr = S.current;
   switch (exception.code) {

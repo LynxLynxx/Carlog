@@ -2,6 +2,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:star_menu/star_menu.dart';
@@ -69,16 +70,16 @@ class CustomFloatingChildWidget extends StatelessWidget {
   const CustomFloatingChildWidget(
       {super.key, required this.id, required this.starMenuController});
 
-  getTitle() {
+  getTitle(BuildContext context) {
     switch (id) {
       case 0:
-        return "Tankowanie";
+        return S.of(context).expense;
       case 1:
-        return "Serwis";
+        return S.of(context).action;
       case 2:
-        return "Przebieg";
+        return S.of(context).milage;
       case 3:
-        return "Notatka";
+        return S.of(context).note;
     }
   }
 
@@ -104,7 +105,7 @@ class CustomFloatingChildWidget extends StatelessWidget {
             color: context.onPrimary,
             border: Border.all(color: context.primaryColor)),
         child: Text(
-          getTitle(),
+          getTitle(context),
           textAlign: TextAlign.center,
           style: text16W500LS1,
         ),

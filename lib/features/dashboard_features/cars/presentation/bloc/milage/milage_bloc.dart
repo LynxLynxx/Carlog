@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
-import 'package:carlog/features/dashboard_features/cars/domain/repositories/car_repository.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_milage_usecase.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -16,12 +16,12 @@ part 'milage_event.dart';
 part 'milage_state.dart';
 
 class MilageBloc extends Bloc<MilageEvent, MilageState> {
-  final CarRepository _carRepository;
+  final UpdateMilageUsecase _updateMilageUsecase;
   final UserAppBloc _userAppBloc;
   final CarsBloc _carsBloc;
   late StreamSubscription userAppBlocSubscription;
   late CarFirebaseEntity? carFirebaseEntity;
-  MilageBloc(this._carRepository, this._userAppBloc, this._carsBloc)
+  MilageBloc(this._updateMilageUsecase, this._userAppBloc, this._carsBloc)
       : super(const _MilageState()) {
     on<_ChangeMilageEvent>(_onChangeMilageEvent);
     on<_SubmitMilageChangeEvent>(_onSubmitMilageChangeEvent);
@@ -48,7 +48,7 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
       return emit(state.copyWith(milage: milage, message: null));
     }
 
-    final result = await _carRepository.updateMilageByCarId(
+    final result = await _updateMilageUsecase.call(
         carFirebaseEntity!.carId, state.milage.value);
 
     if (result.isSome()) {
