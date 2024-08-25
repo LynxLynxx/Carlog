@@ -4,6 +4,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
@@ -18,13 +19,18 @@ import 'package:go_router/go_router.dart';
 
 class ActionPage extends StatelessWidget {
   final BuildContext appContext;
-  const ActionPage({super.key, required this.appContext});
+  final CarActionEnum action;
+  const ActionPage(
+      {super.key,
+      required this.appContext,
+      this.action = CarActionEnum.service});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ManageActionBloc(locator(), locator(), locator(),
-          context.read<ActionBloc>(), context.read<UserAppBloc>()),
+          context.read<ActionBloc>(), context.read<UserAppBloc>())
+        ..add(ManageActionEvent.changeActionType(action)),
       child: const ActionView(),
     );
   }
@@ -74,12 +80,19 @@ class _ActionViewState extends State<ActionView> {
                       const SizedBox(
                         height: 10,
                       ),
-                      AddressPickerWidget(
-                          textEditingController: addressEditingController,
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      state.action != CarActionEnum.note
+                          ? Column(
+                              children: [
+                                AddressPickerWidget(
+                                    textEditingController:
+                                        addressEditingController,
+                                    state: state),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
@@ -109,16 +122,14 @@ class _ActionViewState extends State<ActionView> {
             return state.status.isInProgress;
           },
           builder: (context, state) {
+            final manageActionState = context.watch<ManageActionBloc>().state;
             return CarlogBottomButtonWidget(
               title: S.of(context).save,
               isLoading: state,
-              isActive: context
-                      .watch<ManageActionBloc>()
-                      .state
-                      .address
-                      .value
-                      .isNotEmpty &&
-                  context.watch<ManageActionBloc>().state.date != null,
+              isActive: manageActionState.action != CarActionEnum.note
+                  ? manageActionState.address.value.isNotEmpty &&
+                      manageActionState.date != null
+                  : manageActionState.date != null,
               onTap: () {
                 context
                     .read<ManageActionBloc>()

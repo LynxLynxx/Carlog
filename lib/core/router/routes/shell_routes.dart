@@ -7,6 +7,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/manage_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/delete_car_widget.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_details_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
@@ -64,8 +65,12 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
         GoRoute(
           path: "addAction",
           builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
             return ActionPage(
-              appContext: state.extra as BuildContext,
+              appContext: extra['context'] as BuildContext,
+              action: extra['actionType'] != null
+                  ? extra['actionType'] as CarActionEnum
+                  : CarActionEnum.service,
             );
           },
           routes: [

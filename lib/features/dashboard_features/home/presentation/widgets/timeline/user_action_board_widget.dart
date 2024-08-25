@@ -45,7 +45,8 @@ class UserActionBoardWidget extends StatelessWidget {
             height: 50,
           ),
           GestureDetector(
-            onTap: () => context.push(RoutesK.addAction, extra: context),
+            onTap: () =>
+                context.push(RoutesK.addAction, extra: {"context": context}),
             child: SizedBox(
               width: double.infinity,
               child: Padding(

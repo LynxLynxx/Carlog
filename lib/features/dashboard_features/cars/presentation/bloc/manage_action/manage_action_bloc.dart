@@ -135,10 +135,13 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
       CarActionEntity(
           carActionId: const Uuid().v4(),
           timestamp: state.date,
-          latitude: state.latitude.value != "" ? state.latitude.value : null,
-          longitude: state.longitude.value != "" ? state.longitude.value : null,
-          address: state.address.value != "" ? state.address.value : null,
-          note: state.note.value != "" ? state.note.value : null,
+          latitude:
+              state.action != CarActionEnum.note ? state.latitude.value : null,
+          longitude:
+              state.action != CarActionEnum.note ? state.longitude.value : null,
+          address:
+              state.action != CarActionEnum.note ? state.address.value : null,
+          note: state.note.value,
           action: state.action),
     );
 
@@ -173,11 +176,14 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
       event.carId,
       event.actionId,
       event.carActionEntity.copyWith(
-          latitude: state.latitude.value != "" ? state.latitude.value : null,
-          longitude: state.longitude.value != "" ? state.longitude.value : null,
-          address: state.address.value != "" ? state.address.value : null,
+          latitude:
+              state.action != CarActionEnum.note ? state.latitude.value : null,
+          longitude:
+              state.action != CarActionEnum.note ? state.longitude.value : null,
+          address:
+              state.action != CarActionEnum.note ? state.address.value : null,
           timestamp: state.date,
-          note: state.note.value != "" ? state.note.value : null,
+          note: state.note.value,
           action: state.action),
     );
 

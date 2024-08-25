@@ -5,6 +5,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
@@ -108,12 +109,19 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
                       const SizedBox(
                         height: 10,
                       ),
-                      AddressPickerWidget(
-                          textEditingController: addressEditingController,
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      state.action != CarActionEnum.note
+                          ? Column(
+                              children: [
+                                AddressPickerWidget(
+                                    textEditingController:
+                                        addressEditingController,
+                                    state: state),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
@@ -140,16 +148,14 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
             return state.status.isInProgress;
           },
           builder: (context, state) {
+            final manageActionState = context.watch<ManageActionBloc>().state;
             return CarlogBottomButtonWidget(
               title: S.of(context).save,
               isLoading: state,
-              isActive: context
-                      .watch<ManageActionBloc>()
-                      .state
-                      .address
-                      .value
-                      .isNotEmpty &&
-                  context.watch<ManageActionBloc>().state.date != null,
+              isActive: manageActionState.action != CarActionEnum.note
+                  ? manageActionState.address.value.isNotEmpty &&
+                      manageActionState.date != null
+                  : manageActionState.date != null,
               onTap: () {
                 context.read<ManageActionBloc>().add(
                     ManageActionEvent.updateActionEvent(

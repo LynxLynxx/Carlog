@@ -1,11 +1,6 @@
 import 'package:carlog/generated/l10n.dart';
 
-enum CarActionEnum {
-  service,
-  oilChange,
-  tireChange,
-  insurance,
-}
+enum CarActionEnum { service, oilChange, tireChange, insurance, note }
 
 extension CarActionEnumExtension on CarActionEnum {
   static String getCustomName(CarActionEnum? carActionEnum) {
@@ -18,6 +13,8 @@ extension CarActionEnumExtension on CarActionEnum {
         return S.current.tireChange;
       case CarActionEnum.insurance:
         return S.current.insurance;
+      case CarActionEnum.note:
+        return S.current.note;
       default:
         return S.current.service;
     }
