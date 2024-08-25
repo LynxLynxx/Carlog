@@ -1,8 +1,6 @@
 part of 'analytics_bloc.dart';
 
-abstract class AnalyticsEvent extends Equatable {
-  const AnalyticsEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class AnalyticsEvent with _$AnalyticsEvent {
+  const factory AnalyticsEvent.getExpenses() = _GetExpenses;
 }
