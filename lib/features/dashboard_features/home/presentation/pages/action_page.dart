@@ -80,28 +80,19 @@ class _ActionViewState extends State<ActionView> {
                       const SizedBox(
                         height: 10,
                       ),
-                      AnimatedSwitcher(
-                        duration: Durations.long1,
-                        transitionBuilder: (child, animation) {
-                          return SizeTransition(
-                            sizeFactor: animation,
-                            child: child,
-                          );
-                        },
-                        child: state.action != CarActionEnum.note
-                            ? Column(
-                                children: [
-                                  AddressPickerWidget(
-                                      textEditingController:
-                                          addressEditingController,
-                                      state: state),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                ],
-                              )
-                            : const SizedBox.shrink(),
-                      ),
+                      state.action != CarActionEnum.note
+                          ? Column(
+                              children: [
+                                AddressPickerWidget(
+                                    textEditingController:
+                                        addressEditingController,
+                                    state: state),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
