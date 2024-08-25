@@ -2,19 +2,19 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
+import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/shared/widgets/error_indicator.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-SliverAppBar homeAppBar(
+SliverAppBar carlogCarAppBar(
   BuildContext context,
 ) {
   return SliverAppBar(
@@ -46,10 +46,19 @@ SliverAppBar homeAppBar(
                       style: context.titleMedium!
                           .copyWith(color: context.onSurface),
                     ),
-                    Text(
-                      "${FirebaseAuth.instance.currentUser?.displayName ?? "Joe"}!",
-                      style: context.titleLarge!
-                          .copyWith(color: context.onSurface),
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                            authenticated: (user) => Text(
+                                  user.firstName == ""
+                                      ? "Joe!"
+                                      : "${user.firstName}!",
+                                  style: context.titleLarge!
+                                      .copyWith(color: context.onSurface),
+                                ),
+                            orElse: () =>
+                                const Skeletonizer(child: Text("Joe!")));
+                      },
                     ),
                   ],
                 ),
@@ -129,7 +138,6 @@ class DropDownWidget extends StatelessWidget {
           if (!state.status.isSuccess) {
             return const SizedBox.shrink();
           }
-          // return const SizedBox();
           return carList.isNotEmpty && state.car != null
               ? DropdownButtonHideUnderline(
                   child: Container(
