@@ -2,6 +2,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
+import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -90,12 +91,18 @@ class CustomFloatingChildWidget extends StatelessWidget {
         if (id == 1)
           {
             starMenuController.closeMenu!(),
-            context.push(RoutesK.addAction, extra: context),
+            context.push(RoutesK.addAction, extra: {"context": context}),
           }
         else if (id == 2)
           {
             starMenuController.closeMenu!(),
             context.push(RoutesK.addMilage, extra: context),
+          }
+        else if (id == 3)
+          {
+            starMenuController.closeMenu!(),
+            context.push(RoutesK.addAction,
+                extra: {"context": context, "actionType": CarActionEnum.note}),
           }
       },
       child: Container(

@@ -1,3 +1,4 @@
+import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
@@ -19,15 +20,17 @@ class ServiceActivityWidget extends StatelessWidget {
   getIcon() {
     switch (carActionEntity.action) {
       case CarActionEnum.service:
-        return "assets/icons/service.svg";
+        return ImagesK.service;
       case CarActionEnum.oilChange:
-        return "assets/icons/oil_change.svg";
+        return ImagesK.oilChange;
       case CarActionEnum.tireChange:
-        return "assets/icons/tire_change.svg";
+        return ImagesK.tireChange;
       case CarActionEnum.insurance:
-        return "assets/icons/insurance.svg";
+        return ImagesK.insurance;
+      case CarActionEnum.note:
+        return ImagesK.note;
       default:
-        return "assets/icons/service.svg";
+        return ImagesK.service;
     }
   }
 
@@ -70,7 +73,9 @@ class ServiceActivityWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    carActionEntity.address ?? "",
+                    carActionEntity.action != CarActionEnum.note
+                        ? carActionEntity.address ?? ""
+                        : carActionEntity.note ?? "",
                     style: context.labelSmall!.copyWith(
                       color: context.secondaryColor,
                     ),
