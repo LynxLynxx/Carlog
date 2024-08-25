@@ -43,9 +43,14 @@ class ManageActionBloc extends Bloc<ManageActionEvent, ManageActionState> {
     on<_SubmitActionEvent>(_onSubmitActionEvent);
     on<_SetInitialData>(_onSetInitialData);
     on<_UpdateActionEvent>(_onUpdateActionEvent);
-    carFirebaseEntity = _userAppBloc.state.car;
+    carFirebaseEntity = _userAppBloc.state.maybeWhen(
+      data: (car) => car,
+      orElse: () => null,
+    );
     userAppBlocSubscription = _userAppBloc.stream.listen((state) {
-      carFirebaseEntity = state.car!;
+      state.whenOrNull(
+        data: (car) => carFirebaseEntity = car,
+      );
     });
   }
 

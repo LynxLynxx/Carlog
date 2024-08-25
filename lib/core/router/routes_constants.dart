@@ -19,6 +19,7 @@ class RoutesK {
   static const addCar =
       RouteEntity(relativePath: "addCar", fullPath: "$cars/addCar");
   static const addAction = "/addAction";
+  static const addExpense = "/addExpense";
   static const map = "/addAction/map";
   static const mapInfo = "/addAction/map/mapInfo";
   static const manageCar =

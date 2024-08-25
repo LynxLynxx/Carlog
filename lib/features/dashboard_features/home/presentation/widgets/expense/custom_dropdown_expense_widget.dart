@@ -3,15 +3,15 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
-import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
+import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_enum.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_expense/manage_expense_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomDropdownWidget extends StatelessWidget {
-  const CustomDropdownWidget({
+class CustomDropdownExpenseWidget extends StatelessWidget {
+  const CustomDropdownExpenseWidget({
     super.key,
   });
 
@@ -43,12 +43,12 @@ class CustomDropdownWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          BlocBuilder<ManageActionBloc, ManageActionState>(
+          BlocBuilder<ManageExpenseBloc, ManageExpenseState>(
             builder: (context, state) {
               return Container(
                 decoration: dropShadowEffect(context),
                 child: DropdownButtonHideUnderline(
-                  child: _CarActionWidget(state: state),
+                  child: _CarExpenseWidget(state: state),
                 ),
               );
             },
@@ -62,9 +62,9 @@ class CustomDropdownWidget extends StatelessWidget {
   }
 }
 
-class _CarActionWidget extends StatelessWidget {
-  final ManageActionState state;
-  const _CarActionWidget({
+class _CarExpenseWidget extends StatelessWidget {
+  final ManageExpenseState state;
+  const _CarExpenseWidget({
     required this.state,
   });
 
@@ -76,29 +76,30 @@ class _CarActionWidget extends StatelessWidget {
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
       ),
-      child: DropdownButton2<CarActionEnum>(
+      child: DropdownButton2<CarExpenseEnum>(
         isExpanded: true,
-        items: CarActionEnum.values
-            .map((CarActionEnum carAction) => DropdownMenuItem<CarActionEnum>(
-                  value: carAction,
-                  child: Text(
-                    CarActionEnumExtension.getCustomName(carAction),
-                    style: context.titleMedium!.copyWith(
-                      color: context.onPrimaryContainer,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ))
+        items: CarExpenseEnum.values
+            .map(
+                (CarExpenseEnum carExpense) => DropdownMenuItem<CarExpenseEnum>(
+                      value: carExpense,
+                      child: Text(
+                        CarExpenseExtension.getCustomName(carExpense),
+                        style: context.titleMedium!.copyWith(
+                          color: context.onPrimaryContainer,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ))
             .toList(),
         hint: Text(
           S.of(context).egService,
           style: context.bodySmall,
         ),
-        value: state.action,
+        value: state.expense,
         onChanged: (carAction) {
           context
-              .read<ManageActionBloc>()
-              .add(ManageActionEvent.changeActionType(carAction!));
+              .read<ManageExpenseBloc>()
+              .add(ManageExpenseEvent.changeExpenseType(carAction!));
         },
         buttonStyleData: const ButtonStyleData(
           height: 55,

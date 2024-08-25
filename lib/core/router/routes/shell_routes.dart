@@ -10,6 +10,7 @@ import 'package:carlog/features/dashboard_features/home/domain/entities/car_acti
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_details_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/action_page.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/pages/expense_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/home_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/map_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/milage_page.dart';
@@ -96,6 +97,12 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
                   ),
                 ]),
           ],
+        ),
+        GoRoute(
+          path: "addExpense",
+          builder: (context, state) {
+            return const ExpensePage();
+          },
         ),
       ],
     ),

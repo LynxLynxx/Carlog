@@ -7,7 +7,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_entity.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
-import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_action_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -105,7 +105,7 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
                   padding: PaddingsK.all16,
                   child: Column(
                     children: [
-                      const CustomDropdownWidget(),
+                      const CustomDropdownActionWidget(),
                       const SizedBox(
                         height: 10,
                       ),

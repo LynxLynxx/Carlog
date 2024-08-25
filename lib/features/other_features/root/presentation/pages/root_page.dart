@@ -2,6 +2,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
@@ -28,10 +29,16 @@ class RootPage extends StatelessWidget {
           create: (context) => ActionBloc(locator()),
         ),
         BlocProvider(
+          create: (context) => AnalyticsBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
           lazy: false,
           create: (context) => UserAppBloc(
             locator(),
             context.read<ActionBloc>(),
+            context.read<AnalyticsBloc>(),
             context.read<CarsBloc>(),
           ),
         ),

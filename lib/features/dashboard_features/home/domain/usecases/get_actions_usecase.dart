@@ -1,6 +1,6 @@
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
-import 'package:carlog/features/dashboard_features/home/domain/repository/action_repository.dart';
+import 'package:carlog/features/dashboard_features/home/domain/repositories/action_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
