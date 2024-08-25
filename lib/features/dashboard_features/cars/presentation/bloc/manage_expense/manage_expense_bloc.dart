@@ -95,6 +95,8 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
           milage: state.milage.value,
           note: state.note.value,
           attachmentPath: "",
+          timestamp: state.date,
+          createTimestamp: DateTime.now(),
           expense: state.expense),
     );
 
@@ -107,7 +109,8 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyAddedTheActivity));
-    _analyticsBloc.add(const AnalyticsEvent.getExpenses());
+    _analyticsBloc
+        .add(AnalyticsEvent.getExpenses(carId: carFirebaseEntity!.carId));
   }
 
   @override

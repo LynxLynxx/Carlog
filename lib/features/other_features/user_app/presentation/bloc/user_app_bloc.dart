@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/services/secure_storage_service.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
@@ -15,10 +16,12 @@ part 'user_app_state.dart';
 class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
   final SecureStorageService secureStorageService;
   final ActionBloc serviceBloc;
+  final AnalyticsBloc analyticsBloc;
   final CarsBloc carsBloc;
   late StreamSubscription carListSubscription;
   late List<CarFirebaseEntity>? carFirebaseEntityList;
-  UserAppBloc(this.secureStorageService, this.serviceBloc, this.carsBloc)
+  UserAppBloc(this.secureStorageService, this.serviceBloc, this.analyticsBloc,
+      this.carsBloc)
       : super(const _Initial()) {
     on<_SelectCar>(_onSelectCar);
     on<_ReadCarFromApp>(_onReadCarFromApp);
@@ -40,6 +43,8 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
     await secureStorageService.writeCarToApp(event.carFirebaseEntity);
     serviceBloc
         .add(ActionEvent.getActions(carId: event.carFirebaseEntity.carId));
+    analyticsBloc
+        .add(AnalyticsEvent.getExpenses(carId: event.carFirebaseEntity.carId));
     emit(_Data(event.carFirebaseEntity));
   }
 
@@ -64,6 +69,10 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
     }
     serviceBloc.add(ActionEvent.getActions(
         carId: car?.carId ?? carFirebaseEntityList!.first.carId));
+
+    analyticsBloc.add(AnalyticsEvent.getExpenses(
+        carId: car?.carId ?? carFirebaseEntityList!.first.carId));
+
     emit(_Data(
       car ?? carFirebaseEntityList!.first,
     ));

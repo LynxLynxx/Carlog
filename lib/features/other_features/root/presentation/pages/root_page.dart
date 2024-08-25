@@ -29,16 +29,18 @@ class RootPage extends StatelessWidget {
           create: (context) => ActionBloc(locator()),
         ),
         BlocProvider(
+          create: (context) => AnalyticsBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
           lazy: false,
           create: (context) => UserAppBloc(
             locator(),
             context.read<ActionBloc>(),
+            context.read<AnalyticsBloc>(),
             context.read<CarsBloc>(),
           ),
-        ),
-        BlocProvider(
-          create: (context) =>
-              AnalyticsBloc(locator(), context.read<UserAppBloc>()),
         ),
       ],
       child: RootView(navigationShell: navigationShell),

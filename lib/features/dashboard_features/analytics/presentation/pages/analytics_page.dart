@@ -1,7 +1,7 @@
-import 'package:carlog/core/di/injectable_config.dart';
+import 'dart:developer';
+
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
-import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/shared/widgets/carlog_car_appbar.dart';
 import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
@@ -14,11 +14,7 @@ class AnalyticsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AnalyticsBloc(locator(), context.read<UserAppBloc>())
-        ..add(const AnalyticsEvent.getExpenses()),
-      child: const AnalyticsView(),
-    );
+    return const AnalyticsView();
   }
 }
 
@@ -33,6 +29,7 @@ class AnalyticsView extends StatelessWidget {
         ),
         body: BlocBuilder<AnalyticsBloc, AnalyticsState>(
           builder: (context, state) {
+            log("-------${state.toString()}");
             return state.when(
               initial: () => const CarlogLoader(),
               loading: () => const CarlogLoader(),
@@ -46,6 +43,7 @@ class AnalyticsView extends StatelessWidget {
   _buildBody(List<CarExpenseEntity> carExpenseList) => ListView.builder(
         shrinkWrap: true,
         itemCount: carExpenseList.length,
-        itemBuilder: (context, index) => Text(carExpenseList[index].toString()),
+        itemBuilder: (context, index) =>
+            Card(child: Text(carExpenseList[index].toString())),
       );
 }
