@@ -12,7 +12,9 @@ extension GoRouterExtension on GoRouter {
   }
 
   bool get showNavBar {
-    if (location() == RoutesK.addAction || location() == RoutesK.addMilage) {
+    if (location() == RoutesK.addAction ||
+        location() == RoutesK.addMilage ||
+        location() == RoutesK.addExpense) {
       return false;
     }
     return location().split("/").length >= 3 ? false : true;

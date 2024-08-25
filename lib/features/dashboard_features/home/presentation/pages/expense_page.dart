@@ -1,13 +1,11 @@
 import 'package:carlog/core/constants/formats.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_expense/manage_expense_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
-import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
-import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/address_picker_widget.dart';
-import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/custom_dropdown_widget.dart';
-import 'package:carlog/features/dashboard_features/home/presentation/widgets/action/date_picker_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/custom_dropdown_expense_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/date_picker_widget.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
@@ -18,17 +16,15 @@ import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
 class ExpensePage extends StatelessWidget {
-  final BuildContext appContext;
   const ExpensePage({
     super.key,
-    required this.appContext,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManageActionBloc(locator(), locator(), locator(),
-          context.read<ActionBloc>(), context.read<UserAppBloc>()),
+      create: (context) => ManageExpenseBloc(locator(),
+          context.read<AnalyticsBloc>(), context.read<UserAppBloc>()),
       child: const ExpenseView(),
     );
   }
@@ -42,14 +38,16 @@ class ExpenseView extends StatefulWidget {
 }
 
 class _ActionViewState extends State<ExpenseView> {
-  final addressEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
+  final amountEditingController = TextEditingController();
+  final milageEditingController = TextEditingController();
   final noteEditingController = TextEditingController();
 
   @override
   void dispose() {
-    addressEditingController.dispose();
     dateEditingController.dispose();
+    amountEditingController.dispose();
+    milageEditingController.dispose();
     noteEditingController.dispose();
     super.dispose();
   }
@@ -60,11 +58,12 @@ class _ActionViewState extends State<ExpenseView> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
         title: S.of(context).addAction,
-        body: BlocConsumer<ManageActionBloc, ManageActionState>(
+        body: BlocConsumer<ManageExpenseBloc, ManageExpenseState>(
           listener: (context, state) {
-            addressEditingController.text = state.address.value;
             dateEditingController.text =
                 state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
+            amountEditingController.text = state.amount.value;
+            milageEditingController.text = state.milage.value;
             noteEditingController.text = state.note.value;
           },
           builder: (context, state) {
@@ -74,23 +73,34 @@ class _ActionViewState extends State<ExpenseView> {
                   padding: PaddingsK.all16,
                   child: Column(
                     children: [
-                      const CustomDropdownWidget(),
+                      const CustomDropdownExpenseWidget(),
                       const SizedBox(
                         height: 10,
                       ),
-                      state.action != CarActionEnum.note
-                          ? Column(
-                              children: [
-                                AddressPickerWidget(
-                                    textEditingController:
-                                        addressEditingController,
-                                    state: state),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
+                      ListElementTextfieldWidget(
+                          textEditingController: amountEditingController,
+                          func: (value) {
+                            context.read<ManageExpenseBloc>().add(
+                                ManageExpenseEvent.changeAmountEvent(value));
+                          },
+                          title: S.of(context).amount,
+                          hintText: S.of(context).eg100,
+                          displayError: state.amount.displayError ?? ""),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ListElementTextfieldWidget(
+                          textEditingController: milageEditingController,
+                          func: (value) {
+                            context.read<ManageExpenseBloc>().add(
+                                ManageExpenseEvent.changeMilageEvent(value));
+                          },
+                          title: S.of(context).milage,
+                          hintText: S.of(context).eg10000,
+                          displayError: state.amount.displayError ?? ""),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       DatePickerWidget(
                           textEditingController: dateEditingController,
                           state: state),
@@ -101,12 +111,13 @@ class _ActionViewState extends State<ExpenseView> {
                           textEditingController: noteEditingController,
                           func: (value) {
                             context
-                                .read<ManageActionBloc>()
-                                .add(ManageActionEvent.changeNote(value));
+                                .read<ManageExpenseBloc>()
+                                .add(ManageExpenseEvent.changeNote(value));
                           },
                           maxLines: 6,
                           title: S.of(context).note,
-                          hintText: S.of(context).egRememberToChangeTheOil,
+                          hintText:
+                              S.of(context).egOilFilterReplacementIncluded,
                           displayError: state.note.displayError ?? ""),
                     ],
                   ),
@@ -115,23 +126,21 @@ class _ActionViewState extends State<ExpenseView> {
             );
           },
         ),
-        bottomWidget: BlocSelector<ManageActionBloc, ManageActionState, bool>(
+        bottomWidget: BlocSelector<ManageExpenseBloc, ManageExpenseState, bool>(
           selector: (state) {
             return state.status.isInProgress;
           },
           builder: (context, state) {
-            final manageActionState = context.watch<ManageActionBloc>().state;
+            final manageExpenseState = context.watch<ManageExpenseBloc>().state;
             return CarlogBottomButtonWidget(
               title: S.of(context).save,
               isLoading: state,
-              isActive: manageActionState.action != CarActionEnum.note
-                  ? manageActionState.address.value.isNotEmpty &&
-                      manageActionState.date != null
-                  : manageActionState.date != null,
+              isActive: manageExpenseState.amount.value.isNotEmpty &&
+                  manageExpenseState.date != null,
               onTap: () {
                 context
-                    .read<ManageActionBloc>()
-                    .add(const ManageActionEvent.submitActionEvent());
+                    .read<ManageExpenseBloc>()
+                    .add(const ManageExpenseEvent.submitExpenseEvent());
                 context.pop();
               },
             );

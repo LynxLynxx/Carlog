@@ -1465,6 +1465,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Amount`
+  String get amount {
+    return Intl.message(
+      'Amount',
+      name: 'amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. 100`
+  String get eg100 {
+    return Intl.message(
+      'e.g. 100',
+      name: 'eg100',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Oil filter replacement included`
+  String get egOilFilterReplacementIncluded {
+    return Intl.message(
+      'e.g. Oil filter replacement included',
+      name: 'egOilFilterReplacementIncluded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

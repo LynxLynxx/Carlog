@@ -156,5 +156,8 @@
   "carWash": "Car Wash",
   "parkingFee": "Parking Fee",
   "tuning": "Tuning",
-  "other": "Other"
+  "other": "Other",
+  "amount": "Amount",
+  "eg100": "e.g. 100",
+  "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included"
 }

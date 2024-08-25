@@ -88,7 +88,14 @@ class CustomFloatingChildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        if (id == 1)
+        if (id == 0)
+          {
+            starMenuController.closeMenu!(),
+            context.push(
+              RoutesK.addExpense,
+            ),
+          }
+        else if (id == 1)
           {
             starMenuController.closeMenu!(),
             context.push(RoutesK.addAction, extra: {"context": context}),
