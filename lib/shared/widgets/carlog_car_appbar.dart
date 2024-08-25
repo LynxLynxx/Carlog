@@ -11,7 +11,6 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:formz/formz.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 SliverAppBar carlogCarAppBar(
@@ -135,49 +134,72 @@ class DropDownWidget extends StatelessWidget {
   _buildBody(List<CarFirebaseEntity> carList) =>
       BlocBuilder<UserAppBloc, UserAppState>(
         builder: (context, state) {
-          if (!state.status.isSuccess) {
-            return const SizedBox.shrink();
-          }
-          return carList.isNotEmpty && state.car != null
-              ? DropdownButtonHideUnderline(
-                  child: Container(
-                    height: 50,
-                    margin: PaddingsK.h20,
+          return state.when(
+            initial: () => const SizedBox.shrink(),
+            loading: () => Skeletonizer(
+              child: Container(
+                height: 50,
+                margin: PaddingsK.h20,
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: dropShadowEffect(context).copyWith(
+                  color: context.surfaceDim,
+                  borderRadius: PaddingsK.circular30,
+                ),
+                padding: PaddingsK.h20v10,
+                child: CarSelectElementWidget(
+                    carFirebaseEntity: CarFirebaseEntity.example()),
+              ),
+            ),
+            data: (car) => _buildAppBody(
+              context,
+              carList,
+              car,
+            ),
+            failure: (failure) => ErrorIndicator(failure: failure),
+          );
+        },
+      );
+
+  _buildAppBody(BuildContext context, List<CarFirebaseEntity> carList,
+          CarFirebaseEntity? car) =>
+      carList.isNotEmpty && car != null
+          ? DropdownButtonHideUnderline(
+              child: Container(
+                height: 50,
+                margin: PaddingsK.h20,
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: dropShadowEffect(context).copyWith(
+                  color: context.surfaceDim,
+                  borderRadius: PaddingsK.circular30,
+                ),
+                padding: PaddingsK.h20v10,
+                child: DropdownButton2<CarFirebaseEntity>(
+                  value: car,
+                  isExpanded: true,
+                  items: carList
+                      .map((model) => DropdownMenuItem(
+                          value: model,
+                          child:
+                              CarSelectElementWidget(carFirebaseEntity: model)))
+                      .toList(),
+                  onChanged: (CarFirebaseEntity? newValue) {
+                    context.read<UserAppBloc>().add(
+                          UserAppEvent.selectCar(newValue!),
+                        );
+                  },
+                  iconStyleData: const IconStyleData(iconSize: 0),
+                  dropdownStyleData: DropdownStyleData(
                     width: MediaQuery.of(context).size.width * 0.8,
                     decoration: dropShadowEffect(context).copyWith(
                       color: context.surfaceDim,
                       borderRadius: PaddingsK.circular30,
                     ),
-                    padding: PaddingsK.h20v10,
-                    child: DropdownButton2<CarFirebaseEntity>(
-                      value: state.car,
-                      isExpanded: true,
-                      items: carList
-                          .map((model) => DropdownMenuItem(
-                              value: model,
-                              child: CarSelectElementWidget(
-                                  carFirebaseEntity: model)))
-                          .toList(),
-                      onChanged: (CarFirebaseEntity? newValue) {
-                        context.read<UserAppBloc>().add(
-                              UserAppEvent.selectCar(newValue!),
-                            );
-                      },
-                      iconStyleData: const IconStyleData(iconSize: 0),
-                      dropdownStyleData: DropdownStyleData(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        decoration: dropShadowEffect(context).copyWith(
-                          color: context.surfaceDim,
-                          borderRadius: PaddingsK.circular30,
-                        ),
-                        offset: const Offset(-20, 40),
-                      ),
-                    ),
+                    offset: const Offset(-20, 40),
                   ),
-                )
-              : const SizedBox.shrink();
-        },
-      );
+                ),
+              ),
+            )
+          : const SizedBox.shrink();
 }
 
 class CarSelectElementWidget extends StatelessWidget {

@@ -20,9 +20,14 @@ class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
   AnalyticsBloc(this._getExpensesUsecase, this._userAppBloc)
       : super(const _Initial()) {
     on<_GetExpenses>(_onGetExpenses);
-    carFirebaseEntity = _userAppBloc.state.car;
+    carFirebaseEntity = _userAppBloc.state.maybeWhen(
+      data: (car) => car,
+      orElse: () => null,
+    );
     userAppBlocSubscription = _userAppBloc.stream.listen((state) {
-      carFirebaseEntity = state.car!;
+      state.whenOrNull(
+        data: (car) => carFirebaseEntity = car,
+      );
     });
   }
 

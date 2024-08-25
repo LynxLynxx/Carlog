@@ -25,9 +25,14 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
       : super(const _MilageState()) {
     on<_ChangeMilageEvent>(_onChangeMilageEvent);
     on<_SubmitMilageChangeEvent>(_onSubmitMilageChangeEvent);
-    carFirebaseEntity = _userAppBloc.state.car;
+    carFirebaseEntity = _userAppBloc.state.maybeWhen(
+      data: (car) => car,
+      orElse: () => null,
+    );
     userAppBlocSubscription = _userAppBloc.stream.listen((state) {
-      carFirebaseEntity = state.car!;
+      state.whenOrNull(
+        data: (car) => carFirebaseEntity = car,
+      );
     });
   }
 

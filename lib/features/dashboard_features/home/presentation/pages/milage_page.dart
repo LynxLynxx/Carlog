@@ -39,7 +39,10 @@ class _UpdateMilageViewState extends State<UpdateMilageView> {
 
   @override
   void initState() {
-    textEditingController.text = context.read<UserAppBloc>().state.car!.milage!;
+    textEditingController.text = context
+        .read<UserAppBloc>()
+        .state
+        .maybeWhen(data: (car) => car?.milage! ?? "", orElse: () => "");
     super.initState();
   }
 
