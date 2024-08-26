@@ -2,6 +2,7 @@ import 'package:carlog/core/constants/formats.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_expense/manage_expense_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/amount_widget.dart';
@@ -24,8 +25,12 @@ class ExpensePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ManageExpenseBloc(locator(),
-          context.read<AnalyticsBloc>(), context.read<UserAppBloc>()),
+      create: (context) => ManageExpenseBloc(
+          locator(),
+          locator(),
+          context.read<AnalyticsBloc>(),
+          context.read<UserAppBloc>(),
+          context.read<CarsBloc>()),
       child: const ExpenseView(),
     );
   }

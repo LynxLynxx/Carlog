@@ -10,6 +10,8 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/car_fire
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/note_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/price_entity_validator.dart';
+import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_milage_usecase.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/entities/currency_entity.dart';
@@ -23,12 +25,15 @@ part 'manage_expense_state.dart';
 
 class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
   final AddExpenseUsecase _addExpenseUsecase;
+  final UpdateMilageUsecase _updateMilageUsecase;
   final UserAppBloc _userAppBloc;
   final AnalyticsBloc _analyticsBloc;
+  final CarsBloc _carsBloc;
   late StreamSubscription userAppBlocSubscription;
   late CarFirebaseEntity? carFirebaseEntity;
-  ManageExpenseBloc(
-      this._addExpenseUsecase, this._analyticsBloc, this._userAppBloc)
+
+  ManageExpenseBloc(this._addExpenseUsecase, this._updateMilageUsecase,
+      this._analyticsBloc, this._userAppBloc, this._carsBloc)
       : super(const ManageExpenseState()) {
     on<_ChangeDateEvent>(_onChangeDateEvent);
     on<_ChangeAmountEvent>(_onChangeAmountEvent);
@@ -118,6 +123,21 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyAddedTheActivity));
+
+    if (state.milage.value != "") {
+      final milageResult = await _updateMilageUsecase.call(
+          carFirebaseEntity!.carId, state.milage.value);
+      if (milageResult.isSome()) {
+        return emit(state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            message: result.asOption().message!));
+      }
+      _carsBloc.add(const CarsEvent.getCars());
+      CarFirebaseEntity updatedCar =
+          carFirebaseEntity!.copyWith(milage: state.milage.value);
+      _userAppBloc.add(UserAppEvent.selectCar(updatedCar));
+    }
+
     _analyticsBloc
         .add(AnalyticsEvent.getExpenses(carId: carFirebaseEntity!.carId));
   }
