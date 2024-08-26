@@ -159,5 +159,6 @@
   "other": "Other",
   "amount": "Amount",
   "eg100": "e.g. 100",
-  "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included"
+  "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included",
+  "egEuro": "e.g. Euro"
 }

@@ -4,6 +4,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_expense/manage_expense_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/list_element_textfield_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/amount_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/custom_dropdown_expense_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/date_picker_widget.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
@@ -77,15 +78,15 @@ class _ActionViewState extends State<ExpenseView> {
                       const SizedBox(
                         height: 10,
                       ),
-                      ListElementTextfieldWidget(
-                          textEditingController: amountEditingController,
-                          func: (value) {
-                            context.read<ManageExpenseBloc>().add(
-                                ManageExpenseEvent.changeAmountEvent(value));
-                          },
-                          title: S.of(context).amount,
-                          hintText: S.of(context).eg100,
-                          displayError: state.amount.displayError ?? ""),
+                      AmountWidget(
+                          amountEditingController: amountEditingController,
+                          state: state),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      DatePickerWidget(
+                          textEditingController: dateEditingController,
+                          state: state),
                       const SizedBox(
                         height: 10,
                       ),
@@ -98,12 +99,6 @@ class _ActionViewState extends State<ExpenseView> {
                           title: S.of(context).milage,
                           hintText: S.of(context).eg10000,
                           displayError: state.amount.displayError ?? ""),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      DatePickerWidget(
-                          textEditingController: dateEditingController,
-                          state: state),
                       const SizedBox(
                         height: 10,
                       ),
@@ -136,6 +131,7 @@ class _ActionViewState extends State<ExpenseView> {
               title: S.of(context).save,
               isLoading: state,
               isActive: manageExpenseState.amount.value.isNotEmpty &&
+                  manageExpenseState.currency != null &&
                   manageExpenseState.date != null,
               onTap: () {
                 context

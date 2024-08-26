@@ -5,8 +5,8 @@ class ManageExpenseState with _$ManageExpenseState {
   const factory ManageExpenseState([
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     @Default(null) DateTime? date,
-    @Default(PriceEntityValidator.pure())
-    PriceEntityValidator amount,
+    @Default(PriceEntityValidator.pure()) PriceEntityValidator amount,
+    @Default(null) CurrencyEntity? currency,
     @Default(MilageEntityValidator.pure()) MilageEntityValidator milage,
     @Default(NoteEntityValidator.pure()) NoteEntityValidator note,
     @Default(CarExpenseEnum.insuranceFee) CarExpenseEnum expense,

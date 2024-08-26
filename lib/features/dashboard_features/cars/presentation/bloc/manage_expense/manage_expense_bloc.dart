@@ -12,6 +12,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/note_ent
 import 'package:carlog/features/dashboard_features/cars/domain/entities/price_entity_validator.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/entities/currency_entity.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -33,6 +34,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     on<_ChangeAmountEvent>(_onChangeAmountEvent);
     on<_ChangeMilageEvent>(_onChangeMilageEvent);
     on<_ChangeNoteEvent>(_onChangeNoteEvent);
+    on<_ChangeCurrencyEvent>(_onChangeCurrencyEvent);
     on<_ChangeExpenseTypeEvent>(_onChangeExpenseTypeEvent);
     on<_SubmitExpenseEvent>(_onSubmitExpenseEvent);
 
@@ -76,6 +78,13 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     );
   }
 
+  _onChangeCurrencyEvent(
+      _ChangeCurrencyEvent event, Emitter<ManageExpenseState> emit) {
+    emit(
+      state.copyWith(currency: event.value),
+    );
+  }
+
   _onChangeExpenseTypeEvent(
       _ChangeExpenseTypeEvent event, Emitter<ManageExpenseState> emit) {
     emit(
@@ -91,7 +100,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       CarExpenseEntity(
           carExpenseId: const Uuid().v4(),
           amount: state.amount.value,
-          currency: "PLN",
+          currency: state.currency!.code,
           milage: state.milage.value,
           note: state.note.value,
           attachmentPath: "",
