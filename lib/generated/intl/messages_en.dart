@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "eg2024" : MessageLookupByLibrary.simpleMessage("e.g. 2024"),
     "eg20240101" : MessageLookupByLibrary.simpleMessage("e.g. 2024-01-01"),
     "egAUM550" : MessageLookupByLibrary.simpleMessage("e.g. AUM 550"),
+    "egEuro" : MessageLookupByLibrary.simpleMessage("e.g. Euro"),
     "egHybrid" : MessageLookupByLibrary.simpleMessage("e.g. Hybrid"),
     "egOilFilterReplacementIncluded" : MessageLookupByLibrary.simpleMessage("e.g. Oil filter replacement included"),
     "egRememberToChangeTheOil" : MessageLookupByLibrary.simpleMessage("e.g. Remember to change the oil"),

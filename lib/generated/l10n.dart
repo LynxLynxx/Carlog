@@ -1495,6 +1495,16 @@ class S {
       args: [],
     );
   }
+
+  /// `e.g. Euro`
+  String get egEuro {
+    return Intl.message(
+      'e.g. Euro',
+      name: 'egEuro',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
