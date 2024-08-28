@@ -142,5 +142,9 @@
   "manageActions": "Manage Action",
   "noteValidator": "Note should be between 2 and 100 characters",
   "note": "Note",
-  "egRememberToChangeTheOil": "e.g. Remember to change the oil"
+  "egRememberToChangeTheOil": "e.g. Remember to change the oil",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "repeatPassword": "Repeat new password",
+  "notSamePasswords": "Sae"
 }
