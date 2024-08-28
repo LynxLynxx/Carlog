@@ -8,6 +8,7 @@ import 'package:carlog/features/settings_features/settings/domain/entities/setti
 import 'package:carlog/features/settings_features/settings/domain/entities/supported_languages_entity.dart';
 import 'package:carlog/features/settings_features/settings/presentation/widgets/language_selection_dialog.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,11 +25,14 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             iconColor: settingsIconColors[0],
             onTap: () => context.push(RoutesK.myAccount.fullPath),
           ),
-          SettingsItemEntity(
-            name: S.of(context).changePassword,
-            icon: "assets/icons/settings/password.svg",
-            iconColor: settingsIconColors[1],
-          ),
+          if (FirebaseAuth.instance.currentUser?.providerData[0].providerId ==
+              "password")
+            SettingsItemEntity(
+              name: S.of(context).changePassword,
+              icon: "assets/icons/settings/password.svg",
+              iconColor: settingsIconColors[1],
+              onTap: () => context.push(RoutesK.changePassword.fullPath),
+            ),
           SettingsItemEntity(
             name: S.of(context).logOut,
             icon: "assets/icons/settings/log_out.svg",
@@ -131,4 +135,17 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
       //   ],
       // ),
       // //!SECTION
+
+      //SECTION - ABOUT APP
+      SettingsSectionEntity(
+        name: "About the app",
+        items: [
+          SettingsItemEntity(
+            name: "About",
+            icon: "assets/icons/settings/terms_of_use.svg",
+            iconColor: settingsIconColors[5],
+          ),
+        ],
+      ),
+      //!SECTION
     ];

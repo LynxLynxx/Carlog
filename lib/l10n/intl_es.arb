@@ -120,5 +120,15 @@
   "name": "Nombre",
   "lastName": "Apellido",
   "save": "Guardar",
-  "notValidEmpty": "El campo no puede estar vacío"
+  "notValidEmpty": "El campo no puede estar vacío",
+  "information": "Información",
+  "tapOnTheMap": "Toca en el mapa para establecer la ubicación de la acción.",
+  "manageActions": "Administrar acciones",
+  "noteValidator": "La nota debe tener entre 2 y 100 caracteres.",
+  "note": "Nota",
+  "egRememberToChangeTheOil": "Ejemplo: Recuerda cambiar el aceite.",
+  "currentPassword": "Contraseña actual",
+  "newPassword": "Nueva contraseña",
+  "repeatPassword": "Repetir la nueva contraseña",
+  "notSamePasswords": "Las contraseñas no coinciden"
 }

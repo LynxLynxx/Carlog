@@ -120,5 +120,14 @@
   "name": "Imię",
   "lastName": "Nazwisko",
   "save": "Zapisz",
-  "notValidEmpty": "Pole nie może być puste"
+  "notValidEmpty": "Pole nie może być puste",
+  "information": "Informacje",
+  "tapOnTheMap": "Naciśnij na mapie, aby ustawić lokalizację akcji.",
+  "manageActions": "Zarządzaj działaniami",
+  "noteValidator": "Notatka powinna mieć od 2 do 100 znaków",
+  "note": "Notatka",
+  "egRememberToChangeTheOil": "np. Pamiętaj o wymianie oleju",
+  "currentPassword": "Hasło bieżące",
+  "newPassword": "Nowe hasło",
+  "repeatPassword": "Powtórz nowe hasło"
 }
