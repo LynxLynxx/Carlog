@@ -56,3 +56,5 @@ l10n.yaml
 /ios/Runner/GoogleService-Info.plist
 /android/app/google-services.json
 firebase.json
+.firebaserc
+function.zip

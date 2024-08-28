@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:carlog/core/error/failures.dart';
 import 'package:carlog/core/error/handle_exception.dart';
+import 'package:carlog/features/other_features/file/data/datasources/file_datasource.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -9,10 +10,20 @@ import 'package:injectable/injectable.dart';
 
 abstract class FilePickerRepository {
   Future<Either<Failure, File>> pickFile();
+  Future<Either<Failure, String>> uploadFile(File file);
 }
 
 @LazySingleton(as: FilePickerRepository)
 class FilePickerRepositoryImpl implements FilePickerRepository {
+  final FileDatasource _fileDatasource;
+
+  FilePickerRepositoryImpl() : _fileDatasource = FileDatasourceImpl();
+
+  @override
+  Future<Either<Failure, String>> uploadFile(File file) async {
+    return handleResponse(() async => _fileDatasource.uploadFile(file));
+  }
+
   @override
   Future<Either<Failure, File>> pickFile() async {
     return handleResponse(() async {
@@ -24,7 +35,7 @@ class FilePickerRepositoryImpl implements FilePickerRepository {
         }
 
         XFile? photoCompressedFile =
-            await compressImage(File(result.files.single.path!));
+            await _compressImage(File(result.files.single.path!));
 
         return File(photoCompressedFile!.path);
       } catch (e) {
@@ -33,7 +44,7 @@ class FilePickerRepositoryImpl implements FilePickerRepository {
     });
   }
 
-  Future<XFile?> compressImage(File file) async {
+  Future<XFile?> _compressImage(File file) async {
     final filePath = file.absolute.path;
     final lastIndex = filePath.lastIndexOf(RegExp(r'.png|.jp'));
     final splitted = filePath.substring(0, (lastIndex));
