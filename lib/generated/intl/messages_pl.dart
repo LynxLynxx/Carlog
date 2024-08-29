@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
             "Współrzędne powinny zawierać od 1 do 25 znaków"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Utwórz konto!"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Hasło bieżące"),
         "customize": MessageLookupByLibrary.simpleMessage("DOSTOSUJ"),
         "date": MessageLookupByLibrary.simpleMessage("Data"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -167,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Przebieg powinien zawierać od 1 do 8 cyfr."),
         "myAccount": MessageLookupByLibrary.simpleMessage("Moje konto"),
         "name": MessageLookupByLibrary.simpleMessage("Imię"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("Nowe hasło"),
         "next": MessageLookupByLibrary.simpleMessage("Dalej"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Pole nie może być puste"),
@@ -192,6 +195,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Rejestracja"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Przypomnij hasło"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Powtórz nowe hasło"),
         "reportProblem": MessageLookupByLibrary.simpleMessage("Zgłoś problem"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Poproś o nową funkcję"),

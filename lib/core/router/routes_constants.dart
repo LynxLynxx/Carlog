@@ -3,6 +3,7 @@ import 'package:carlog/core/router/entities/route_entity.dart';
 class RoutesK {
   //SECTION - [HELPERS]
   static const loading = "/loading";
+  static const webview = "/webview";
   //!SECTION
 
   //SECTION - [AUTH]

@@ -54,6 +54,8 @@ dependencies:
   path_provider: ^2.1.4
   skeletonizer: ^1.4.2
   uuid: ^4.4.2
+  webview_flutter: ^4.8.0
+  cloud_functions: ^4.7.6
 
 dev_dependencies:
   flutter_test:

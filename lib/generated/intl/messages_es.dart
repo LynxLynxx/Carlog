@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Las coordenadas deben tener entre 1 y 25 caracteres"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("¡Crea una cuenta!"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Contraseña actual"),
         "customize": MessageLookupByLibrary.simpleMessage("PERSONALIZAR"),
         "date": MessageLookupByLibrary.simpleMessage("Fecha"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -168,7 +170,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "El kilometraje debe tener entre 1 y 8 dígitos"),
         "myAccount": MessageLookupByLibrary.simpleMessage("Mi cuenta"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
+        "notSamePasswords": MessageLookupByLibrary.simpleMessage(
+            "Las contraseñas no coinciden"),
         "notValidEmpty": MessageLookupByLibrary.simpleMessage(
             "El campo no puede estar vacío"),
         "note": MessageLookupByLibrary.simpleMessage("Nota"),
@@ -193,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Recordar contraseña"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repetir la nueva contraseña"),
         "reportProblem":
             MessageLookupByLibrary.simpleMessage("Reportar problema"),
         "requestNewFeature":

@@ -35,9 +35,10 @@ class _ChangePasswordView extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                CarlogSettingTextField(labelText: S.of(context).customize),
-                const CarlogSettingTextField(labelText: "New password"),
-                const CarlogSettingTextField(labelText: "Repeat new password"),
+                CarlogSettingTextField(
+                    labelText: S.of(context).currentPassword),
+                CarlogSettingTextField(labelText: S.of(context).newPassword),
+                CarlogSettingTextField(labelText: S.of(context).repeatPassword),
               ],
             ),
           ),

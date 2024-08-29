@@ -69,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Coordinates should be between 1 and 25 characters"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Current password"),
         "customize": MessageLookupByLibrary.simpleMessage("CUSTOMIZE"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -175,7 +177,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Milage should be between 1 and 8 digits"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("First name"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notSamePasswords": MessageLookupByLibrary.simpleMessage("Sae"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
         "note": MessageLookupByLibrary.simpleMessage("Note"),
@@ -202,6 +206,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repeat new password"),
         "reportProblem": MessageLookupByLibrary.simpleMessage("Report Problem"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Request New Feature"),
