@@ -41,4 +41,7 @@ class RoutesK {
       RouteEntity(relativePath: "myAccount", fullPath: "$settings/myAccount");
   static const changePassword = RouteEntity(
       relativePath: "changePassword", fullPath: "$settings/changePassword");
+
+  static const aboutApp =
+      RouteEntity(relativePath: "aboutApp", fullPath: "$settings/aboutApp");
 }

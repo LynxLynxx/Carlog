@@ -160,5 +160,8 @@
   "amount": "Amount",
   "eg100": "e.g. 100",
   "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included",
-  "egEuro": "e.g. Euro"
+  "egEuro": "e.g. Euro",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "repeatPassword": "Repeat new password"
 }

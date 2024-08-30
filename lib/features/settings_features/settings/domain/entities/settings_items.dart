@@ -144,6 +144,7 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             name: "About",
             icon: "assets/icons/settings/terms_of_use.svg",
             iconColor: settingsIconColors[5],
+            onTap: () => context.push(RoutesK.aboutApp.fullPath),
           ),
           SettingsItemEntity(
             name: S.of(context).requestNewFeature,

@@ -172,8 +172,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
-        "notSamePasswords": MessageLookupByLibrary.simpleMessage(
-            "Las contraseñas no coinciden"),
         "notValidEmpty": MessageLookupByLibrary.simpleMessage(
             "El campo no puede estar vacío"),
         "note": MessageLookupByLibrary.simpleMessage("Nota"),

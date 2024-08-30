@@ -15,6 +15,7 @@ import 'package:carlog/features/dashboard_features/home/presentation/pages/home_
 import 'package:carlog/features/dashboard_features/home/presentation/pages/map_page.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/pages/milage_page.dart';
 import 'package:carlog/features/other_features/root/presentation/pages/root_page.dart';
+import 'package:carlog/features/settings_features/about_app/presentation/pages/about_app_page.dart';
 import 'package:carlog/features/settings_features/change_password/presentation/pages/change_password_page.dart';
 import 'package:carlog/features/settings_features/my_account/presentation/pages/my_account_page.dart';
 import 'package:carlog/features/settings_features/settings/presentation/pages/settings_page.dart';
@@ -178,6 +179,10 @@ final StatefulShellBranch settingsBranches = StatefulShellBranch(
         GoRoute(
           path: RoutesK.changePassword.relativePath,
           builder: (context, state) => const ChangePasswordPage(),
+        ),
+        GoRoute(
+          path: RoutesK.aboutApp.relativePath,
+          builder: (context, state) => const AboutAppPage(),
         ),
       ],
     ),
