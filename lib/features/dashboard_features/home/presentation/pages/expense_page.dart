@@ -17,7 +17,6 @@ import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
 class ExpensePage extends StatelessWidget {
   const ExpensePage({
@@ -29,15 +28,18 @@ class ExpensePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => FileBloc(locator()),
+        ),
+        BlocProvider(
           create: (context) => ManageExpenseBloc(
+              locator(),
+              locator(),
               locator(),
               locator(),
               context.read<AnalyticsBloc>(),
               context.read<UserAppBloc>(),
-              context.read<CarsBloc>()),
-        ),
-        BlocProvider(
-          create: (context) => FileBloc(locator()),
+              context.read<CarsBloc>(),
+              context.read<FileBloc>()),
         ),
       ],
       child: const ExpenseView(),
@@ -155,7 +157,7 @@ class _ActionViewState extends State<ExpenseView> {
                 context
                     .read<ManageExpenseBloc>()
                     .add(const ManageExpenseEvent.submitExpenseEvent());
-                context.pop();
+                // context.pop();
               },
             );
           },

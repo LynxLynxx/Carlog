@@ -43,7 +43,13 @@ class AnalyticsView extends StatelessWidget {
   _buildBody(List<CarExpenseEntity> carExpenseList) => ListView.builder(
         shrinkWrap: true,
         itemCount: carExpenseList.length,
-        itemBuilder: (context, index) =>
-            Card(child: Text(carExpenseList[index].toString())),
+        itemBuilder: (context, index) => Card(
+            child: Column(
+          children: [
+            if (carExpenseList[index].attachmentPath != "")
+              Image.network(carExpenseList[index].attachmentPath!),
+            Text(carExpenseList[index].toString()),
+          ],
+        )),
       );
 }

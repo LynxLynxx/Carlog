@@ -9,7 +9,7 @@ abstract class ExpenseRepository {
   Future<Either<Failure, List<CarExpenseEntity>>> getExpenses(String carId);
   Future<Option<Failure>> addExpense(String carId, CarExpenseEntity carExpense);
   Future<Option<Failure>> updateExpense(
-      String carId, String carExpenseId, CarExpenseEntity carExpense);
+      String carId, String carExpenseId, Map<String, dynamic> carExpense);
   Future<Option<Failure>> deleteExpense(String carId, String carExpenseId);
 }
 
@@ -34,8 +34,8 @@ class ExpenseRepositoryImpl implements ExpenseRepository {
   }
 
   @override
-  Future<Option<Failure>> updateExpense(
-      String carId, String carExpenseId, CarExpenseEntity carExpense) async {
+  Future<Option<Failure>> updateExpense(String carId, String carExpenseId,
+      Map<String, dynamic> carExpense) async {
     return handleVoidResponse(() async => await _expenseDatasource
         .updateExpense(carId, carExpenseId, carExpense));
   }

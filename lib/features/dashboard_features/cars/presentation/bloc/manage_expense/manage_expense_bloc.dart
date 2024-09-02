@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:developer';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_enum.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/usecases/add_expense_usecase.dart';
+import 'package:carlog/features/dashboard_features/analytics/domain/usecases/update_expenses_usecase.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/milage_entity_validator.dart';
@@ -12,6 +15,8 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/note_ent
 import 'package:carlog/features/dashboard_features/cars/domain/entities/price_entity_validator.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/usecases/update_milage_usecase.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
+import 'package:carlog/features/other_features/file/domain/usecases/upload_file_usecase.dart';
+import 'package:carlog/features/other_features/file/presentation/bloc/file_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/entities/currency_entity.dart';
@@ -25,15 +30,28 @@ part 'manage_expense_state.dart';
 
 class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
   final AddExpenseUsecase _addExpenseUsecase;
+  final UploadFileUsecase _uploadFileUsecase;
+  final UpdateExpensesUsecase _updateExpensesUsecase;
   final UpdateMilageUsecase _updateMilageUsecase;
   final UserAppBloc _userAppBloc;
   final AnalyticsBloc _analyticsBloc;
   final CarsBloc _carsBloc;
-  late StreamSubscription userAppBlocSubscription;
-  late CarFirebaseEntity? carFirebaseEntity;
+  final FileBloc _fileBloc;
 
-  ManageExpenseBloc(this._addExpenseUsecase, this._updateMilageUsecase,
-      this._analyticsBloc, this._userAppBloc, this._carsBloc)
+  late StreamSubscription userAppBlocSubscription;
+  late StreamSubscription fileBlocSubscription;
+  late CarFirebaseEntity? carFirebaseEntity;
+  late File? fileEntity;
+
+  ManageExpenseBloc(
+      this._addExpenseUsecase,
+      this._uploadFileUsecase,
+      this._updateExpensesUsecase,
+      this._updateMilageUsecase,
+      this._analyticsBloc,
+      this._userAppBloc,
+      this._carsBloc,
+      this._fileBloc)
       : super(const ManageExpenseState()) {
     on<_ChangeDateEvent>(_onChangeDateEvent);
     on<_ChangeAmountEvent>(_onChangeAmountEvent);
@@ -51,6 +69,20 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       state.whenOrNull(
         data: (car) => carFirebaseEntity = car,
       );
+    });
+
+    fileEntity = _fileBloc.state.maybeWhen(
+      data: (file) => file,
+      orElse: () => null,
+    );
+    log("----1--${fileEntity.toString()}");
+    fileBlocSubscription = _fileBloc.stream.listen((state) {
+      log("-------FileBloc state: $state");
+      log("----2--${fileEntity.toString()}");
+      state.whenOrNull(
+        data: (file) => fileEntity = file,
+      );
+      log("----3--${fileEntity.toString()}");
     });
   }
 
@@ -100,10 +132,14 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
   _onSubmitExpenseEvent(
       _SubmitExpenseEvent event, Emitter<ManageExpenseState> emit) async {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+
+    String? imagePath;
+
+    final carExpenseId = const Uuid().v4();
     final result = await _addExpenseUsecase.call(
       carFirebaseEntity!.carId,
       CarExpenseEntity(
-          carExpenseId: const Uuid().v4(),
+          carExpenseId: carExpenseId,
           amount: state.amount.value,
           currency: state.currency!.code,
           milage: state.milage.value,
@@ -138,6 +174,23 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       _userAppBloc.add(UserAppEvent.selectCar(updatedCar));
     }
 
+    if (fileEntity != null) {
+      final imageResult = await _uploadFileUsecase.call(fileEntity!);
+      imageResult.fold((l) => log(l.message.toString()), (r) async {
+        imagePath = r;
+      });
+
+      if (imagePath != "") {
+        final updateExpenseResult = await _updateExpensesUsecase
+            .call(carFirebaseEntity!.carId, carExpenseId, {
+          "attachmentPath": imagePath,
+        });
+        if (updateExpenseResult.isSome()) {
+          log("An error has occured: ${updateExpenseResult.asOption().message}");
+        }
+      }
+    }
+
     _analyticsBloc
         .add(AnalyticsEvent.getExpenses(carId: carFirebaseEntity!.carId));
   }
@@ -145,6 +198,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
   @override
   Future<void> close() {
     userAppBlocSubscription.cancel();
+    fileBlocSubscription.cancel();
     return super.close();
   }
 }

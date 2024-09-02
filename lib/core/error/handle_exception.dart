@@ -120,10 +120,10 @@ Future<ResponseType> handleFirestoreCollectionData<ResponseType>(
 
 Future<ResponseType> handleFirebaseStorage<ResponseType>(
   Reference ref,
-  ResponseType Function(Reference ref) onReferenceExists,
+  Future<ResponseType> Function(Reference ref) onReferenceExists,
 ) async {
   try {
-    return onReferenceExists(ref);
+    return await onReferenceExists(ref);
   } catch (e) {
     throw FirebaseException(
         plugin: "firestore", code: "not-found", message: e.toString());

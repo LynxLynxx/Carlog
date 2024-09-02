@@ -14,11 +14,15 @@ class FileDatasourceImpl implements FileDatasource {
 
   @override
   Future<String> uploadFile(File file) async {
-    await handleFirebaseStorage(
-        _firebaseStorage.ref().child('files/${file.path}'), (ref) async {
-      await ref.putFile(file);
-      return await ref.getDownloadURL();
+    return await handleFirebaseStorage(
+        _firebaseStorage.ref().child('files/${file.path.split('/').last}'),
+        (ref) async {
+      String link;
+      UploadTask uploadTask = ref.putFile(file);
+      TaskSnapshot snapshot = await uploadTask;
+      link = await snapshot.ref.getDownloadURL();
+
+      return link;
     });
-    return "";
   }
 }

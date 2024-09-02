@@ -21,7 +21,7 @@ class FilePickerRepositoryImpl implements FilePickerRepository {
 
   @override
   Future<Either<Failure, String>> uploadFile(File file) async {
-    return handleResponse(() async => _fileDatasource.uploadFile(file));
+    return handleResponse(() async => await _fileDatasource.uploadFile(file));
   }
 
   @override
