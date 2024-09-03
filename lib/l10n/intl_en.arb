@@ -163,5 +163,16 @@
   "egEuro": "e.g. Euro",
   "currentPassword": "Current password",
   "newPassword": "New password",
-  "repeatPassword": "Repeat new password"
+  "repeatPassword": "Repeat new password",
+  "about": "About",
+  "aboutApp": "About the app",
+  "contactUs": "Contact Us",
+  "aboutUsDescription": "The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.",
+  "mainDevelopers": "Main Developers",
+  "leadDeveloper": "Lead Mobile Developer",
+  "developer": "Mobile Developer",
+  "sendEmail": "Send Email",
+  "visitWebsite": "Visit Website",
+  "cancel": "Cancel",
+  "deleteAcount": "Delete Account"
 }

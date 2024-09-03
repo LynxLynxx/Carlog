@@ -138,10 +138,10 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
 
       //SECTION - ABOUT APP
       SettingsSectionEntity(
-        name: "About the app",
+        name: S.of(context).aboutApp,
         items: [
           SettingsItemEntity(
-            name: "About",
+            name: S.of(context).about,
             icon: "assets/icons/settings/terms_of_use.svg",
             iconColor: settingsIconColors[5],
             onTap: () => context.push(RoutesK.aboutApp.fullPath),
@@ -150,10 +150,17 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             name: S.of(context).requestNewFeature,
             icon: "assets/icons/settings/request_new_feature.svg",
             iconColor: settingsIconColors[6],
-            onTap: () => context.push(RoutesK.webview,
-                extra:
-                    "https://webview.canny.io?boardToken=3e9fed8b-329d-efba-abaa-aa96a1934580&ssoToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlbkBnbWFpbC5jb20iLCJpZCI6Ik1Sbzdnck1aakJTSFNtcDNIb0hXZ1ZZYkp1TjIiLCJuYW1lIjoidGVzdGVuQGdtYWlsLmNvbSIsImlhdCI6MTcyNDg1NjUyNSwiZXhwIjoxNzI0ODYwMTI1fQ.G-U5dyO5RujVHoc3z5UjSZaqNnh-YmfA1Dz44yCDVk8"),
+            onTap: () {
+              context.push(
+                RoutesK.requestFeature.fullPath,
+              );
+            },
           ),
+          SettingsItemEntity(
+            name: S.of(context).deleteAcount,
+            icon: "assets/icons/settings/delete.svg",
+            iconColor: settingsIconColors[2],
+          )
         ],
       ),
       //!SECTION

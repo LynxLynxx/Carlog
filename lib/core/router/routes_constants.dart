@@ -44,4 +44,6 @@ class RoutesK {
 
   static const aboutApp =
       RouteEntity(relativePath: "aboutApp", fullPath: "$settings/aboutApp");
+  static const requestFeature = RouteEntity(
+      relativePath: "requestFeature", fullPath: "$settings/requestFeature");
 }

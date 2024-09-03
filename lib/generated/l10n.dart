@@ -1538,6 +1538,116 @@ class S {
       args: [],
     );
   }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About the app`
+  String get aboutApp {
+    return Intl.message(
+      'About the app',
+      name: 'aboutApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.`
+  String get aboutUsDescription {
+    return Intl.message(
+      'The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.',
+      name: 'aboutUsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Developers`
+  String get mainDevelopers {
+    return Intl.message(
+      'Main Developers',
+      name: 'mainDevelopers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lead Mobile Developer`
+  String get leadDeveloper {
+    return Intl.message(
+      'Lead Mobile Developer',
+      name: 'leadDeveloper',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Developer`
+  String get developer {
+    return Intl.message(
+      'Mobile Developer',
+      name: 'developer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Email`
+  String get sendEmail {
+    return Intl.message(
+      'Send Email',
+      name: 'sendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Visit Website`
+  String get visitWebsite {
+    return Intl.message(
+      'Visit Website',
+      name: 'visitWebsite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAcount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAcount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -3,6 +3,7 @@ import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/settings_features/about_app/presentation/widgets/companies_list.dart';
 import 'package:carlog/features/settings_features/about_app/presentation/widgets/contributor_card_widget.dart';
 import 'package:carlog/features/settings_features/about_app/presentation/widgets/contributor_connect_button.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,9 @@ class AboutAppPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarlogScaffold.title(
-      title: "About",
+      title: S.of(context).about,
       bottomWidget: CarlogBottomButtonWidget(
-        title: "Contact us",
+        title: S.of(context).contactUs,
         onTap: () async {
           await contactCompanyModalBottomSheet(context).then((value) async {
             if (value == null) {
@@ -61,7 +62,7 @@ class AboutAppPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.",
+              S.of(context).aboutUsDescription,
               style: context.bodyLarge,
             ),
             CompaniesListWidget(
@@ -70,14 +71,14 @@ class AboutAppPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                "Main Developers:",
+                S.of(context).mainDevelopers,
                 style: context.titleLarge,
               ),
             ),
-            const ContributorCardWidget(
+            ContributorCardWidget(
               contributorName: "Ryszard Schossler",
-              contributorJobTitle: "Lead Mobile Developer",
-              connectButtons: [
+              contributorJobTitle: S.of(context).leadDeveloper,
+              connectButtons: const [
                 ContributorConnectButton(
                     url: "https://github.com/LynxLynxx",
                     contributorButtonEnum: ContributorButtonEnum.github),
@@ -90,10 +91,10 @@ class AboutAppPage extends StatelessWidget {
                     contributorButtonEnum: ContributorButtonEnum.linkedin),
               ],
             ),
-            const ContributorCardWidget(
+            ContributorCardWidget(
               contributorName: "Jan Rydzewski",
-              contributorJobTitle: "Mobile Developer",
-              connectButtons: [
+              contributorJobTitle: S.of(context).developer,
+              connectButtons: const [
                 ContributorConnectButton(
                     url: "https://github.com/janrydzewski",
                     contributorButtonEnum: ContributorButtonEnum.github),
@@ -123,7 +124,7 @@ class AboutAppPage extends StatelessWidget {
             children: [
               FilledButton.icon(
                 onPressed: () => context.pop(ContactCompantOptionsEnum.email),
-                label: const Text("Send e-mail"),
+                label: Text(S.of(context).sendEmail),
                 icon: const Icon(Icons.email_rounded),
                 style: FilledButton.styleFrom(
                     fixedSize: const Size.fromWidth(220)),
@@ -131,7 +132,7 @@ class AboutAppPage extends StatelessWidget {
               const SizedBox(height: 20),
               FilledButton.icon(
                 onPressed: () => context.pop(ContactCompantOptionsEnum.website),
-                label: const Text("Visit webiste"),
+                label: Text(S.of(context).visitWebsite),
                 style: FilledButton.styleFrom(
                     fixedSize: const Size.fromWidth(220)),
                 icon: SvgPicture.asset(
@@ -142,7 +143,7 @@ class AboutAppPage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () => context.pop(),
-                child: const Text("Cancel"),
+                child: Text(S.of(context).cancel),
               ),
             ],
           ),
