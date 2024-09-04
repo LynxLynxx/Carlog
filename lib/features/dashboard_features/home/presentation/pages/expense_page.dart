@@ -17,6 +17,7 @@ import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 
 class ExpensePage extends StatelessWidget {
   const ExpensePage({
@@ -82,6 +83,9 @@ class _ActionViewState extends State<ExpenseView> {
             amountEditingController.text = state.amount.value;
             milageEditingController.text = state.milage.value;
             noteEditingController.text = state.note.value;
+            if (state.status.isSuccess) {
+              context.pop();
+            }
           },
           builder: (context, state) {
             return Column(
@@ -157,7 +161,6 @@ class _ActionViewState extends State<ExpenseView> {
                 context
                     .read<ManageExpenseBloc>()
                     .add(const ManageExpenseEvent.submitExpenseEvent());
-                // context.pop();
               },
             );
           },

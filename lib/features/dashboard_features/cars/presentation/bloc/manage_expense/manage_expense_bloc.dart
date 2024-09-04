@@ -75,14 +75,10 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       data: (file) => file,
       orElse: () => null,
     );
-    log("----1--${fileEntity.toString()}");
     fileBlocSubscription = _fileBloc.stream.listen((state) {
-      log("-------FileBloc state: $state");
-      log("----2--${fileEntity.toString()}");
       state.whenOrNull(
         data: (file) => fileEntity = file,
       );
-      log("----3--${fileEntity.toString()}");
     });
   }
 
@@ -193,6 +189,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
 
     _analyticsBloc
         .add(AnalyticsEvent.getExpenses(carId: carFirebaseEntity!.carId));
+    emit(state.copyWith(status: FormzSubmissionStatus.success));
   }
 
   @override
