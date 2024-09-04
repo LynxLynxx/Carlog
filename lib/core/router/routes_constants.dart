@@ -3,6 +3,7 @@ import 'package:carlog/core/router/entities/route_entity.dart';
 class RoutesK {
   //SECTION - [HELPERS]
   static const loading = "/loading";
+  static const webview = "/webview";
   //!SECTION
 
   //SECTION - [AUTH]
@@ -38,4 +39,11 @@ class RoutesK {
   static const settings = "/settings";
   static const myAccount =
       RouteEntity(relativePath: "myAccount", fullPath: "$settings/myAccount");
+  static const changePassword = RouteEntity(
+      relativePath: "changePassword", fullPath: "$settings/changePassword");
+
+  static const aboutApp =
+      RouteEntity(relativePath: "aboutApp", fullPath: "$settings/aboutApp");
+  static const requestFeature = RouteEntity(
+      relativePath: "requestFeature", fullPath: "$settings/requestFeature");
 }

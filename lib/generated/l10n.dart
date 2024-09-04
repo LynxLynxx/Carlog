@@ -10,7 +10,7 @@ import 'intl/messages_all.dart';
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
-// ignore_for_file: avoid_redundant_argument_values
+// ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
 class S {
   S();
@@ -18,28 +18,31 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
- 
+
       return instance;
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -1198,7 +1201,7 @@ class S {
   }
 
   /// `{language, select, pl{Polish} en{English} other{Spanish}}`
-  String supportedLanguage(Object language) {
+  String supportedLanguage(String language) {
     return Intl.select(
       language,
       {
@@ -1213,7 +1216,7 @@ class S {
   }
 
   /// `{theme, select, light{light} other{dark}}`
-  String supportedThemes(Object theme) {
+  String supportedThemes(String theme) {
     return Intl.select(
       theme,
       {
@@ -1506,11 +1509,158 @@ class S {
     );
   }
 
+  /// `Current password`
+  String get currentPassword {
+    return Intl.message(
+      'Current password',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repeat new password`
+  String get repeatPassword {
+    return Intl.message(
+      'Repeat new password',
+      name: 'repeatPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About the app`
+  String get aboutApp {
+    return Intl.message(
+      'About the app',
+      name: 'aboutApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.`
+  String get aboutUsDescription {
+    return Intl.message(
+      'The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.',
+      name: 'aboutUsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Developers`
+  String get mainDevelopers {
+    return Intl.message(
+      'Main Developers',
+      name: 'mainDevelopers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lead Mobile Developer`
+  String get leadDeveloper {
+    return Intl.message(
+      'Lead Mobile Developer',
+      name: 'leadDeveloper',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Developer`
+  String get developer {
+    return Intl.message(
+      'Mobile Developer',
+      name: 'developer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Email`
+  String get sendEmail {
+    return Intl.message(
+      'Send Email',
+      name: 'sendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Visit Website`
+  String get visitWebsite {
+    return Intl.message(
+      'Visit Website',
+      name: 'visitWebsite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAcount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAcount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Data`
+  String get deleteData {
+    return Intl.message(
+      'Delete Data',
+      name: 'deleteData',
+
   /// `File`
   String get file {
     return Intl.message(
       'File',
       name: 'file',
+
       desc: '',
       args: [],
     );

@@ -8,6 +8,7 @@ import 'package:carlog/features/settings_features/settings/domain/entities/setti
 import 'package:carlog/features/settings_features/settings/domain/entities/supported_languages_entity.dart';
 import 'package:carlog/features/settings_features/settings/presentation/widgets/language_selection_dialog.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,11 +25,14 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             iconColor: settingsIconColors[0],
             onTap: () => context.push(RoutesK.myAccount.fullPath),
           ),
-          SettingsItemEntity(
-            name: S.of(context).changePassword,
-            icon: "assets/icons/settings/password.svg",
-            iconColor: settingsIconColors[1],
-          ),
+          if (FirebaseAuth.instance.currentUser?.providerData[0].providerId ==
+              "password")
+            SettingsItemEntity(
+              name: S.of(context).changePassword,
+              icon: "assets/icons/settings/password.svg",
+              iconColor: settingsIconColors[1],
+              onTap: () => context.push(RoutesK.changePassword.fullPath),
+            ),
           SettingsItemEntity(
             name: S.of(context).logOut,
             icon: "assets/icons/settings/log_out.svg",
@@ -131,4 +135,40 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
       //   ],
       // ),
       // //!SECTION
+
+      //SECTION - ABOUT APP
+      SettingsSectionEntity(
+        name: S.of(context).aboutApp,
+        items: [
+          SettingsItemEntity(
+            name: S.of(context).about,
+            icon: "assets/icons/settings/terms_of_use.svg",
+            iconColor: settingsIconColors[5],
+            onTap: () => context.push(RoutesK.aboutApp.fullPath),
+          ),
+          SettingsItemEntity(
+            name: S.of(context).requestNewFeature,
+            icon: "assets/icons/settings/request_new_feature.svg",
+            iconColor: settingsIconColors[6],
+            onTap: () {
+              context.push(
+                RoutesK.requestFeature.fullPath,
+              );
+            },
+          ),
+        ],
+      ),
+      //!SECTION
+
+      //SECTION - DELETE DATA
+      SettingsSectionEntity(
+        name: S.of(context).deleteData,
+        items: [
+          SettingsItemEntity(
+            name: S.of(context).deleteAcount,
+            icon: "assets/icons/settings/delete.svg",
+            iconColor: settingsIconColors[2],
+          ),
+        ],
+      ),
     ];

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carlog/core/addons/bloc_observer.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/router.dart';
@@ -7,6 +9,8 @@ import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutoria
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -102,4 +106,18 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<String> getCannyToken() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) {
+    throw Exception("User not logged in");
+  }
+  log(user.uid);
+
+  final HttpsCallable callable =
+      FirebaseFunctions.instance.httpsCallable('generateCannyToken');
+  final response = await callable();
+
+  return response.data['token'];
 }

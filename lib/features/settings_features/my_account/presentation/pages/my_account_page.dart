@@ -15,7 +15,11 @@ class MyAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserDataCubit(locator(), locator())..getUserData(),
+      create: (context) => UserDataCubit(
+        locator(),
+        locator(),
+        locator(),
+      )..getUserData(),
       child: const _MyAccountView(),
     );
   }
@@ -110,7 +114,7 @@ class _MyAccountViewState extends State<_MyAccountView> {
                   isLoading: state,
                   isActive: context.watch<UserDataCubit>().isActive(
                       firstNameController.text, lastNameController.text),
-                  onTap: _onSave(),
+                  onTap: () => _onSave(),
                 ),
               ),
             );
