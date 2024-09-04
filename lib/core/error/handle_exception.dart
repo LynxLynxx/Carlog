@@ -3,6 +3,7 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 Future<Either<Failure, ResponseType>> handleResponse<ResponseType>(
@@ -111,6 +112,18 @@ Future<ResponseType> handleFirestoreCollectionData<ResponseType>(
     }
 
     return onCollectionExists(querySnapshot.docs);
+  } catch (e) {
+    throw FirebaseException(
+        plugin: "firestore", code: "not-found", message: e.toString());
+  }
+}
+
+Future<ResponseType> handleFirebaseStorage<ResponseType>(
+  Reference ref,
+  Future<ResponseType> Function(Reference ref) onReferenceExists,
+) async {
+  try {
+    return await onReferenceExists(ref);
   } catch (e) {
     throw FirebaseException(
         plugin: "firestore", code: "not-found", message: e.toString());
