@@ -161,7 +161,6 @@
   "eg100": "e.g. 100",
   "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included",
   "egEuro": "e.g. Euro",
-
   "currentPassword": "Current password",
   "newPassword": "New password",
   "repeatPassword": "Repeat new password",
@@ -176,9 +175,6 @@
   "visitWebsite": "Visit Website",
   "cancel": "Cancel",
   "deleteAcount": "Delete Account",
-  "deleteData": "Delete Data"
-}
-
+  "deleteData": "Delete Data",
   "file": "File"
 }
-

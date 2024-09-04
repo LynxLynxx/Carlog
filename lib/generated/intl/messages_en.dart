@@ -32,7 +32,6 @@ class MessageLookup extends MessageLookupByLibrary {
           })}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutApp": MessageLookupByLibrary.simpleMessage("About the app"),
@@ -167,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please eneter a stronger password"),
         "expense": MessageLookupByLibrary.simpleMessage("Expense"),
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
+        "file": MessageLookupByLibrary.simpleMessage("File"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "information": MessageLookupByLibrary.simpleMessage("Information"),
@@ -269,5 +269,4 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "You have successfully created your car!")
       };
-
 }
