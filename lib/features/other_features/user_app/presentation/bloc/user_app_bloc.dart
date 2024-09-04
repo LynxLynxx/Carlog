@@ -51,31 +51,44 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
   _onReadCarFromApp(_ReadCarFromApp event, Emitter<UserAppState> emit) async {
     emit(const _Loading());
     final car = await secureStorageService.readCarFromApp();
-    if (car == null && carFirebaseEntityList!.isEmpty) {
-      return emit(const _Data(null));
-    }
-    if (car == null && carFirebaseEntityList!.isNotEmpty) {
-      add(_SelectCar(carFirebaseEntityList!.first));
-      return;
-    }
-    if (carFirebaseEntityList!.isNotEmpty) {
-      final currentFirebaseCar = carFirebaseEntityList!.firstWhere((element) {
-        return element.carId == car!.carId;
-      });
-      if (currentFirebaseCar != car) {
-        add(_SelectCar(currentFirebaseCar));
-        return;
+    CarFirebaseEntity? firstCarFromFirebase;
+    if (carFirebaseEntityList != null) {
+      if (carFirebaseEntityList!.isNotEmpty) {
+        firstCarFromFirebase = carFirebaseEntityList!.first;
       }
     }
-    serviceBloc.add(ActionEvent.getActions(
-        carId: car?.carId ?? carFirebaseEntityList!.first.carId));
 
-    analyticsBloc.add(AnalyticsEvent.getExpenses(
-        carId: car?.carId ?? carFirebaseEntityList!.first.carId));
+    if (car == null) {
+      if (carFirebaseEntityList?.isEmpty ?? true) {
+        emit(const _Data(null));
+      } else {
+        add(_SelectCar(firstCarFromFirebase!));
+      }
+      return;
+    }
 
-    emit(_Data(
-      car ?? carFirebaseEntityList!.first,
-    ));
+    if (carFirebaseEntityList!.isEmpty) {
+      emit(const _Data(null));
+      return;
+    }
+
+    final isCarInFirebaseList = carFirebaseEntityList!.contains(car);
+    final currentFirebaseCar = carFirebaseEntityList!.firstWhere(
+      (element) => element.carId == car.carId,
+      orElse: () => firstCarFromFirebase!,
+    );
+
+    if (!isCarInFirebaseList || currentFirebaseCar != car) {
+      add(_SelectCar(currentFirebaseCar));
+      return;
+    }
+
+    final selectedCarId = car.carId;
+
+    serviceBloc.add(ActionEvent.getActions(carId: selectedCarId));
+    analyticsBloc.add(AnalyticsEvent.getExpenses(carId: selectedCarId));
+
+    emit(_Data(car));
   }
 
   _onResetCarInApp(_ResetCarInApp event, Emitter<UserAppState> emit) async {

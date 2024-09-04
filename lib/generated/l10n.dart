@@ -1654,6 +1654,13 @@ class S {
     return Intl.message(
       'Delete Data',
       name: 'deleteData',
+
+  /// `File`
+  String get file {
+    return Intl.message(
+      'File',
+      name: 'file',
+
       desc: '',
       args: [],
     );

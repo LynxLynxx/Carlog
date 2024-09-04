@@ -116,6 +116,7 @@ class _AlphabetScrollViewState extends State<CustomAlphabetScroll> {
         BlocBuilder<ManageCarBloc, ManageCarState>(
           builder: (context, state) {
             return ListView.builder(
+              padding: EdgeInsets.zero,
               controller: listController,
               itemCount: _list.length,
               itemBuilder: (context, index) {

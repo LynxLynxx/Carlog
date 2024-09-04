@@ -8,8 +8,12 @@ class CongratulationsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
       children: [
+        const SizedBox(
+          height: 150,
+        ),
         Container(
           alignment: Alignment.center,
           child: Text(
@@ -32,9 +36,6 @@ class CongratulationsWidget extends StatelessWidget {
                 .bodyLarge!
                 .copyWith(color: context.onPrimaryContainer),
           ),
-        ),
-        const SizedBox(
-          height: 100,
         ),
       ],
     );

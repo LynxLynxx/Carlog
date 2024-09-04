@@ -1,4 +1,3 @@
-
 import 'package:carlog/core/converters/timestamp_converter.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_enum.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,14 +12,14 @@ class CarExpenseEntity with _$CarExpenseEntity {
     required String carExpenseId,
     @TimestampConverter() DateTime? timestamp,
     @TimestampConverter() DateTime? createTimestamp,
-    required String? amount,
-    required String? currency,
-    required String? milage,
-    required String? note,
-    required String? attachmentPath,
-    required CarExpenseEnum? expense,
+    @Default(null) String? amount,
+    @Default(null) String? currency,
+    @Default(null) String? milage,
+    @Default(null) String? note,
+    @Default(null) String? attachmentPath,
+    @Default(null) CarExpenseEnum? expense,
   }) = _CarExpenseEntity;
-	
+
   factory CarExpenseEntity.fromJson(Map<String, dynamic> json) =>
-			_$CarExpenseEntityFromJson(json);
+      _$CarExpenseEntityFromJson(json);
 }

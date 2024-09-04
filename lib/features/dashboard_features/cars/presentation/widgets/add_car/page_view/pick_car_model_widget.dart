@@ -41,11 +41,12 @@ class _PickCarModelWidgetState extends State<PickCarModelWidget> {
           ? Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.46,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: BlocBuilder<ManageCarBloc, ManageCarState>(
                     builder: (context, state) {
                       int carId = getBrandId(state.brandEntity.value) ?? 0;
                       return ListView.builder(
+                        padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) => GestureDetector(
                             onTap: () => context.read<ManageCarBloc>().add(

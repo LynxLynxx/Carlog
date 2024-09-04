@@ -8,6 +8,8 @@ import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/amount_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/custom_dropdown_expense_widget.dart';
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/date_picker_widget.dart';
+import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/file_picker_widget.dart';
+import 'package:carlog/features/other_features/file/presentation/bloc/file_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
@@ -24,13 +26,23 @@ class ExpensePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ManageExpenseBloc(
-          locator(),
-          locator(),
-          context.read<AnalyticsBloc>(),
-          context.read<UserAppBloc>(),
-          context.read<CarsBloc>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FileBloc(locator()),
+        ),
+        BlocProvider(
+          create: (context) => ManageExpenseBloc(
+              locator(),
+              locator(),
+              locator(),
+              locator(),
+              context.read<AnalyticsBloc>(),
+              context.read<UserAppBloc>(),
+              context.read<CarsBloc>(),
+              context.read<FileBloc>()),
+        ),
+      ],
       child: const ExpenseView(),
     );
   }
@@ -71,6 +83,9 @@ class _ActionViewState extends State<ExpenseView> {
             amountEditingController.text = state.amount.value;
             milageEditingController.text = state.milage.value;
             noteEditingController.text = state.note.value;
+            if (state.status.isSuccess) {
+              context.pop();
+            }
           },
           builder: (context, state) {
             return Column(
@@ -104,6 +119,10 @@ class _ActionViewState extends State<ExpenseView> {
                           title: S.of(context).milage,
                           hintText: S.of(context).eg10000,
                           displayError: state.amount.displayError ?? ""),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const FilePickerWidget(),
                       const SizedBox(
                         height: 10,
                       ),
@@ -142,7 +161,6 @@ class _ActionViewState extends State<ExpenseView> {
                 context
                     .read<ManageExpenseBloc>()
                     .add(const ManageExpenseEvent.submitExpenseEvent());
-                context.pop();
               },
             );
           },

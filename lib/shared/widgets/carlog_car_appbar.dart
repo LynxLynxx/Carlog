@@ -88,9 +88,6 @@ SliverAppBar carlogCarAppBar(
               height: 15,
             ),
             const DropDownWidget(),
-            const SizedBox(
-              height: 20,
-            ),
           ],
         ),
       ),
@@ -163,41 +160,50 @@ class DropDownWidget extends StatelessWidget {
   _buildAppBody(BuildContext context, List<CarFirebaseEntity> carList,
           CarFirebaseEntity? car) =>
       carList.isNotEmpty && car != null
-          ? DropdownButtonHideUnderline(
-              child: Container(
-                height: 50,
-                margin: PaddingsK.h20,
-                width: MediaQuery.of(context).size.width * 0.8,
-                decoration: dropShadowEffect(context).copyWith(
-                  color: context.surfaceDim,
-                  borderRadius: PaddingsK.circular30,
-                ),
-                padding: PaddingsK.h20v10,
-                child: DropdownButton2<CarFirebaseEntity>(
-                  value: car,
-                  isExpanded: true,
-                  items: carList
-                      .map((model) => DropdownMenuItem(
-                          value: model,
-                          child:
-                              CarSelectElementWidget(carFirebaseEntity: model)))
-                      .toList(),
-                  onChanged: (CarFirebaseEntity? newValue) {
-                    context.read<UserAppBloc>().add(
-                          UserAppEvent.selectCar(newValue!),
-                        );
-                  },
-                  iconStyleData: const IconStyleData(iconSize: 0),
-                  dropdownStyleData: DropdownStyleData(
+          ? Column(
+              children: [
+                DropdownButtonHideUnderline(
+                  child: Container(
+                    height: 50,
+                    margin: PaddingsK.h20,
                     width: MediaQuery.of(context).size.width * 0.8,
                     decoration: dropShadowEffect(context).copyWith(
                       color: context.surfaceDim,
                       borderRadius: PaddingsK.circular30,
                     ),
-                    offset: const Offset(-20, 40),
+                    padding: PaddingsK.h20v10,
+                    child: DropdownButton2<CarFirebaseEntity>(
+                      value: car,
+                      isExpanded: true,
+                      items: carList
+                          .map((model) => DropdownMenuItem(
+                              value: model,
+                              child: CarSelectElementWidget(
+                                  carFirebaseEntity: model)))
+                          .toList(),
+                      onChanged: (CarFirebaseEntity? newValue) {
+                        if (car != newValue) {
+                          context.read<UserAppBloc>().add(
+                                UserAppEvent.selectCar(newValue!),
+                              );
+                        }
+                      },
+                      iconStyleData: const IconStyleData(iconSize: 0),
+                      dropdownStyleData: DropdownStyleData(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: dropShadowEffect(context).copyWith(
+                          color: context.surfaceDim,
+                          borderRadius: PaddingsK.circular30,
+                        ),
+                        offset: const Offset(-20, 40),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             )
           : const SizedBox.shrink();
 }

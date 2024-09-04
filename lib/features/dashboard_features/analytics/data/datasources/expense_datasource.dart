@@ -7,7 +7,7 @@ abstract class ExpenseDatasource {
   Future<List<CarExpenseEntity>> getExpenses(String carId);
   Future<void> addExpense(String carId, Map<String, dynamic> carExpense);
   Future<void> updateExpense(
-      String carId, String carExpenseId, CarExpenseEntity carExpense);
+      String carId, String carExpenseId, Map<String, dynamic> carExpense);
   Future<void> deleteExpense(String carId, String carExpenseId);
 }
 
@@ -40,23 +40,20 @@ class ExpenseDatasourceImpl implements ExpenseDatasource {
               .collection(CollectionsK.cars)
               .doc(carId)
               .collection(CollectionsK.expenses), (collection) async {
-        await collection
-            .add(carExpense)
-            .then((doc) => collection.doc(doc.id).update({
-                  "carExpenseId": doc.id,
-                }));
+        await collection.doc(carExpense["carExpenseId"]).set(carExpense);
       });
 
   @override
   Future<void> updateExpense(String carId, String carExpenseId,
-          CarExpenseEntity carExpense) async =>
+          Map<String, dynamic> carExpense) async =>
       await handleFirestoreDoc(
           _firebaseFirestore
               .collection(CollectionsK.cars)
               .doc(carId)
               .collection(CollectionsK.expenses)
-              .doc(carExpenseId),
-          (doc) => doc.update(carExpense.toJson()));
+              .doc(carExpenseId), (doc) {
+        doc.update(carExpense);
+      });
 
   @override
   Future<void> deleteExpense(String carId, String carExpenseId) async =>

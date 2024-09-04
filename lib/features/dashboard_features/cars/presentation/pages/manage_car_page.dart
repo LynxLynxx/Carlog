@@ -1,17 +1,18 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
-import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/manage_car_form_widget.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
+import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
 class ManageCarPage extends StatelessWidget {
@@ -65,76 +66,56 @@ class _ManageCarViewState extends State<ManageCarView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  Expanded(
-                    child: Text(
-                      S.of(context).updateCar,
-                      style: text22W700LS3,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => context.push(
-                        RoutesK.deleteCarConfirmation.fullPath,
-                        extra: context),
-                    icon: SvgPicture.asset(
-                      ImagesK.delete,
-                      width: 30,
-                      height: 30,
-                    ),
-                  )
+    return CarlogScaffold.title(
+      title: S.of(context).updateCar,
+      actions: [
+        IconButton(
+          onPressed: () => context.push(RoutesK.deleteCarConfirmation.fullPath,
+              extra: context),
+          icon: SvgPicture.asset(
+            ImagesK.delete,
+            width: 30,
+            height: 30,
+          ),
+        )
+      ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: PaddingsK.all16,
+              child: ManageCarFormWidget(
+                addCarBloc: context.read<ManageCarBloc>(),
+                textEditingControllerList: [
+                  tec1,
+                  tec2,
+                  tec3,
+                  tec4,
+                  tec5,
+                  tec6,
+                  tec7,
+                  tec8,
+                  tec9
                 ],
               ),
-              Padding(
-                padding: PaddingsK.all16,
-                child: ManageCarFormWidget(
-                  addCarBloc: context.read<ManageCarBloc>(),
-                  textEditingControllerList: [
-                    tec1,
-                    tec2,
-                    tec3,
-                    tec4,
-                    tec5,
-                    tec6,
-                    tec7,
-                    tec8,
-                    tec9
-                  ],
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: BlocSelector<ManageCarBloc, ManageCarState, bool>(
+      bottomWidget: BlocSelector<ManageCarBloc, ManageCarState, bool>(
         selector: (state) {
-          return state.brandEntity.value.isNotEmpty &&
-              state.modelEntity.value.isNotEmpty &&
-              state.yearEntity.value.isNotEmpty &&
-              state.plateEntity.value.isNotEmpty;
+          return state.status.isInProgress;
         },
         builder: (context, state) {
-          return FloatingActionButton(
-            onPressed: () {
+          return CarlogBottomButtonWidget(
+            onTap: () {
               context
                   .read<ManageCarBloc>()
                   .add(const ManageCarEvent.editCarSubmitted());
             },
-            shape: RoundedRectangleBorder(borderRadius: PaddingsK.circular30),
-            backgroundColor: context.primaryColor,
-            child: SvgPicture.asset(
-              ImagesK.save,
-              colorFilter: ColorFilter.mode(context.onPrimary, BlendMode.srcIn),
-            ),
+            isLoading: state,
+            isActive: context.watch<ManageCarBloc>().isRequiredFieldsFilled,
+            title: S.of(context).save,
           );
         },
       ),

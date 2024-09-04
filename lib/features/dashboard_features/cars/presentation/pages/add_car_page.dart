@@ -6,15 +6,18 @@ import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/car_button_widget.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/cars_app_bar_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/congratulations_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_brand_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_main_data_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_model_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/page_view/pick_car_submain_data_widget.dart';
+import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
+import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class AddCarPage extends StatelessWidget {
@@ -100,96 +103,95 @@ class _AddCarViewState extends State<AddCarView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BlocListener<ManageCarBloc, ManageCarState>(
+    return CarlogScaffold.title(
+        title: S.of(context).addCar,
+        body: BlocListener<ManageCarBloc, ManageCarState>(
           listener: (context, state) {
             if (state.status.isFailure) {}
             if (state.status.isSuccess) {
               _animateToNextFrame();
             }
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CarsAppBarWidget(
-                  page: _page, func: _animateToNextFrame, context: context),
-              Expanded(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.95,
-                  child: Padding(
-                    padding: PaddingsK.h20,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.95,
+            child: Padding(
+              padding: PaddingsK.h20,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 130,
+                    child: LottieBuilder.asset(
+                      AnimationsK.paintCar,
+                      controller: _controller,
+                      onLoaded: (composition) {
+                        _controller.duration = composition.duration;
+                      },
+                    ),
+                  ),
+                  TweenAnimationBuilder<double>(
+                    duration: Durations.long1,
+                    curve: Curves.easeInOut,
+                    tween: Tween<double>(
+                      begin: 0,
+                      end: 1,
+                    ),
+                    builder: (context, value, _) => LinearProgressIndicator(
+                      value: _currentFrame / _totalFrames,
+                      borderRadius: PaddingsK.circular30,
+                      backgroundColor: context.outlineVariant,
+                      minHeight: 8,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Expanded(
+                    child: PageView(
+                      controller: _pageController,
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        SizedBox(
-                          height: 130,
-                          child: LottieBuilder.asset(
-                            AnimationsK.paintCar,
-                            controller: _controller,
-                            onLoaded: (composition) {
-                              _controller.duration = composition.duration;
-                            },
-                          ),
+                        const PickCarBrandWidget(),
+                        const PickCarModelWidget(),
+                        PickCarMainDataWidget(
+                          textEditingControllerList: [
+                            textEditingControllerList[0],
+                            textEditingControllerList[1],
+                            textEditingControllerList[2],
+                          ],
                         ),
-                        TweenAnimationBuilder<double>(
-                          duration: Durations.long1,
-                          curve: Curves.easeInOut,
-                          tween: Tween<double>(
-                            begin: 0,
-                            end: 1,
-                          ),
-                          builder: (context, value, _) =>
-                              LinearProgressIndicator(
-                            value: _currentFrame / _totalFrames,
-                            borderRadius: PaddingsK.circular30,
-                            backgroundColor: context.outlineVariant,
-                            minHeight: 8,
-                          ),
+                        PickCarSubMainDataWidget(
+                          textEditingControllerList: [
+                            textEditingControllerList[3],
+                            textEditingControllerList[4],
+                            textEditingControllerList[5],
+                            textEditingControllerList[6],
+                          ],
                         ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Expanded(
-                          child: PageView(
-                            controller: _pageController,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              const PickCarBrandWidget(),
-                              const PickCarModelWidget(),
-                              PickCarMainDataWidget(
-                                textEditingControllerList: [
-                                  textEditingControllerList[0],
-                                  textEditingControllerList[1],
-                                  textEditingControllerList[2],
-                                ],
-                              ),
-                              PickCarSubMainDataWidget(
-                                textEditingControllerList: [
-                                  textEditingControllerList[3],
-                                  textEditingControllerList[4],
-                                  textEditingControllerList[5],
-                                  textEditingControllerList[6],
-                                ],
-                              ),
-                              const CongratulationsWidget(),
-                            ],
-                          ),
-                        ),
+                        const CongratulationsWidget(),
                       ],
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CarButtonWidget(
-        page: _page,
-      ),
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: _page != 5
+            ? CarButtonWidget(
+                page: _page,
+              )
+            : null,
+        bottomWidget: _page == 5
+            ? CarlogBottomButtonWidget(
+                onTap: () {
+                  context.pop();
+                },
+                isActive: true,
+                title: S.of(context).congratulations,
+              )
+            : null);
   }
 }

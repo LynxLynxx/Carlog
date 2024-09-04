@@ -3,6 +3,7 @@ import 'package:carlog/features/dashboard_features/cars/domain/entities/car_fire
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/add_car_list_element_widget.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/car_list_element_widget.dart';
+import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:carlog/shared/widgets/error_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +25,8 @@ class CarListWidgetView extends StatelessWidget {
     return BlocBuilder<CarsBloc, CarsState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const CircularProgressIndicator(),
-          loading: () => const CircularProgressIndicator(),
+          initial: () => const CarlogLoader(),
+          loading: () => const CarlogLoader(),
           data: (carList) => _buildListView(carList),
           failure: (failure) => ErrorIndicator(failure: failure),
         );
@@ -36,6 +37,7 @@ class CarListWidgetView extends StatelessWidget {
   _buildListView(List<CarFirebaseEntity> carList) {
     return ListView(
       shrinkWrap: true,
+      padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: _buildCarListWidget(carList),
     );
