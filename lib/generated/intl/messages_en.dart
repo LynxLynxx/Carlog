@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customize": MessageLookupByLibrary.simpleMessage("CUSTOMIZE"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "deleteAcount": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Delete Data"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this vehicle?"),
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),

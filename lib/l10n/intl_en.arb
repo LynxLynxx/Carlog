@@ -174,5 +174,6 @@
   "sendEmail": "Send Email",
   "visitWebsite": "Visit Website",
   "cancel": "Cancel",
-  "deleteAcount": "Delete Account"
+  "deleteAcount": "Delete Account",
+  "deleteData": "Delete Data"
 }

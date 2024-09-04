@@ -156,12 +156,19 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
               );
             },
           ),
+        ],
+      ),
+      //!SECTION
+
+      //SECTION - DELETE DATA
+      SettingsSectionEntity(
+        name: S.of(context).deleteData,
+        items: [
           SettingsItemEntity(
             name: S.of(context).deleteAcount,
             icon: "assets/icons/settings/delete.svg",
             iconColor: settingsIconColors[2],
-          )
+          ),
         ],
       ),
-      //!SECTION
     ];

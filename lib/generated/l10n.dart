@@ -1648,6 +1648,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete Data`
+  String get deleteData {
+    return Intl.message(
+      'Delete Data',
+      name: 'deleteData',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

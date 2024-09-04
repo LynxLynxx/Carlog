@@ -262,8 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktualizuj samochód"),
         "updateMilage":
             MessageLookupByLibrary.simpleMessage("Aktualizuj przebieg"),
-        "visitWebsite":
-            MessageLookupByLibrary.simpleMessage("Strona internetowa"),
+        "visitWebsite": MessageLookupByLibrary.simpleMessage("Strona"),
         "welocomeBack":
             MessageLookupByLibrary.simpleMessage("Witamy ponownie!"),
         "yearOfProduction":

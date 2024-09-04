@@ -7,7 +7,6 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -135,11 +134,7 @@ class AboutAppPage extends StatelessWidget {
                 label: Text(S.of(context).visitWebsite),
                 style: FilledButton.styleFrom(
                     fixedSize: const Size.fromWidth(220)),
-                icon: SvgPicture.asset(
-                  "assets/icons/website.svg",
-                  colorFilter:
-                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                ),
+                icon: const Icon(Icons.web),
               ),
               TextButton(
                 onPressed: () => context.pop(),
