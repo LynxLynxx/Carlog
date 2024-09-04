@@ -31,7 +31,7 @@ class _PickCarBrandWidgetState extends State<PickCarBrandWidget> {
           ? Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.46,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: CustomAlphabetScroll(
                     list: carList,
                   ),

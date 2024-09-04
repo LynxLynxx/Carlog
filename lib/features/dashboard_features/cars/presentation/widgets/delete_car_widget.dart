@@ -5,6 +5,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
+import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,6 +66,7 @@ class DeleteCarView extends StatelessWidget {
                       context
                           .read<ManageCarBloc>()
                           .add(const ManageCarEvent.deleteCarSubmitted());
+                      context.read<CarsBloc>().add(const CarsEvent.getCars());
                       context.pop();
                     },
                     icon: SvgPicture.asset(

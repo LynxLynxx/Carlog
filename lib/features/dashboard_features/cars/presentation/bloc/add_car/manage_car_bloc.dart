@@ -288,6 +288,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onEditCarSubmitted(
       _EditCarSubmitted event, Emitter<ManageCarState> emit) async {
+        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
@@ -365,4 +366,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         message: S.current.successfullyDeletedTheVehicle));
     carsBloc.add(const CarsEvent.getCars());
   }
+
+  bool get isRequiredFieldsFilled =>
+      state.brandEntity.value.isNotEmpty &&
+      state.modelEntity.value.isNotEmpty &&
+      state.yearEntity.value.isNotEmpty &&
+      state.milageEntity.value.isNotEmpty;
 }
