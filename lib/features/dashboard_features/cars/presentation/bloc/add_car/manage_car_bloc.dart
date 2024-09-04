@@ -288,6 +288,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onEditCarSubmitted(
       _EditCarSubmitted event, Emitter<ManageCarState> emit) async {
+        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
