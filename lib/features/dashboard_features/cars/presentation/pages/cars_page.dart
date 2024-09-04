@@ -1,20 +1,14 @@
-import 'package:carlog/core/di/injectable_config.dart';
-import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/cars/car_list_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarsPage extends StatelessWidget {
   const CarsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CarsBloc(locator())..add(const CarsEvent.getCars()),
-      child: const CarsView(),
-    );
+    return const CarsView();
   }
 }
 

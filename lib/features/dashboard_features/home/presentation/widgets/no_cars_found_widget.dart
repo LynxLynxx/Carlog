@@ -13,6 +13,9 @@ class NoCarsFoundWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 80,
+        ),
         LottieBuilder.asset(
           AnimationsK.carGarage,
           width: double.infinity,

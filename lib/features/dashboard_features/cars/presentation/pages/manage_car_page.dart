@@ -107,8 +107,6 @@ class _ManageCarViewState extends State<ManageCarView> {
           return state.status.isInProgress;
         },
         builder: (context, state) {
-          final manageCarState = context.watch<ManageCarBloc>().state;
-
           return CarlogBottomButtonWidget(
             onTap: () {
               context
@@ -116,10 +114,7 @@ class _ManageCarViewState extends State<ManageCarView> {
                   .add(const ManageCarEvent.editCarSubmitted());
             },
             isLoading: state,
-            isActive: manageCarState.brandEntity.value.isNotEmpty &&
-                manageCarState.modelEntity.value.isNotEmpty &&
-                manageCarState.yearEntity.value.isNotEmpty &&
-                manageCarState.plateEntity.value.isNotEmpty,
+            isActive: context.watch<ManageCarBloc>().isRequiredFieldsFilled,
             title: S.of(context).save,
           );
         },

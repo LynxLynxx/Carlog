@@ -366,4 +366,10 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         message: S.current.successfullyDeletedTheVehicle));
     carsBloc.add(const CarsEvent.getCars());
   }
+
+  bool get isRequiredFieldsFilled =>
+      state.brandEntity.value.isNotEmpty &&
+      state.modelEntity.value.isNotEmpty &&
+      state.yearEntity.value.isNotEmpty &&
+      state.milageEntity.value.isNotEmpty;
 }
