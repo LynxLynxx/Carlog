@@ -1,6 +1,7 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
@@ -13,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
 class ManageCarPage extends StatelessWidget {
   final CarFirebaseEntity carFirebaseEntity;
@@ -70,7 +70,8 @@ class _ManageCarViewState extends State<ManageCarView> {
       title: S.of(context).updateCar,
       actions: [
         IconButton(
-          onPressed: () => context.push(RoutesK.deleteCarConfirmation.fullPath,
+          onPressed: () => context.pushAndTrack(
+              RoutesK.deleteCarConfirmation.fullPath,
               extra: context),
           icon: SvgPicture.asset(
             ImagesK.delete,

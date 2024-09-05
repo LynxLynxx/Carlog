@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CarListElementWidget extends StatelessWidget {
   final CarFirebaseEntity carEntity;
@@ -14,7 +14,7 @@ class CarListElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(RoutesK.manageCar.fullPath, extra: {
+      onTap: () => context.pushAndTrack(RoutesK.manageCar.fullPath, extra: {
         "carFirebaseEntity": carEntity,
         "appContext": context,
       }),

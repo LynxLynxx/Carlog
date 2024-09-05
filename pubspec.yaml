@@ -37,8 +37,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
-  arb_translate: ^0.0.1
-
   auto_size_text: ^3.0.0
   connectivity_plus: ^6.0.3
   dots_indicator: ^3.0.0
@@ -62,7 +60,8 @@ dependencies:
   file_picker: ^8.0.7
   flutter_image_compress: ^2.3.0
   firebase_storage: ^11.7.7
-
+  firebase_analytics: ^10.10.7
+  firebase_crashlytics: ^3.5.7
 
 dev_dependencies:
   flutter_test:

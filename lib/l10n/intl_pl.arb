@@ -157,5 +157,8 @@
   "developer": "Mobile Developer",
   "sendEmail": "Wyślij E-mail",
   "visitWebsite": "Strona",
-  "cancel": "Anuluj"
+  "cancel": "Anuluj",
+  "deleteAcount": "Usuń konto",
+  "deleteData": "Usuń dane",
+  "file": "Plik"
 }

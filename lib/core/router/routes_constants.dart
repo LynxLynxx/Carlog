@@ -47,3 +47,10 @@ class RoutesK {
   static const requestFeature = RouteEntity(
       relativePath: "requestFeature", fullPath: "$settings/requestFeature");
 }
+
+const List<String> shellBranchesNames = [
+  RoutesK.home,
+  RoutesK.cars,
+  RoutesK.statistics,
+  RoutesK.settings,
+];

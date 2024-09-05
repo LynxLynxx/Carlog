@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hasło bieżące"),
         "customize": MessageLookupByLibrary.simpleMessage("DOSTOSUJ"),
         "date": MessageLookupByLibrary.simpleMessage("Data"),
+        "deleteAcount": MessageLookupByLibrary.simpleMessage("Usuń konto"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Usuń dane"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Czy na pewno chcesz usunąć ten pojazd?"),
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
@@ -166,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Podaj silniejsze hasło"),
         "expense": MessageLookupByLibrary.simpleMessage("Wydatek"),
         "feedback": MessageLookupByLibrary.simpleMessage("OPINIE"),
+        "file": MessageLookupByLibrary.simpleMessage("Plik"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Rodzaj paliwa"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Rozpocznij"),
         "information": MessageLookupByLibrary.simpleMessage("Informacje"),

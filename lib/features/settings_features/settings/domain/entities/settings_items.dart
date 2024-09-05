@@ -1,4 +1,5 @@
 import 'package:carlog/core/constants/settings_icons_colors.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/string_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
@@ -11,7 +12,6 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 List<SettingsSectionEntity> settingsItems(BuildContext context) => [
@@ -23,7 +23,7 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             name: S.of(context).myAccount,
             icon: "assets/icons/settings/user.svg",
             iconColor: settingsIconColors[0],
-            onTap: () => context.push(RoutesK.myAccount.fullPath),
+            onTap: () => context.pushAndTrack(RoutesK.myAccount.fullPath),
           ),
           if (FirebaseAuth.instance.currentUser?.providerData[0].providerId ==
               "password")
@@ -31,7 +31,8 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
               name: S.of(context).changePassword,
               icon: "assets/icons/settings/password.svg",
               iconColor: settingsIconColors[1],
-              onTap: () => context.push(RoutesK.changePassword.fullPath),
+              onTap: () =>
+                  context.pushAndTrack(RoutesK.changePassword.fullPath),
             ),
           SettingsItemEntity(
             name: S.of(context).logOut,
@@ -144,14 +145,14 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
             name: S.of(context).about,
             icon: "assets/icons/settings/terms_of_use.svg",
             iconColor: settingsIconColors[5],
-            onTap: () => context.push(RoutesK.aboutApp.fullPath),
+            onTap: () => context.pushAndTrack(RoutesK.aboutApp.fullPath),
           ),
           SettingsItemEntity(
             name: S.of(context).requestNewFeature,
             icon: "assets/icons/settings/request_new_feature.svg",
             iconColor: settingsIconColors[6],
             onTap: () {
-              context.push(
+              context.pushAndTrack(
                 RoutesK.requestFeature.fullPath,
               );
             },

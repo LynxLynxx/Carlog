@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Contraseña actual"),
         "customize": MessageLookupByLibrary.simpleMessage("PERSONALIZAR"),
         "date": MessageLookupByLibrary.simpleMessage("Fecha"),
+        "deleteAcount": MessageLookupByLibrary.simpleMessage("Eliminar cuenta"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Eliminar datos"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "¿Está seguro de que desea eliminar este vehículo?"),
         "developer":
@@ -168,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, introduce una contraseña más segura."),
         "expense": MessageLookupByLibrary.simpleMessage("Gasto"),
         "feedback": MessageLookupByLibrary.simpleMessage("RETROALIMENTACIÓN"),
+        "file": MessageLookupByLibrary.simpleMessage("Archivo"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Tipo de combustible"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Empezar"),
         "information": MessageLookupByLibrary.simpleMessage("Información"),

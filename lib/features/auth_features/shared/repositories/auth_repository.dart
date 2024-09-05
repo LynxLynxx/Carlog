@@ -33,6 +33,10 @@ class AuthRepository {
     return await secureStorageService.readCurrentUser() ?? UserEntity.unAuth;
   }
 
+  Future<void> updateUserData(UserEntity user) async {
+    await secureStorageService.writeCurrentUser(user);
+  }
+
   Future<Option<Failure>> signIn(
       {required String email, required String password}) async {
     return handleVoidResponse(

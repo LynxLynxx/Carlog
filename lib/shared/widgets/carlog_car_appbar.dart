@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
@@ -6,6 +8,7 @@ import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/domain/entities/car_firebase_entity.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/other_features/user_app/presentation/bloc/user_app_bloc.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/error_indicator.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +21,7 @@ SliverAppBar carlogCarAppBar(
 ) {
   return SliverAppBar(
     toolbarHeight: 50,
-    expandedHeight: 130,
+    expandedHeight: Platform.isIOS ? 130 : 160,
     collapsedHeight: 50,
     backgroundColor: context.surfaceColor,
     flexibleSpace: Container(
@@ -41,7 +44,7 @@ SliverAppBar carlogCarAppBar(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hello again,",
+                      S.of(context).welocomeBack,
                       style: context.titleMedium!
                           .copyWith(color: context.onSurface),
                     ),
@@ -49,9 +52,7 @@ SliverAppBar carlogCarAppBar(
                       builder: (context, state) {
                         return state.maybeWhen(
                             authenticated: (user) => Text(
-                                  user.firstName == ""
-                                      ? "Joe!"
-                                      : "${user.firstName}!",
+                                  "${context.read<AuthBloc>().userFirstName}!",
                                   style: context.titleLarge!
                                       .copyWith(color: context.onSurface),
                                 ),

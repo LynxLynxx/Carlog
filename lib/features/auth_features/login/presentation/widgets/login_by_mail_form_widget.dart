@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
@@ -6,7 +7,6 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginByMailFormWidget extends StatefulWidget {
   const LoginByMailFormWidget({
@@ -28,7 +28,7 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
     return BlocConsumer<MailLoginBloc, MailLoginState>(
       listener: (context, state) {
         if (state.status == FormzSubmissionStatus.inProgress) {
-          context.go(RoutesK.loading);
+          context.goAndTrack(RoutesK.loading);
         }
       },
       builder: (context, state) {
@@ -97,7 +97,8 @@ class _LoginByMailFormWidgetState extends State<LoginByMailFormWidget> {
                   child: Text(S.of(context).login),
                 ),
                 TextButton(
-                  onPressed: () => context.push(RoutesK.recoveryPassword),
+                  onPressed: () =>
+                      context.pushAndTrack(RoutesK.recoveryPassword),
                   style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(50, 30),

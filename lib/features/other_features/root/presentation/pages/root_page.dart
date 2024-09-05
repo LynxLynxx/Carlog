@@ -52,24 +52,6 @@ class RootView extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   const RootView({super.key, required this.navigationShell});
 
-  void onTap(index) {
-    navigationShell.goBranch(
-      index,
-      initialLocation: index == navigationShell.currentIndex,
-    );
-  }
-
-  getMainPages() {
-    switch (navigationShell.shellRouteContext.routerState.fullPath) {
-      case RoutesK.home:
-      case RoutesK.cars:
-      case RoutesK.statistics:
-      case RoutesK.settings:
-        return true;
-    }
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     final connectionStatus =
@@ -84,7 +66,8 @@ class RootView extends StatelessWidget {
                   top: 50,
                   left: 20,
                   child: GestureDetector(
-                    onTap: () => context.push(RoutesK.connectionLostError),
+                    onTap: () =>
+                        context.pushAndTrack(RoutesK.connectionLostError),
                     child: CircleAvatar(
                       backgroundColor: context.errorContainer,
                       child: const Icon(Icons.wifi_off),
@@ -95,28 +78,6 @@ class RootView extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: Container(
-      //   margin: PaddingsK.b25,
-      //   child: CircularMenu(
-      //     toggleButtonSize: 35,
-      //     radius: 85,
-      //     curve: Curves.fastOutSlowIn,
-      //     reverseCurve: Curves.fastOutSlowIn,
-      //     items: [
-      //       CircularMenuItem(
-      //           icon: Icons.home, color: Colors.green, onTap: () {}),
-      //       CircularMenuItem(
-      //           icon: Icons.search, color: Colors.blue, onTap: () {}),
-      //       CircularMenuItem(
-      //           icon: Icons.settings, color: Colors.orange, onTap: () {}),
-      //       CircularMenuItem(
-      //           icon: Icons.chat, color: Colors.purple, onTap: () {}),
-      //       // CircularMenuItem(
-      //       //     icon: Icons.notifications, color: Colors.brown, onTap: () {})
-      //     ],
-      //   ),
-      // ),
-
       floatingActionButton:
           GoRouter.of(context).showNavBar ? CustomFloatingButtonWidget() : null,
       bottomNavigationBar: GoRouter.of(context).showNavBar

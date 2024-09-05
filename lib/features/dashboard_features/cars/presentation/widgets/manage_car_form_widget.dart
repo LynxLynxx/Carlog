@@ -2,6 +2,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:carlog/core/constants/snackbars.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/add_car/manage_car_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add_car/custom_dropdown_widget.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
 class ManageCarFormWidget extends StatelessWidget {
   final ManageCarBloc addCarBloc;
@@ -50,7 +50,7 @@ class ManageCarFormWidget extends StatelessWidget {
         }
         if (state.status.isSuccess) {
           SnackbarsK.successSnackbar(state.message!).show(context);
-          context.go(RoutesK.cars);
+          context.goAndTrack(RoutesK.cars);
         }
       },
       builder: (context, state) {
