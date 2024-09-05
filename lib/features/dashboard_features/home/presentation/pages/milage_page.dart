@@ -52,6 +52,7 @@ class _UpdateMilageViewState extends State<UpdateMilageView> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
         title: S.of(context).updateMilage,
+        showAdmobBanner: true,
         body: BlocConsumer<MilageBloc, MilageState>(
           listener: (context, state) {},
           builder: (context, state) {

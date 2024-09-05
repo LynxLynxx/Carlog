@@ -21,6 +21,7 @@ class AboutAppPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarlogScaffold.title(
+      showAdmobBanner: true,
       title: S.of(context).about,
       bottomWidget: CarlogBottomButtonWidget(
         title: S.of(context).contactUs,

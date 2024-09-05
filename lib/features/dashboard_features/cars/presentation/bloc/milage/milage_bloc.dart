@@ -19,6 +19,7 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
   final UpdateMilageUsecase _updateMilageUsecase;
   final UserAppBloc _userAppBloc;
   final CarsBloc _carsBloc;
+
   late StreamSubscription userAppBlocSubscription;
   late CarFirebaseEntity? carFirebaseEntity;
   MilageBloc(this._updateMilageUsecase, this._userAppBloc, this._carsBloc)

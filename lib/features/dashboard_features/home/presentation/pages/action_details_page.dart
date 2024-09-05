@@ -90,6 +90,8 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
+        showAdmobBanner: DateTime.now().second.isEven,
+        resizeToAvoidBottomInset: true,
         title: S.of(context).manageActions,
         body: BlocConsumer<ManageActionBloc, ManageActionState>(
           listener: (context, state) {
@@ -99,47 +101,49 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
             noteEditingController.text = state.note.value;
           },
           builder: (context, state) {
-            return Column(
-              children: [
-                Padding(
-                  padding: PaddingsK.all16,
-                  child: Column(
-                    children: [
-                      const CustomDropdownActionWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      state.action != CarActionEnum.note
-                          ? Column(
-                              children: [
-                                AddressPickerWidget(
-                                    textEditingController:
-                                        addressEditingController,
-                                    state: state),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                      DatePickerWidget(
-                          textEditingController: dateEditingController,
-                          state: state),
-                      ListElementTextfieldWidget(
-                          textEditingController: noteEditingController,
-                          func: (value) {
-                            context
-                                .read<ManageActionBloc>()
-                                .add(ManageActionEvent.changeNote(value));
-                          },
-                          maxLines: 6,
-                          title: S.of(context).note,
-                          hintText: S.of(context).egRememberToChangeTheOil,
-                          displayError: state.note.displayError ?? ""),
-                    ],
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: PaddingsK.all16,
+                    child: Column(
+                      children: [
+                        const CustomDropdownActionWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        state.action != CarActionEnum.note
+                            ? Column(
+                                children: [
+                                  AddressPickerWidget(
+                                      textEditingController:
+                                          addressEditingController,
+                                      state: state),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                        DatePickerWidget(
+                            textEditingController: dateEditingController,
+                            state: state),
+                        ListElementTextfieldWidget(
+                            textEditingController: noteEditingController,
+                            func: (value) {
+                              context
+                                  .read<ManageActionBloc>()
+                                  .add(ManageActionEvent.changeNote(value));
+                            },
+                            maxLines: 6,
+                            title: S.of(context).note,
+                            hintText: S.of(context).egRememberToChangeTheOil,
+                            displayError: state.note.displayError ?? ""),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),

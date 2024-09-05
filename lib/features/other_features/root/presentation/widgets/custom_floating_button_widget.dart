@@ -5,6 +5,7 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_enum.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:star_menu/star_menu.dart';
 
@@ -88,6 +89,11 @@ class CustomFloatingChildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
+        FirebaseAnalytics.instance
+            .logEvent(name: "bottomNavBarAddButtonPressed", parameters: {
+          "id": id,
+          "title": getTitle(context),
+        }),
         if (id == 0)
           {
             starMenuController.closeMenu!(),
