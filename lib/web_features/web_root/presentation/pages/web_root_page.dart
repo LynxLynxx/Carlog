@@ -1,5 +1,6 @@
 import 'package:carlog/shared/widgets/responsive_widget.dart';
 import 'package:carlog/web_features/web_root/presentation/pages/web_root_view_large.dart';
+import 'package:carlog/web_features/web_root/presentation/pages/web_root_view_small.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +14,7 @@ class WebRootPage extends StatelessWidget {
         ? WebRootViewLarge(
             navigationShell: navigationShell,
           )
-        : WebRootViewLarge(
+        : WebRootViewSmall(
             navigationShell: navigationShell,
           );
   }

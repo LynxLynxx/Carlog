@@ -1,4 +1,3 @@
-import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
@@ -6,76 +5,74 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class WebRootViewLarge extends StatelessWidget {
+class WebRootViewSmall extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
-  const WebRootViewLarge({super.key, required this.navigationShell});
+  const WebRootViewSmall({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: -150,
-            left: -300,
-            child: Image.asset(
-              ImagesK.rectangleBackground,
-              scale: 1.5,
-            ),
-          ),
-          navigationShell,
-          Align(
-              alignment: Alignment.topCenter,
-              child: _CustomAppBar(navigationShell: navigationShell)),
-        ],
-      ),
+      appBar: _buildAppBar(context),
+      drawer: _buildDrawer(context),
+      body: navigationShell,
     );
   }
-}
 
-class _CustomAppBar extends StatelessWidget {
-  final StatefulNavigationShell navigationShell;
-  const _CustomAppBar({required this.navigationShell});
-
-  void onTap(index) {
+  void onTap(int index, BuildContext context) {
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
+    Scaffold.of(context).closeDrawer();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 70,
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          _AppBarElementWidget(
-            id: 0,
-            isSelected: navigationShell.currentIndex == 0,
-            func: onTap,
-          ),
-          _AppBarElementWidget(
+  AppBar _buildAppBar(BuildContext context) => AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: context.primaryColor,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      );
+
+  Widget _buildDrawer(BuildContext context) => Drawer(
+        backgroundColor: context.surfaceColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _AppBarElementWidget(
+              id: 0,
+              func: onTap,
+              isSelected: navigationShell.currentIndex == 0,
+            ),
+            _AppBarElementWidget(
               id: 1,
+              func: onTap,
               isSelected: navigationShell.currentIndex == 1,
-              func: onTap),
-          _AppBarElementWidget(
+            ),
+            _AppBarElementWidget(
               id: 2,
+              func: onTap,
               isSelected: navigationShell.currentIndex == 2,
-              func: onTap),
-          const _ThemeSwitcherWidget(),
-        ],
-      ),
-    );
-  }
+            ),
+          ],
+        ),
+      );
 }
 
 class _AppBarElementWidget extends StatelessWidget {
   final int id;
   final bool isSelected;
-  final Function(int index) func;
+  final Function(int index, BuildContext context) func;
   const _AppBarElementWidget(
       {required this.id, required this.isSelected, required this.func});
 
@@ -95,10 +92,11 @@ class _AppBarElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => func(id),
+      onTap: () => func(id, context),
       child: Container(
         alignment: Alignment.center,
         width: getTitle.length * 25,
+        height: 50,
         margin: PaddingsK.h20,
         child: Text(
           getTitle,
