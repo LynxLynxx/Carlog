@@ -17,8 +17,8 @@ final StatefulShellRoute webShellRoutes = StatefulShellRoute.indexedStack(
       WebRootPage(navigationShell: navigationShell),
   branches: [
     homeBranches,
-    contactBranches,
     requestFeatureBranches,
+    contactBranches,
   ],
 );
 
@@ -32,22 +32,22 @@ final StatefulShellBranch homeBranches = StatefulShellBranch(
   ],
 );
 
+final StatefulShellBranch requestFeatureBranches = StatefulShellBranch(
+  navigatorKey: requestFeatureNavKey,
+  routes: [
+    GoRoute(
+      path: WebRoutesK.suggest,
+      builder: (context, state) => const WebRequestFeaturePage(),
+    ),
+  ],
+);
+
 final StatefulShellBranch contactBranches = StatefulShellBranch(
   navigatorKey: contactNavKey,
   routes: [
     GoRoute(
       path: WebRoutesK.contact,
       builder: (context, state) => const WebContactPage(),
-    ),
-  ],
-);
-
-final StatefulShellBranch requestFeatureBranches = StatefulShellBranch(
-  navigatorKey: requestFeatureNavKey,
-  routes: [
-    GoRoute(
-      path: WebRoutesK.newFeature,
-      builder: (context, state) => const WebRequestFeaturePage(),
     ),
   ],
 );

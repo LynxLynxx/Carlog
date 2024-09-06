@@ -5,7 +5,7 @@ class WebRoutesK {
 
   static const home = "/home";
   static const contact = "/contact";
-  static const newFeature = "/newFeature";
+  static const suggest = "/suggest";
 
   //SECTION - [ERRORS]
   static const unknownError = "/unknownError";
