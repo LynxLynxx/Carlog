@@ -85,6 +85,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp.router(
             title: 'Carlog',
+            debugShowCheckedModeBanner: false,
             theme: const MaterialTheme().light(),
             darkTheme: const MaterialTheme().dark(),
             themeMode: context.watch<ThemeModeCubit>().state.themeMode,
