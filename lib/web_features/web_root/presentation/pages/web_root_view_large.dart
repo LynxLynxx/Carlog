@@ -9,7 +9,7 @@ class WebRootViewLarge extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   WebRootViewLarge({super.key, required this.navigationShell});
 
-  final PageController pageController = PageController();
+  final PageController pageController = PageController(initialPage: 1);
 
   List<Widget> get pages => [
         const WebRequestFeaturePage(),

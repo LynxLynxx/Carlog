@@ -2,16 +2,25 @@ import 'package:carlog/core/constants/images.dart';
 import 'package:flutter/material.dart';
 
 class RectangleWidget extends StatelessWidget {
-  final double height;
-  final double width;
-  const RectangleWidget({super.key, required this.height, required this.width});
+  final double? top;
+  final double? right;
+  final double? bottom;
+  final double? left;
+  const RectangleWidget(
+      {super.key,
+      this.top,
+      this.right,
+      this.bottom,
+      this.left});
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: height,
-        left: width,
+        top: top,
+        right: right,
+        bottom: bottom,
+        left: left,
         child: Image.asset(ImagesK.rectangleBackground,
-            width: 2600, height: 2600));
+            width: 1600, height: 1600));
   }
 }

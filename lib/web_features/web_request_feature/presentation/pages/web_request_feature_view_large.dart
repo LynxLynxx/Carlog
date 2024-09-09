@@ -21,7 +21,7 @@ class WebRequestFeatureViewLarge extends StatelessWidget {
   }
 
   Widget _buildRectangle() => const RectangleWidget(
-        width: 1000,
-        height: -300,
+        top: -600,
+        left: 1000,
       );
 }

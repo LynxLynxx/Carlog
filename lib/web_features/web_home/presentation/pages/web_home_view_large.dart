@@ -21,8 +21,8 @@ class WebHomeViewLarge extends StatelessWidget {
   }
 
   Widget _buildRectangle() => const RectangleWidget(
-        width: -700,
-        height: -300,
+        top: -600,
+        left: -800,
       );
 
   Widget _buildBody(BuildContext context) => Row(
