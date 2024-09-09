@@ -1,3 +1,4 @@
+import 'package:carlog/web_features/web_root/presentation/widgets/rectangle_widget.dart';
 import 'package:flutter/material.dart';
 
 class WebRequestFeatureViewLarge extends StatelessWidget {
@@ -5,6 +6,22 @@ class WebRequestFeatureViewLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Stack(
+        children: [
+          _buildRectangle(),
+          const Center(
+            child: Text("Web request feature"),
+          ),
+        ],
+      ),
+    );
   }
+
+  Widget _buildRectangle() => const RectangleWidget(
+        width: 1000,
+        height: -300,
+      );
 }

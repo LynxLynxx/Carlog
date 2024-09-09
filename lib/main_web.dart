@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carlog/core/addons/bloc_observer.dart';
 import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/core/web_router/router.dart';
@@ -58,6 +60,11 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
+          scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.unknown,
+          }),
         );
       },
     );

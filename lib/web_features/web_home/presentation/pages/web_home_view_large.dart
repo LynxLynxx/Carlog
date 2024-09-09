@@ -1,7 +1,6 @@
-import 'package:carlog/core/addons/web_webview.dart';
 import 'package:carlog/core/constants/images.dart';
-import 'package:carlog/core/constants/paddings.dart';
-import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/web_features/web_home/presentation/widgets/web_home_widgets.dart';
+import 'package:carlog/web_features/web_root/presentation/widgets/rectangle_widget.dart';
 import 'package:flutter/material.dart';
 
 class WebHomeViewLarge extends StatelessWidget {
@@ -12,7 +11,21 @@ class WebHomeViewLarge extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: Row(
+      child: Stack(
+        children: [
+          _buildRectangle(),
+          _buildBody(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRectangle() => const RectangleWidget(
+        width: -700,
+        height: -300,
+      );
+
+  Widget _buildBody(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
@@ -24,70 +37,28 @@ class WebHomeViewLarge extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 150,
-                ),
-                Text(
-                  "Track, Save, Analyze",
-                  style: context.displayLarge!
-                      .copyWith(color: context.primaryColor, fontSize: 35),
-                ),
-                Text(
-                  "Your Car's journey",
-                  style: context.displayLarge!.copyWith(
-                      color: context.primaryColor,
-                      fontSize: 45,
-                      fontWeight: FontWeight.w800),
-                ),
-                const SizedBox(
-                  height: 125,
-                ),
-                Padding(
-                  padding: PaddingsK.h30,
-                  child: Text(
-                    "Get Carlog now and take control of your car's history. Available on the App Store and Google Play.",
-                    style: context.displaySmall!.copyWith(
-                      color: context.primaryColor,
-                      fontSize: 20,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () => launchUrl("https://www.apple.com/"),
-                      child: Image.asset(
-                        ImagesK.appAppStore,
-                        width: 200,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03,
-                    ),
-                    GestureDetector(
-                      onTap: () =>
-                          launchUrl("https://play.google.com/store/games"),
-                      child: Image.asset(
-                        ImagesK.appGooglePlay,
-                        width: 200,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          _buildData(context),
         ],
-      ),
-    );
-  }
+      );
+
+  Widget _buildData(BuildContext context) => Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 150,
+            ),
+            trackSaveAnalyze(context),
+            yourCarsJourney(context),
+            const SizedBox(
+              height: 125,
+            ),
+            getCarlogNow(context),
+            const SizedBox(
+              height: 30,
+            ),
+            buttons(context),
+          ],
+        ),
+      );
 }

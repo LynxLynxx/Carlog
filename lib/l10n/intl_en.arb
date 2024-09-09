@@ -161,5 +161,9 @@
   "eg100": "e.g. 100",
   "egOilFilterReplacementIncluded": "e.g. Oil filter replacement included",
   "egEuro": "e.g. Euro",
-  "file": "File"
+  "file": "File",
+  "trackSaveAnalyze": "Track, Save, Analyze",
+  "yourCarsJourney": "Your Car's journey",
+  "getCarlogNow": "Get Carlog now and take control of your car's history. Available on the App Store and Google Play."
+
 }

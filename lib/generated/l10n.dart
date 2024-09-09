@@ -1518,6 +1518,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Track, Save, Analyze`
+  String get trackSaveAnalyze {
+    return Intl.message(
+      'Track, Save, Analyze',
+      name: 'trackSaveAnalyze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Car's journey`
+  String get yourCarsJourney {
+    return Intl.message(
+      'Your Car\'s journey',
+      name: 'yourCarsJourney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Carlog now and take control of your car's history. Available on the App Store and Google Play.`
+  String get getCarlogNow {
+    return Intl.message(
+      'Get Carlog now and take control of your car\'s history. Available on the App Store and Google Play.',
+      name: 'getCarlogNow',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

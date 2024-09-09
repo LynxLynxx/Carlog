@@ -46,7 +46,7 @@ class ImagesK extends Constants {
   static const save = "$icons/save.svg";
 
   //ANCHOR - WEB
-  static const rectangleBackground = "$assets/background_rectangle.png";
+  static const rectangleBackground = "$assets/background_rectangle2.png";
   static const carlogIphone = "$assets/carlog_iphone.png";
   static const webIphone = "$assets/web_iphone.png";
   static const appAppStore = "$assets/app_app_store.png";

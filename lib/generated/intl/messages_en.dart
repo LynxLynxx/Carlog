@@ -157,6 +157,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
         "file": MessageLookupByLibrary.simpleMessage("File"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
+        "getCarlogNow": MessageLookupByLibrary.simpleMessage(
+            "Get Carlog now and take control of your car\'s history. Available on the App Store and Google Play."),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "information": MessageLookupByLibrary.simpleMessage("Information"),
         "insurance": MessageLookupByLibrary.simpleMessage("Insurance"),
@@ -230,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tireChange": MessageLookupByLibrary.simpleMessage("Tire Change"),
         "tires": MessageLookupByLibrary.simpleMessage("Tires"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "trackSaveAnalyze":
+            MessageLookupByLibrary.simpleMessage("Track, Save, Analyze"),
         "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
@@ -247,6 +251,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have no cars yet, add one!"),
         "youHaveSuccessfullyCreatedYourCar":
             MessageLookupByLibrary.simpleMessage(
-                "You have successfully created your car!")
+                "You have successfully created your car!"),
+        "yourCarsJourney":
+            MessageLookupByLibrary.simpleMessage("Your Car\'s journey")
       };
 }
