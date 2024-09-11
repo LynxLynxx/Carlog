@@ -16,7 +16,7 @@ class ChangePasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       lazy: false,
-      create: (context) => ChangePasswordCubit(locator()),
+      create: (context) => ChangePasswordCubit(locator(), locator()),
       child: const _ChangePasswordView(),
     );
   }
@@ -51,15 +51,19 @@ class _ChangePasswordViewState extends State<_ChangePasswordView> {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
-            listener: (context, state) => state.maybeWhen(
-              orElse: () {
+            listener: (context, state) {
+              state.maybeWhen(orElse: () {
                 return null;
-              },
-              failure: (failure) {
+              }, failure: (failure) {
                 SnackbarsK.errorSnackbar(failure.message ?? "").show(context);
                 return null;
-              },
-            ),
+              }, data: () {
+                currentPasswordController.clear();
+                newPasswordController.clear();
+                reNewPasswordController.clear();
+                return null;
+              });
+            },
             builder: (context, state) {
               return state.when(
                 loading: () => ChangePasswordForm(

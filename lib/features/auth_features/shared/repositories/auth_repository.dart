@@ -71,6 +71,12 @@ class AuthRepository {
     );
   }
 
+  Future<Option<Failure>> changePassword({required String password}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.currentUser!.updatePassword(password),
+    );
+  }
+
   Future<Option<Failure>> signInWithGoogle() {
     return handleVoidResponse(() async {
       if (await GoogleSignIn().isSignedIn()) {
