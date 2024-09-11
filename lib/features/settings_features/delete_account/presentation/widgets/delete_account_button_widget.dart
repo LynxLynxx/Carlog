@@ -2,6 +2,7 @@ import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/settings_features/delete_account/presentation/cubit/delete_account_cubit.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,15 +20,21 @@ class DeleteAccountButtonWidget extends StatelessWidget {
           child: state.when(
             loading: () => _customButton(null, null, context),
             data: () => _customButton(
-                () => context
-                    .read<DeleteAccountCubit>()
-                    .deleteAccount(currentPasswordController.text),
+                () => context.read<DeleteAccountCubit>().deleteAccount(
+                    FirebaseAuth.instance.currentUser?.providerData[0]
+                                .providerId ==
+                            "password"
+                        ? currentPasswordController.text
+                        : null),
                 S.of(context).confirm,
                 context),
             failure: (failure) => _customButton(
-                () => context
-                    .read<DeleteAccountCubit>()
-                    .deleteAccount(currentPasswordController.text),
+                () => context.read<DeleteAccountCubit>().deleteAccount(
+                    FirebaseAuth.instance.currentUser?.providerData[0]
+                                .providerId ==
+                            "password"
+                        ? currentPasswordController.text
+                        : null),
                 S.of(context).confirm,
                 context),
             initial: () => _customButton(
@@ -45,6 +52,7 @@ class DeleteAccountButtonWidget extends StatelessWidget {
       FilledButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: context.errorColor,
+          foregroundColor: context.onPrimary,
         ),
         onPressed: onTap,
         child: title == null

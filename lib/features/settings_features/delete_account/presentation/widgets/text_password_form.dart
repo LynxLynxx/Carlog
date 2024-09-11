@@ -32,74 +32,80 @@ class TextPasswordForm extends StatelessWidget {
           },
         ),
         builder: (context, state) {
-          return AnimatedSwitcher(
-            duration: DurationsK.d350,
-            child: state.when(
-              initial: () => Text(
-                FirebaseAuth.instance.currentUser?.providerData[0].providerId ==
-                        "password"
-                    ? S.of(context).doYouReallyWantToDeleteYourAccount
-                    : S.of(context).thisAccountWasCreated,
-                style: context.titleSmall!.copyWith(color: context.outline),
-                textAlign: TextAlign.center,
-              ),
-              loading: () => CarlogSettingTextField(
-                labelText: S.of(context).currentPassword,
-                focusNode: currentPasswordScope,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.continueAction,
-                textCapitalization: TextCapitalization.words,
-                onEditingComplete: (_) {
-                  FocusScope.of(context).nextFocus();
-                },
-                textController: currentPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return S.of(context).notValidEmpty;
-                  }
-                  return null;
-                },
-              ),
-              data: () => CarlogSettingTextField(
-                labelText: S.of(context).currentPassword,
-                focusNode: currentPasswordScope,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.continueAction,
-                textCapitalization: TextCapitalization.words,
-                onEditingComplete: (_) {
-                  context
-                      .read<DeleteAccountCubit>()
-                      .deleteAccount(currentPasswordController.text);
-                },
-                textController: currentPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return S.of(context).notValidEmpty;
-                  }
-                  return null;
-                },
-              ),
-              failure: (failure) => CarlogSettingTextField(
-                labelText: S.of(context).currentPassword,
-                focusNode: currentPasswordScope,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.continueAction,
-                textCapitalization: TextCapitalization.words,
-                onEditingComplete: (_) {
-                  context
-                      .read<DeleteAccountCubit>()
-                      .deleteAccount(currentPasswordController.text);
-                },
-                textController: currentPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return S.of(context).notValidEmpty;
-                  }
-                  return null;
-                },
-              ),
-            ),
-          );
+          return FirebaseAuth
+                      .instance.currentUser?.providerData[0].providerId ==
+                  "password"
+              ? AnimatedSwitcher(
+                  duration: DurationsK.d350,
+                  child: state.when(
+                    initial: () => Text(
+                      S.of(context).doYouReallyWantToDeleteYourAccount,
+                      style:
+                          context.titleSmall!.copyWith(color: context.outline),
+                      textAlign: TextAlign.center,
+                    ),
+                    loading: () => CarlogSettingTextField(
+                      labelText: S.of(context).currentPassword,
+                      focusNode: currentPasswordScope,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.continueAction,
+                      textCapitalization: TextCapitalization.words,
+                      onEditingComplete: (_) {
+                        FocusScope.of(context).nextFocus();
+                      },
+                      textController: currentPasswordController,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return S.of(context).notValidEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                    data: () => CarlogSettingTextField(
+                      labelText: S.of(context).currentPassword,
+                      focusNode: currentPasswordScope,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.continueAction,
+                      textCapitalization: TextCapitalization.words,
+                      onEditingComplete: (_) {
+                        context
+                            .read<DeleteAccountCubit>()
+                            .deleteAccount(currentPasswordController.text);
+                      },
+                      textController: currentPasswordController,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return S.of(context).notValidEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                    failure: (failure) => CarlogSettingTextField(
+                      labelText: S.of(context).currentPassword,
+                      focusNode: currentPasswordScope,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.continueAction,
+                      textCapitalization: TextCapitalization.words,
+                      onEditingComplete: (_) {
+                        context
+                            .read<DeleteAccountCubit>()
+                            .deleteAccount(currentPasswordController.text);
+                      },
+                      textController: currentPasswordController,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return S.of(context).notValidEmpty;
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                )
+              : Text(
+                  S.of(context).doYouReallyWantToDeleteYourAccount,
+                  style: context.titleSmall!.copyWith(color: context.outline),
+                  textAlign: TextAlign.center,
+                );
         },
       ),
     );

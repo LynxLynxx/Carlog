@@ -1679,16 +1679,6 @@ class S {
     );
   }
 
-  /// `This account was created uniquely and can't be recreated after deletion. Are you sure you want to proceed? This action is irreversible, and all your data will be permanently lost.`
-  String get thisAccountWasCreated {
-    return Intl.message(
-      'This account was created uniquely and can\'t be recreated after deletion. Are you sure you want to proceed? This action is irreversible, and all your data will be permanently lost.',
-      name: 'thisAccountWasCreated',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Are you sure?`
   String get areYouSure {
     return Intl.message(

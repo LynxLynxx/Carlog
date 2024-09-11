@@ -30,23 +30,24 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
     emit(const _Data());
   }
 
-  Future<void> deleteAccount(String password) async {
+  Future<void> deleteAccount(String? password) async {
     emit(const _Loading());
 
-    final reAuthResult = await _reauthenticateUserUsecase.call(password);
+    if (password != null) {
+      final reAuthResult = await _reauthenticateUserUsecase.call(password);
 
-    if (reAuthResult.isSome()) {
-      emit(_Failure(reAuthResult.asOption()));
-      return emit(const _Data());
+      if (reAuthResult.isSome()) {
+        emit(_Failure(reAuthResult.asOption()));
+        return emit(const _Data());
+      }
     }
 
     final deleteAccountResult = await _deleteAccountUsecase.call();
 
     if (deleteAccountResult.isSome()) {
       emit(_Failure(deleteAccountResult.asOption()));
-      return emit(const _Data());
+      return emit(const _Initial());
     }
-    emit(const _Data());
     emit(const _Initial());
   }
 }

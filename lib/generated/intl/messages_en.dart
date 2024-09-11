@@ -250,8 +250,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
             "Tap on the map to set the location of the action."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
-        "thisAccountWasCreated": MessageLookupByLibrary.simpleMessage(
-            "This account was created uniquely and can\'t be recreated after deletion. Are you sure you want to proceed? This action is irreversible, and all your data will be permanently lost."),
         "tireChange": MessageLookupByLibrary.simpleMessage("Tire Change"),
         "tires": MessageLookupByLibrary.simpleMessage("Tires"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
