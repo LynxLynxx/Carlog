@@ -77,6 +77,12 @@ class AuthRepository {
     );
   }
 
+  Future<Option<Failure>> deleteAccount() async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.currentUser!.delete(),
+    );
+  }
+
   Future<Option<Failure>> signInWithGoogle() {
     return handleVoidResponse(() async {
       if (await GoogleSignIn().isSignedIn()) {

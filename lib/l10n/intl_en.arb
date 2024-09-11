@@ -176,5 +176,10 @@
   "cancel": "Cancel",
   "deleteAcount": "Delete Account",
   "deleteData": "Delete Data",
-  "file": "File"
+  "file": "File",
+  "doYouReallyWantToDeleteYourAccount": "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.",
+  "thisAccountWasCreated": "This account was created uniquely and can't be recreated after deletion. Are you sure you want to proceed? This action is irreversible, and all your data will be permanently lost.",
+  "areYouSure": "Are you sure?",
+  "confirm": "Confirm",
+  "tooManyRequests": "Too many requests. Try again later"
 }

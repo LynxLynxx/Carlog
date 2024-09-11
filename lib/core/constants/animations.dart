@@ -24,6 +24,7 @@ class AnimationsK extends Constants {
   //ANCHOR - OTHER
   static const delete = "assets/delete.json";
   static const emptyCalendar = "assets/empty_calendar.json";
+  static const warning = "assets/warning.json";
 
   //!SECTION
 }

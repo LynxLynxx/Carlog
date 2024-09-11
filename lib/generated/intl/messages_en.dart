@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Address should be between 1 and 100 characters"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "Have access to preview statistics on car expenses!"),
         "bodyElectricCarsTutorial": MessageLookupByLibrary.simpleMessage(
@@ -68,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "colorTheme": MessageLookupByLibrary.simpleMessage("Color Theme"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -84,6 +86,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this vehicle?"),
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
+        "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost."),
         "eg100": MessageLookupByLibrary.simpleMessage("e.g. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("e.g. 163"),
@@ -246,9 +250,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
             "Tap on the map to set the location of the action."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
+        "thisAccountWasCreated": MessageLookupByLibrary.simpleMessage(
+            "This account was created uniquely and can\'t be recreated after deletion. Are you sure you want to proceed? This action is irreversible, and all your data will be permanently lost."),
         "tireChange": MessageLookupByLibrary.simpleMessage("Tire Change"),
         "tires": MessageLookupByLibrary.simpleMessage("Tires"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "tooManyRequests": MessageLookupByLibrary.simpleMessage(
+            "Too many requests. Try again later"),
         "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
