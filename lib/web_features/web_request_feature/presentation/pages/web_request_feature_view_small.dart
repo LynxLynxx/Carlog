@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'dart:html';
 import 'dart:ui_web';
 
@@ -71,9 +73,6 @@ class _WebRequestFeatureViewLargeState extends State<WebRequestFeatureViewLarge>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 50,
-          ),
           if (loaded == false)
             const Expanded(child: Center(child: CircularProgressIndicator())),
           const Expanded(child: HtmlElementView(viewType: 'iframeElement')),

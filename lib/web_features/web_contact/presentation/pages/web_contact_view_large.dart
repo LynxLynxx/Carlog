@@ -1,4 +1,4 @@
-import 'package:carlog/web_features/web_root/presentation/widgets/rectangle_widget.dart';
+import 'package:carlog/core/constants/images.dart';
 import 'package:flutter/material.dart';
 
 class WebContactViewLarge extends StatelessWidget {
@@ -20,8 +20,7 @@ class WebContactViewLarge extends StatelessWidget {
     );
   }
 
-  Widget _buildRectangle() => const RectangleWidget(
-        top: -600,
-        left: 1000,
-      );
+  Widget _buildRectangle() => Align(
+      alignment: Alignment.topRight,
+      child: Image.asset(ImagesK.backgroundLeft));
 }

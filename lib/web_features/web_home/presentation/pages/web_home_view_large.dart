@@ -1,6 +1,5 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/web_features/web_home/presentation/widgets/web_home_widgets.dart';
-import 'package:carlog/web_features/web_root/presentation/widgets/rectangle_widget.dart';
 import 'package:flutter/material.dart';
 
 class WebHomeViewLarge extends StatelessWidget {
@@ -20,10 +19,9 @@ class WebHomeViewLarge extends StatelessWidget {
     );
   }
 
-  Widget _buildRectangle() => const RectangleWidget(
-        top: -600,
-        left: -800,
-      );
+  Widget _buildRectangle() => Align(
+      alignment: Alignment.topLeft,
+      child: Image.asset(ImagesK.backgroundRight));
 
   Widget _buildBody(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,

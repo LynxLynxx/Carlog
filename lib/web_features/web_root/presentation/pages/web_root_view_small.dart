@@ -64,6 +64,7 @@ class WebRootViewSmall extends StatelessWidget {
               func: onTap,
               isSelected: navigationShell.currentIndex == 2,
             ),
+            const _ThemeSwitcherWidget(),
           ],
         ),
       );
@@ -79,11 +80,11 @@ class _AppBarElementWidget extends StatelessWidget {
   String get getTitle {
     switch (id) {
       case 0:
-        return "HOME";
-      case 1:
-        return "SUGGEST";
-      case 2:
         return "CONTACT";
+      case 1:
+        return "HOME";
+      case 2:
+        return "SUGGEST";
       default:
         return "";
     }
