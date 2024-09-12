@@ -1668,6 +1668,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.`
+  String get doYouReallyWantToDeleteYourAccount {
+    return Intl.message(
+      'Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.',
+      name: 'doYouReallyWantToDeleteYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get areYouSure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many requests. Try again later`
+  String get tooManyRequests {
+    return Intl.message(
+      'Too many requests. Try again later',
+      name: 'tooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

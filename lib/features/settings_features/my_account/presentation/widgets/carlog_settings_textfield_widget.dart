@@ -39,6 +39,9 @@ class CarlogSettingTextField extends StatelessWidget {
             labelText,
             style: context.labelLarge,
           ),
+          const SizedBox(
+            height: 5,
+          ),
           Container(
             decoration: BoxDecoration(
               boxShadow: carlogBoxShadow(context),

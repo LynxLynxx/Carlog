@@ -114,6 +114,7 @@ class AboutAppPage extends StatelessWidget {
   Future<dynamic> contactCompanyModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
+      showDragHandle: true,
       builder: (context) => SizedBox(
         height: 220,
         width: double.infinity,

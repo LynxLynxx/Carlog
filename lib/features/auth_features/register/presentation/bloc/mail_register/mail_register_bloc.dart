@@ -34,6 +34,7 @@ class MailRegisterBloc extends Bloc<MailRegisterEvent, MailRegisterState> {
   }
 
   Future<void> _onSubmit(_Submit event, Emitter<MailRegisterState> emit) async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final mail = MailFormz.dirty(value: state.mail.value);
     final password = PasswordMailEntity.dirty(state.password.value);
     if (!Formz.validate([mail, password])) {

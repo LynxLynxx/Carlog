@@ -3,6 +3,7 @@ import 'package:carlog/core/extensions/string_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
+import 'package:carlog/features/settings_features/delete_account/presentation/widgets/delete_account_popup.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/settings_item_entity.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/settings_section_entity.dart';
 import 'package:carlog/features/settings_features/settings/domain/entities/supported_languages_entity.dart';
@@ -165,10 +166,10 @@ List<SettingsSectionEntity> settingsItems(BuildContext context) => [
         name: S.of(context).deleteData,
         items: [
           SettingsItemEntity(
-            name: S.of(context).deleteAcount,
-            icon: "assets/icons/settings/delete.svg",
-            iconColor: settingsIconColors[2],
-          ),
+              name: S.of(context).deleteAcount,
+              icon: "assets/icons/settings/delete.svg",
+              iconColor: settingsIconColors[2],
+              onTap: () => deleteAccountModalBottomSheet(context)),
         ],
       ),
     ];
