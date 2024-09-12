@@ -33,12 +33,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Acerca de"),
+        "aboutApp":
+            MessageLookupByLibrary.simpleMessage("Acerca de la aplicación"),
+        "aboutUsDescription": MessageLookupByLibrary.simpleMessage(
+            "La aplicación Carlog fue creada por RS Apps, que ha estado en el mercado desde 2023 y ha cooperado con varias empresas. Si está interesado en la cooperación, contáctenos."),
         "account": MessageLookupByLibrary.simpleMessage("CUENTA"),
+        "action": MessageLookupByLibrary.simpleMessage("Acción"),
         "addAction": MessageLookupByLibrary.simpleMessage("Agregar acción"),
         "addCar": MessageLookupByLibrary.simpleMessage("Añadir coche"),
         "address": MessageLookupByLibrary.simpleMessage("Dirección"),
         "addressValidator": MessageLookupByLibrary.simpleMessage(
             "La dirección debe tener entre 1 y 100 caracteres"),
+        "amount": MessageLookupByLibrary.simpleMessage("Cantidad"),
         "analytics": MessageLookupByLibrary.simpleMessage("Análisis"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "¡Accede a una vista previa de las estadísticas de gastos de tu coche!"),
@@ -46,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "¿Tienes un coche eléctrico? ¡También los apoyamos!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "¡Recibe notificaciones sobre los próximos servicios y reparaciones programadas!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "carBrand": MessageLookupByLibrary.simpleMessage("Marca del coche"),
         "carBrandValidator": MessageLookupByLibrary.simpleMessage(
             "El nombre de la marca del vehículo debe tener entre 2 y 20 caracteres"),
@@ -54,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "El nombre del modelo del vehículo debe tener entre 1 y 30 caracteres"),
         "carPlateValidator": MessageLookupByLibrary.simpleMessage(
             "La matrícula del vehículo debe tener entre 1 y 15 caracteres"),
+        "carWash": MessageLookupByLibrary.simpleMessage("Lavado de coche"),
         "carYearValidator": MessageLookupByLibrary.simpleMessage(
             "El año de fabricación del vehículo debe tener 4 caracteres"),
         "cars": MessageLookupByLibrary.simpleMessage("Coches"),
@@ -62,21 +71,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "colorTheme": MessageLookupByLibrary.simpleMessage("Tema de color"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("¡Felicidades!"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("Contáctanos"),
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
             "Las coordenadas deben tener entre 1 y 25 caracteres"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("¡Crea una cuenta!"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Contraseña actual"),
         "customize": MessageLookupByLibrary.simpleMessage("PERSONALIZAR"),
         "date": MessageLookupByLibrary.simpleMessage("Fecha"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "¿Está seguro de que desea eliminar este vehículo?"),
+        "developer":
+            MessageLookupByLibrary.simpleMessage("Desarrollador móvil"),
+        "eg100": MessageLookupByLibrary.simpleMessage("p. ej. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("p. ej. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("p. ej. 163"),
         "eg1984": MessageLookupByLibrary.simpleMessage("p. ej. 1984"),
         "eg2024": MessageLookupByLibrary.simpleMessage("p. ej. 2024"),
         "eg20240101": MessageLookupByLibrary.simpleMessage("p. ej. 2024-01-01"),
         "egAUM550": MessageLookupByLibrary.simpleMessage("p. ej. AUM 550"),
+        "egEuro": MessageLookupByLibrary.simpleMessage("p. ej. Euro"),
         "egHybrid": MessageLookupByLibrary.simpleMessage("p. ej. Híbrido"),
+        "egOilFilterReplacementIncluded": MessageLookupByLibrary.simpleMessage(
+            "p. ej. Reemplazo de filtro de aceite incluido"),
+        "egRememberToChangeTheOil": MessageLookupByLibrary.simpleMessage(
+            "Ejemplo: Recuerda cambiar el aceite."),
         "egSUV": MessageLookupByLibrary.simpleMessage("p. ej. SUV"),
         "egService": MessageLookupByLibrary.simpleMessage("p. ej. Servicio"),
         "egVolvo": MessageLookupByLibrary.simpleMessage("p. ej. Volvo"),
@@ -146,11 +166,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "No existe un usuario con estas credenciales."),
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, introduce una contraseña más segura."),
+        "expense": MessageLookupByLibrary.simpleMessage("Gasto"),
         "feedback": MessageLookupByLibrary.simpleMessage("RETROALIMENTACIÓN"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Tipo de combustible"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Empezar"),
+        "information": MessageLookupByLibrary.simpleMessage("Información"),
+        "insurance": MessageLookupByLibrary.simpleMessage("Seguro"),
+        "insuranceFee": MessageLookupByLibrary.simpleMessage("Cuota de seguro"),
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
         "lastName": MessageLookupByLibrary.simpleMessage("Apellido"),
+        "leadDeveloper": MessageLookupByLibrary.simpleMessage(
+            "Desarrollador móvil principal"),
         "legalInformation":
             MessageLookupByLibrary.simpleMessage("INFORMACIÓN LEGAL"),
         "library": MessageLookupByLibrary.simpleMessage("Biblioteca"),
@@ -158,16 +184,28 @@ class MessageLookup extends MessageLookupByLibrary {
             "Los litros deben tener entre 1 y 4 dígitos"),
         "logOut": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "mainDevelopers":
+            MessageLookupByLibrary.simpleMessage("Desarrolladores principales"),
+        "manageActions":
+            MessageLookupByLibrary.simpleMessage("Administrar acciones"),
         "milage": MessageLookupByLibrary.simpleMessage("Kilometraje"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "El kilometraje debe tener entre 1 y 8 dígitos"),
         "myAccount": MessageLookupByLibrary.simpleMessage("Mi cuenta"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
         "notValidEmpty": MessageLookupByLibrary.simpleMessage(
             "El campo no puede estar vacío"),
+        "note": MessageLookupByLibrary.simpleMessage("Nota"),
+        "noteValidator": MessageLookupByLibrary.simpleMessage(
+            "La nota debe tener entre 2 y 100 caracteres."),
         "notifications": MessageLookupByLibrary.simpleMessage("Notificaciones"),
+        "oilChange": MessageLookupByLibrary.simpleMessage("Cambio de aceite"),
         "or": MessageLookupByLibrary.simpleMessage("O"),
+        "other": MessageLookupByLibrary.simpleMessage("Otro"),
+        "parkingFee":
+            MessageLookupByLibrary.simpleMessage("Tarifa de aparcamiento"),
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Recuperación de contraseña"),
@@ -185,11 +223,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Recordar contraseña"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repetir la nueva contraseña"),
         "reportProblem":
             MessageLookupByLibrary.simpleMessage("Reportar problema"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Solicitar nueva función"),
+        "roadFee": MessageLookupByLibrary.simpleMessage("Peaje"),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
+        "sendEmail":
+            MessageLookupByLibrary.simpleMessage("Enviar correo electrónico"),
+        "service": MessageLookupByLibrary.simpleMessage("Servicio"),
+        "serviceFee":
+            MessageLookupByLibrary.simpleMessage("Tarifa de servicio"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
         "skip": MessageLookupByLibrary.simpleMessage("Omitir"),
         "successfullyAddedTheActivity": MessageLookupByLibrary.simpleMessage(
@@ -204,8 +250,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kilometraje actualizado correctamente"),
         "supportedLanguage": m0,
         "supportedThemes": m1,
+        "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
+            "Toca en el mapa para establecer la ubicación de la acción."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Términos de uso"),
+        "tireChange":
+            MessageLookupByLibrary.simpleMessage("Cambio de neumáticos"),
+        "tires": MessageLookupByLibrary.simpleMessage("Neumáticos"),
         "today": MessageLookupByLibrary.simpleMessage("Hoy"),
+        "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
         "type": MessageLookupByLibrary.simpleMessage("Tipo"),
         "unableToLocateYourBrand":
             MessageLookupByLibrary.simpleMessage("¿No encuentra su marca?"),
@@ -214,6 +266,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "updateCar": MessageLookupByLibrary.simpleMessage("Actualizar coche"),
         "updateMilage":
             MessageLookupByLibrary.simpleMessage("Actualizar kilometraje"),
+        "visitWebsite":
+            MessageLookupByLibrary.simpleMessage("Visitar sitio web"),
         "welocomeBack":
             MessageLookupByLibrary.simpleMessage("¡Bienvenido de nuevo!"),
         "yearOfProduction":

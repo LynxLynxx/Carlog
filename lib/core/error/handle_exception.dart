@@ -177,6 +177,10 @@ Failure _handleFirebaseAuthException(FirebaseAuthException exception) {
       return AuthFailure(
         message: tr.errorWeakPassword,
       );
+    case 'too-many-requests':
+      return AuthFailure(
+        message: tr.tooManyRequests,
+      );
     default:
       return UnknownFailure.undefinedFirebase(message: exception.code);
   }

@@ -33,6 +33,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("About the app"),
+        "aboutUsDescription": MessageLookupByLibrary.simpleMessage(
+            "The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us."),
         "account": MessageLookupByLibrary.simpleMessage("ACCOUNT"),
         "action": MessageLookupByLibrary.simpleMessage("Action"),
         "addAction": MessageLookupByLibrary.simpleMessage("Add Action"),
@@ -42,12 +46,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Address should be between 1 and 100 characters"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "Have access to preview statistics on car expenses!"),
         "bodyElectricCarsTutorial": MessageLookupByLibrary.simpleMessage(
             "Are you getting an electric car? We support them too!"),
         "bodyReciveNotifications": MessageLookupByLibrary.simpleMessage(
             "Receive notifications about upcoming services and planned repairs!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "carBrand": MessageLookupByLibrary.simpleMessage("Car Brand"),
         "carBrandValidator": MessageLookupByLibrary.simpleMessage(
             "The vehicle brand name should be between 2 and 20 characters"),
@@ -63,16 +69,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "colorTheme": MessageLookupByLibrary.simpleMessage("Color Theme"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
             "Coordinates should be between 1 and 25 characters"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create Account!"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Current password"),
         "customize": MessageLookupByLibrary.simpleMessage("CUSTOMIZE"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "deleteAcount": MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Delete Data"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this vehicle?"),
+        "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
+        "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost."),
         "eg100": MessageLookupByLibrary.simpleMessage("e.g. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("e.g. 163"),
@@ -165,6 +180,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "insuranceFee": MessageLookupByLibrary.simpleMessage("Insurance Fee"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "leadDeveloper":
+            MessageLookupByLibrary.simpleMessage("Lead Mobile Developer"),
         "legalInformation":
             MessageLookupByLibrary.simpleMessage("LEGAL INFORMATION"),
         "library": MessageLookupByLibrary.simpleMessage("Library"),
@@ -172,12 +189,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Liters should be between 1 and 4 digits"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "mainDevelopers":
+            MessageLookupByLibrary.simpleMessage("Main Developers"),
         "manageActions": MessageLookupByLibrary.simpleMessage("Manage Action"),
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("First name"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
@@ -205,11 +225,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "remindPassword":
             MessageLookupByLibrary.simpleMessage("Remind password"),
+        "repeatPassword":
+            MessageLookupByLibrary.simpleMessage("Repeat new password"),
         "reportProblem": MessageLookupByLibrary.simpleMessage("Report Problem"),
         "requestNewFeature":
             MessageLookupByLibrary.simpleMessage("Request New Feature"),
         "roadFee": MessageLookupByLibrary.simpleMessage("Road Fee"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
         "service": MessageLookupByLibrary.simpleMessage("Service"),
         "serviceFee": MessageLookupByLibrary.simpleMessage("Service Fee"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -232,6 +255,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tireChange": MessageLookupByLibrary.simpleMessage("Tire Change"),
         "tires": MessageLookupByLibrary.simpleMessage("Tires"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "tooManyRequests": MessageLookupByLibrary.simpleMessage(
+            "Too many requests. Try again later"),
         "trackSaveAnalyze":
             MessageLookupByLibrary.simpleMessage("Track, Save, Analyze"),
         "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
@@ -242,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unable to locate your model?"),
         "updateCar": MessageLookupByLibrary.simpleMessage("Update Car"),
         "updateMilage": MessageLookupByLibrary.simpleMessage("Update Milage"),
+        "visitWebsite": MessageLookupByLibrary.simpleMessage("Visit Website"),
         "welocomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
         "yearOfProduction":
             MessageLookupByLibrary.simpleMessage("Year of production"),

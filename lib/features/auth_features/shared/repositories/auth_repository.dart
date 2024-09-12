@@ -61,6 +61,28 @@ class AuthRepository {
     );
   }
 
+  Future<Option<Failure>> reAuthenticateUser({required String password}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.currentUser!
+          .reauthenticateWithCredential(EmailAuthProvider.credential(
+        email: _firebaseAuth.currentUser!.email!,
+        password: password,
+      )),
+    );
+  }
+
+  Future<Option<Failure>> changePassword({required String password}) async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.currentUser!.updatePassword(password),
+    );
+  }
+
+  Future<Option<Failure>> deleteAccount() async {
+    return handleVoidResponse(
+      () async => await _firebaseAuth.currentUser!.delete(),
+    );
+  }
+
   Future<Option<Failure>> signInWithGoogle() {
     return handleVoidResponse(() async {
       if (await GoogleSignIn().isSignedIn()) {

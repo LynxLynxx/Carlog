@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:carlog/features/auth_features/shared/entities/user_entity.dart';
 import 'package:carlog/features/auth_features/shared/repositories/auth_repository.dart';
+import 'package:carlog/features/settings_features/my_account/domain/entities/user_data_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_GetUserSession>(_onGetUserSession);
     on<_AppUserChanged>(_onAppUserChanged);
     on<_AppLogoutRequested>(_onAppLogoutRequested);
+    on<_ChangedUserData>(_onChangedUserData);
     add(const _GetUserSession());
 
     _userSubscription = _authRepository.user.listen((user) {
@@ -45,7 +47,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   _onAppLogoutRequested(
       _AppLogoutRequested event, Emitter<AuthState> emit) async {
+    emit(const _Loading());
     await _authRepository.logOut();
+  }
+
+  _onChangedUserData(_ChangedUserData event, Emitter<AuthState> emit) async {
+    final user = await _authRepository.currentUser;
+
+    emit(_Authenticated(
+      user.copyWith(
+          firstName: event.userData.firstName,
+          lastName: event.userData.lastName),
+    ));
+  }
+
+  String? get userFirstName {
+    String? userName = state.whenOrNull(
+      authenticated: (user) => user.firstName,
+    );
+
+    if (userName == "") {
+      return null;
+    } else {
+      return userName;
+    }
   }
 
   @override

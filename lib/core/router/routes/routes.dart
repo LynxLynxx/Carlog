@@ -1,5 +1,6 @@
 import 'package:carlog/core/router/entities/animation_go_route.dart';
 import 'package:carlog/core/router/entities/dialog_route.dart';
+import 'package:carlog/core/router/routes/other_routes.dart';
 import 'package:carlog/core/router/routes/shell_routes.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/login/presentation/pages/login_page.dart';
@@ -59,6 +60,7 @@ final List<RouteBase> routes = [
   //SECTION - AUTH
   shellRoutes,
   //!SECTION
+  ...otherRoutes,
 
   //SECTION - ERRORS
   //ANCHOR - UNKNOWN ERROR

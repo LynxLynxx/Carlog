@@ -1509,11 +1509,201 @@ class S {
     );
   }
 
+  /// `Current password`
+  String get currentPassword {
+    return Intl.message(
+      'Current password',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repeat new password`
+  String get repeatPassword {
+    return Intl.message(
+      'Repeat new password',
+      name: 'repeatPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About the app`
+  String get aboutApp {
+    return Intl.message(
+      'About the app',
+      name: 'aboutApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message(
+      'Contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.`
+  String get aboutUsDescription {
+    return Intl.message(
+      'The Carlog application was created by RS Apps, which has been on the market since 2023 and has cooperated with several companies. If you are interested in cooperation, contact us.',
+      name: 'aboutUsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Developers`
+  String get mainDevelopers {
+    return Intl.message(
+      'Main Developers',
+      name: 'mainDevelopers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lead Mobile Developer`
+  String get leadDeveloper {
+    return Intl.message(
+      'Lead Mobile Developer',
+      name: 'leadDeveloper',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Developer`
+  String get developer {
+    return Intl.message(
+      'Mobile Developer',
+      name: 'developer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Email`
+  String get sendEmail {
+    return Intl.message(
+      'Send Email',
+      name: 'sendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Visit Website`
+  String get visitWebsite {
+    return Intl.message(
+      'Visit Website',
+      name: 'visitWebsite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAcount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAcount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Data`
+  String get deleteData {
+    return Intl.message(
+      'Delete Data',
+      name: 'deleteData',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `File`
   String get file {
     return Intl.message(
       'File',
       name: 'file',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.`
+  String get doYouReallyWantToDeleteYourAccount {
+    return Intl.message(
+      'Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.',
+      name: 'doYouReallyWantToDeleteYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get areYouSure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many requests. Try again later`
+  String get tooManyRequests {
+    return Intl.message(
+      'Too many requests. Try again later',
+      name: 'tooManyRequests',
       desc: '',
       args: [],
     );
