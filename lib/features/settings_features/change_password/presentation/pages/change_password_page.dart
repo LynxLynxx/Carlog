@@ -23,9 +23,7 @@ class ChangePasswordPage extends StatelessWidget {
 }
 
 class _ChangePasswordView extends StatefulWidget {
-  const _ChangePasswordView({
-    super.key,
-  });
+  const _ChangePasswordView();
 
   @override
   State<_ChangePasswordView> createState() => _ChangePasswordViewState();
