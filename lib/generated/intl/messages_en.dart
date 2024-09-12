@@ -192,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mainDevelopers":
             MessageLookupByLibrary.simpleMessage("Main Developers"),
         "manageActions": MessageLookupByLibrary.simpleMessage("Manage Action"),
+        "message": MessageLookupByLibrary.simpleMessage("Message"),
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
@@ -233,10 +234,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "roadFee": MessageLookupByLibrary.simpleMessage("Road Fee"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
+        "sender": MessageLookupByLibrary.simpleMessage("Sender"),
         "service": MessageLookupByLibrary.simpleMessage("Service"),
         "serviceFee": MessageLookupByLibrary.simpleMessage("Service Fee"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "subject": MessageLookupByLibrary.simpleMessage("Subject"),
         "successfullyAddedTheActivity": MessageLookupByLibrary.simpleMessage(
             "Successfully added the activity"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(

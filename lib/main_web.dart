@@ -5,6 +5,7 @@ import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/core/web_router/router.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
+import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,12 +23,17 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+  // await dotenv.load(fileName: ".env");
+
   Bloc.observer = MyBlocObserver();
   // configureDependencies();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
         create: (context) => ThemeModeCubit(),
+      ),
+      BlocProvider(
+        create: (context) => WebContactCubit(),
       ),
       BlocProvider(
         lazy: false,

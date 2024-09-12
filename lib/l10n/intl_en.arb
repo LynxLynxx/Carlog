@@ -181,8 +181,10 @@
   "areYouSure": "Are you sure?",
   "confirm": "Confirm",
   "tooManyRequests": "Too many requests. Try again later",
-  "file": "File",
   "trackSaveAnalyze": "Track, Save, Analyze",
   "yourCarsJourney": "Your Car's journey",
-  "getCarlogNow": "Get Carlog now and take control of your car's history. Available on the App Store and Google Play."
+  "getCarlogNow": "Get Carlog now and take control of your car's history. Available on the App Store and Google Play.",
+  "sender": "Sender",
+  "subject": "Subject",
+  "message": "Message"
 }
