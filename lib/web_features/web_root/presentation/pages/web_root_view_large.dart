@@ -12,9 +12,9 @@ class WebRootViewLarge extends StatelessWidget {
   final PageController pageController = PageController(initialPage: 1);
 
   List<Widget> get pages => [
-        const WebRequestFeaturePage(),
-        const WebHomeViewLarge(),
         const WebContactViewLarge(),
+        const WebHomeViewLarge(),
+        const WebRequestFeaturePage(),
       ];
 
   @override

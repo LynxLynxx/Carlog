@@ -58,11 +58,11 @@ class _AppBarElementWidget extends StatelessWidget {
   String get getTitle {
     switch (id) {
       case 0:
-        return "SUGGEST";
+        return "CONTACT";
       case 1:
         return "HOME";
       case 2:
-        return "CONTACT";
+        return "SUGGEST";
       default:
         return "";
     }

@@ -16,9 +16,9 @@ final StatefulShellRoute webShellRoutes = StatefulShellRoute.indexedStack(
   builder: (context, state, navigationShell) =>
       WebRootPage(navigationShell: navigationShell),
   branches: [
+    contactBranches,
     homeBranches,
     requestFeatureBranches,
-    contactBranches,
   ],
 );
 
