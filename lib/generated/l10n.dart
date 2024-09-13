@@ -1259,10 +1259,10 @@ class S {
     );
   }
 
-  /// `Filed cannot be empty`
+  /// `Field cannot be empty`
   String get notValidEmpty {
     return Intl.message(
-      'Filed cannot be empty',
+      'Field cannot be empty',
       name: 'notValidEmpty',
       desc: '',
       args: [],

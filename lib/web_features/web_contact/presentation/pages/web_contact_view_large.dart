@@ -1,7 +1,9 @@
+import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
+import 'package:carlog/web_features/web_contact/presentation/widgets/contact_button.dart';
 import 'package:carlog/web_features/web_contact/presentation/widgets/contact_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +16,7 @@ class WebContactViewLarge extends StatelessWidget {
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
 
-  final GlobalKey contactGlobalKey = GlobalKey<FormState>();
+  final contactGlobalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,35 +52,82 @@ class WebContactViewLarge extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        ContactForm(
-                            senderController: senderController,
-                            emailController: emailController,
-                            subjectController: subjectController,
-                            messageController: messageController,
-                            contactGlobalKey: contactGlobalKey),
-                        Container(
-                          margin: PaddingsK.h50,
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 16, 20, 25),
-                            child: FilledButton(
-                              onPressed: () => context
-                                  .read<WebContactCubit>()
-                                  .sendMail(
-                                      senderController.text,
-                                      emailController.text,
-                                      subjectController.text,
-                                      messageController.text),
-                              child: false
-                                  ? Transform.scale(
-                                      scale: 0.7,
-                                      child: const CircularProgressIndicator(
-                                        strokeWidth: 6,
-                                      ),
-                                    )
-                                  : const Text("Send"),
-                            ),
-                          ),
+                        BlocConsumer<WebContactCubit, WebContactState>(
+                          listener: (context, state) {
+                            state.maybeWhen(
+                                orElse: () {},
+                                data: () {
+                                  senderController.clear();
+                                  emailController.clear();
+                                  subjectController.clear();
+                                  messageController.clear();
+                                });
+                          },
+                          builder: (context, state) {
+                            return AnimatedSwitcher(
+                              duration: DurationsK.d500,
+                              child: state.when(
+                                initial: () => Column(
+                                  children: [
+                                    ContactForm(
+                                        senderController: senderController,
+                                        emailController: emailController,
+                                        subjectController: subjectController,
+                                        messageController: messageController,
+                                        contactGlobalKey: contactGlobalKey),
+                                    ContactButton(
+                                        sender: senderController.text,
+                                        email: emailController.text,
+                                        subject: subjectController.text,
+                                        message: messageController.text,
+                                        isLoading: false,
+                                        isActive: true,
+                                        contactFormKey: contactGlobalKey),
+                                  ],
+                                ),
+                                loading: () => Column(
+                                  children: [
+                                    ContactForm(
+                                        senderController: senderController,
+                                        emailController: emailController,
+                                        subjectController: subjectController,
+                                        messageController: messageController,
+                                        contactGlobalKey: contactGlobalKey),
+                                    ContactButton(
+                                        sender: senderController.text,
+                                        email: emailController.text,
+                                        subject: subjectController.text,
+                                        message: messageController.text,
+                                        isLoading: true,
+                                        isActive: false,
+                                        contactFormKey: contactGlobalKey)
+                                  ],
+                                ),
+                                failure: (failure) => Column(
+                                  children: [
+                                    ContactForm(
+                                        senderController: senderController,
+                                        emailController: emailController,
+                                        subjectController: subjectController,
+                                        messageController: messageController,
+                                        contactGlobalKey: contactGlobalKey),
+                                    ContactButton(
+                                        sender: senderController.text,
+                                        email: emailController.text,
+                                        subject: subjectController.text,
+                                        message: messageController.text,
+                                        isLoading: false,
+                                        isActive: true,
+                                        contactFormKey: contactGlobalKey),
+                                  ],
+                                ),
+                                data: () => Text(
+                                    "Your message has been sent successfully!",
+                                    style: context.bodyLarge!
+                                        .copyWith(fontWeight: FontWeight.w600)),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

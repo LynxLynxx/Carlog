@@ -201,7 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notValidEmpty":
-            MessageLookupByLibrary.simpleMessage("Filed cannot be empty"),
+            MessageLookupByLibrary.simpleMessage("Field cannot be empty"),
         "note": MessageLookupByLibrary.simpleMessage("Note"),
         "noteValidator": MessageLookupByLibrary.simpleMessage(
             "Note should be between 2 and 100 characters"),

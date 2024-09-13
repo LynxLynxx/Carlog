@@ -136,7 +136,7 @@
   "name": "First name",
   "lastName": "Last name",
   "save": "Save",
-  "notValidEmpty": "Filed cannot be empty",
+  "notValidEmpty": "Field cannot be empty",
   "information": "Information",
   "tapOnTheMap": "Tap on the map to set the location of the action.",
   "manageActions": "Manage Action",
