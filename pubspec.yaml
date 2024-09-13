@@ -64,6 +64,8 @@ dependencies:
   firebase_storage: ^12.2.0
   js: ^0.6.7
   emailjs: ^4.0.0
+  envied: ^0.5.4+1
+  envied_generator: ^0.5.4+1
 
 dev_dependencies:
   flutter_test:

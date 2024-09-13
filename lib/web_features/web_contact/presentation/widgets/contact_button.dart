@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ContactButton extends StatelessWidget {
-  final String sender;
-  final String email;
-  final String subject;
-  final String message;
+  final TextEditingController sender;
+  final TextEditingController email;
+  final TextEditingController subject;
+  final TextEditingController message;
   final bool isLoading;
   final bool isActive;
   final GlobalKey<FormState> contactFormKey;
@@ -36,9 +36,8 @@ class ContactButton extends StatelessWidget {
                   if (!valid) {
                     return;
                   }
-                  context
-                      .read<WebContactCubit>()
-                      .sendMail(sender, email, subject, message);
+                  context.read<WebContactCubit>().sendMail(
+                      sender.text, email.text, subject.text, message.text);
                 }
               : null,
           child: isLoading

@@ -1,3 +1,4 @@
+import 'package:carlog/env/env.dart';
 import 'package:carlog/web_features/web_contact/domain/entities/contact_entity.dart';
 import 'package:emailjs/emailjs.dart' as emailjs;
 
@@ -12,23 +13,24 @@ class ContactDatasourceImpl implements ContactDatasource {
   Future<void> sendEmail(
     ContactEntity contact,
   ) async {
-    Map<String, dynamic> templateParams = {
-      'from_email': contact.email,
-      'from_name': contact.sender,
-      'subject': contact.subject,
-      'message': contact.message,
-    };
-
     try {
-      
-      print('SUCCESS!');
+      Map<String, dynamic> templateParams = {
+        'from_email': contact.email,
+        'from_name': contact.sender,
+        'subject': contact.subject,
+        'message': contact.message,
+      };
+      await emailjs.send(
+        Env.serviceId,
+        Env.templateId,
+        templateParams,
+        emailjs.Options(
+          publicKey: Env.publicKey,
+          privateKey: Env.privateKey,
+        ),
+      );
     } catch (error) {
       print('$error');
     }
-    // try {
-    //   await FirebaseFirestore.instance.collection(COLLECTION_CONTACT).add(contact.toJson());
-    // } catch (e) {
-    //   handleException(e);
-    // }
   }
 }
