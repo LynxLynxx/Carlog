@@ -37,7 +37,7 @@ Future<void> main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (context) => ThemeModeCubit(),
+        create: (context) => ThemeModeCubit()..changeTheme(ThemeMode.light),
       ),
       BlocProvider(
         create: (context) =>
