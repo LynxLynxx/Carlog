@@ -1,6 +1,7 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -58,11 +59,11 @@ class _AppBarElementWidget extends StatelessWidget {
   String get getTitle {
     switch (id) {
       case 0:
-        return "CONTACT";
+        return S.current.contact;
       case 1:
-        return "HOME";
+        return S.current.home;
       case 2:
-        return "SUGGEST";
+        return S.current.suggest;
       default:
         return "";
     }

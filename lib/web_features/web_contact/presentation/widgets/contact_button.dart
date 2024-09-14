@@ -1,4 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,7 @@ class ContactButton extends StatelessWidget {
                     strokeWidth: 6,
                   ),
                 )
-              : const Text("Send"),
+              : Text(S.of(context).send),
         ),
       ),
     );

@@ -30,7 +30,7 @@ class ContactDatasourceImpl implements ContactDatasource {
         ),
       );
     } catch (error) {
-      print('$error');
+      throw Exception(error);
     }
   }
 }

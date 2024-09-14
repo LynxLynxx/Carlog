@@ -1,12 +1,15 @@
+import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/durations.dart';
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
 import 'package:carlog/web_features/web_contact/presentation/widgets/contact_button.dart';
 import 'package:carlog/web_features/web_contact/presentation/widgets/contact_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class WebContactViewLarge extends StatelessWidget {
   WebContactViewLarge({super.key});
@@ -30,15 +33,15 @@ class WebContactViewLarge extends StatelessWidget {
             children: [
               const Expanded(child: SizedBox()),
               Expanded(
-                  flex: 5,
+                  flex: 6,
                   child: Container(
-                    padding: PaddingsK.h30,
+                    padding: PaddingsK.h50,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Contact Us",
+                          S.of(context).contactUs,
                           style: context.headlineMedium!
                               .copyWith(fontWeight: FontWeight.w700),
                         ),
@@ -46,7 +49,7 @@ class WebContactViewLarge extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!",
+                          S.of(context).feelFreeToReachOut,
                           style: context.titleMedium,
                         ),
                         const SizedBox(
@@ -122,7 +125,7 @@ class WebContactViewLarge extends StatelessWidget {
                                   ],
                                 ),
                                 data: () => Text(
-                                    "Your message has been sent successfully!",
+                                    S.of(context).yourMessageHasBeenSent,
                                     style: context.bodyLarge!
                                         .copyWith(fontWeight: FontWeight.w600)),
                               ),
@@ -132,7 +135,13 @@ class WebContactViewLarge extends StatelessWidget {
                       ],
                     ),
                   )),
-              const Expanded(flex: 5, child: SizedBox()),
+              Expanded(
+                  flex: 5,
+                  child: LottieBuilder.asset(
+                    AnimationsK.contact,
+                    width: 300,
+                    height: MediaQuery.of(context).size.height * 0.7,
+                  )),
             ],
           ),
         ],

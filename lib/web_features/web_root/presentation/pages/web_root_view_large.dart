@@ -39,15 +39,7 @@ class WebRootViewLarge extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         controller: pageController,
         itemCount: pages.length,
-        // physics: const NeverScrollableScrollPhysics(),
-        // onPageChanged: (value) {
-        //   if (!manualChange) {
-        //     Instances.navigationShell!.goBranch(value);
-        //     context
-        //         .read<ApplicationBloc>()
-        //         .add(ApplicationEvent.changeIndex(value));
-        //   }
-        // },
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => pages[index],
       );
 }

@@ -10,6 +10,6 @@ class WebContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveWidget.isLargeScreen(context)
         ? WebContactViewLarge()
-        : const WebContactViewSmall();
+        : WebContactViewSmall();
   }
 }

@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contact"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
             "Coordinates should be between 1 and 25 characters"),
@@ -170,11 +171,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please eneter a stronger password"),
         "expense": MessageLookupByLibrary.simpleMessage("Expense"),
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
+        "feelFreeToReachOut": MessageLookupByLibrary.simpleMessage(
+            "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!"),
         "file": MessageLookupByLibrary.simpleMessage("File"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Fuel Type"),
         "getCarlogNow": MessageLookupByLibrary.simpleMessage(
             "Get Carlog now and take control of your car\'s history. Available on the App Store and Google Play."),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "information": MessageLookupByLibrary.simpleMessage("Information"),
         "insurance": MessageLookupByLibrary.simpleMessage("Insurance"),
         "insuranceFee": MessageLookupByLibrary.simpleMessage("Insurance Fee"),
@@ -233,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Request New Feature"),
         "roadFee": MessageLookupByLibrary.simpleMessage("Road Fee"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
         "sender": MessageLookupByLibrary.simpleMessage("Sender"),
         "service": MessageLookupByLibrary.simpleMessage("Service"),
@@ -250,6 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully edited the vehicle"),
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Successfully updated the milage"),
+        "suggest": MessageLookupByLibrary.simpleMessage("Suggest"),
         "supportedLanguage": m0,
         "supportedThemes": m1,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
@@ -282,6 +288,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "You have successfully created your car!"),
         "yourCarsJourney":
-            MessageLookupByLibrary.simpleMessage("Your Car\'s journey")
+            MessageLookupByLibrary.simpleMessage("Your Car\'s journey"),
+        "yourMessageHasBeenSent": MessageLookupByLibrary.simpleMessage(
+            "Your message has been sent successfully!")
       };
 }

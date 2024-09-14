@@ -1768,6 +1768,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Contact`
+  String get contact {
+    return Intl.message(
+      'Contact',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggest`
+  String get suggest {
+    return Intl.message(
+      'Suggest',
+      name: 'suggest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!`
+  String get feelFreeToReachOut {
+    return Intl.message(
+      'Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!',
+      name: 'feelFreeToReachOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your message has been sent successfully!`
+  String get yourMessageHasBeenSent {
+    return Intl.message(
+      'Your message has been sent successfully!',
+      name: 'yourMessageHasBeenSent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
