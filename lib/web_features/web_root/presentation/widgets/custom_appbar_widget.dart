@@ -33,16 +33,21 @@ class CustomAppBar extends StatelessWidget {
             id: 0,
             isSelected: navigationShell.currentIndex == 0,
             func: onTap,
+            navigationShell: navigationShell,
           ),
           _AppBarElementWidget(
-              id: 1,
-              isSelected: navigationShell.currentIndex == 1,
-              func: onTap),
+            id: 1,
+            isSelected: navigationShell.currentIndex == 1,
+            func: onTap,
+            navigationShell: navigationShell,
+          ),
           _AppBarElementWidget(
-              id: 2,
-              isSelected: navigationShell.currentIndex == 2,
-              func: onTap),
-          const _ThemeSwitcherWidget(),
+            id: 2,
+            isSelected: navigationShell.currentIndex == 2,
+            func: onTap,
+            navigationShell: navigationShell,
+          ),
+          _ThemeSwitcherWidget(navigationShell),
         ],
       ),
     );
@@ -50,11 +55,15 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class _AppBarElementWidget extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
   final int id;
   final bool isSelected;
   final Function(int index) func;
   const _AppBarElementWidget(
-      {required this.id, required this.isSelected, required this.func});
+      {required this.id,
+      required this.isSelected,
+      required this.func,
+      required this.navigationShell});
 
   String get getTitle {
     switch (id) {
@@ -82,9 +91,13 @@ class _AppBarElementWidget extends StatelessWidget {
           style: context.displayLarge!.copyWith(
               fontSize: 30,
               fontWeight: isSelected ? FontWeight.w700 : FontWeight.w300,
-              color: isSelected
-                  ? context.primaryColor
-                  : context.onPrimaryContainer),
+              color: context.isDark
+                  ? navigationShell.currentIndex == 0
+                      ? context.primaryContainer
+                      : context.onPrimaryContainer
+                  : isSelected
+                      ? context.primaryColor
+                      : context.onPrimaryContainer),
         ),
       ),
     );
@@ -92,7 +105,8 @@ class _AppBarElementWidget extends StatelessWidget {
 }
 
 class _ThemeSwitcherWidget extends StatelessWidget {
-  const _ThemeSwitcherWidget();
+  final StatefulNavigationShell navigationShell;
+  const _ThemeSwitcherWidget(this.navigationShell);
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +119,13 @@ class _ThemeSwitcherWidget extends StatelessWidget {
             context.read<ThemeModeCubit>().changeTheme(mode);
           },
           icon: Icon(
-              context.isDark ? Icons.nightlight : Icons.nightlight_outlined)),
+            context.isDark ? Icons.nightlight : Icons.nightlight_outlined,
+            color: context.isDark
+                ? navigationShell.currentIndex == 0
+                    ? context.primaryContainer
+                    : context.onPrimaryContainer
+                : context.onPrimaryContainer,
+          )),
     );
   }
 }
