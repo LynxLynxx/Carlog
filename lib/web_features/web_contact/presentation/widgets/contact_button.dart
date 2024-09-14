@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/events/presentation/cubit/events_cubit.dart';
 import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +40,9 @@ class ContactButton extends StatelessWidget {
                   }
                   context.read<WebContactCubit>().sendMail(
                       sender.text, email.text, subject.text, message.text);
+                  context
+                      .read<EventsCubit>()
+                      .logEvent(FirebaseEventType.sendMail);
                 }
               : null,
           child: isLoading

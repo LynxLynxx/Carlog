@@ -66,6 +66,8 @@ dependencies:
   emailjs: ^4.0.0
   envied: ^0.5.4+1
   envied_generator: ^0.5.4+1
+  firebase_analytics: ^11.3.1
+  device_info_plus: ^10.1.2
 
 dev_dependencies:
   flutter_test:

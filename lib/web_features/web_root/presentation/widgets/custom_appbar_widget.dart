@@ -2,6 +2,7 @@ import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/events/presentation/cubit/events_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,13 +13,14 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
       {super.key, required this.navigationShell, required this.pageController});
 
-  void onTap(index) {
+  void onTap(int index, BuildContext context) {
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+    context.read<EventsCubit>().logEvent(FirebaseEventType.values[index]);
   }
 
   @override
@@ -58,7 +60,7 @@ class _AppBarElementWidget extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
   final int id;
   final bool isSelected;
-  final Function(int index) func;
+  final Function(int index, BuildContext context) func;
   const _AppBarElementWidget(
       {required this.id,
       required this.isSelected,
@@ -81,7 +83,7 @@ class _AppBarElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => func(id),
+      onTap: () => func(id, context),
       child: Container(
         alignment: Alignment.center,
         width: getTitle.length * 25,

@@ -5,9 +5,13 @@ import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/core/web_router/router.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
+import 'package:carlog/firebase_options.dart';
+import 'package:carlog/shared/device/presentation/cubit/device_cubit.dart';
+import 'package:carlog/shared/events/presentation/cubit/events_cubit.dart';
 import 'package:carlog/web_features/web_contact/domain/repositories/contact_repository.dart';
 import 'package:carlog/web_features/web_contact/domain/usecases/send_email_usecase.dart';
 import 'package:carlog/web_features/web_contact/presentation/cubit/web_contact_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +24,9 @@ import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -39,6 +46,13 @@ Future<void> main() async {
       BlocProvider(
         lazy: false,
         create: (context) => LanguageCubit(Intl(), S()),
+      ),
+      BlocProvider(
+        lazy: false,
+        create: (context) => DeviceCubit(),
+      ),
+      BlocProvider(
+        create: (context) => EventsCubit(context.read<DeviceCubit>()),
       ),
     ],
     child: const MyApp(),
