@@ -58,3 +58,5 @@ l10n.yaml
 firebase.json
 .firebaserc
 function.zip
+
+.env
