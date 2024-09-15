@@ -21,6 +21,7 @@ class FcmBloc extends Bloc<FcmEvent, FcmState> {
   FcmBloc()
       : _fcm = FirebaseMessaging.instance,
         super(const _Initial()) {
+    _fcm.subscribeToTopic("all");
     _startListenMessages();
     on<_Notification>(_onNotification);
   }
@@ -41,7 +42,6 @@ class FcmBloc extends Bloc<FcmEvent, FcmState> {
     RemoteMessage? initialMessage = await _fcm.getInitialMessage();
     if (initialMessage != null) {
       _handleBackgroundMessage(initialMessage);
-      // _handleMessage(initialMessage);
     }
 
     _fcmMessageSub = FirebaseMessaging.onMessage
