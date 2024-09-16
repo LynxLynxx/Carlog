@@ -9,6 +9,7 @@ import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutoria
 import 'package:carlog/features/other_features/error/presentation/cubit/network_connection_cubit.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
+import 'package:carlog/shared/push_notifications/bloc/fcm/fcm_bloc.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,6 +54,10 @@ Future<void> main() async {
       BlocProvider(
         lazy: false,
         create: (context) => LanguageCubit(Intl(), S()),
+      ),
+      BlocProvider(
+        lazy: false,
+        create: (context) => FcmBloc(),
       ),
     ],
     child: const MyApp(),
