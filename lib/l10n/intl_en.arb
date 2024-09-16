@@ -136,7 +136,7 @@
   "name": "First name",
   "lastName": "Last name",
   "save": "Save",
-  "notValidEmpty": "Filed cannot be empty",
+  "notValidEmpty": "Field cannot be empty",
   "information": "Information",
   "tapOnTheMap": "Tap on the map to set the location of the action.",
   "manageActions": "Manage Action",
@@ -180,5 +180,17 @@
   "doYouReallyWantToDeleteYourAccount": "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost.",
   "areYouSure": "Are you sure?",
   "confirm": "Confirm",
-  "tooManyRequests": "Too many requests. Try again later"
+  "tooManyRequests": "Too many requests. Try again later",
+  "trackSaveAnalyze": "Track, Save, Analyze",
+  "yourCarsJourney": "Your Car's journey",
+  "getCarlogNow": "Get Carlog now and take control of your car's history. Available on the App Store and Google Play.",
+  "sender": "Sender",
+  "subject": "Subject",
+  "message": "Message",
+  "contact": "Contact",
+  "home": "Home",
+  "suggest": "Suggest",
+  "send": "Send",
+  "feelFreeToReachOut": "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!",
+  "yourMessageHasBeenSent": "Your message has been sent successfully!"
 }

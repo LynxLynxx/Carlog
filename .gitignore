@@ -60,3 +60,4 @@ firebase.json
 function.zip
 
 .env
+env.g.dart

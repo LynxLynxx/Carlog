@@ -1,7 +1,6 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:carlog/core/services/secure_storage_service.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
@@ -108,11 +107,11 @@ class LoginPageView extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await SecureStorageService().resetFirstEntryToApp();
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     await SecureStorageService().resetFirstEntryToApp();
+      //   },
+      // ),
     );
   }
 }

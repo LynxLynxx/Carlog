@@ -1259,10 +1259,10 @@ class S {
     );
   }
 
-  /// `Filed cannot be empty`
+  /// `Field cannot be empty`
   String get notValidEmpty {
     return Intl.message(
-      'Filed cannot be empty',
+      'Field cannot be empty',
       name: 'notValidEmpty',
       desc: '',
       args: [],
@@ -1704,6 +1704,126 @@ class S {
     return Intl.message(
       'Too many requests. Try again later',
       name: 'tooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track, Save, Analyze`
+  String get trackSaveAnalyze {
+    return Intl.message(
+      'Track, Save, Analyze',
+      name: 'trackSaveAnalyze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Car's journey`
+  String get yourCarsJourney {
+    return Intl.message(
+      'Your Car\'s journey',
+      name: 'yourCarsJourney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Carlog now and take control of your car's history. Available on the App Store and Google Play.`
+  String get getCarlogNow {
+    return Intl.message(
+      'Get Carlog now and take control of your car\'s history. Available on the App Store and Google Play.',
+      name: 'getCarlogNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sender`
+  String get sender {
+    return Intl.message(
+      'Sender',
+      name: 'sender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subject`
+  String get subject {
+    return Intl.message(
+      'Subject',
+      name: 'subject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message`
+  String get message {
+    return Intl.message(
+      'Message',
+      name: 'message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact`
+  String get contact {
+    return Intl.message(
+      'Contact',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggest`
+  String get suggest {
+    return Intl.message(
+      'Suggest',
+      name: 'suggest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!`
+  String get feelFreeToReachOut {
+    return Intl.message(
+      'Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!',
+      name: 'feelFreeToReachOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your message has been sent successfully!`
+  String get yourMessageHasBeenSent {
+    return Intl.message(
+      'Your message has been sent successfully!',
+      name: 'yourMessageHasBeenSent',
       desc: '',
       args: [],
     );

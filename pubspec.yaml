@@ -16,8 +16,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  firebase_core: ^2.30.0
-  firebase_auth: ^4.19.4
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.2.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
@@ -32,17 +32,17 @@ dependencies:
   dartz: ^0.10.1
   google_sign_in: ^6.2.1
   formz: ^0.7.0
-  cloud_firestore: ^4.17.2
+  cloud_firestore: ^5.4.0
 
   flutter_localizations:
     sdk: flutter
   intl: any
-  arb_translate: ^0.0.1
+  arb_translate: ^1.0.0
 
   auto_size_text: ^3.0.0
   connectivity_plus: ^6.0.3
   dots_indicator: ^3.0.0
-  circular_menu: ^3.0.0
+  circular_menu: ^4.0.0
   star_menu: ^4.0.1
   animated_snack_bar: ^0.4.0
   dropdown_button2: ^2.3.9
@@ -56,12 +56,18 @@ dependencies:
   uuid: ^4.4.2
 
   webview_flutter: ^4.8.0
-  cloud_functions: ^4.7.6
+  cloud_functions: ^5.1.0
   url_launcher: ^6.3.0
 
   file_picker: ^8.0.7
   flutter_image_compress: ^2.3.0
-  firebase_storage: ^11.7.7
+  firebase_storage: ^12.2.0
+  js: ^0.6.7
+  emailjs: ^4.0.0
+  envied: ^0.5.4+1
+  envied_generator: ^0.5.4+1
+  firebase_analytics: ^11.3.1
+  device_info_plus: ^10.1.2
   permission_handler: ^11.3.1
   firebase_messaging: ^14.9.4
 
@@ -75,14 +81,14 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.2
+  flutter_lints: ^4.0.0
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
   injectable_generator: ^2.6.1
   bloc_test: ^9.1.7
   mockito: ^5.4.4
   mocktail_image_network: ^1.1.0
-  firebase_auth_mocks: ^0.13.0
+  firebase_auth_mocks: ^0.14.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
