@@ -45,10 +45,12 @@ class FcmTokenBloc extends Bloc<FcmTokenEvent, FcmTokenState> {
     }
     final pushNotificationPermission = await Permission.notification.status;
     if (pushNotificationPermission != PermissionStatus.granted) {
+      //TODO check iOS
+      // ignore: unused_local_variable
       final requestPermission = await Permission.notification.request();
-      if (requestPermission.isPermanentlyDenied) {
-        openAppSettings();
-      }
+      // if (requestPermission.isPermanentlyDenied) {
+      //   openAppSettings();
+      // }
     }
   }
 }
