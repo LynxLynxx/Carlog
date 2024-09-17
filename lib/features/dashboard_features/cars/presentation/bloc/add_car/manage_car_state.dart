@@ -4,23 +4,13 @@ part of 'manage_car_bloc.dart';
 
 enum CarTypeEnum {
   Bus,
-  Cabriolet,
-  Campervan,
-  Coupe,
-  Cuv,
+  Cabrio,
   Hatchback,
-  Limousine,
-  Micro,
-  Minivan,
-  Muscle,
   Pickup,
-  Roadster,
   Sedan,
-  Sport,
   Suv,
-  Super,
-  Truck,
-  Van
+  Wagon,
+  Other,
 }
 
 enum FuelTypeEnum {

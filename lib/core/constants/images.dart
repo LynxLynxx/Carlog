@@ -5,6 +5,7 @@ class ImagesK extends Constants {
 
   static const assets = "assets";
   static const icons = "$assets/icons";
+  static const cars = "$assets/cars";
 
   //ANCHOR - HOME
   static const home = "$icons/home_icon.svg";
@@ -52,6 +53,16 @@ class ImagesK extends Constants {
   static const webIphone = "$assets/web_iphone.png";
   static const appAppStore = "$assets/app_app_store.png";
   static const appGooglePlay = "$assets/app_google_play.png";
+
+  //ANCHOR - CARS
+  static const bus = "$cars/bus.png";
+  static const cabrio = "$cars/cabrio.png";
+  static const hatchback = "$cars/hatchback.png";
+  static const pickup = "$cars/pickup.png";
+  static const sedan = "$cars/sedan.png";
+  static const suv = "$cars/suv.png";
+  static const wagon = "$cars/wagon.png";
+
 
   //!SECTION
 }

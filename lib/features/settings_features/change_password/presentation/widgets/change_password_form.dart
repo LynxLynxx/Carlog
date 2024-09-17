@@ -42,6 +42,8 @@ class _UserDataFormState extends State<ChangePasswordForm> {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.continueAction,
             textCapitalization: TextCapitalization.words,
+            obscure: true,
+            maxLines: 1,
             onEditingComplete: (_) {
               FocusScope.of(context).nextFocus();
             },
@@ -58,6 +60,8 @@ class _UserDataFormState extends State<ChangePasswordForm> {
             focusNode: widget.newPasswordScope,
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.words,
+            obscure: true,
+            maxLines: 1,
             onEditingComplete: (_) {
               FocusScope.of(context).nextFocus();
             },
@@ -76,6 +80,8 @@ class _UserDataFormState extends State<ChangePasswordForm> {
             textCapitalization: TextCapitalization.words,
             textController: widget.reNewPasswordController,
             onEditingComplete: widget.onEditingComplete,
+            obscure: true,
+            maxLines: 1,
             validator: (value) {
               if (value == "" || value == null) {
                 return S.of(context).notValidEmpty;

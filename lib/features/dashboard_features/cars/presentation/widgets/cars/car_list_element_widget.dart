@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
@@ -10,6 +11,29 @@ import 'package:go_router/go_router.dart';
 class CarListElementWidget extends StatelessWidget {
   final CarFirebaseEntity carEntity;
   const CarListElementWidget({super.key, required this.carEntity});
+
+  String get getImage {
+    switch (carEntity.carType) {
+      case "Sedan":
+        return ImagesK.sedan;
+      case "SUV":
+        return ImagesK.suv;
+      case "Bus":
+        return ImagesK.bus;
+      case "Cabrio":
+        return ImagesK.cabrio;
+      case "Pickup":
+        return ImagesK.pickup;
+      case "Wagon":
+        return ImagesK.wagon;
+      case "Hatchback":
+        return ImagesK.hatchback;
+      case "Other":
+        return ImagesK.sedan;
+      default:
+        return ImagesK.sedan;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +76,17 @@ class CarListElementWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Image.asset(
-                    "assets/car_sedan.png",
-                    alignment: Alignment.bottomCenter,
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.bottomLeft,
+                    child: Image.asset(
+                      getImage,
+                      fit: BoxFit.fitHeight,
+                      height: 70,
+                      width: 200,
+                      alignment: Alignment.bottomLeft,
+                    ),
                   ),
                 ),
                 Column(

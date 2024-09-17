@@ -1,5 +1,4 @@
 import 'package:carlog/core/constants/formats.dart';
-import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
@@ -10,7 +9,6 @@ import 'package:carlog/features/dashboard_features/home/presentation/widgets/tim
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class TimelineChildWidget extends StatelessWidget {
@@ -75,32 +73,33 @@ class _TimelineChildWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              carActionDayEntity.carActions.isNotEmpty
-                  ? BlocBuilder<ServiceNotificationBloc,
-                      ServiceNotificationState>(
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () => context
-                              .read<ServiceNotificationBloc>()
-                              .add(ServiceNotificationEvent
-                                  .changeNotificationStatus(
-                                carActionDayEntity.carId!,
-                                carActionDayEntity.actionId,
-                              )),
-                          child: SvgPicture.asset(
-                            state.notificationStatus
-                                ? ImagesK.bellFill
-                                : ImagesK.bell,
-                            width: 30,
-                            height: 30,
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                                context.onPrimaryContainer, BlendMode.srcIn),
-                          ),
-                        );
-                      },
-                    )
-                  : const SizedBox.shrink()
+              //TODO custom notification
+              // carActionDayEntity.carActions.isNotEmpty
+              //     ? BlocBuilder<ServiceNotificationBloc,
+              //         ServiceNotificationState>(
+              //         builder: (context, state) {
+              //           return GestureDetector(
+              //             onTap: () => context
+              //                 .read<ServiceNotificationBloc>()
+              //                 .add(ServiceNotificationEvent
+              //                     .changeNotificationStatus(
+              //                   carActionDayEntity.carId!,
+              //                   carActionDayEntity.actionId,
+              //                 )),
+              //             child: SvgPicture.asset(
+              //               state.notificationStatus
+              //                   ? ImagesK.bellFill
+              //                   : ImagesK.bell,
+              //               width: 30,
+              //               height: 30,
+              //               fit: BoxFit.cover,
+              //               colorFilter: ColorFilter.mode(
+              //                   context.onPrimaryContainer, BlendMode.srcIn),
+              //             ),
+              //           );
+              //         },
+              //       )
+              //     : const SizedBox.shrink()
             ],
           ),
           const SizedBox(

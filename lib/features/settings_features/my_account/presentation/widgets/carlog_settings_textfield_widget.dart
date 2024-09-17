@@ -15,6 +15,7 @@ class CarlogSettingTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final TextCapitalization? textCapitalization;
   final int? maxLines;
+  final bool obscure;
   const CarlogSettingTextField(
       {super.key,
       required this.labelText,
@@ -27,7 +28,8 @@ class CarlogSettingTextField extends StatelessWidget {
       this.textInputAction,
       this.focusNode,
       this.textCapitalization,
-      this.maxLines});
+      this.maxLines,
+      this.obscure = false});
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class CarlogSettingTextField extends StatelessWidget {
               textInputAction: textInputAction,
               onFieldSubmitted: onEditingComplete,
               maxLines: maxLines,
+              obscureText: obscure,
             ),
           ),
         ],

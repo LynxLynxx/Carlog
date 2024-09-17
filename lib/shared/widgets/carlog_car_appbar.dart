@@ -1,4 +1,3 @@
-import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
@@ -10,7 +9,6 @@ import 'package:carlog/shared/widgets/error_indicator.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 SliverAppBar carlogCarAppBar(
@@ -61,27 +59,28 @@ SliverAppBar carlogCarAppBar(
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      ImagesK.search,
-                      width: 35,
-                      height: 35,
-                      colorFilter: ColorFilter.mode(
-                          context.onPrimaryContainer, BlendMode.srcIn),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SvgPicture.asset(
-                      ImagesK.bell,
-                      width: 30,
-                      height: 30,
-                      colorFilter: ColorFilter.mode(
-                          context.onPrimaryContainer, BlendMode.srcIn),
-                    ),
-                  ],
-                ),
+                // TODO implement search and notification
+                // Row(
+                //   children: [
+                //     SvgPicture.asset(
+                //       ImagesK.search,
+                //       width: 35,
+                //       height: 35,
+                //       colorFilter: ColorFilter.mode(
+                //           context.onPrimaryContainer, BlendMode.srcIn),
+                //     ),
+                //     const SizedBox(
+                //       width: 10,
+                //     ),
+                //     SvgPicture.asset(
+                //       ImagesK.bell,
+                //       width: 30,
+                //       height: 30,
+                //       colorFilter: ColorFilter.mode(
+                //           context.onPrimaryContainer, BlendMode.srcIn),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
             const SizedBox(
@@ -115,17 +114,24 @@ class DropDownWidget extends StatelessWidget {
   }
 
   _buildLoader(BuildContext context) => Skeletonizer(
-          child: Container(
-        height: 50,
-        margin: PaddingsK.h20,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: dropShadowEffect(context).copyWith(
-          color: context.surfaceDim,
-          borderRadius: PaddingsK.circular30,
-        ),
-        padding: PaddingsK.h20v10,
-        child: CarSelectElementWidget(
-            carFirebaseEntity: CarFirebaseEntity.example()),
+          child: Column(
+        children: [
+          Container(
+            height: 50,
+            margin: PaddingsK.h20,
+            width: MediaQuery.of(context).size.width * 0.8,
+            decoration: dropShadowEffect(context).copyWith(
+              color: context.surfaceDim,
+              borderRadius: PaddingsK.circular30,
+            ),
+            padding: PaddingsK.h20v10,
+            child: CarSelectElementWidget(
+                carFirebaseEntity: CarFirebaseEntity.example()),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
       ));
 
   _buildBody(List<CarFirebaseEntity> carList) =>

@@ -50,6 +50,8 @@ class TextPasswordForm extends StatelessWidget {
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.continueAction,
                       textCapitalization: TextCapitalization.words,
+                      obscure: true,
+                      maxLines: 1,
                       onEditingComplete: (_) {
                         FocusScope.of(context).nextFocus();
                       },
@@ -67,6 +69,8 @@ class TextPasswordForm extends StatelessWidget {
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.continueAction,
                       textCapitalization: TextCapitalization.words,
+                      obscure: true,
+                      maxLines: 1,
                       onEditingComplete: (_) {
                         context
                             .read<DeleteAccountCubit>()
@@ -86,6 +90,8 @@ class TextPasswordForm extends StatelessWidget {
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.continueAction,
                       textCapitalization: TextCapitalization.words,
+                      obscure: true,
+                      maxLines: 1,
                       onEditingComplete: (_) {
                         context
                             .read<DeleteAccountCubit>()
