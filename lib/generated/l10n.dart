@@ -1828,6 +1828,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter a valid email address`
+  String get mailValidator {
+    return Intl.message(
+      'Enter a valid email address',
+      name: 'mailValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long.`
+  String get passwordValidator {
+    return Intl.message(
+      'The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long.',
+      name: 'passwordValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The name must contain at least 2 characters and a maximum of 30 characters`
+  String get nameValidator {
+    return Intl.message(
+      'The name must contain at least 2 characters and a maximum of 30 characters',
+      name: 'nameValidator',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

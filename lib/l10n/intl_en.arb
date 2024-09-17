@@ -192,5 +192,8 @@
   "suggest": "Suggest",
   "send": "Send",
   "feelFreeToReachOut": "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!",
-  "yourMessageHasBeenSent": "Your message has been sent successfully!"
+  "yourMessageHasBeenSent": "Your message has been sent successfully!",
+  "mailValidator": "Enter a valid email address",
+  "passwordValidator": "The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long.",
+  "nameValidator": "The name must contain at least 2 characters and a maximum of 30 characters"
 }

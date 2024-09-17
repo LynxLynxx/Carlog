@@ -26,7 +26,6 @@ class FcmTokenBloc extends Bloc<FcmTokenEvent, FcmTokenState> {
     emit(const _Loading());
     await initFcmTokenSubscription();
     String? fcmToken = await _fcm.getToken();
-    log("-----$fcmToken");
     if (fcmToken == null) return;
     log("FcmTokenBloc: $fcmToken");
     await close();

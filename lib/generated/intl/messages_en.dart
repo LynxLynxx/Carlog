@@ -193,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Liters should be between 1 and 4 digits"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "mailValidator":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
         "mainDevelopers":
             MessageLookupByLibrary.simpleMessage("Main Developers"),
         "manageActions": MessageLookupByLibrary.simpleMessage("Manage Action"),
@@ -202,6 +204,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Milage should be between 1 and 8 digits"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("First name"),
+        "nameValidator": MessageLookupByLibrary.simpleMessage(
+            "The name must contain at least 2 characters and a maximum of 30 characters"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notValidEmpty":
@@ -217,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Password recovery"),
+        "passwordValidator": MessageLookupByLibrary.simpleMessage(
+            "The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long."),
         "permissions": MessageLookupByLibrary.simpleMessage("PERMISSIONS"),
         "plate": MessageLookupByLibrary.simpleMessage("Plate"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(

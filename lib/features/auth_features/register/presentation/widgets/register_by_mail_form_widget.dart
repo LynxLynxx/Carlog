@@ -21,6 +21,7 @@ class RegisterByMailFormWidget extends StatefulWidget {
 class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
   FocusNode f1 = FocusNode();
   FocusNode f2 = FocusNode();
+  FocusNode f3 = FocusNode();
 
   bool isPasswordObscure = true;
 
@@ -38,6 +39,26 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextFormField(
+              key: const Key("register_name_field"),
+              autocorrect: false,
+              autofillHints: const [AutofillHints.name],
+              decoration: authTextFormFieldInputDecoration(
+                context,
+                bloc.state.mail.displayError,
+                S.of(context).name,
+              ),
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.go,
+              focusNode: f1,
+              onEditingComplete: () {
+                f1.unfocus();
+                FocusScope.of(context).requestFocus(f2);
+              },
+              onChanged: (value) => context
+                  .read<MailRegisterBloc>()
+                  .add(MailRegisterEvent.nameChange(value)),
+            ),
+            TextFormField(
               key: const Key("register_mail_field"),
               autocorrect: false,
               autofillHints: const [AutofillHints.email],
@@ -48,10 +69,10 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
               ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.go,
-              focusNode: f1,
+              focusNode: f2,
               onEditingComplete: () {
-                f1.unfocus();
-                FocusScope.of(context).requestFocus(f2);
+                f2.unfocus();
+                FocusScope.of(context).requestFocus(f3);
               },
               onChanged: (value) => context
                   .read<MailRegisterBloc>()
@@ -59,7 +80,7 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
             ),
             TextFormField(
               key: const Key("register_password_field"),
-              focusNode: f2,
+              focusNode: f3,
               obscureText: isPasswordObscure,
               autofillHints: const [AutofillHints.password],
               decoration: authTextFormFieldInputDecoration(
@@ -83,7 +104,7 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
                   .read<MailRegisterBloc>()
                   .add(MailRegisterEvent.passwordChange(value)),
               onEditingComplete: () {
-                f2.unfocus();
+                f3.unfocus();
                 context
                     .read<MailRegisterBloc>()
                     .add(const MailRegisterEvent.submit());
