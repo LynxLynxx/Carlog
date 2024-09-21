@@ -81,13 +81,21 @@ class BottomNavigationBarElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => func(index),
-      child: SvgPicture.asset(
-        getIcon(),
-        colorFilter: ColorFilter.mode(context.onSurface, BlendMode.srcIn),
-        width: 25,
-        height: 25,
+    return Material(
+      color: Colors.transparent,
+      clipBehavior: Clip.hardEdge,
+      borderRadius: PaddingsK.circular20,
+      child: InkWell(
+        onTap: () => func(index),
+        child: Padding(
+          padding: PaddingsK.all16,
+          child: SvgPicture.asset(
+            getIcon(),
+            colorFilter: ColorFilter.mode(context.onSurface, BlendMode.srcIn),
+            width: 25,
+            height: 25,
+          ),
+        ),
       ),
     );
   }

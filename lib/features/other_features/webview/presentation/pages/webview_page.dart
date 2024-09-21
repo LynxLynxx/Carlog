@@ -1,5 +1,6 @@
 import 'package:carlog/features/auth_features/shared/widgets/car_hero_widget.dart';
 import 'package:carlog/generated/l10n.dart';
+import 'package:carlog/shared/widgets/carlog_admob_banner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -64,11 +65,16 @@ class _WebViewFullWidgetState extends State<_WebViewFullScreen> {
       appBar: AppBar(
         title: Text(S.of(context).requestNewFeature),
       ),
-      body: AnimatedSwitcher(
-        duration: Durations.long1,
-        child: isLoaded
-            ? WebViewWidget(controller: webViewController)
-            : const CarHeroWidget(),
+      body: Stack(
+        children: [
+          AnimatedSwitcher(
+            duration: Durations.long1,
+            child: isLoaded
+                ? WebViewWidget(controller: webViewController)
+                : const CarHeroWidget(),
+          ),
+          const CarlogAdmobBannerWidget(),
+        ],
       ),
     );
   }

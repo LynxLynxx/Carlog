@@ -110,28 +110,6 @@ class RootView extends StatelessWidget {
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // floatingActionButton: Container(
-        //   margin: PaddingsK.b25,
-        //   child: CircularMenu(
-        //     toggleButtonSize: 35,
-        //     radius: 85,
-        //     curve: Curves.fastOutSlowIn,
-        //     reverseCurve: Curves.fastOutSlowIn,
-        //     items: [
-        //       CircularMenuItem(
-        //           icon: Icons.home, color: Colors.green, onTap: () {}),
-        //       CircularMenuItem(
-        //           icon: Icons.search, color: Colors.blue, onTap: () {}),
-        //       CircularMenuItem(
-        //           icon: Icons.settings, color: Colors.orange, onTap: () {}),
-        //       CircularMenuItem(
-        //           icon: Icons.chat, color: Colors.purple, onTap: () {}),
-        //       // CircularMenuItem(
-        //       //     icon: Icons.notifications, color: Colors.brown, onTap: () {})
-        //     ],
-        //   ),
-        // ),
-
         floatingActionButton: GoRouter.of(context).showNavBar
             ? CustomFloatingButtonWidget()
             : null,

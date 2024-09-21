@@ -7,6 +7,7 @@ class PaddingsK extends Constants {
   //ANCHOR - [ALL]
   static const all4 = EdgeInsets.all(4.0);
   static const all8 = EdgeInsets.all(8.0);
+  static const all12 = EdgeInsets.all(12.0);
   static const all16 = EdgeInsets.all(16.0);
   static const all24 = EdgeInsets.all(16.0);
 
