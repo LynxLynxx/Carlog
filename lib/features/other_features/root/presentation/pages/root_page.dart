@@ -3,6 +3,8 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/core/services/app_lifecycle_service.dart';
+import 'package:carlog/core/services/appopen_service.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
@@ -16,9 +18,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
   const RootPage({super.key, required this.navigationShell});
+
+  @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  late AppLifecycleService appLifecycleService;
+
+  @override
+  void initState() {
+    super.initState();
+
+    AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
+    appLifecycleService =
+        AppLifecycleService(appOpenAdManager: appOpenAdManager);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +68,7 @@ class RootPage extends StatelessWidget {
           create: (context) => FcmTokenBloc(),
         ),
       ],
-      child: RootView(navigationShell: navigationShell),
+      child: RootView(navigationShell: widget.navigationShell),
     );
   }
 }

@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Adres powinien zawierać od 1 do 100 znaków"),
         "amount": MessageLookupByLibrary.simpleMessage("Kwota"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analityka"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Jesteś pewien?"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "Uzyskaj dostęp do szczegółowych statystyk wydatków na samochód!"),
         "bodyElectricCarsTutorial": MessageLookupByLibrary.simpleMessage(
@@ -70,7 +71,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePassword": MessageLookupByLibrary.simpleMessage("Zmień hasło"),
         "colorTheme":
             MessageLookupByLibrary.simpleMessage("Motyw kolorystyczny"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Potwierdź"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Gratulacje!"),
+        "contact": MessageLookupByLibrary.simpleMessage("Kontakt"),
         "contactUs":
             MessageLookupByLibrary.simpleMessage("Skontaktuj się z nami"),
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
@@ -80,9 +83,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hasło bieżące"),
         "customize": MessageLookupByLibrary.simpleMessage("DOSTOSUJ"),
         "date": MessageLookupByLibrary.simpleMessage("Data"),
+        "deleteAcount": MessageLookupByLibrary.simpleMessage("Usuń konto"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Usuń dane"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "Czy na pewno chcesz usunąć ten pojazd?"),
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
+        "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
+            "Czy jesteś pewien, że chcesz usunąć swoje konto? Ta akcja jest nieodwracalna, a wszystkie Twoje dane zostaną trwale utracone."),
         "eg100": MessageLookupByLibrary.simpleMessage("np. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("np. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("np. 163"),
@@ -166,8 +173,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Podaj silniejsze hasło"),
         "expense": MessageLookupByLibrary.simpleMessage("Wydatek"),
         "feedback": MessageLookupByLibrary.simpleMessage("OPINIE"),
+        "feelFreeToReachOut": MessageLookupByLibrary.simpleMessage(
+            "Zapraszamy do kontaktu z nami w dowolnej chwili. Odpowiemy tak szybko, jak to możliwe. Pytania i opinie są dla nas ważne!"),
+        "file": MessageLookupByLibrary.simpleMessage("Plik"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Rodzaj paliwa"),
+        "getCarlogNow": MessageLookupByLibrary.simpleMessage(
+            "Pobierz Carlog już teraz i kontroluj historię swojego samochodu. Dostępne w App Store i Google Play."),
         "getStarted": MessageLookupByLibrary.simpleMessage("Rozpocznij"),
+        "home": MessageLookupByLibrary.simpleMessage("Strona główna"),
         "information": MessageLookupByLibrary.simpleMessage("Informacje"),
         "insurance": MessageLookupByLibrary.simpleMessage("Ubezpieczenie"),
         "insuranceFee":
@@ -183,15 +196,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pojemność w litrach powinna zawierać od 1 do 4 cyfr."),
         "logOut": MessageLookupByLibrary.simpleMessage("Wyloguj się"),
         "login": MessageLookupByLibrary.simpleMessage("Logowanie"),
+        "mailValidator": MessageLookupByLibrary.simpleMessage(
+            "Wpisz poprawny adres e-mail."),
         "mainDevelopers":
             MessageLookupByLibrary.simpleMessage("Główni deweloperzy"),
         "manageActions":
             MessageLookupByLibrary.simpleMessage("Zarządzaj działaniami"),
+        "message": MessageLookupByLibrary.simpleMessage("Wiadomość"),
         "milage": MessageLookupByLibrary.simpleMessage("Przebieg"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Przebieg powinien zawierać od 1 do 8 cyfr."),
         "myAccount": MessageLookupByLibrary.simpleMessage("Moje konto"),
         "name": MessageLookupByLibrary.simpleMessage("Imię"),
+        "nameValidator": MessageLookupByLibrary.simpleMessage(
+            "Nazwa musi zawierać co najmniej 2 znaki i maksymalnie 30 znaków"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Nowe hasło"),
         "next": MessageLookupByLibrary.simpleMessage("Dalej"),
         "notValidEmpty":
@@ -207,6 +225,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Hasło"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Odzyskiwanie hasła"),
+        "passwordValidator": MessageLookupByLibrary.simpleMessage(
+            "Hasło musi zawierać co najmniej jeden znak specjalny, dużą i małą literę. Hasło musi mieć co najmniej 8 znaków."),
         "permissions": MessageLookupByLibrary.simpleMessage("UPRAWNIENIA"),
         "plate": MessageLookupByLibrary.simpleMessage("Numer rejestracyjny"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
@@ -228,11 +248,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Poproś o nową funkcję"),
         "roadFee": MessageLookupByLibrary.simpleMessage("Opłata drogowa"),
         "save": MessageLookupByLibrary.simpleMessage("Zapisz"),
+        "send": MessageLookupByLibrary.simpleMessage("Wyślij"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("Wyślij E-mail"),
+        "sender": MessageLookupByLibrary.simpleMessage("Nadawca"),
         "service": MessageLookupByLibrary.simpleMessage("Usługa"),
         "serviceFee": MessageLookupByLibrary.simpleMessage("Opłata za usługę"),
         "settings": MessageLookupByLibrary.simpleMessage("Ustawienia"),
         "skip": MessageLookupByLibrary.simpleMessage("Pomiń"),
+        "subject": MessageLookupByLibrary.simpleMessage("Temat"),
         "successfullyAddedTheActivity":
             MessageLookupByLibrary.simpleMessage("Aktywność dodana pomyślnie"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
@@ -243,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pojazd został pomyślnie edytowany."),
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Przebieg zaktualizowany pomyślnie"),
+        "suggest": MessageLookupByLibrary.simpleMessage("Proponuj"),
         "supportedLanguage": m0,
         "supportedThemes": m1,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
@@ -252,6 +276,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "tireChange": MessageLookupByLibrary.simpleMessage("Wymiana opon"),
         "tires": MessageLookupByLibrary.simpleMessage("Opony"),
         "today": MessageLookupByLibrary.simpleMessage("Dzisiaj"),
+        "tooManyRequests": MessageLookupByLibrary.simpleMessage(
+            "Zbyt wiele żądań. Spróbuj ponownie później."),
+        "trackSaveAnalyze":
+            MessageLookupByLibrary.simpleMessage("Śledź, zapisuj, analizuj"),
         "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
         "type": MessageLookupByLibrary.simpleMessage("Typ"),
         "unableToLocateYourBrand": MessageLookupByLibrary.simpleMessage(
@@ -273,6 +301,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nie masz jeszcze żadnych samochodów, dodaj jeden!"),
         "youHaveSuccessfullyCreatedYourCar":
             MessageLookupByLibrary.simpleMessage(
-                "Pomyślnie utworzyłeś swój samochód!")
+                "Pomyślnie utworzyłeś swój samochód!"),
+        "yourCarsJourney":
+            MessageLookupByLibrary.simpleMessage("Podróż Twojego samochodu"),
+        "yourMessageHasBeenSent": MessageLookupByLibrary.simpleMessage(
+            "Twoja wiadomość została wysłana pomyślnie!")
       };
 }

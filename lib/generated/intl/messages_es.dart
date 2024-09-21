@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "La dirección debe tener entre 1 y 100 caracteres"),
         "amount": MessageLookupByLibrary.simpleMessage("Cantidad"),
         "analytics": MessageLookupByLibrary.simpleMessage("Análisis"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("¿Estás seguro?"),
         "bodyAnalyticsTutorial": MessageLookupByLibrary.simpleMessage(
             "¡Accede a una vista previa de las estadísticas de gastos de tu coche!"),
         "bodyElectricCarsTutorial": MessageLookupByLibrary.simpleMessage(
@@ -69,8 +70,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Cambiar contraseña"),
         "colorTheme": MessageLookupByLibrary.simpleMessage("Tema de color"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("¡Felicidades!"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contacto"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contáctanos"),
         "coordinatesValidator": MessageLookupByLibrary.simpleMessage(
             "Las coordenadas deben tener entre 1 y 25 caracteres"),
@@ -80,10 +83,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Contraseña actual"),
         "customize": MessageLookupByLibrary.simpleMessage("PERSONALIZAR"),
         "date": MessageLookupByLibrary.simpleMessage("Fecha"),
+        "deleteAcount": MessageLookupByLibrary.simpleMessage("Eliminar cuenta"),
+        "deleteData": MessageLookupByLibrary.simpleMessage("Borrar datos"),
         "deleteVehicleConfirmation": MessageLookupByLibrary.simpleMessage(
             "¿Está seguro de que desea eliminar este vehículo?"),
         "developer":
             MessageLookupByLibrary.simpleMessage("Desarrollador móvil"),
+        "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
+            "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible y todos tus datos se perderán permanentemente."),
         "eg100": MessageLookupByLibrary.simpleMessage("p. ej. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("p. ej. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("p. ej. 163"),
@@ -168,8 +175,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, introduce una contraseña más segura."),
         "expense": MessageLookupByLibrary.simpleMessage("Gasto"),
         "feedback": MessageLookupByLibrary.simpleMessage("RETROALIMENTACIÓN"),
+        "feelFreeToReachOut": MessageLookupByLibrary.simpleMessage(
+            "¡No dudes en ponerte en contacto con nosotros en cualquier momento y te responderemos lo antes posible! Tus preguntas y comentarios son importantes para nosotros."),
+        "file": MessageLookupByLibrary.simpleMessage("Archivo"),
         "fuelType": MessageLookupByLibrary.simpleMessage("Tipo de combustible"),
+        "getCarlogNow": MessageLookupByLibrary.simpleMessage(
+            "Hazte con Carlog ahora y toma el control del historial de tu coche. Disponible en la App Store y Google Play."),
         "getStarted": MessageLookupByLibrary.simpleMessage("Empezar"),
+        "home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "information": MessageLookupByLibrary.simpleMessage("Información"),
         "insurance": MessageLookupByLibrary.simpleMessage("Seguro"),
         "insuranceFee": MessageLookupByLibrary.simpleMessage("Cuota de seguro"),
@@ -184,15 +197,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Los litros deben tener entre 1 y 4 dígitos"),
         "logOut": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "mailValidator": MessageLookupByLibrary.simpleMessage(
+            "Introduce una dirección de correo electrónico válida"),
         "mainDevelopers":
             MessageLookupByLibrary.simpleMessage("Desarrolladores principales"),
         "manageActions":
             MessageLookupByLibrary.simpleMessage("Administrar acciones"),
+        "message": MessageLookupByLibrary.simpleMessage("Mensaje"),
         "milage": MessageLookupByLibrary.simpleMessage("Kilometraje"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "El kilometraje debe tener entre 1 y 8 dígitos"),
         "myAccount": MessageLookupByLibrary.simpleMessage("Mi cuenta"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
+        "nameValidator": MessageLookupByLibrary.simpleMessage(
+            "El nombre debe contener al menos 2 caracteres y un máximo de 30 caracteres"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
         "notValidEmpty": MessageLookupByLibrary.simpleMessage(
@@ -209,6 +227,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordRecovery":
             MessageLookupByLibrary.simpleMessage("Recuperación de contraseña"),
+        "passwordValidator": MessageLookupByLibrary.simpleMessage(
+            "La contraseña debe contener al menos un carácter especial, una letra mayúscula y una minúscula. La contraseña debe tener al menos 8 caracteres."),
         "permissions": MessageLookupByLibrary.simpleMessage("PERMISOS"),
         "plate": MessageLookupByLibrary.simpleMessage("Matrícula"),
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
@@ -231,13 +251,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Solicitar nueva función"),
         "roadFee": MessageLookupByLibrary.simpleMessage("Peaje"),
         "save": MessageLookupByLibrary.simpleMessage("Guardar"),
+        "send": MessageLookupByLibrary.simpleMessage("Enviar"),
         "sendEmail":
             MessageLookupByLibrary.simpleMessage("Enviar correo electrónico"),
+        "sender": MessageLookupByLibrary.simpleMessage("Remitente"),
         "service": MessageLookupByLibrary.simpleMessage("Servicio"),
         "serviceFee":
             MessageLookupByLibrary.simpleMessage("Tarifa de servicio"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
         "skip": MessageLookupByLibrary.simpleMessage("Omitir"),
+        "subject": MessageLookupByLibrary.simpleMessage("Asunto"),
         "successfullyAddedTheActivity": MessageLookupByLibrary.simpleMessage(
             "Actividad agregada correctamente"),
         "successfullyAddedTheVehicle": MessageLookupByLibrary.simpleMessage(
@@ -248,6 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Vehículo editado correctamente"),
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Kilometraje actualizado correctamente"),
+        "suggest": MessageLookupByLibrary.simpleMessage("Sugerir"),
         "supportedLanguage": m0,
         "supportedThemes": m1,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
@@ -257,6 +281,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cambio de neumáticos"),
         "tires": MessageLookupByLibrary.simpleMessage("Neumáticos"),
         "today": MessageLookupByLibrary.simpleMessage("Hoy"),
+        "tooManyRequests": MessageLookupByLibrary.simpleMessage(
+            "Demasiadas solicitudes. Inténtalo de nuevo más tarde"),
+        "trackSaveAnalyze":
+            MessageLookupByLibrary.simpleMessage("Rastrear, guardar, analizar"),
         "tuning": MessageLookupByLibrary.simpleMessage("Tuning"),
         "type": MessageLookupByLibrary.simpleMessage("Tipo"),
         "unableToLocateYourBrand":
@@ -278,6 +306,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aún no tienes autos, ¡agrega uno!"),
         "youHaveSuccessfullyCreatedYourCar":
             MessageLookupByLibrary.simpleMessage(
-                "¡Ha creado su coche con éxito!")
+                "¡Ha creado su coche con éxito!"),
+        "yourCarsJourney":
+            MessageLookupByLibrary.simpleMessage("El viaje de tu coche"),
+        "yourMessageHasBeenSent": MessageLookupByLibrary.simpleMessage(
+            "¡Tu mensaje se ha enviado correctamente!")
       };
 }
