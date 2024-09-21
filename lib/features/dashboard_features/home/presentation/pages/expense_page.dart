@@ -75,75 +75,80 @@ class _ActionViewState extends State<ExpenseView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
+        showAdmobBanner: DateTime.now().second.isEven,
+        resizeToAvoidBottomInset: true,
         title: S.of(context).addAction,
-        body: BlocConsumer<ManageExpenseBloc, ManageExpenseState>(
-          listener: (context, state) {
-            dateEditingController.text =
-                state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
-            amountEditingController.text = state.amount.value;
-            milageEditingController.text = state.milage.value;
-            noteEditingController.text = state.note.value;
-            if (state.status.isSuccess) {
-              context.pop();
-            }
-          },
-          builder: (context, state) {
-            return Column(
-              children: [
-                Padding(
-                  padding: PaddingsK.all16,
-                  child: Column(
-                    children: [
-                      const CustomDropdownExpenseWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      AmountWidget(
-                          amountEditingController: amountEditingController,
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      DatePickerWidget(
-                          textEditingController: dateEditingController,
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListElementTextfieldWidget(
-                          textEditingController: milageEditingController,
-                          func: (value) {
-                            context.read<ManageExpenseBloc>().add(
-                                ManageExpenseEvent.changeMilageEvent(value));
-                          },
-                          title: S.of(context).milage,
-                          hintText: S.of(context).eg10000,
-                          displayError: state.amount.displayError ?? ""),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const FilePickerWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListElementTextfieldWidget(
-                          textEditingController: noteEditingController,
-                          func: (value) {
-                            context
-                                .read<ManageExpenseBloc>()
-                                .add(ManageExpenseEvent.changeNote(value));
-                          },
-                          maxLines: 6,
-                          title: S.of(context).note,
-                          hintText:
-                              S.of(context).egOilFilterReplacementIncluded,
-                          displayError: state.note.displayError ?? ""),
-                    ],
+        body: SingleChildScrollView(
+          child: BlocConsumer<ManageExpenseBloc, ManageExpenseState>(
+            listener: (context, state) {
+              dateEditingController.text = state.date != null
+                  ? FormatsK.yyyyMMdd.format(state.date!)
+                  : "";
+              amountEditingController.text = state.amount.value;
+              milageEditingController.text = state.milage.value;
+              noteEditingController.text = state.note.value;
+              if (state.status.isSuccess) {
+                context.pop();
+              }
+            },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  Padding(
+                    padding: PaddingsK.all16,
+                    child: Column(
+                      children: [
+                        const CustomDropdownExpenseWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        AmountWidget(
+                            amountEditingController: amountEditingController,
+                            state: state),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        DatePickerWidget(
+                            textEditingController: dateEditingController,
+                            state: state),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ListElementTextfieldWidget(
+                            textEditingController: milageEditingController,
+                            func: (value) {
+                              context.read<ManageExpenseBloc>().add(
+                                  ManageExpenseEvent.changeMilageEvent(value));
+                            },
+                            title: S.of(context).milage,
+                            hintText: S.of(context).eg10000,
+                            displayError: state.amount.displayError ?? ""),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const FilePickerWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ListElementTextfieldWidget(
+                            textEditingController: noteEditingController,
+                            func: (value) {
+                              context
+                                  .read<ManageExpenseBloc>()
+                                  .add(ManageExpenseEvent.changeNote(value));
+                            },
+                            maxLines: 6,
+                            title: S.of(context).note,
+                            hintText:
+                                S.of(context).egOilFilterReplacementIncluded,
+                            displayError: state.note.displayError ?? ""),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
         bottomWidget: BlocSelector<ManageExpenseBloc, ManageExpenseState, bool>(
           selector: (state) {

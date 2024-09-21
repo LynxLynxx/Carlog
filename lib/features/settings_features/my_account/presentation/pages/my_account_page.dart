@@ -54,6 +54,7 @@ class _MyAccountViewState extends State<_MyAccountView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: CarlogScaffold.title(
+        showAdmobBanner: true,
         title: S.of(context).myAccount,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

@@ -49,21 +49,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _AppLogoutRequested event, Emitter<AuthState> emit) async {
     emit(const _Loading());
     await _authRepository.logOut();
+    emit(const _Unauthenticated());
   }
 
   _onChangedUserData(_ChangedUserData event, Emitter<AuthState> emit) async {
     final user = await _authRepository.currentUser;
+    final userData = user.copyWith(
+        firstName: event.userData.firstName, lastName: event.userData.lastName);
+    await _authRepository.updateUserData(userData);
 
-    emit(_Authenticated(
-      user.copyWith(
-          firstName: event.userData.firstName,
-          lastName: event.userData.lastName),
-    ));
+    emit(_Authenticated(userData));
   }
 
   String? get userFirstName {
     String? userName = state.whenOrNull(
-      authenticated: (user) => user.firstName,
+      authenticated: (user) {
+        if (user.firstName == "" && user.name != null) {
+          return user.name!.split(" ").first;
+        }
+        return user.firstName;
+      },
     );
 
     if (userName == "") {

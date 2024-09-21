@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:carlog/core/addons/bloc_observer.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/router.dart';
+import 'package:carlog/core/services/firebase_service.dart';
 import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
@@ -12,7 +13,6 @@ import 'package:carlog/features/settings_features/settings/presentation/cubit/la
 import 'package:carlog/shared/push_notifications/bloc/fcm/fcm_bloc.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +33,7 @@ Future<void> main() async {
   );
 
   Bloc.observer = MyBlocObserver();
-  await Firebase.initializeApp();
+  await FirebaseService().init();
   configureDependencies();
   runApp(MultiBlocProvider(
     providers: [

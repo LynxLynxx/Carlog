@@ -1,3 +1,4 @@
+import 'package:carlog/shared/widgets/carlog_admob_banner_widget.dart';
 import 'package:flutter/material.dart';
 
 class CarlogScaffold extends StatelessWidget {
@@ -8,6 +9,8 @@ class CarlogScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget? bottomWidget;
+  final bool showAdmobBanner;
+  final bool resizeToAvoidBottomInset;
 
   const CarlogScaffold.title({
     super.key,
@@ -17,6 +20,8 @@ class CarlogScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.bottomWidget,
+    this.showAdmobBanner = false,
+    this.resizeToAvoidBottomInset = false,
   })  : _appBar = null,
         _title = title;
   const CarlogScaffold.appbar({
@@ -27,6 +32,8 @@ class CarlogScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.bottomWidget,
+    this.showAdmobBanner = false,
+    this.resizeToAvoidBottomInset = false,
   })  : _appBar = appBar,
         _title = null;
 
@@ -56,17 +63,34 @@ class CarlogScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          buildAppbar(context),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: body,
-            ),
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      body: Stack(
+        children: [
+          CustomScrollView(
+            physics: const ClampingScrollPhysics(),
+            slivers: [
+              buildAppbar(context),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: body,
+                ),
+              ),
+              if (showAdmobBanner)
+                const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 50,
+                  ),
+                )
+            ],
           ),
+          if (showAdmobBanner)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: CarlogAdmobBannerWidget(
+                width: MediaQuery.of(context).size.width,
+              ),
+            ),
         ],
       ),
       floatingActionButton: floatingActionButton,

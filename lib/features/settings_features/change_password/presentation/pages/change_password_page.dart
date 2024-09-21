@@ -45,6 +45,7 @@ class _ChangePasswordViewState extends State<_ChangePasswordView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
+        showAdmobBanner: true,
         title: S.of(context).changePassword,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

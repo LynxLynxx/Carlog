@@ -62,60 +62,64 @@ class _ActionViewState extends State<ActionView> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
         title: S.of(context).addAction,
-        body: BlocConsumer<ManageActionBloc, ManageActionState>(
-          listener: (context, state) {
-            addressEditingController.text = state.address.value;
-            dateEditingController.text =
-                state.date != null ? FormatsK.yyyyMMdd.format(state.date!) : "";
-            noteEditingController.text = state.note.value;
-          },
-          builder: (context, state) {
-            return Column(
-              children: [
-                Padding(
-                  padding: PaddingsK.all16,
-                  child: Column(
-                    children: [
-                      const CustomDropdownActionWidget(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      state.action != CarActionEnum.note
-                          ? Column(
-                              children: [
-                                AddressPickerWidget(
-                                    textEditingController:
-                                        addressEditingController,
-                                    state: state),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                      DatePickerWidget(
-                          textEditingController: dateEditingController,
-                          state: state),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListElementTextfieldWidget(
-                          textEditingController: noteEditingController,
-                          func: (value) {
-                            context
-                                .read<ManageActionBloc>()
-                                .add(ManageActionEvent.changeNote(value));
-                          },
-                          maxLines: 6,
-                          title: S.of(context).note,
-                          hintText: S.of(context).egRememberToChangeTheOil,
-                          displayError: state.note.displayError ?? ""),
-                    ],
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          child: BlocConsumer<ManageActionBloc, ManageActionState>(
+            listener: (context, state) {
+              addressEditingController.text = state.address.value;
+              dateEditingController.text = state.date != null
+                  ? FormatsK.yyyyMMdd.format(state.date!)
+                  : "";
+              noteEditingController.text = state.note.value;
+            },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  Padding(
+                    padding: PaddingsK.all16,
+                    child: Column(
+                      children: [
+                        const CustomDropdownActionWidget(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        state.action != CarActionEnum.note
+                            ? Column(
+                                children: [
+                                  AddressPickerWidget(
+                                      textEditingController:
+                                          addressEditingController,
+                                      state: state),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                        DatePickerWidget(
+                            textEditingController: dateEditingController,
+                            state: state),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ListElementTextfieldWidget(
+                            textEditingController: noteEditingController,
+                            func: (value) {
+                              context
+                                  .read<ManageActionBloc>()
+                                  .add(ManageActionEvent.changeNote(value));
+                            },
+                            maxLines: 6,
+                            title: S.of(context).note,
+                            hintText: S.of(context).egRememberToChangeTheOil,
+                            displayError: state.note.displayError ?? ""),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
         bottomWidget: BlocSelector<ManageActionBloc, ManageActionState, bool>(
           selector: (state) {

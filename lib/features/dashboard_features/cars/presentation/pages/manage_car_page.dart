@@ -66,58 +66,62 @@ class _ManageCarViewState extends State<ManageCarView> {
 
   @override
   Widget build(BuildContext context) {
-    return CarlogScaffold.title(
-      title: S.of(context).updateCar,
-      actions: [
-        IconButton(
-          onPressed: () => context.push(RoutesK.deleteCarConfirmation.fullPath,
-              extra: context),
-          icon: SvgPicture.asset(
-            ImagesK.delete,
-            width: 30,
-            height: 30,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: CarlogScaffold.title(
+        showAdmobBanner: DateTime.now().minute.isEven,
+        title: S.of(context).updateCar,
+        actions: [
+          IconButton(
+            onPressed: () => context
+                .push(RoutesK.deleteCarConfirmation.fullPath, extra: context),
+            icon: SvgPicture.asset(
+              ImagesK.delete,
+              width: 30,
+              height: 30,
+            ),
+          )
+        ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: PaddingsK.all16,
+                child: ManageCarFormWidget(
+                  addCarBloc: context.read<ManageCarBloc>(),
+                  textEditingControllerList: [
+                    tec1,
+                    tec2,
+                    tec3,
+                    tec4,
+                    tec5,
+                    tec6,
+                    tec7,
+                    tec8,
+                    tec9
+                  ],
+                ),
+              )
+            ],
           ),
-        )
-      ],
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: PaddingsK.all16,
-              child: ManageCarFormWidget(
-                addCarBloc: context.read<ManageCarBloc>(),
-                textEditingControllerList: [
-                  tec1,
-                  tec2,
-                  tec3,
-                  tec4,
-                  tec5,
-                  tec6,
-                  tec7,
-                  tec8,
-                  tec9
-                ],
-              ),
-            )
-          ],
         ),
-      ),
-      bottomWidget: BlocSelector<ManageCarBloc, ManageCarState, bool>(
-        selector: (state) {
-          return state.status.isInProgress;
-        },
-        builder: (context, state) {
-          return CarlogBottomButtonWidget(
-            onTap: () {
-              context
-                  .read<ManageCarBloc>()
-                  .add(const ManageCarEvent.editCarSubmitted());
-            },
-            isLoading: state,
-            isActive: context.watch<ManageCarBloc>().isRequiredFieldsFilled,
-            title: S.of(context).save,
-          );
-        },
+        bottomWidget: BlocSelector<ManageCarBloc, ManageCarState, bool>(
+          selector: (state) {
+            return state.status.isInProgress;
+          },
+          builder: (context, state) {
+            return CarlogBottomButtonWidget(
+              onTap: () {
+                context
+                    .read<ManageCarBloc>()
+                    .add(const ManageCarEvent.editCarSubmitted());
+              },
+              isLoading: state,
+              isActive: context.watch<ManageCarBloc>().isRequiredFieldsFilled,
+              title: S.of(context).save,
+            );
+          },
+        ),
       ),
     );
   }

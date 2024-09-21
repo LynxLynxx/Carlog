@@ -3,6 +3,9 @@
         android:label="carlog"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1418011775391749~8576028084"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
