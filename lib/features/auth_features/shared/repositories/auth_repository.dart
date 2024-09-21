@@ -44,12 +44,16 @@ class AuthRepository {
   }
 
   Future<Option<Failure>> signUp(
-      {required String name, required String email, required String password}) async {
+      {required String name,
+      required String email,
+      required String password}) async {
     return handleVoidResponse(
-      () async => await _firebaseAuth.createUserWithEmailAndPassword(
+      () async => await _firebaseAuth
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
-      ).then((value) async {
+      )
+          .then((value) async {
         await value.user!.updateDisplayName(name);
       }),
     );
@@ -71,6 +75,10 @@ class AuthRepository {
         password: password,
       )),
     );
+  }
+
+  Future<void> updateUserData(UserEntity user) async {
+    await secureStorageService.writeCurrentUser(user);
   }
 
   Future<Option<Failure>> changePassword({required String password}) async {
