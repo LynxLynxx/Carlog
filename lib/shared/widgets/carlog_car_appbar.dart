@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/theme/styles/container_style.dart';
@@ -16,7 +18,7 @@ SliverAppBar carlogCarAppBar(
 ) {
   return SliverAppBar(
     toolbarHeight: 50,
-    expandedHeight: 130,
+    expandedHeight: Platform.isIOS ? 130 : 160,
     collapsedHeight: 50,
     backgroundColor: context.surfaceColor,
     flexibleSpace: Container(
