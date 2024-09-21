@@ -43,7 +43,7 @@ loadAppOpenAd() {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  await FirebaseService.init();
+  await FirebaseService().init();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory

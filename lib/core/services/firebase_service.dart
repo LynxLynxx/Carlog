@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class FirebaseService {
-  static init() async {
+  Future<void> init() async {
     await Firebase.initializeApp();
     await MobileAds.instance.initialize();
 

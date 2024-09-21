@@ -1,6 +1,5 @@
 import 'package:carlog/core/extensions/string_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,10 +26,10 @@ extension GoRouterExtension on GoRouter {
 extension GoRouterAnalytycsExtension on BuildContext {
   void goAndTrack(String location, {Object? extra}) {
     GoRouter.of(this).go(location, extra: extra);
-    FirebaseAnalytics.instance.logScreenView(
-        screenName: getRouteName(location).$2,
-        screenClass: getRouteName(location).$1,
-        parameters: {'extra': extra.toString()});
+    // FirebaseAnalytics.instance.logScreenView(
+    //     screenName: getRouteName(location).$2,
+    //     screenClass: getRouteName(location).$1,
+    //     parameters: {'extra': extra.toString()});
   }
 
   void goNamedAndTrack(
@@ -45,17 +44,17 @@ extension GoRouterAnalytycsExtension on BuildContext {
       queryParameters: queryParameters,
       extra: extra,
     );
-    FirebaseAnalytics.instance.logScreenView(
-        screenName: getRouteName(name).$2,
-        screenClass: getRouteName(name).$1,
-        parameters: {'extra': extra.toString()});
+    // FirebaseAnalytics.instance.logScreenView(
+    //     screenName: getRouteName(name).$2,
+    //     screenClass: getRouteName(name).$1,
+    //     parameters: {'extra': extra.toString()});
   }
 
   Future<T?> pushAndTrack<T extends Object?>(String location, {Object? extra}) {
-    FirebaseAnalytics.instance.logScreenView(
-        screenClass: getRouteName(location).$1,
-        screenName: getRouteName(location).$2,
-        parameters: {'extra': extra.toString()});
+    // FirebaseAnalytics.instance.logScreenView(
+    //     screenClass: getRouteName(location).$1,
+    //     screenName: getRouteName(location).$2,
+    //     parameters: {'extra': extra.toString()});
     return GoRouter.of(this).push<T>(location, extra: extra);
   }
 
@@ -65,10 +64,10 @@ extension GoRouterAnalytycsExtension on BuildContext {
     Map<String, dynamic> queryParameters = const <String, dynamic>{},
     Object? extra,
   }) {
-    FirebaseAnalytics.instance.logScreenView(
-        screenClass: getRouteName(name).$1,
-        screenName: getRouteName(name).$2,
-        parameters: {'extra': extra.toString()});
+    // FirebaseAnalytics.instance.logScreenView(
+    //     screenClass: getRouteName(name).$1,
+    //     screenName: getRouteName(name).$2,
+    //     parameters: {'extra': extra.toString()});
     return GoRouter.of(this).pushNamed<T>(
       name,
       pathParameters: pathParameters,
@@ -82,10 +81,10 @@ extension StatefulNavigationShellExtension on StatefulNavigationShell {
   Future<void> goBranchAndTrack(int index,
       {bool initialLocation = false}) async {
     final String location = shellBranchesNames[index];
-    FirebaseAnalytics.instance.logScreenView(
-      screenClass: getRouteName(location).$1,
-      screenName: getRouteName(location).$2,
-    );
+    // FirebaseAnalytics.instance.logScreenView(
+    //   screenClass: getRouteName(location).$1,
+    //   screenName: getRouteName(location).$2,
+    // );
     goBranch(index, initialLocation: initialLocation);
   }
 }
