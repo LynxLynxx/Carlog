@@ -22,6 +22,7 @@ class AboutAppPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarlogScaffold.title(
       title: S.of(context).about,
+      showAdmobBanner: true,
       bottomWidget: CarlogBottomButtonWidget(
         title: S.of(context).contactUs,
         onTap: () async {

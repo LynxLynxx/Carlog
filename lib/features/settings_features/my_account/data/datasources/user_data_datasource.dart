@@ -24,6 +24,8 @@ class UserDataDatasourceImpl implements UserDataDatasource {
 
   @override
   Future<void> updateUserData(UpdateUserDataEntity userData) async {
+    await FirebaseAuth.instance.currentUser?.updateDisplayName(
+        "${userData.firstName} ${userData.lastName} ${userData.lastName}");
     return await handleFirestoreDoc(
       _firebaseFirestore
           .collection(CollectionsK.users)

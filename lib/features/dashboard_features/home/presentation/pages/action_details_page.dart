@@ -90,6 +90,8 @@ class _ActionDetailsViewState extends State<ActionDetailsView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
+        showAdmobBanner: DateTime.now().minute.isEven,
+        resizeToAvoidBottomInset: true,
         title: S.of(context).manageActions,
         body: BlocConsumer<ManageActionBloc, ManageActionState>(
           listener: (context, state) {

@@ -51,6 +51,7 @@ class _UpdateMilageViewState extends State<UpdateMilageView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CarlogScaffold.title(
+        showAdmobBanner: true,
         title: S.of(context).updateMilage,
         body: BlocConsumer<MilageBloc, MilageState>(
           listener: (context, state) {},
