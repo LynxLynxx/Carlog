@@ -20,9 +20,7 @@ class ChangePasswordPage extends StatelessWidget {
 }
 
 class _ChangePasswordView extends StatelessWidget {
-  const _ChangePasswordView({
-    super.key,
-  });
+  const _ChangePasswordView();
 
   @override
   Widget build(BuildContext context) {

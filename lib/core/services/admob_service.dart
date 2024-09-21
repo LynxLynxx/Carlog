@@ -22,4 +22,16 @@ class AdmobService {
           : "ca-app-pub-1418011775391749/9475505774";
     }
   }
+
+  String get appOpenId {
+    if (kDebugMode) {
+      return Platform.isAndroid
+          ? 'ca-app-pub-3940256099942544/9257395921'
+          : 'ca-app-pub-3940256099942544/5575463023';
+    } else {
+      return Platform.isAndroid
+          ? "ca-app-pub-1418011775391749/1854183971"
+          : "ca-app-pub-1418011775391749/7653866642";
+    }
+  }
 }

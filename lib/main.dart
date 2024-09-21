@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:carlog/core/addons/bloc_observer.dart';
 import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/router.dart';
+import 'package:carlog/core/services/admob_service.dart';
+import 'package:carlog/core/services/firebase_service.dart';
 import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
@@ -11,11 +13,11 @@ import 'package:carlog/features/other_features/theme_mode/presentation/cubit/the
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -23,8 +25,25 @@ import 'package:path_provider/path_provider.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'generated/l10n.dart';
 
+AppOpenAd? myAppOpenAd;
+
+loadAppOpenAd() {
+  AppOpenAd.load(
+    adUnitId: AdmobService().appOpenId, //Your ad Id from admob
+    request: const AdRequest(),
+    adLoadCallback: AppOpenAdLoadCallback(
+        onAdLoaded: (ad) {
+          myAppOpenAd = ad;
+          myAppOpenAd!.show();
+        },
+        onAdFailedToLoad: (error) {}),
+  );
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  await FirebaseService.init();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -32,8 +51,8 @@ Future<void> main() async {
   );
 
   Bloc.observer = MyBlocObserver();
-  await Firebase.initializeApp();
   configureDependencies();
+  // loadAppOpenAd();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider.value(
