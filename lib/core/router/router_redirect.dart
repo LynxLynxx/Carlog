@@ -1,7 +1,9 @@
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/auth_features/auth/auth_bloc.dart';
 import 'package:carlog/features/auth_features/tutorial/presentation/bloc/tutorial/tutorial_bloc.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,8 +26,16 @@ Future<String?> routerRedirect(
     },
     unauthenticated: () {
       if (tutorialState.tutorialStatus == TutorialStatus.firstEntry) {
+        FirebaseAnalytics.instance.logScreenView(
+          screenClass: getRouteName(RoutesK.tutorial).$1,
+          screenName: getRouteName(RoutesK.tutorial).$2,
+        );
         return RoutesK.tutorial;
       }
+      FirebaseAnalytics.instance.logScreenView(
+        screenClass: getRouteName(fullPath ?? "/").$1,
+        screenName: getRouteName(fullPath ?? "/").$2,
+      );
       if (unauthAccess(fullPath)) {
         return null;
       }
