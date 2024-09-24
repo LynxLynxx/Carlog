@@ -1,4 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
@@ -114,7 +115,7 @@ class MapView extends StatelessWidget {
         child: Material(
           color: context.surfaceDim,
           child: InkWell(
-            onTap: () => context.push(RoutesK.mapInfo, extra: {
+            onTap: () => context.pushAndTrack(RoutesK.mapInfo, extra: {
               'title': S.of(context).information,
               'body': S.of(context).tapOnTheMap,
             }),

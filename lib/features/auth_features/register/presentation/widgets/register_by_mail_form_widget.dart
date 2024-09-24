@@ -1,3 +1,4 @@
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/input_styles.dart';
@@ -6,7 +7,6 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
 class RegisterByMailFormWidget extends StatefulWidget {
   const RegisterByMailFormWidget({
@@ -30,7 +30,7 @@ class _RegisterByMailFormWidgetState extends State<RegisterByMailFormWidget> {
     return BlocConsumer<MailRegisterBloc, MailRegisterState>(
       listener: (context, state) {
         if (state.status == FormzSubmissionStatus.inProgress) {
-          context.go(RoutesK.loading);
+          context.goAndTrack(RoutesK.loading);
         }
       },
       builder: (context, state) {

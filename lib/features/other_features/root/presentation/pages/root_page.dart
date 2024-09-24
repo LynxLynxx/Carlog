@@ -78,7 +78,7 @@ class RootView extends StatelessWidget {
   const RootView({super.key, required this.navigationShell});
 
   void onTap(index) {
-    navigationShell.goBranch(
+    navigationShell.goBranchAndTrack(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
@@ -117,7 +117,8 @@ class RootView extends StatelessWidget {
                     top: 50,
                     left: 20,
                     child: GestureDetector(
-                      onTap: () => context.push(RoutesK.connectionLostError),
+                      onTap: () =>
+                          context.pushAndTrack(RoutesK.connectionLostError),
                       child: CircleAvatar(
                         backgroundColor: context.errorContainer,
                         child: const Icon(Icons.wifi_off),
