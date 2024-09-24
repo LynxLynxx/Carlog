@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +12,7 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
       {super.key, required this.navigationShell});
 
   void onTap(index) {
-    navigationShell.goBranch(
+    navigationShell.goBranchAndTrack(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );

@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
@@ -12,7 +13,6 @@ import 'package:carlog/features/auth_features/shared/widgets/connect_by_services
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -55,7 +55,7 @@ class LoginPageView extends StatelessWidget {
             child: Column(
               children: [
                 ChangeAuthScreen(
-                  onPressed: () => context.go(RoutesK.register),
+                  onPressed: () => context.goAndTrack(RoutesK.register),
                   title: S.of(context).register,
                 ),
                 const CarlogLogoWidget(),

@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/animations.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/action/action_bloc.dart';
 import 'package:carlog/features/dashboard_features/home/domain/entities/car_action_day_entity.dart';
@@ -8,7 +9,6 @@ import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:carlog/shared/widgets/error_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class UserActionBoardWidget extends StatelessWidget {
@@ -45,8 +45,8 @@ class UserActionBoardWidget extends StatelessWidget {
             height: 50,
           ),
           GestureDetector(
-            onTap: () =>
-                context.push(RoutesK.addAction, extra: {"context": context}),
+            onTap: () => context
+                .pushAndTrack(RoutesK.addAction, extra: {"context": context}),
             child: SizedBox(
               width: double.infinity,
               child: Padding(

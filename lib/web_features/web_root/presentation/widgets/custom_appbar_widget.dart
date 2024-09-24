@@ -1,4 +1,5 @@
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/generated/l10n.dart';
@@ -14,7 +15,7 @@ class CustomAppBar extends StatelessWidget {
       {super.key, required this.navigationShell, required this.pageController});
 
   void onTap(int index, BuildContext context) {
-    navigationShell.goBranch(
+    navigationShell.goBranchAndTrack(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );

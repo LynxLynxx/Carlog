@@ -1,5 +1,6 @@
 import 'package:carlog/core/constants/images.dart';
 import 'package:carlog/core/constants/paddings.dart';
+import 'package:carlog/core/extensions/gorouter_extension.dart';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_action/manage_action_bloc.dart';
@@ -8,12 +9,12 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 class AddressPickerWidget extends StatelessWidget {
   final TextEditingController textEditingController;
   final ManageActionState state;
-  const AddressPickerWidget({super.key, required this.textEditingController, required this.state});
+  const AddressPickerWidget(
+      {super.key, required this.textEditingController, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class AddressPickerWidget extends StatelessWidget {
               height: 25,
             ),
             GestureDetector(
-              onTap: () => context.push(RoutesK.map, extra: context),
+              onTap: () => context.pushAndTrack(RoutesK.map, extra: context),
               child: Container(
                 padding: PaddingsK.all4,
                 width: 40,
