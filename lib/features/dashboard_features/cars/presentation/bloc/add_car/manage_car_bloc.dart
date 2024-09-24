@@ -197,7 +197,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
     final year =
         YearEntityValidator.dirty(value: event.carFirebaseEntity.year ?? "");
     final milage = MilageEntityValidator.dirty(
-        value: event.carFirebaseEntity.milage ?? "");
+        value: event.carFirebaseEntity.milage.toString());
     final plate =
         PlateEntityValidator.dirty(value: event.carFirebaseEntity.plate ?? "");
     final carType = event.carFirebaseEntity.carType ?? "";
@@ -259,8 +259,9 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         model: state.modelEntity.value != "" ? state.modelEntity.value : null,
         year: state.yearEntity.value != "" ? state.yearEntity.value : null,
         plate: state.plateEntity.value != "" ? state.plateEntity.value : null,
-        milage:
-            state.milageEntity.value != "" ? state.milageEntity.value : null,
+        milage: state.milageEntity.value != ""
+            ? int.tryParse(state.milageEntity.value)
+            : null,
         carType: state.typeEntity?.name != "" ? state.typeEntity?.name : null,
         fuelType: state.fuelTypeEntity?.name != ""
             ? state.fuelTypeEntity?.name
@@ -288,7 +289,7 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
 
   _onEditCarSubmitted(
       _EditCarSubmitted event, Emitter<ManageCarState> emit) async {
-        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     final brand = BrandEntityValidator.dirty(value: state.brandEntity.value);
     final model = ModelEntityValidator.dirty(value: state.modelEntity.value);
     final year = YearEntityValidator.dirty(value: state.yearEntity.value);
@@ -322,8 +323,9 @@ class ManageCarBloc extends Bloc<ManageCarEvent, ManageCarState> {
         model: state.modelEntity.value != "" ? state.modelEntity.value : null,
         year: state.yearEntity.value != "" ? state.yearEntity.value : null,
         plate: state.plateEntity.value != "" ? state.plateEntity.value : null,
-        milage:
-            state.milageEntity.value != "" ? state.milageEntity.value : null,
+        milage: state.milageEntity.value != ""
+            ? int.tryParse(state.milageEntity.value)
+            : null,
         carType: state.typeEntity?.name != "" ? state.typeEntity?.name : null,
         fuelType: state.fuelTypeEntity?.name != ""
             ? state.fuelTypeEntity?.name

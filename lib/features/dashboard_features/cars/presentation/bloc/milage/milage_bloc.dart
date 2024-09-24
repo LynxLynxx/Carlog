@@ -54,7 +54,7 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
     }
 
     final result = await _updateMilageUsecase.call(
-        carFirebaseEntity!.carId, state.milage.value);
+        carFirebaseEntity!.carId, int.tryParse(state.milage.value)!);
 
     if (result.isSome()) {
       return emit(state.copyWith(
@@ -68,7 +68,7 @@ class MilageBloc extends Bloc<MilageEvent, MilageState> {
 
     _carsBloc.add(const CarsEvent.getCars());
     CarFirebaseEntity updatedCar =
-        carFirebaseEntity!.copyWith(milage: state.milage.value);
+        carFirebaseEntity!.copyWith(milage: int.parse(state.milage.value));
     _userAppBloc.add(UserAppEvent.selectCar(updatedCar));
   }
 

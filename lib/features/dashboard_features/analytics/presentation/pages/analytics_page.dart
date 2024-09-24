@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/shared/widgets/carlog_car_appbar.dart';
@@ -33,7 +34,30 @@ class AnalyticsView extends StatelessWidget {
             return state.when(
               initial: () => const CarlogLoader(),
               loading: () => const CarlogLoader(),
-              data: (carExpenseList) => _buildBody(carExpenseList),
+              data: (carExpenseList) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Statistics", style: context.titleLarge),
+                  Container(
+                    constraints: const BoxConstraints(maxHeight: 380),
+                    child: CarouselView(
+                      itemExtent: MediaQuery.of(context).size.width * 0.9,
+                      shrinkExtent: 100,
+                      itemSnapping: true,
+                      elevation: 4,
+                      padding: const EdgeInsets.all(8),
+                      backgroundColor: context.primaryContainer,
+                      children: List.generate(
+                        carExpenseList.length,
+                        (index) => Text(
+                          carExpenseList[index].toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  _buildBody(carExpenseList),
+                ],
+              ),
               failure: (failure) => ErrorIndicator(failure: failure),
             );
           },

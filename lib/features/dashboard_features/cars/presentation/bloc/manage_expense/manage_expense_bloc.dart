@@ -136,9 +136,9 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       carFirebaseEntity!.carId,
       CarExpenseEntity(
           carExpenseId: carExpenseId,
-          amount: state.amount.value,
+          amount: int.tryParse(state.amount.value),
           currency: state.currency!.code,
-          milage: state.milage.value,
+          milage: int.tryParse(state.milage.value),
           note: state.note.value,
           attachmentPath: "",
           timestamp: state.date,
@@ -158,7 +158,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
 
     if (state.milage.value != "") {
       final milageResult = await _updateMilageUsecase.call(
-          carFirebaseEntity!.carId, state.milage.value);
+          carFirebaseEntity!.carId, int.tryParse(state.milage.value)!);
       if (milageResult.isSome()) {
         return emit(state.copyWith(
             status: FormzSubmissionStatus.failure,
@@ -166,7 +166,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       }
       _carsBloc.add(const CarsEvent.getCars());
       CarFirebaseEntity updatedCar =
-          carFirebaseEntity!.copyWith(milage: state.milage.value);
+          carFirebaseEntity!.copyWith(milage: int.tryParse(state.milage.value));
       _userAppBloc.add(UserAppEvent.selectCar(updatedCar));
     }
 

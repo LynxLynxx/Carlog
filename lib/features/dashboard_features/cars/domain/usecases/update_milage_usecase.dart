@@ -9,6 +9,6 @@ class UpdateMilageUsecase {
 
   UpdateMilageUsecase(this._milageRepository);
 
-  Future<Option<Failure>> call(String carId, String milage) async =>
+  Future<Option<Failure>> call(String carId, int milage) async =>
       await _milageRepository.updateMilage(carId, milage);
 }

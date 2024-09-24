@@ -15,6 +15,7 @@ import 'package:carlog/generated/l10n.dart';
 import 'package:carlog/shared/widgets/carlog_bottom_button_widget.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
@@ -122,6 +123,10 @@ class _ActionViewState extends State<ExpenseView> {
                             },
                             title: S.of(context).milage,
                             hintText: S.of(context).eg10000,
+                            textInputType: TextInputType.number,
+                            textInputFormatterList: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             displayError: state.amount.displayError ?? ""),
                         const SizedBox(
                           height: 10,
