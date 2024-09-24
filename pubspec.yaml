@@ -72,6 +72,7 @@ dependencies:
   firebase_messaging: ^15.1.1
   firebase_crashlytics: ^4.1.2
   google_mobile_ads: ^5.1.0
+  aad_oauth: ^1.0.1
 
 dev_dependencies:
   flutter_test:

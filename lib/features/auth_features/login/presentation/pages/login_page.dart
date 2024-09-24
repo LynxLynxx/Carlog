@@ -4,6 +4,7 @@ import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/mail_login_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/cubit/microsoft_auth_cubit.dart';
 import 'package:carlog/features/auth_features/login/presentation/widgets/login_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/change_auth_screen.dart';
@@ -27,6 +28,11 @@ class LoginPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GoogleAuthBloc(
+            locator(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => MicrosoftAuthCubit(
             locator(),
           ),
         ),
@@ -91,6 +97,23 @@ class LoginPageView extends StatelessWidget {
                             },
                             title: "Google",
                             asset: "assets/GoogleLogo1.png");
+                      },
+                    ),
+                    BlocSelector<MicrosoftAuthCubit, MicrosoftAuthState, bool>(
+                      selector: (state) {
+                        return state.maybeWhen(
+                            orElse: () => false, loading: () => true);
+                      },
+                      builder: (context, state) {
+                        return ConnectByService(
+                            isLoading: state,
+                            onTap: () async {
+                              context
+                                  .read<MicrosoftAuthCubit>()
+                                  .loginWithMicrosoft();
+                            },
+                            title: "Microsoft",
+                            asset: "assets/MicrosoftLogo1.png");
                       },
                     ),
                     // ConnectByService(

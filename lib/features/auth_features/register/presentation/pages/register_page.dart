@@ -3,6 +3,7 @@ import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/router/routes_constants.dart';
 import 'package:carlog/core/theme/styles/text_styles.dart';
 import 'package:carlog/features/auth_features/login/presentation/bloc/google_auth/google_auth_bloc.dart';
+import 'package:carlog/features/auth_features/login/presentation/cubit/microsoft_auth_cubit.dart';
 import 'package:carlog/features/auth_features/register/presentation/bloc/mail_register/mail_register_bloc.dart';
 import 'package:carlog/features/auth_features/register/presentation/widgets/register_by_mail_form_widget.dart';
 import 'package:carlog/features/auth_features/shared/widgets/carlog_logo_widget.dart';
@@ -30,6 +31,11 @@ class RegisterPage extends StatelessWidget {
             locator(),
           ),
         ),
+        BlocProvider(
+          create: (context) => MicrosoftAuthCubit(
+            locator(),
+          ),
+        ),
       ],
       child: const RegisterPageView(),
     );
@@ -52,7 +58,7 @@ class RegisterPageView extends StatelessWidget {
                 children: [
                   ChangeAuthScreen(
                     onPressed: () => context.go(RoutesK.login),
-                    title: 'Zaloguj',
+                    title: S.of(context).login,
                   ),
                   const CarlogLogoWidget(),
                   Padding(
@@ -75,9 +81,9 @@ class RegisterPageView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: PaddingsK.v10,
-                    child: Text("LUB"),
+                    child: Text(S.of(context).or),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,6 +99,24 @@ class RegisterPageView extends StatelessWidget {
                               },
                               title: "Google",
                               asset: "assets/GoogleLogo1.png");
+                        },
+                      ),
+                      BlocSelector<MicrosoftAuthCubit, MicrosoftAuthState,
+                          bool>(
+                        selector: (state) {
+                          return state.maybeWhen(
+                              orElse: () => false, loading: () => true);
+                        },
+                        builder: (context, state) {
+                          return ConnectByService(
+                              isLoading: state,
+                              onTap: () async {
+                                context
+                                    .read<MicrosoftAuthCubit>()
+                                    .loginWithMicrosoft();
+                              },
+                              title: "Microsoft",
+                              asset: "assets/MicrosoftLogo1.png");
                         },
                       ),
                       // ConnectByService(
