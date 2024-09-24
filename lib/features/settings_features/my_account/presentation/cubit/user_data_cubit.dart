@@ -5,6 +5,7 @@ import 'package:carlog/features/settings_features/my_account/domain/entities/upd
 import 'package:carlog/features/settings_features/my_account/domain/entities/user_data_entity.dart';
 import 'package:carlog/features/settings_features/my_account/domain/usecases/get_user_data_usecase.dart';
 import 'package:carlog/features/settings_features/my_account/domain/usecases/update_user_data_usecase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data_cubit.freezed.dart';
@@ -25,9 +26,19 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     result.fold(
       (l) => emit(_Failure(l)),
-      (r) {
+      (r) async {
         userData = r;
-        emit(_Data(r));
+        if (r.firstName == "" && r.lastName == "") {
+          final userDisplayName =
+              FirebaseAuth.instance.currentUser?.displayName;
+          if (userDisplayName != null) {
+            userData = userData!.copyWith(
+              firstName: userDisplayName.split(" ").first,
+              lastName: userDisplayName.split(" ").last,
+            );
+          }
+        }
+        emit(_Data(userData!));
       },
     );
   }

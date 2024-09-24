@@ -115,6 +115,13 @@ class AuthRepository {
     });
   }
 
+  Future<Option<Failure>> signInWithMicrosoft() async {
+    return handleVoidResponse(() async {
+      final microsoftProvider = MicrosoftAuthProvider();
+      await FirebaseAuth.instance.signInWithProvider(microsoftProvider);
+    });
+  }
+
   Future<Option<Failure>> createUserDocument() async {
     return handleVoidResponse(() async {
       // final User? user = FirebaseAuth.instance.currentUser;
@@ -128,6 +135,11 @@ class AuthRepository {
       final CollectionReference usersRef =
           FirebaseFirestore.instance.collection('users');
       final DocumentReference userDocRef = usersRef.doc(currentUser.id);
+      final DocumentSnapshot userDocSnapshot = await userDocRef.get();
+
+      if (userDocSnapshot.exists) {
+        return const None();
+      }
 
       // Prepare user data (replace with your actual data structure)
       final userData = {

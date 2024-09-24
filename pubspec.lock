@@ -22,6 +22,14 @@ packages:
     description: dart
     source: sdk
     version: "0.3.2"
+  aad_oauth:
+    dependency: "direct main"
+    description:
+      name: aad_oauth
+      sha256: "7678046a7b4b5e967d324e7431626343084451e04ac847e382948c8e1286c30e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   adaptive_number:
     dependency: transitive
     description:

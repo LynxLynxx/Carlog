@@ -22,6 +22,15 @@ extension GoRouterExtension on GoRouter {
     }
     return location().split("/").length >= 3 ? false : true;
   }
+
+  bool get showAppOpenAd {
+    if (location() == RoutesK.login ||
+        location() == RoutesK.register ||
+        location() == RoutesK.recoveryPassword) {
+      return false;
+    }
+    return true;
+  }
 }
 
 extension GoRouterAnalytycsExtension on BuildContext {
