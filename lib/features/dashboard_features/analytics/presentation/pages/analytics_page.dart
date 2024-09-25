@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/widgets/expense_by_dt_widget.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/widgets/expenses_by_types_widget.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/widgets/two_months_expansion_info_widget.dart';
 import 'package:carlog/shared/widgets/carlog_car_appbar.dart';
@@ -39,12 +40,15 @@ class AnalyticsView extends StatelessWidget {
               data: (carExpenseList) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Statistics", style: context.titleLarge),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 20),
+                    child: Text("Statistics", style: context.titleLarge),
+                  ),
                   Container(
                     constraints: const BoxConstraints(maxHeight: 420),
                     child: CarouselView(
                       itemExtent: MediaQuery.of(context).size.width * 0.9,
-                      shrinkExtent: 100,
+                      shrinkExtent: 280,
                       itemSnapping: true,
                       elevation: 4,
                       padding: const EdgeInsets.all(8),
@@ -54,7 +58,7 @@ class AnalyticsView extends StatelessWidget {
                       children: [
                         TwoMonthsExpansionInfoWidget(carExpenseList),
                         ExpensesByTypesWidget(carExpenseList),
-                        TwoMonthsExpansionInfoWidget(carExpenseList),
+                        ExpenseByDtWidget(carExpenseList),
                       ],
                     ),
                   ),

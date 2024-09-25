@@ -175,6 +175,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
         "expense": MessageLookupByLibrary.simpleMessage("Expense"),
+        "expenseByDt": MessageLookupByLibrary.simpleMessage("Expense by date"),
+        "expensesByType":
+            MessageLookupByLibrary.simpleMessage("Expenses by type"),
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
         "feelFreeToReachOut": MessageLookupByLibrary.simpleMessage(
             "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!"),

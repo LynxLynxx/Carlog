@@ -1,9 +1,13 @@
 {
   "es": [
-    "positiveChartText"
+    "positiveChartText",
+    "expensesByType",
+    "expenseByDt"
   ],
 
   "pl": [
-    "positiveChartText"
+    "positiveChartText",
+    "expensesByType",
+    "expenseByDt"
   ]
 }

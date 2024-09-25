@@ -1872,6 +1872,26 @@ class S {
       args: [isPositive],
     );
   }
+
+  /// `Expenses by type`
+  String get expensesByType {
+    return Intl.message(
+      'Expenses by type',
+      name: 'expensesByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense by date`
+  String get expenseByDt {
+    return Intl.message(
+      'Expense by date',
+      name: 'expenseByDt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
