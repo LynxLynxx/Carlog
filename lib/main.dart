@@ -26,6 +26,7 @@ import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseService().init();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -33,7 +34,6 @@ Future<void> main() async {
   );
 
   Bloc.observer = MyBlocObserver();
-  await FirebaseService().init();
   configureDependencies();
   runApp(MultiBlocProvider(
     providers: [

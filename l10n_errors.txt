@@ -1,1 +1,9 @@
-{}
+{
+  "es": [
+    "positiveChartText"
+  ],
+
+  "pl": [
+    "positiveChartText"
+  ]
+}

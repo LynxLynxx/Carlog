@@ -1858,6 +1858,20 @@ class S {
       args: [],
     );
   }
+
+  /// `{isPositive, select, true{Less this month} other{More this month}}`
+  String positiveChartText(String isPositive) {
+    return Intl.select(
+      isPositive,
+      {
+        'true': 'Less this month',
+        'other': 'More this month',
+      },
+      name: 'positiveChartText',
+      desc: '',
+      args: [isPositive],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

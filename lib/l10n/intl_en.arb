@@ -195,5 +195,13 @@
   "yourMessageHasBeenSent": "Your message has been sent successfully!",
   "mailValidator": "Enter a valid email address",
   "passwordValidator": "The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long.",
-  "nameValidator": "The name must contain at least 2 characters and a maximum of 30 characters"
+  "nameValidator": "The name must contain at least 2 characters and a maximum of 30 characters",
+  "positiveChartText": "{isPositive, select, true{Less this month} other{More this month}}",
+  "@positiveChartText": {
+    "placeholders": {
+      "isPositive": {
+        "type": "String"
+      }
+    }
+  }
 }

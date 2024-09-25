@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/widgets/expenses_by_types_widget.dart';
+import 'package:carlog/features/dashboard_features/analytics/presentation/widgets/two_months_expansion_info_widget.dart';
 import 'package:carlog/shared/widgets/carlog_car_appbar.dart';
 import 'package:carlog/shared/widgets/carlog_loader.dart';
 import 'package:carlog/shared/widgets/carlog_scaffold.dart';
@@ -39,20 +41,21 @@ class AnalyticsView extends StatelessWidget {
                 children: [
                   Text("Statistics", style: context.titleLarge),
                   Container(
-                    constraints: const BoxConstraints(maxHeight: 380),
+                    constraints: const BoxConstraints(maxHeight: 420),
                     child: CarouselView(
                       itemExtent: MediaQuery.of(context).size.width * 0.9,
                       shrinkExtent: 100,
                       itemSnapping: true,
                       elevation: 4,
                       padding: const EdgeInsets.all(8),
-                      backgroundColor: context.primaryContainer,
-                      children: List.generate(
-                        carExpenseList.length,
-                        (index) => Text(
-                          carExpenseList[index].toString(),
-                        ),
-                      ),
+                      backgroundColor: context.surfaceContainerHighest,
+                      overlayColor:
+                          const WidgetStatePropertyAll(Colors.transparent),
+                      children: [
+                        TwoMonthsExpansionInfoWidget(carExpenseList),
+                        ExpensesByTypesWidget(carExpenseList),
+                        TwoMonthsExpansionInfoWidget(carExpenseList),
+                      ],
                     ),
                   ),
                   _buildBody(carExpenseList),
@@ -66,6 +69,7 @@ class AnalyticsView extends StatelessWidget {
 
   _buildBody(List<CarExpenseEntity> carExpenseList) => ListView.builder(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: carExpenseList.length,
         itemBuilder: (context, index) => Card(
             child: Column(

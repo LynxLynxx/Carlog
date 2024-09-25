@@ -20,13 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(language) => "${Intl.select(language, {
+  static String m0(isPositive) => "${Intl.select(isPositive, {
+            'true': 'Less this month',
+            'other': 'More this month',
+          })}";
+
+  static String m1(language) => "${Intl.select(language, {
             'pl': 'Polish',
             'en': 'English',
             'other': 'Spanish',
           })}";
 
-  static String m1(theme) => "${Intl.select(theme, {
+  static String m2(theme) => "${Intl.select(theme, {
             'light': 'light',
             'other': 'dark',
           })}";
@@ -225,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long."),
         "permissions": MessageLookupByLibrary.simpleMessage("PERMISSIONS"),
         "plate": MessageLookupByLibrary.simpleMessage("Plate"),
+        "positiveChartText": m0,
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
             "Price should be between 1 and 8 digits"),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
@@ -262,8 +268,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Successfully updated the milage"),
         "suggest": MessageLookupByLibrary.simpleMessage("Suggest"),
-        "supportedLanguage": m0,
-        "supportedThemes": m1,
+        "supportedLanguage": m1,
+        "supportedThemes": m2,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
             "Tap on the map to set the location of the action."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
