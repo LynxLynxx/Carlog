@@ -33,7 +33,7 @@ jobs:
       - run: flutter pub get
 
       # Build Flutter assets
-      - run: flutter pub run build_runner build
+      - run: flutter pub run build_runner build --delete-conflicting-outputs
 
       # Step: Set up Firebase secrets in localStorage
       - name: Set up Firebase secrets in localStorage
