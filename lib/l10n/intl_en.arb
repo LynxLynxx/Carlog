@@ -205,5 +205,10 @@
     }
   },
   "expensesByType": "Expenses by type",
-  "expenseByDt": "Expense by date"
+  "expenses": "Expenses",
+  "last5Expenses": "Last 5 expenses",
+  "more": "More",
+  "expenseByDt": "Expense by date",
+  "statistics": "Statistics",
+  "noExpenses": "Add expenses to see the statistics"
 }

@@ -1883,11 +1883,61 @@ class S {
     );
   }
 
+  /// `Expenses`
+  String get expenses {
+    return Intl.message(
+      'Expenses',
+      name: 'expenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 5 expenses`
+  String get last5Expenses {
+    return Intl.message(
+      'Last 5 expenses',
+      name: 'last5Expenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get more {
+    return Intl.message(
+      'More',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Expense by date`
   String get expenseByDt {
     return Intl.message(
       'Expense by date',
       name: 'expenseByDt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Statistics`
+  String get statistics {
+    return Intl.message(
+      'Statistics',
+      name: 'statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add expenses to see the statistics`
+  String get noExpenses {
+    return Intl.message(
+      'Add expenses to see the statistics',
+      name: 'noExpenses',
       desc: '',
       args: [],
     );

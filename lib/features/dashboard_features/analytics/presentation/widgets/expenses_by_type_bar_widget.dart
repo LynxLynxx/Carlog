@@ -1,6 +1,7 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_enum.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,17 @@ class ExpensesByTypeBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (carExpenseList.isEmpty) {
+      return Expanded(
+        child: Center(
+          child: Text(
+            S.of(context).noExpenses,
+            style: context.bodyLarge,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
     return AspectRatio(
       aspectRatio: 1.3,
       child: PieChart(

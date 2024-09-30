@@ -2,12 +2,22 @@
   "es": [
     "positiveChartText",
     "expensesByType",
-    "expenseByDt"
+    "expenses",
+    "last5Expenses",
+    "more",
+    "expenseByDt",
+    "statistics",
+    "noExpenses"
   ],
 
   "pl": [
     "positiveChartText",
     "expensesByType",
-    "expenseByDt"
+    "expenses",
+    "last5Expenses",
+    "more",
+    "expenseByDt",
+    "statistics",
+    "noExpenses"
   ]
 }

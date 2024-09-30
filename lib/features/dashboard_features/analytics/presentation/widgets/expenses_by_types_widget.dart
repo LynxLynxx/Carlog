@@ -18,7 +18,10 @@ class ExpensesByTypesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(S.of(context).expensesByType, style: context.titleLarge),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(S.of(context).expensesByType, style: context.titleLarge),
+        ),
         ExpensesByTypeBarWidget(carExpenseList),
         const TypeBarIconTextWidget(),
       ],

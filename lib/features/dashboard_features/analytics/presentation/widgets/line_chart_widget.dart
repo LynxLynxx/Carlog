@@ -1,4 +1,5 @@
 import 'package:carlog/core/extensions/styles_extenstion.dart';
+import 'package:carlog/generated/l10n.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,15 @@ class ChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (prices.isEmpty) {
+      return Center(
+        child: Text(
+          S.of(context).noExpenses,
+          style: context.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
     return AspectRatio(
       aspectRatio: 1.70,
       child: LineChart(

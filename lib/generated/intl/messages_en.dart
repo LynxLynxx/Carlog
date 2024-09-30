@@ -176,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please eneter a stronger password"),
         "expense": MessageLookupByLibrary.simpleMessage("Expense"),
         "expenseByDt": MessageLookupByLibrary.simpleMessage("Expense by date"),
+        "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
         "expensesByType":
             MessageLookupByLibrary.simpleMessage("Expenses by type"),
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
@@ -191,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "insurance": MessageLookupByLibrary.simpleMessage("Insurance"),
         "insuranceFee": MessageLookupByLibrary.simpleMessage("Insurance Fee"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "last5Expenses":
+            MessageLookupByLibrary.simpleMessage("Last 5 expenses"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "leadDeveloper":
             MessageLookupByLibrary.simpleMessage("Lead Mobile Developer"),
@@ -210,12 +213,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("First name"),
         "nameValidator": MessageLookupByLibrary.simpleMessage(
             "The name must contain at least 2 characters and a maximum of 30 characters"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noExpenses": MessageLookupByLibrary.simpleMessage(
+            "Add expenses to see the statistics"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Field cannot be empty"),
         "note": MessageLookupByLibrary.simpleMessage("Note"),
@@ -259,6 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFee": MessageLookupByLibrary.simpleMessage("Service Fee"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "subject": MessageLookupByLibrary.simpleMessage("Subject"),
         "successfullyAddedTheActivity": MessageLookupByLibrary.simpleMessage(
             "Successfully added the activity"),
