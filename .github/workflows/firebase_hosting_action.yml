@@ -35,6 +35,10 @@ jobs:
       # Build Flutter assets
       - run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Create firebase.json
+        run: |
+          echo "${{ secrets.FIREBASE_JSON }}" > firebase.json
+
       # Step: Set up Firebase secrets in localStorage
       - name: Set up Firebase secrets in localStorage
         run: |
