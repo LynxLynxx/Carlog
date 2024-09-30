@@ -1,3 +1,4 @@
+import 'dart:js' as js;
 import 'dart:ui';
 
 import 'package:carlog/core/addons/bloc_observer.dart';
@@ -24,9 +25,25 @@ import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  final firebaseConfig = js.context['firebaseConfig'];
+  if (firebaseConfig == null) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: firebaseConfig['FIREBASE_API_KEY'],
+        authDomain: firebaseConfig['FIREBASE_AUTH_DOMAIN'],
+        projectId: firebaseConfig['FIREBASE_PROJECT_ID'],
+        storageBucket: firebaseConfig['FIREBASE_STORAGE_BUCKET'],
+        messagingSenderId: firebaseConfig['FIREBASE_MESSAGING_SENDER_ID'],
+        appId: firebaseConfig['FIREBASE_APP_ID'],
+        measurementId: firebaseConfig['FIREBASE_MEASUREMENT_ID'],
+      ),
+    );
+  }
+
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
