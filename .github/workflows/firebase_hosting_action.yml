@@ -51,7 +51,7 @@ jobs:
           echo "window.localStorage.setItem('FIREBASE_MEASUREMENT_ID', '${{ secrets.MEASUREMENTID }}');" >> ./web/firebase_config.js
 
       # Build Flutter Web
-      - run: flutter build web -t lib/main_web.dart --release
+      - run: flutter build web -t lib/main.dart --release
 
       # Firebase Hosting deploy
       - name: Deploy to Firebase Hosting
