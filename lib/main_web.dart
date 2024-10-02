@@ -25,6 +25,10 @@ import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final firebaseConfig = js.context['firebaseConfig'];
   if (firebaseConfig == null) {
     await Firebase.initializeApp(
