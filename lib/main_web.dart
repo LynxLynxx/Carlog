@@ -2,11 +2,11 @@ import 'dart:js' as js;
 import 'dart:ui';
 
 import 'package:carlog/core/addons/bloc_observer.dart';
+import 'package:carlog/core/services/firebase_web_service.dart';
 import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/core/web_router/router.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
-import 'package:carlog/firebase_options.dart';
 import 'package:carlog/shared/device/presentation/cubit/device_cubit.dart';
 import 'package:carlog/shared/events/presentation/cubit/events_cubit.dart';
 import 'package:carlog/web_features/web_contact/domain/repositories/contact_repository.dart';
@@ -27,9 +27,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final firebaseConfig = js.context['firebaseConfig'];
   if (firebaseConfig == null) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    await FirebaseWebService().init();
   } else {
     await Firebase.initializeApp(
       options: FirebaseOptions(
