@@ -18,6 +18,7 @@ class CarExpenseEntity with _$CarExpenseEntity {
     @Default(null) String? note,
     @Default(null) String? attachmentPath,
     @Default(null) CarExpenseEnum? expense,
+    @Default(false) bool isDeleted,
   }) = _CarExpenseEntity;
 
   factory CarExpenseEntity.fromJson(Map<String, dynamic> json) =>

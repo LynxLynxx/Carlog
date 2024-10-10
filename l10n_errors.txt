@@ -7,7 +7,9 @@
     "more",
     "expenseByDt",
     "statistics",
-    "noExpenses"
+    "noExpenses",
+    "allExpenses",
+    "editExpense"
   ],
 
   "pl": [
@@ -18,6 +20,8 @@
     "more",
     "expenseByDt",
     "statistics",
-    "noExpenses"
+    "noExpenses",
+    "allExpenses",
+    "editExpense"
   ]
 }

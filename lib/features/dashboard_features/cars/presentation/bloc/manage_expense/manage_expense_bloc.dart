@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:carlog/core/extensions/dartz_extension.dart';
+import 'package:carlog/core/utils/currencies.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_enum.dart';
 import 'package:carlog/features/dashboard_features/analytics/domain/usecases/add_expense_usecase.dart';
@@ -60,6 +61,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     on<_ChangeCurrencyEvent>(_onChangeCurrencyEvent);
     on<_ChangeExpenseTypeEvent>(_onChangeExpenseTypeEvent);
     on<_SubmitExpenseEvent>(_onSubmitExpenseEvent);
+    on<_EditManageEvent>(_onEditManageEvent);
 
     carFirebaseEntity = _userAppBloc.state.maybeWhen(
       data: (car) => car,
@@ -80,6 +82,21 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
         data: (file) => fileEntity = file,
       );
     });
+  }
+
+  _onEditManageEvent(_EditManageEvent event, Emitter<ManageExpenseState> emit) {
+    emit(
+      state.copyWith(
+        amount: PriceEntityValidator.pure(event.value.amount.toString()),
+        milage: MilageEntityValidator.pure(
+            event.value.milage == null ? "" : event.value.milage.toString()),
+        note: NoteEntityValidator.pure(event.value.note.toString()),
+        date: event.value.timestamp!,
+        expense: event.value.expense!,
+        currency: CurrencyEntity.fromJson(CurrenciesK.currencies
+            .firstWhere((e) => e["code"] == event.value.currency)),
+      ),
+    );
   }
 
   _onChangeDateEvent(_ChangeDateEvent event, Emitter<ManageExpenseState> emit) {
@@ -130,28 +147,50 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
     String? imagePath;
+    String carExpenseId = const Uuid().v4();
 
-    final carExpenseId = const Uuid().v4();
-    final result = await _addExpenseUsecase.call(
-      carFirebaseEntity!.carId,
-      CarExpenseEntity(
-          carExpenseId: carExpenseId,
-          amount: int.tryParse(state.amount.value),
-          currency: state.currency!.code,
-          milage: int.tryParse(state.milage.value),
-          note: state.note.value,
-          attachmentPath: "",
-          timestamp: state.date,
-          createTimestamp: DateTime.now(),
-          expense: state.expense),
-    );
+    if (event.update != null) {
+      carExpenseId = event.update!.carExpenseId;
+      final result = await _updateExpensesUsecase.call(
+          carFirebaseEntity!.carId,
+          event.update!.carExpenseId,
+          CarExpenseEntity(
+            carExpenseId: event.update!.carExpenseId,
+            amount: int.tryParse(state.amount.value),
+            currency: state.currency?.code,
+            milage: int.tryParse(state.milage.value),
+            note: state.note.value,
+            attachmentPath: "",
+            timestamp: state.date,
+            expense: state.expense,
+          ).toJson());
 
-    if (result.isSome()) {
-      return emit(state.copyWith(
-          status: FormzSubmissionStatus.failure,
-          message: result.asOption().message!));
+      if (result.isSome()) {
+        return emit(state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            message: result.asOption().message!));
+      }
+    } else {
+      final result = await _addExpenseUsecase.call(
+        carFirebaseEntity!.carId,
+        CarExpenseEntity(
+            carExpenseId: carExpenseId,
+            amount: int.tryParse(state.amount.value),
+            currency: state.currency!.code,
+            milage: int.tryParse(state.milage.value),
+            note: state.note.value,
+            attachmentPath: "",
+            timestamp: state.date,
+            createTimestamp: DateTime.now(),
+            expense: state.expense),
+      );
+
+      if (result.isSome()) {
+        return emit(state.copyWith(
+            status: FormzSubmissionStatus.failure,
+            message: result.asOption().message!));
+      }
     }
-
     emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         message: S.current.successfullyAddedTheActivity));
@@ -162,7 +201,7 @@ class ManageExpenseBloc extends Bloc<ManageExpenseEvent, ManageExpenseState> {
       if (milageResult.isSome()) {
         return emit(state.copyWith(
             status: FormzSubmissionStatus.failure,
-            message: result.asOption().message!));
+            message: milageResult.asOption().message!));
       }
       _carsBloc.add(const CarsEvent.getCars());
       CarFirebaseEntity updatedCar =

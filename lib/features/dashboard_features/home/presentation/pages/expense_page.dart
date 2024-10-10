@@ -1,6 +1,7 @@
 import 'package:carlog/core/constants/formats.dart';
 import 'package:carlog/core/constants/paddings.dart';
 import 'package:carlog/core/di/injectable_config.dart';
+import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/bloc/analytics_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/cars/cars_bloc.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/bloc/manage_expense/manage_expense_bloc.dart';
@@ -21,8 +22,10 @@ import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
 class ExpensePage extends StatelessWidget {
+  final CarExpenseEntity? carExpenseEntity;
   const ExpensePage({
     super.key,
+    this.carExpenseEntity,
   });
 
   @override
@@ -44,13 +47,16 @@ class ExpensePage extends StatelessWidget {
               context.read<FileBloc>()),
         ),
       ],
-      child: const ExpenseView(),
+      child: ExpenseView(
+        carExpenseEntity,
+      ),
     );
   }
 }
 
 class ExpenseView extends StatefulWidget {
-  const ExpenseView({super.key});
+  const ExpenseView(this.carExpenseEntity, {super.key});
+  final CarExpenseEntity? carExpenseEntity;
 
   @override
   State<ExpenseView> createState() => _ActionViewState();
@@ -61,6 +67,16 @@ class _ActionViewState extends State<ExpenseView> {
   final amountEditingController = TextEditingController();
   final milageEditingController = TextEditingController();
   final noteEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.carExpenseEntity != null) {
+      context
+          .read<ManageExpenseBloc>()
+          .add(ManageExpenseEvent.editManage(widget.carExpenseEntity!));
+    }
+  }
 
   @override
   void dispose() {
@@ -78,7 +94,9 @@ class _ActionViewState extends State<ExpenseView> {
       child: CarlogScaffold.title(
         showAdmobBanner: DateTime.now().second.isEven,
         resizeToAvoidBottomInset: true,
-        title: S.of(context).addAction,
+        title: widget.carExpenseEntity == null
+            ? S.of(context).addAction
+            : S.of(context).editExpense,
         body: SingleChildScrollView(
           child: BlocConsumer<ManageExpenseBloc, ManageExpenseState>(
             listener: (context, state) {
@@ -168,9 +186,9 @@ class _ActionViewState extends State<ExpenseView> {
                   manageExpenseState.currency != null &&
                   manageExpenseState.date != null,
               onTap: () {
-                context
-                    .read<ManageExpenseBloc>()
-                    .add(const ManageExpenseEvent.submitExpenseEvent());
+                context.read<ManageExpenseBloc>().add(
+                    ManageExpenseEvent.submitExpenseEvent(
+                        update: widget.carExpenseEntity));
               },
             );
           },

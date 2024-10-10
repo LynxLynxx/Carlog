@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressValidator": MessageLookupByLibrary.simpleMessage(
             "Address should be between 1 and 100 characters"),
+        "allExpenses": MessageLookupByLibrary.simpleMessage("All"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
@@ -94,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
         "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
             "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost."),
+        "editExpense": MessageLookupByLibrary.simpleMessage("Edit Expense"),
         "eg100": MessageLookupByLibrary.simpleMessage("e.g. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("e.g. 163"),

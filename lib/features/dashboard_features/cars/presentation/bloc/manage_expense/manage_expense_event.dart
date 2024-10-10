@@ -13,5 +13,9 @@ class ManageExpenseEvent with _$ManageExpenseEvent {
       _ChangeCurrencyEvent;
   const factory ManageExpenseEvent.changeExpenseType(CarExpenseEnum value) =
       _ChangeExpenseTypeEvent;
-  const factory ManageExpenseEvent.submitExpenseEvent() = _SubmitExpenseEvent;
+  const factory ManageExpenseEvent.submitExpenseEvent(
+      {CarExpenseEntity? update}) = _SubmitExpenseEvent;
+
+  const factory ManageExpenseEvent.editManage(CarExpenseEntity value) =
+      _EditManageEvent;
 }

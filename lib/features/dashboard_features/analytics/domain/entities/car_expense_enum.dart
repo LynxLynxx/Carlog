@@ -11,6 +11,7 @@ enum CarExpenseEnum {
   tires,
   tuning,
   other,
+  all,
 }
 
 extension CarExpenseExtension on CarExpenseEnum {
@@ -32,6 +33,8 @@ extension CarExpenseExtension on CarExpenseEnum {
         return S.current.tuning;
       case CarExpenseEnum.other:
         return S.current.other;
+      case CarExpenseEnum.all:
+        return S.current.allExpenses;
       default:
         return S.current.other;
     }

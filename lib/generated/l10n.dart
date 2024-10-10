@@ -1942,6 +1942,26 @@ class S {
       args: [],
     );
   }
+
+  /// `All`
+  String get allExpenses {
+    return Intl.message(
+      'All',
+      name: 'allExpenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Expense`
+  String get editExpense {
+    return Intl.message(
+      'Edit Expense',
+      name: 'editExpense',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

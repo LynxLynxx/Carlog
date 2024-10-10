@@ -210,5 +210,7 @@
   "more": "More",
   "expenseByDt": "Expense by date",
   "statistics": "Statistics",
-  "noExpenses": "Add expenses to see the statistics"
+  "noExpenses": "Add expenses to see the statistics",
+  "allExpenses": "All",
+  "editExpense": "Edit Expense"
 }
