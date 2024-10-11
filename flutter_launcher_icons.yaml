@@ -1,0 +1,15 @@
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/appicon/Logo light.png"
+  image_path_android: "assets/appicon/Logo dark_ios.png"
+  image_path_ios_dark_transparent: "assets/appicon/Logo dark_ios.png"
+  # min_sdk_android: 21
+  adaptive_icon_foreground: "assets/appicon/Logo dark_ios.png"
+  adaptive_icon_background: "#001D36"
+  web:
+    generate: true
+    image_path: "assets/appicon/Logo dark_ios.png"
+    background_color: "#001D36"
+    theme_color: "#001D36"
