@@ -20,13 +20,13 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static String m0(language) => "${Intl.select(language, {
+  static String m1(language) => "${Intl.select(language, {
             'pl': 'Polaco',
             'en': 'Inglés',
             'other': 'Español',
           })}";
 
-  static String m1(theme) => "${Intl.select(theme, {
+  static String m2(theme) => "${Intl.select(theme, {
             'light': 'claro',
             'other': 'oscuro',
           })}";
@@ -272,8 +272,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Kilometraje actualizado correctamente"),
         "suggest": MessageLookupByLibrary.simpleMessage("Sugerir"),
-        "supportedLanguage": m0,
-        "supportedThemes": m1,
+        "supportedLanguage": m1,
+        "supportedThemes": m2,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
             "Toca en el mapa para establecer la ubicación de la acción."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Términos de uso"),

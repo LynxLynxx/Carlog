@@ -52,6 +52,7 @@ class _RootPageState extends State<RootPage> {
         BlocProvider(
           create: (context) => AnalyticsBloc(
             locator(),
+            locator(),
           ),
         ),
         BlocProvider(

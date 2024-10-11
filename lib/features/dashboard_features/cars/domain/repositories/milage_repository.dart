@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class MilageRepository {
-  Future<Option<Failure>> updateMilage(String carId, String milage);
+  Future<Option<Failure>> updateMilage(String carId, int milage);
 }
 
 @LazySingleton(as: MilageRepository)
@@ -14,7 +14,7 @@ class MilageRepositoryImpl implements MilageRepository {
 
   MilageRepositoryImpl() : _milageDatasource = MilageDatasourceImpl();
   @override
-  Future<Option<Failure>> updateMilage(String carId, String milage) async {
+  Future<Option<Failure>> updateMilage(String carId, int milage) async {
     return await handleVoidResponse(
         () async => await _milageDatasource.updateMilage(carId, milage));
   }

@@ -3,6 +3,7 @@ import 'package:carlog/features/dashboard_features/cars/presentation/widgets/add
 import 'package:carlog/features/dashboard_features/home/presentation/widgets/expense/custom_dropdown_currency_widget.dart';
 import 'package:carlog/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AmountWidget extends StatelessWidget {
@@ -26,6 +27,8 @@ class AmountWidget extends StatelessWidget {
               },
               title: S.of(context).amount,
               hintText: S.of(context).eg100,
+              textInputType: TextInputType.number,
+              textInputFormatterList: [FilteringTextInputFormatter.digitsOnly],
               displayError: state.amount.displayError ?? ""),
         ),
         const Expanded(

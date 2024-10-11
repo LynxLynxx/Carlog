@@ -26,10 +26,14 @@ class ExpenseDatasourceImpl implements ExpenseDatasource {
               .doc(carId)
               .collection(CollectionsK.expenses)
               .path, (doc) {
-        return doc
+        final filteredDoc = doc
             .map((model) =>
                 CarExpenseEntity.fromJson(model.data() as Map<String, dynamic>))
+            .where((element) => !element.isDeleted)
             .toList();
+
+        filteredDoc.sort((a, b) => b.timestamp!.compareTo(a.timestamp!));
+        return filteredDoc;
       });
 
   @override
@@ -63,5 +67,7 @@ class ExpenseDatasourceImpl implements ExpenseDatasource {
               .doc(carId)
               .collection(CollectionsK.expenses)
               .doc(carExpenseId),
-          (doc) => doc.delete());
+          (doc) => doc.update({
+                "isDeleted": true,
+              }));
 }

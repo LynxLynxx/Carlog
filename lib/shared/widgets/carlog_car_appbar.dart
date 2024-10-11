@@ -249,7 +249,7 @@ class CarSelectElementWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              carFirebaseEntity?.milage ?? "",
+              carFirebaseEntity?.milage.toString() ?? "",
               style: context.headlineSmall!
                   .copyWith(color: context.onPrimaryContainer),
             ),

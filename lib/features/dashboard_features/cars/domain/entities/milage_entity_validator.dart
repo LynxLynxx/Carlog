@@ -10,6 +10,9 @@ class MilageEntityValidator extends FormzInput<String, String> {
     if (value.isEmpty) {
       return S.current.milageValidator;
     }
+    if (int.tryParse(value) == null) {
+      return S.current.milageValidator;
+    }
     if (value.isEmpty || value.length > 8) {
       return S.current.milageValidator;
     }

@@ -1858,6 +1858,110 @@ class S {
       args: [],
     );
   }
+
+  /// `{isPositive, select, true{Less this month} other{More this month}}`
+  String positiveChartText(String isPositive) {
+    return Intl.select(
+      isPositive,
+      {
+        'true': 'Less this month',
+        'other': 'More this month',
+      },
+      name: 'positiveChartText',
+      desc: '',
+      args: [isPositive],
+    );
+  }
+
+  /// `Expenses by type`
+  String get expensesByType {
+    return Intl.message(
+      'Expenses by type',
+      name: 'expensesByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expenses`
+  String get expenses {
+    return Intl.message(
+      'Expenses',
+      name: 'expenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 5 expenses`
+  String get last5Expenses {
+    return Intl.message(
+      'Last 5 expenses',
+      name: 'last5Expenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get more {
+    return Intl.message(
+      'More',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense by date`
+  String get expenseByDt {
+    return Intl.message(
+      'Expense by date',
+      name: 'expenseByDt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Statistics`
+  String get statistics {
+    return Intl.message(
+      'Statistics',
+      name: 'statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add expenses to see the statistics`
+  String get noExpenses {
+    return Intl.message(
+      'Add expenses to see the statistics',
+      name: 'noExpenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get allExpenses {
+    return Intl.message(
+      'All',
+      name: 'allExpenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Expense`
+  String get editExpense {
+    return Intl.message(
+      'Edit Expense',
+      name: 'editExpense',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

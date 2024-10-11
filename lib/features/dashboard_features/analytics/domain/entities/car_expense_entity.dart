@@ -12,12 +12,13 @@ class CarExpenseEntity with _$CarExpenseEntity {
     required String carExpenseId,
     @TimestampConverter() DateTime? timestamp,
     @TimestampConverter() DateTime? createTimestamp,
-    @Default(null) String? amount,
+    @Default(null) num? amount,
     @Default(null) String? currency,
-    @Default(null) String? milage,
+    @Default(null) num? milage,
     @Default(null) String? note,
     @Default(null) String? attachmentPath,
     @Default(null) CarExpenseEnum? expense,
+    @Default(false) bool isDeleted,
   }) = _CarExpenseEntity;
 
   factory CarExpenseEntity.fromJson(Map<String, dynamic> json) =>

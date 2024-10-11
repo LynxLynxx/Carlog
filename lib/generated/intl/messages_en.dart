@@ -20,13 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(language) => "${Intl.select(language, {
+  static String m0(isPositive) => "${Intl.select(isPositive, {
+            'true': 'Less this month',
+            'other': 'More this month',
+          })}";
+
+  static String m1(language) => "${Intl.select(language, {
             'pl': 'Polish',
             'en': 'English',
             'other': 'Spanish',
           })}";
 
-  static String m1(theme) => "${Intl.select(theme, {
+  static String m2(theme) => "${Intl.select(theme, {
             'light': 'light',
             'other': 'dark',
           })}";
@@ -44,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressValidator": MessageLookupByLibrary.simpleMessage(
             "Address should be between 1 and 100 characters"),
+        "allExpenses": MessageLookupByLibrary.simpleMessage("All"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
@@ -89,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "developer": MessageLookupByLibrary.simpleMessage("Mobile Developer"),
         "doYouReallyWantToDeleteYourAccount": MessageLookupByLibrary.simpleMessage(
             "Do you really want to delete your account? This action is irreversible, and all your data will be permanently lost."),
+        "editExpense": MessageLookupByLibrary.simpleMessage("Edit Expense"),
         "eg100": MessageLookupByLibrary.simpleMessage("e.g. 100"),
         "eg10000": MessageLookupByLibrary.simpleMessage("e.g. 10 000"),
         "eg163": MessageLookupByLibrary.simpleMessage("e.g. 163"),
@@ -170,6 +177,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWeakPassword": MessageLookupByLibrary.simpleMessage(
             "Please eneter a stronger password"),
         "expense": MessageLookupByLibrary.simpleMessage("Expense"),
+        "expenseByDt": MessageLookupByLibrary.simpleMessage("Expense by date"),
+        "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
+        "expensesByType":
+            MessageLookupByLibrary.simpleMessage("Expenses by type"),
         "feedback": MessageLookupByLibrary.simpleMessage("FEEDBACK"),
         "feelFreeToReachOut": MessageLookupByLibrary.simpleMessage(
             "Feel free to reach out to us at any time, and we’ll get back to you as quickly as possible. Your questions and feedback are important to us!"),
@@ -183,6 +194,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "insurance": MessageLookupByLibrary.simpleMessage("Insurance"),
         "insuranceFee": MessageLookupByLibrary.simpleMessage("Insurance Fee"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "last5Expenses":
+            MessageLookupByLibrary.simpleMessage("Last 5 expenses"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "leadDeveloper":
             MessageLookupByLibrary.simpleMessage("Lead Mobile Developer"),
@@ -202,12 +215,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "milage": MessageLookupByLibrary.simpleMessage("Milage"),
         "milageValidator": MessageLookupByLibrary.simpleMessage(
             "Milage should be between 1 and 8 digits"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("First name"),
         "nameValidator": MessageLookupByLibrary.simpleMessage(
             "The name must contain at least 2 characters and a maximum of 30 characters"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noExpenses": MessageLookupByLibrary.simpleMessage(
+            "Add expenses to see the statistics"),
         "notValidEmpty":
             MessageLookupByLibrary.simpleMessage("Field cannot be empty"),
         "note": MessageLookupByLibrary.simpleMessage("Note"),
@@ -225,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password must contain at least one special character, uppercase and lowercase letter. The password must be at least 8 characters long."),
         "permissions": MessageLookupByLibrary.simpleMessage("PERMISSIONS"),
         "plate": MessageLookupByLibrary.simpleMessage("Plate"),
+        "positiveChartText": m0,
         "pricePerLiterValidator": MessageLookupByLibrary.simpleMessage(
             "Price should be between 1 and 8 digits"),
         "priceValidator": MessageLookupByLibrary.simpleMessage(
@@ -250,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFee": MessageLookupByLibrary.simpleMessage("Service Fee"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "subject": MessageLookupByLibrary.simpleMessage("Subject"),
         "successfullyAddedTheActivity": MessageLookupByLibrary.simpleMessage(
             "Successfully added the activity"),
@@ -262,8 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfullyUpdatedTheMilage": MessageLookupByLibrary.simpleMessage(
             "Successfully updated the milage"),
         "suggest": MessageLookupByLibrary.simpleMessage("Suggest"),
-        "supportedLanguage": m0,
-        "supportedThemes": m1,
+        "supportedLanguage": m1,
+        "supportedThemes": m2,
         "tapOnTheMap": MessageLookupByLibrary.simpleMessage(
             "Tap on the map to set the location of the action."),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),

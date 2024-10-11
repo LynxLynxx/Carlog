@@ -1,11 +1,12 @@
+import 'dart:js' as js;
 import 'dart:ui';
 
 import 'package:carlog/core/addons/bloc_observer.dart';
+import 'package:carlog/core/services/firebase_web_service.dart';
 import 'package:carlog/core/theme/theme.dart';
 import 'package:carlog/core/web_router/router.dart';
 import 'package:carlog/features/other_features/theme_mode/presentation/cubit/theme_mode_cubit.dart';
 import 'package:carlog/features/settings_features/settings/presentation/cubit/language_cubit/language_cubit.dart';
-import 'package:carlog/firebase_options.dart';
 import 'package:carlog/shared/device/presentation/cubit/device_cubit.dart';
 import 'package:carlog/shared/events/presentation/cubit/events_cubit.dart';
 import 'package:carlog/web_features/web_contact/domain/repositories/contact_repository.dart';
@@ -24,9 +25,23 @@ import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  final firebaseConfig = js.context['firebaseConfig'];
+  if (firebaseConfig == null) {
+    await FirebaseWebService().init();
+  } else {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: firebaseConfig['FIREBASE_API_KEY'],
+        authDomain: firebaseConfig['FIREBASE_AUTH_DOMAIN'],
+        projectId: firebaseConfig['FIREBASE_PROJECT_ID'],
+        storageBucket: firebaseConfig['FIREBASE_STORAGE_BUCKET'],
+        messagingSenderId: firebaseConfig['FIREBASE_MESSAGING_SENDER_ID'],
+        appId: firebaseConfig['FIREBASE_APP_ID'],
+        measurementId: firebaseConfig['FIREBASE_MEASUREMENT_ID'],
+      ),
+    );
+  }
+
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory

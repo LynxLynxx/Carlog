@@ -51,6 +51,7 @@ class UserAppBloc extends Bloc<UserAppEvent, UserAppState> {
   _onReadCarFromApp(_ReadCarFromApp event, Emitter<UserAppState> emit) async {
     emit(const _Loading());
     final car = await secureStorageService.readCarFromApp();
+    // const car = null;
     CarFirebaseEntity? firstCarFromFirebase;
     if (carFirebaseEntityList != null) {
       if (carFirebaseEntityList!.isNotEmpty) {

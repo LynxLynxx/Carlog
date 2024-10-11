@@ -1,6 +1,7 @@
 import 'package:carlog/core/router/entities/dialog_route.dart';
 import 'package:carlog/core/router/router.dart';
 import 'package:carlog/core/router/routes_constants.dart';
+import 'package:carlog/features/dashboard_features/analytics/domain/entities/car_expense_entity.dart';
 import 'package:carlog/features/dashboard_features/analytics/presentation/pages/analytics_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/add_car_page.dart';
 import 'package:carlog/features/dashboard_features/cars/presentation/pages/cars_page.dart';
@@ -104,7 +105,9 @@ final StatefulShellBranch dashboardBranches = StatefulShellBranch(
         GoRoute(
           path: "addExpense",
           builder: (context, state) {
-            return const ExpensePage();
+            return ExpensePage(
+              carExpenseEntity: state.extra as CarExpenseEntity?,
+            );
           },
         ),
       ],

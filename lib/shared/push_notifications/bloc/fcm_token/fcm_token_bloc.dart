@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:carlog/core/di/injectable_config.dart';
 import 'package:carlog/core/error/failures.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:carlog/shared/push_notifications/domain/usecase/save_token_usecase.dart';
+import 'package:carlog/shared/push_notifications/entities/fcm_token_entity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,8 +18,11 @@ part 'fcm_token_state.dart';
 
 class FcmTokenBloc extends Bloc<FcmTokenEvent, FcmTokenState> {
   final FirebaseMessaging _fcm;
+  final FcmTokenUsecase _fcmTokenUsecase;
+
   FcmTokenBloc()
       : _fcm = FirebaseMessaging.instance,
+        _fcmTokenUsecase = FcmTokenUsecase(locator()),
         super(const _Initial()) {
     on<_Started>(_onStarted);
     add(const _Started());
@@ -28,6 +34,16 @@ class FcmTokenBloc extends Bloc<FcmTokenEvent, FcmTokenState> {
     String? fcmToken = await _fcm.getToken();
     if (fcmToken == null) return;
     log("FcmTokenBloc: $fcmToken");
+    FcmTokenEntity fcmTokenEntity = FcmTokenEntity();
+    if (Platform.isIOS) {
+      fcmTokenEntity = fcmTokenEntity.copyWith(iosToken: fcmToken);
+    }
+    if (Platform.isAndroid) {
+      fcmTokenEntity = fcmTokenEntity.copyWith(androidToken: fcmToken);
+    }
+    _fcmTokenUsecase.call(
+        fcmTokenEntity, FirebaseAuth.instance.currentUser!.uid);
+
     await close();
   }
 
