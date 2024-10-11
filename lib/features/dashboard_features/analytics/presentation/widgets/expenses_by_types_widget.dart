@@ -36,33 +36,36 @@ class TypeBarIconTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: GridView.count(
-        padding: EdgeInsets.zero,
-        crossAxisCount: 2,
-        childAspectRatio: 10 / 1,
-        mainAxisSpacing: 8,
-        // crossAxisSpacing: 10,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          CarExpenseEnum.values.length,
-          (index) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  CarExpenseExtension.getCustomIcon(
-                    CarExpenseEnum.values[index],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SizedBox(
+        height: 95,
+        child: GridView.count(
+          padding: EdgeInsets.zero,
+          crossAxisCount: 2,
+          childAspectRatio: 10 / 1,
+          mainAxisSpacing: 8,
+          // crossAxisSpacing: 10,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: List.generate(
+            CarExpenseEnum.values.length,
+            (index) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    CarExpenseExtension.getCustomIcon(
+                      CarExpenseEnum.values[index],
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Text(CarExpenseExtension.getCustomName(
-                    CarExpenseEnum.values[index])),
-              ],
-            );
-          },
+                  const SizedBox(width: 10),
+                  Text(CarExpenseExtension.getCustomName(
+                      CarExpenseEnum.values[index])),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

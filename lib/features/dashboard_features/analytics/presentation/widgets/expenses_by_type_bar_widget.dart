@@ -26,7 +26,7 @@ class ExpensesByTypeBarWidget extends StatelessWidget {
       );
     }
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1.45,
       child: PieChart(
         PieChartData(
           borderData: FlBorderData(

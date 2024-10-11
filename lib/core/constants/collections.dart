@@ -4,4 +4,5 @@ final class CollectionsK {
   static const carsDeleted = "carsDeleted";
   static const actions = "actions";
   static const expenses = "expenses";
+  static const fcmToken = "fcmToken";
 }
